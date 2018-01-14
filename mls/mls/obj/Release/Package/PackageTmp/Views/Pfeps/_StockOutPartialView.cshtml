@@ -1,0 +1,64 @@
+﻿@model IEnumerable<mls.ViewModels.SavePfepViewModel>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        @*<th></th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PfepTx)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KbQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qoh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Oo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ocean)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PfepId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PfepId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PfepId })
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerPn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PartDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PfepTx)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KbQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qoh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Oo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ocean)
+            </td>
+
+        </tr>
+    }
+
+</table>
+

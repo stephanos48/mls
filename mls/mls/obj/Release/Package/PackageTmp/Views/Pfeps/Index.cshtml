@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Supply Chain Home";
+}
+
+<h2>Supply Chain Home</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "CustomerOrders", null, null)
+</p>
+
+<br />
+
+<p>
+
+    <h4><u>Supply Chain Apps</u></h4>
+    <br />
+
+    @Html.ActionLink("Pfep Plans", "Pfep")
+    <br />
+    <br />
+    @Html.ActionLink("Supplier Info", "Index", "Suppliers", null, null)
+    <br />
+    <br />
+    @*-> @Html.ActionLink("Logistics", "Index", "ShipIns", null, null)
+    <br />
+    <br />
+    -> @Html.ActionLink("Quality", "QualityHome", "NCRs", null, null)
+    <br />
+    <br />*@
+
+    <h4><u>Supply Chain Inputs</u></h4>
+    <br />
+    @Html.ActionLink("Manage Pfep Plans", "ManagePfep")
+    <br />
+    <br />
+    @Html.ActionLink("Master Part List", "Index", "MasterPartLists", null, null)
+    <br />
+    <br />
+
+
+</p>
+

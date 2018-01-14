@@ -1,0 +1,42 @@
+﻿
+
+@{
+    ViewBag.Title = "Pfep_Heil";
+}
+
+<h2>Heil PFEP Cylinders</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index")
+</p>
+
+<br />
+
+<h4><u>Stock Out</u></h4>
+@Html.Action("_StockOut", "Pfeps", new { parttype = 1, customer = 1, division = 1 })
+<br />
+<br />
+<h4><u>Low Stock</u></h4>
+@Html.Action("_LowStock", "Pfeps", new { parttype = 1, customer = 1, division = 1 })
+<br />
+<br />
+<h4><u>Need to Order / In Transit</u></h4>
+@Html.Action("_NeedToOrder", "Pfeps", new { parttype = 1, customer = 1, division = 1 })
+<br />
+<br />
+<h4><u>All Parts</u></h4>
+@Html.Action("_AllParts", "Pfeps", new { parttype = 1, customer = 1, division = 1 })
+<br />
+<br />
+<h4><u>In Transit</u></h4>
+@Html.Action("_Transit", "ShipIns", new { division = 1 })
+<br />
+<br />
+@*<h4><u>In Transit</u></h4>
+    @Html.Action("_BATransit", "ShipIns", new { Customer = 2, Division = 6 })
+    <br />
+    <br />
+    <h4><u>Production Detail</u></h4>
+    @Html.Action("_Tx", "Pfeps", new { Customer = 2, Division = 6 })
+    <br />
+    <br />*@

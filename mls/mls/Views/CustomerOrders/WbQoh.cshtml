@@ -1,0 +1,32 @@
+﻿@model IEnumerable<mls.ViewModels.QohViewModel>
+
+@{
+    ViewBag.Title = "WB Qoh";
+}
+
+<h2>WB Qoh</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qoh)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Qoh)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,38 @@
+﻿
+
+@{
+    ViewBag.Title = "Production";
+}
+
+<h2>Production</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "ScrumHome") | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Executive", "Executive", "Scrums", null, null) | @Html.ActionLink("Ops", "Production", "Scrums", null, null) | @Html.ActionLink("Sales", "Sales", "Scrums", null, null) | @Html.ActionLink("Logistics", "Logistics", "Scrums", null, null) | @Html.ActionLink("Finance", "Finance", "Scrums", null, null) | @Html.ActionLink("Eng", "Engineering", "Scrums", null, null) | @Html.ActionLink("SC", "Sc", "Scrums", null, null) | @Html.ActionLink("IT", "It", "Scrums", null, null) | @Html.ActionLink("Quality", "Quality", "Scrums", null, null) | @Html.ActionLink("Inventory", "Inventory", "Scrums", null, null) | @Html.ActionLink("Maintenance", "Maintenance", "Scrums", null, null)
+</p>
+
+<br />
+
+<h4><u>Top Priority / Past Due</u></h4>
+@Html.Action("_TopPriority", "Scrums", new { department = 11 })
+<br />
+<br />
+<h4><u>Actively Working</u></h4>
+@Html.Action("_ActivelyWorking", "Scrums", new { department = 11 })
+<br />
+<br />
+<h4><u>Ice Box</u></h4>
+@Html.Action("_IceBox", "Scrums", new { department = 11 })
+<br />
+<br />
+<h4><u>Completed</u></h4>
+@Html.Action("_Completed", "Scrums", new { department = 11 })
+<br />
+<br />
+@*<h4><u>In Transit</u></h4>
+    @Html.Action("_BATransit", "ShipIns", new { Customer = 2, Division = 6 })
+    <br />
+    <br />
+    <h4><u>Production Detail</u></h4>
+    @Html.Action("_Tx", "Pfeps", new { Customer = 2, Division = 6 })
+    <br />
+    <br />*@

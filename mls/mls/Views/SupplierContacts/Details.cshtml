@@ -1,0 +1,82 @@
+﻿@model mls.Models.SupplierContact
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SupplierContact</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Suppliers.SupplierName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Suppliers.SupplierName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierContactName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierContactName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierContactTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierContactTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierContactCell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierContactCell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierContactPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierContactPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierContactFax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierContactFax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierContactEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierContactEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SupplierContactId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

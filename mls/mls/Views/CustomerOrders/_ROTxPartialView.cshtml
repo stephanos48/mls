@@ -1,0 +1,80 @@
+﻿@model IEnumerable<mls.ViewModels.NewOrderViewModel>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerOrderNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PromiseDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.CustomerOrderId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerOrderNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerPn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PartDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderQty)
+            </td>
+            <td>
+                @Html.DisplayFor(mmodelItem => item.ShipQty)
+            </td>
+            <td>
+                @Html.DisplayFor(mmodelItem => item.PromiseDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(mmodelItem => item.Notes)
+            </td>
+
+        </tr>
+    }
+
+</table>
+

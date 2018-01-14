@@ -1,0 +1,117 @@
+﻿@model IEnumerable<mls.Models.NcrChina>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "QualityHome", "NCRs", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Disposition", "HualinDisposition") | @Html.ActionLink("Rework", "HualinRework") | @Html.ActionLink("RTV", "HualinRTV") | @Html.ActionLink("Scrap", "HualinScrap") | @Html.ActionLink("Closed", "HualinClosed")
+</p>
+
+<table id="ncrchina" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.NcrChinaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NcrNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IssueDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NcrTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerDivisionId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MlsDivisionId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DefectDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DispositionId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DispositionDateTime)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.NcrChinaId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.NcrChinaId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NcrChinaId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NcrChinaId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NcrNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IssueDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NcrTypeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerDivisionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MlsDivisionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DefectDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DispositionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DispositionDateTime)
+                </td>
+
+            </tr>
+
+        }
+    </tbody>
+
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+               $("#ncrchina").DataTable();
+            });
+
+    </script>
+}

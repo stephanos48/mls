@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "LogisticsBasic";
+}
+
+<h2>Logistics Basic</h2>
+
+<br />
+<p>
+    <h4><u>Logistics Views</u></h4>
+    <br />
+
+    @Html.ActionLink("In Transit", "ROTransit", "ShipIns", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Expedited Freight", "Index", "ExpeditedFreights", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Receipt History", "ROReceipt", "ShipIns", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Ship History", "ROShipOut", "ShipOuts", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Part Locations", "Locations", "MasterPartLists", null, null)
+    <br />
+    <br />
+
+
+</p>

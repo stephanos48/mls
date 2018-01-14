@@ -1,0 +1,147 @@
+﻿@model mls.ViewModels.SupplierIndexDataViewModel
+@*@model IEnumerable<mls.Models.Supplier>*@
+
+@{
+    ViewBag.Title = "Suppliers";
+}
+
+<h2>Suppliers</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "Pfeps", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br/>
+
+<table id="supplier" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th></th>
+        <th>SupplierId</th>
+        <th>Name</th>
+        <th>Supplier Number</th>
+        <th>Type</th>
+        <th>Country</th>
+        <th>Phone</th>
+        <th>Website</th>
+        @*<th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Website)
+            </th>*@
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Suppliers)
+    {
+        string selectedRow = "";
+        if (item.SupplierId == ViewBag.SupplierId)
+        {
+            selectedRow = "success";
+        }
+        <tr class ="@selectedRow">
+            <td>
+                @Html.ActionLink("Select", "Index", new { id = item.SupplierId })|
+                @Html.ActionLink("Edit", "Edit", new {id = item.SupplierId})|
+                @Html.ActionLink("Details", "Details", new {id = item.SupplierId})|
+                @Html.ActionLink("Delete", "Delete", new {id = item.SupplierId})
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Website)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@if (Model.SupplierContacts != null)
+{
+    <h3>
+        Supplier Contacts
+    </h3>
+    <p>
+        @Html.ActionLink("Create New", "Create", "SupplierContacts", null, null) 
+    </p>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Cell</th>
+            <th>Office</th>
+            <th>Fax</th>
+            <th>Email</th>
+            <th>Notes</th>
+        </tr>
+        @foreach (var item in Model.SupplierContacts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierContactName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierContactTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierContactCell)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierContactPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierContactFax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierContactEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+               $("#supplier").DataTable();
+            });
+
+    </script>
+}

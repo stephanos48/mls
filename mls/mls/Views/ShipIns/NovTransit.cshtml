@@ -1,0 +1,82 @@
+﻿@model IEnumerable<mls.Models.ShipIn>
+
+@{
+    ViewBag.Title = "Nov Transit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Nov In Transit</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "NovHome", "CustomerOrders", null, null)
+</p>
+
+<table id="novtransit" class="table table-bordered table-hover">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContainerUh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shipdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Etadate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Details", "NovDetails", new { id = item.ShipInId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContainerUh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shipdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Etadate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+               $("#novtransit").DataTable();
+            });
+
+    </script>
+}

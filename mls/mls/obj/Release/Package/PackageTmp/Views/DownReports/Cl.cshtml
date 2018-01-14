@@ -1,0 +1,31 @@
+﻿@model IEnumerable<mls.Models.DownReport>
+
+@{
+    ViewBag.Title = "CL Down Report";
+}
+
+<h2>CL Down Report</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "WorkOrders", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br />
+
+<h4><u>Newly Reported</u></h4>
+@Html.Action("_NewDownPartialView", "DownReports", new { MlsDivision = 3 })
+<br />
+<br />
+<h4><u>In Review</u></h4>
+@Html.Action("_ResponseDownPartialView", "DownReports", new { MlsDivision = 3 })
+<br />
+<br />
+<h4><u>Solution In Process</u></h4>
+@Html.Action("_InProcessDownPartialView", "DownReports", new { MlsDivision = 3 })
+<br />
+<br />
+<h4><u>Closed</u></h4>
+@Html.Action("_ClosedDownPartialView", "DownReports", new { MlsDivision = 3 })
+<br />
+<br />
+

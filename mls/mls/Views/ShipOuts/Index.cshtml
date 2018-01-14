@@ -1,0 +1,165 @@
+﻿@model IEnumerable<mls.Models.ShipOut>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FreightTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FPaymentMethodId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Carrier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrackingInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Destination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoldTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipState)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipZip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManifestNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PoNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PalletNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerDivisionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FreightTypeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FPaymentMethodId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Carrier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackingInfo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Destination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quote)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoldTo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipTo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipState)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipZip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManifestNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PoNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PalletNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ShipOutId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ShipOutId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ShipOutId })
+        </td>
+    </tr>
+}
+
+</table>

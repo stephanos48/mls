@@ -1,0 +1,75 @@
+﻿@model IEnumerable<mls.Models.SupplierContact>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Suppliers.SupplierName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupplierContactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupplierContactTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupplierContactCell)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupplierContactPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupplierContactFax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupplierContactEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Suppliers.SupplierName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierContactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierContactTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierContactCell)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierContactPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierContactFax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierContactEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SupplierContactId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SupplierContactId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SupplierContactId })
+        </td>
+    </tr>
+}
+
+</table>

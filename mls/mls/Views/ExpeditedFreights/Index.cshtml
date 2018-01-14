@@ -1,0 +1,152 @@
+﻿@model mls.ViewModels.ExpeditedFreightDataViewModel
+@*@model IEnumerable<mls.Models.ExpeditedFreight>*@
+
+@{
+    ViewBag.Title = "Expedited Freight";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Expedited Freight</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "ShipIns", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+<table id="expedite" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Expedited Freight No</th>
+        <th>Part Number</th>
+        <th>Freight Type</th>
+        <th>Requested By</th>
+        <th>Requested Date</th>
+        <th>Need Date</th>
+        <th>Destination</th>
+        <th>Reason</th>
+        <th>Notes</th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.ExpeditedFreightNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpeditedFreightType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NeedDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Destination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th></th>*@
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ExpeditedFreights)
+        {
+            string selectedRow = "";
+            if (item.ExpeditedFreightId == ViewBag.ExpeditedFreightId)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Index", new { id = item.ExpeditedFreightId })|
+                    @Html.ActionLink("Edit", "Edit", new {id = item.ExpeditedFreightId}) |
+                    @Html.ActionLink("Details", "Details", new {id = item.ExpeditedFreightId}) |
+                    @Html.ActionLink("Delete", "Delete", new {id = item.ExpeditedFreightId})
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpeditedFreightNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpeditedFreightType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NeedDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reason)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.ExpFreightDetails != null)
+{
+    <h3>
+        Expedited Freight Details
+    </h3>
+    <p>
+        @Html.ActionLink("Create New", "Create", "ExpFreightDetails", null, null)
+    </p>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Transport Mode</th>
+            <th>Departure Date</th>
+            <th>Arrival Date</th>
+            <th>Cost</th>
+            <th>Notes</th>
+        </tr>
+        @foreach (var item in Model.ExpFreightDetails)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpediteMode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+               $("#expedite").DataTable();
+            });
+
+    </script>
+}

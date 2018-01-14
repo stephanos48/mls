@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Chassis Liner";
+
+}
+
+<h2><b>Chassis Liner</b></h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index") | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br />
+
+<h4><u>New Orders</u></h4>
+@Html.Action("_PNewOrder", "CustomerOrders", new { Customer = 11, Division = 7, MlsDivision = 3 })
+<br />
+<br />
+<h4><u>Order in Review</u></h4>
+@Html.Action("_PReview", "CustomerOrders", new { Customer = 11, Division = 7, MlsDivision = 3 })
+<br />
+<br />
+<h4><u>Stock Out</u></h4>
+@Html.Action("_PStockOut", "CustomerOrders", new { Customer = 11, Division = 7, MlsDivision = 3 })
+<br />
+<br />
+<h4><u>Production</u></h4>
+@Html.Action("_PProduction", "CustomerOrders", new { Customer = 11, Division = 7, MlsDivision = 3 })
+<br />
+<br />
+<h4><u>In Transit</u></h4>
+@Html.Action("_POcean", "CustomerOrders", new { Customer = 11, Division = 7, MlsDivision = 3 })
+<br />
+<br />
+<h4><u>Texas</u></h4>
+@Html.Action("_PTx", "CustomerOrders", new { Customer = 11, Division = 7, MlsDivision = 3 })
+<br />
+<br />
+<h4><u>Shipped</u></h4>
+@Html.Action("_PClosed", "CustomerOrders", new { Customer = 11, Division = 7, MlsDivision = 3 })

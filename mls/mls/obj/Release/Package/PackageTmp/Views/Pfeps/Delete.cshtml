@@ -1,0 +1,144 @@
+﻿@model mls.Models.Pfep
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Pfep</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LtCustomer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LtCustomer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LtTx)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LtTx)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LtOcean)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LtOcean)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LtHaimen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LtHaimen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LtAssy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LtAssy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PfepCustomer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PfepCustomer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PfepTx)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PfepTx)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PfepOcean)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PfepOcean)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PfepHaimen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PfepHaimen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PfepAssy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PfepAssy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Min)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Min)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KbQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KbQty)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

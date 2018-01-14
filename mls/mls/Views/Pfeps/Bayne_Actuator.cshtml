@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Bayne_Actuator";
+}
+
+<h2>Bayne PFEP Actuators</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index")
+</p>
+
+<br />
+
+<h4><u>Stock Out</u></h4>
+@Html.Action("_StockOut", "Pfeps", new { parttype = 5, customer = 1, division = 4 })
+<br />
+<br />
+<h4><u>Low Stock</u></h4>
+@Html.Action("_LowStock", "Pfeps", new { parttype = 5, customer = 1, division = 4 })
+<br />
+<br />
+<h4><u>Need to Order / In Transit</u></h4>
+@Html.Action("_NeedToOrder", "Pfeps", new { parttype = 5, customer = 1, division = 4 })
+<br />
+<br />
+<h4><u>All Parts</u></h4>
+@Html.Action("_AllParts", "Pfeps", new { parttype = 5, customer = 1, division = 4 })
+<br />
+<br />
+@Html.Action("_Transit", "ShipIns", new { division = 4 })
+<br />
+<br />

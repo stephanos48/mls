@@ -1,0 +1,20 @@
+﻿@model DotNet.Highcharts.Highcharts
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/Highcharts-4.0.1/js/highcharts.js"></script>
+    <title>NCRs</title>
+</head>
+<body>
+
+    <p>Chart Displaying NCRs by Month </p>
+    <div>@(Model)</div>
+
+
+    <div>
+        @Html.ActionLink("Back to List", "Index", "NCRs")
+    </div>
+</body>

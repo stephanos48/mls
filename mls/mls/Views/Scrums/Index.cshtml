@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Metric Home";
+}
+
+<h2>Metrics / Performance Home</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "CustomerOrders", null, null)
+</p>
+
+<br />
+
+<p>
+
+    <h4><u>Metrics / Performance Apps</u></h4>
+    <br />
+
+    @Html.ActionLink("Scrum", "ScrumHome", "Scrums", null, null)
+    <br />
+    <br />
+    @*-> @Html.ActionLink("Sales", "Sales")
+    <br />
+    <br />
+    -> @Html.ActionLink("Operations", "Index", "WorkOrders", null, null)
+    <br />
+    <br />
+    -> @Html.ActionLink("Supply Chain", "Index", "Pfeps", null, null)
+    <br />
+    <br />
+    -> @Html.ActionLink("Logistics", "Index", "ShipIns", null, null)
+    <br />
+    <br />
+    -> @Html.ActionLink("Quality", "QualityHome", "NCRs", null, null)
+    <br />
+    <br />*@
+
+</p>
+
+@*
+    <script>
+        $(document).ready(function() {
+            $("#customerorder .js-delete").on("click",function() {
+                confirm("Are you sure you want to delete this order?")
+            });
+        });
+    </script>
+*@

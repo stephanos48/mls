@@ -1,0 +1,368 @@
+﻿@model mls.Models.NcrChina
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>NcrChina</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NcrNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NcrNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IssueDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IssueDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NcrTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NcrTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartSupplier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartSupplier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SerialNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DefectDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefectDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DefectCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefectCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MlsDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DispositionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DispositionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DispositionDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DispositionDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DispositionedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DispositionedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReworkNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReworkNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReworkCompletedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReworkCompletedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReworkHrs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReworkHrs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReworkPartsUsed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReworkPartsUsed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReworkPartsScrapped)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReworkPartsScrapped)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReworkQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReworkQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReworkStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReworkStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReworkNotes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReworkNotes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScrapNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScrapNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScrapQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScrapQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScrapApprovedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScrapApprovedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScrapApprovalDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScrapApprovalDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScrappedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScrappedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScrapDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScrapDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScrapNotes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScrapNotes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScrapStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScrapStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RtvNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RtvNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipperNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipperNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RgNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RgNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Carrier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carrier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackingInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackingInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RtvNotes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RtvNotes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RtvStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RtvStatus)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

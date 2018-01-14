@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <DbDacFx path="C:\Users\Stephen\Documents\Visual Studio 2015\Projects\mls\mls\obj\Release\AutoScripts\mls_dataConnectionString_IncrementalSchemaOnly.dacpac" dacpacAction="Deploy" />
+  <IisApp path="C:\Users\Stephen\Documents\Visual Studio 2015\Projects\mls\mls\obj\Release\Package\PackageTmp" />
+  <setAcl path="C:\Users\Stephen\Documents\Visual Studio 2015\Projects\mls\mls\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\Stephen\Documents\Visual Studio 2015\Projects\mls\mls\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

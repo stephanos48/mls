@@ -1,0 +1,64 @@
+﻿@model IEnumerable<mls.Models.ChOil>
+
+@{
+    ViewBag.Title = "OilClean";
+}
+
+<h2>Hualin Oil Cleanliness Records</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "QualityHome", "NCRs", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+<table id="oil" class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateSampleTaken)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TakenByName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Result)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ChOilId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.ChOilId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ChOilId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateSampleTaken)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TakenByName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Result)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+               $("#oil").DataTable();
+            });
+
+    </script>
+}

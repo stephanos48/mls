@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "HRHome";
+}
+
+<h2>HRHome</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "CustomerOrders", null, null)
+</p>
+
+<br />
+
+<p>
+
+    <h4><u>HR Apps</u></h4>
+    <br />
+
+    @Html.ActionLink("Employees", "Index")
+    <br />
+    <br />
+    @*-> @Html.ActionLink("Supplier Info", "Index", "Suppliers", null, null)
+    <br />
+    <br />
+    @*-> @Html.ActionLink("Logistics", "Index", "ShipIns", null, null)
+        <br />
+        <br />
+        -> @Html.ActionLink("Quality", "QualityHome", "NCRs", null, null)
+        <br />
+        <br />*@
+
+    <h4><u>Supply Chain Inputs</u></h4>
+    <br />
+    @Html.ActionLink("Create Employee", "Create")
+    <br />
+    <br />
+    @*-> @Html.ActionLink("Master Part List", "Index", "MasterPartLists", null, null)
+    <br />
+    <br />*@
+
+
+</p>
+

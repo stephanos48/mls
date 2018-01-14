@@ -1,0 +1,66 @@
+﻿@model mls.Models.ScrumDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ScrumDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ScrumUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScrumUpdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdateDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatePerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatePerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriorDueDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriorDueDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NewDueDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NewDueDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ScrumDetailId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

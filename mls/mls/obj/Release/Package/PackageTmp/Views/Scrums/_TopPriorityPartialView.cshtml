@@ -1,0 +1,87 @@
+﻿@model IEnumerable<mls.ViewModels.NewScrumViewModel>
+
+<table id="scrum" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedById)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResponsibleId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Action)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassificationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScrumStatusId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompletionDateTime)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ScrumId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ScrumId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ScrumId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedById)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResponsibleId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Action)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClassificationId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScrumStatusId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompletionDateTime)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+               $("#scrum").DataTable();
+            });
+
+    </script>
+}

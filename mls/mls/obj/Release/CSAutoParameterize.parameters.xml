@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="mls_dataConnectionString-Web.config Connection String" description="mls_dataConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=tcp:cp6raaezdt.database.windows.net,1433;Initial Catalog=mlsdata;User Id=tirpitz48@cp6raaezdt;Password=Rea1madrid" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Stephen\\Documents\\Visual\ Studio\ 2015\\Projects\\mls\\mls\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='mls_dataConnectionString']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-mls-20170417085254.mdf;Initial Catalog=aspnet-mls-20170417085254;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Stephen\\Documents\\Visual\ Studio\ 2015\\Projects\\mls\\mls\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="mlsdataEntities-Web.config Connection String" description="mlsdataEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.DBModels.csdl|res://*/Models.DBModels.ssdl|res://*/Models.DBModels.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=tcp:cp6raaezdt.database.windows.net,1433;initial catalog=mlsdata;user id=tirpitz48@cp6raaezdt;password=Rea1madrid;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Stephen\\Documents\\Visual\ Studio\ 2015\\Projects\\mls\\mls\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='mlsdataEntities']/@connectionString" />
+  </parameter>
+  <parameter name="mlsdataEntities1-Web.config Connection String" description="mlsdataEntities1 Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.DBModels.csdl|res://*/Models.DBModels.ssdl|res://*/Models.DBModels.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=tcp:cp6raaezdt.database.windows.net,1433;initial catalog=mlsdata;user id=tirpitz48@cp6raaezdt;password=Rea1madrid;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Stephen\\Documents\\Visual\ Studio\ 2015\\Projects\\mls\\mls\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='mlsdataEntities1']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection_DatabasePublish-Web.config Connection String" description="DefaultConnection_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="DefaultConnection_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Stephen\\Documents\\Visual\ Studio\ 2015\\Projects\\mls\\mls\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection_DatabasePublish']/@connectionString" />
+  </parameter>
+</parameters>

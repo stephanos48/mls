@@ -1,0 +1,18 @@
+﻿
+<html>
+<head>
+    @{ ViewBag.Title = "Home Page"; }
+
+    <script src="~/Scripts/fusioncharts.js"></script>
+    <script src="~/Scripts/fusioncharts.charts.js"></script>
+    <script src="~/Scripts/fusioncharts.theme.fint.js"></script>
+</head>
+<body>
+    <center>
+        <h2>Rendering Charts supported by FusionCharts in MVC5</h2>
+        <div>
+            @Html.Raw(ViewBag.mydata)
+        </div>
+    </center>
+</body>
+</html>

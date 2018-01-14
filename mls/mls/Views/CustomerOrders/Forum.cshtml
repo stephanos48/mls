@@ -1,0 +1,24 @@
+﻿@*
+@{
+    ViewBag.Title = "Forum";
+}
+
+<h2>Forum</h2>*@
+@model IEnumerable<mls.Models.CustomerOrder>
+
+@section Scripts {
+    <script src="~/Scripts/angular.min.js"></script>
+}
+
+<html ng-app>
+<head>
+    <title ng-bind="helloAngular"></title>
+</head>
+<body>
+
+<input type="text" ng-model="helloAngular"/>
+<h1>{{helloAngular}}</h1>
+
+
+</body>
+</html>

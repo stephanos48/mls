@@ -1,0 +1,85 @@
+﻿@model IEnumerable<mls.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "HRHome", "Employees", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+
+<table id="employee" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeCell)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeNotes)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.EmployeeId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeCell)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeNotes)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+               $("#employee").DataTable();
+            });
+
+    </script>
+}

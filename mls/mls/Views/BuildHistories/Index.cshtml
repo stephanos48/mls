@@ -1,0 +1,112 @@
+﻿@model IEnumerable<mls.Models.BuildHistory>
+
+@{
+    ViewBag.Title = "Build";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Build History</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "WorkOrders", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br />
+
+<table id="build" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssembledBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InspectedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShippedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BuildHistoryId })|
+                @Html.ActionLink("Details", "Details", new { id = item.BuildHistoryId })|
+                @Html.ActionLink("Delete", "Delete", new { id = item.BuildHistoryId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerDivisionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MlsDivisionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerPn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssembledBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InspectedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+               $("#build").DataTable();
+            });
+
+    </script>
+}

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "ROWastebuiltDip";
+}
+
+<h2>Wastebuilt Fab</h2>
+
+<br />
+
+<h4><u>New Orders</u></h4>
+@Html.Action("_RONewOrder", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 4 })
+<br />
+<br />
+<h4><u>In Review</u></h4>
+@Html.Action("_ROReview", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 4 })
+<br />
+<br />
+<h4><u>Sample Needed</u></h4>
+@Html.Action("_ROSample", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 4 })
+<br />
+<br />
+<h4><u>Design</u></h4>
+@Html.Action("_RODesign", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 4 })
+<br />
+<br />
+<h4><u>Production</u></h4>
+@Html.Action("_ROProduction", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 4 })
+<br />
+<br />
+<h4><u>In Transit</u></h4>
+@Html.Action("_ROOcean", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 4 })
+<br />
+<br />
+<h4><u>Texas</u></h4>
+@Html.Action("_ROTx", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 4 })
+<br />
+<br />
+<h4><u>Shipped</u></h4>
+@Html.Action("_ROClosed", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 4 })
+

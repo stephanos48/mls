@@ -1,0 +1,108 @@
+﻿@model IEnumerable<mls.Models.NcrChina>
+
+@{
+    ViewBag.Title = "Hualin Rework";
+}
+
+<h2>Hualin Rework</h2>
+
+<p>
+    @Html.ActionLink("Back", "Index")
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.NcrChinaId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NcrNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IssueDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DefectDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DispositionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DispositionDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DispositionedBy)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.NcrChinaId })|
+                @Html.ActionLink("Details", "Details", new { id = item.NcrChinaId })|
+                @Html.ActionLink("Delete", "Delete", new { id = item.NcrChinaId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NcrChinaId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NcrNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IssueDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerDivisionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MlsDivisionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PartNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PartDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DefectDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DispositionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DispositionDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DispositionedBy)
+            </td>
+        </tr>
+
+    }
+
+</table>

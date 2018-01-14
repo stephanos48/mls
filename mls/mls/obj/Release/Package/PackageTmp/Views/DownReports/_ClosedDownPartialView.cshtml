@@ -1,0 +1,89 @@
+﻿@model IEnumerable<mls.ViewModels.NewDownViewModel>
+
+<table id="down" class="table table-bordered table-hover">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QtyNeeded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MlsWo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerPo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstArrivalDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DownStatusId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DownReportId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.DownReportId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.DownReportId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MlsDivisionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerPn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QtyNeeded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MlsWo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerPo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstArrivalDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DownStatusId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+               $("#down").DataTable();
+            });
+
+    </script>
+}

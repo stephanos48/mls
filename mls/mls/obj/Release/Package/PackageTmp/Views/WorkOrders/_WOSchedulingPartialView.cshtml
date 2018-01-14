@@ -1,0 +1,76 @@
+﻿@model IEnumerable<mls.ViewModels.NewWorkOrderViewModel>
+
+<table class="table table-bordered table-hover">
+    <tr>
+
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkOrderId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MlsSo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerPo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CloseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.WorkOrderId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.WorkOrderId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.WorkOrderId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkOrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MlsSo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerPo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerPn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CloseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderTypeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+
+        </tr>
+    }
+
+</table>

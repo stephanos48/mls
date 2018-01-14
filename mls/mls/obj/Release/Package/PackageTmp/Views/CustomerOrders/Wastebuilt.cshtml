@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Wastebuilt";
+
+}
+
+<h2><b>Wastebuilt Hyd Parts</b></h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index") | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br/>
+
+    <h4><u>New Orders</u></h4>   
+    @Html.Action("_NewOrder", "CustomerOrders", new {Customer = 2, Division = 6, MlsDivision = 1})
+    <br/>  
+    <br />
+    <h4><u>In Review</u></h4>
+    @Html.Action("_Review", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 1})
+    <br />
+    <br />
+    <h4><u>Sample Needed</u></h4>
+    @Html.Action("_Sample", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 1})
+    <br />  
+    <br />  
+    <h4><u>Design</u></h4>
+    @Html.Action("_Design", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 1})
+    <br />  
+    <br />  
+    <h4><u>Production</u></h4>
+    @Html.Action("_Production", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 1})
+    <br />  
+    <br />  
+    <h4><u>In Transit</u></h4>
+    @Html.Action("_Ocean", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 1})
+    <br />  
+    <br />  
+    <h4><u>Texas</u></h4>
+    @Html.Action("_Tx", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 1})
+    <br />  
+    <br />  
+    <h4><u>Shipped</u></h4>
+    @Html.Action("_Closed", "CustomerOrders", new { Customer = 2, Division = 6, MlsDivision = 1})
+        
+        
+

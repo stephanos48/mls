@@ -1,0 +1,90 @@
+﻿@model mls.Models.DownReport
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DownReport</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QtyNeeded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QtyNeeded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MlsWo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MlsWo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstArrivalDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstArrivalDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DownReportId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

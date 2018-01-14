@@ -1,0 +1,158 @@
+﻿@model mls.ViewModels.ScrumIndexDataViewModel
+@*@model IEnumerable<mls.Models.Scrum>*@
+
+@{
+    ViewBag.Title = "ScrumHome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Scrum Home</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "Scrums", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Tracker", "ScrumTracker", "Scrums", null, null) | @Html.ActionLink("Executive", "Executive", "Scrums", null, null) | @Html.ActionLink("Ops", "Production", "Scrums", null, null) | @Html.ActionLink("Sales", "Sales", "Scrums", null, null) | @Html.ActionLink("Logistics", "Logistics", "Scrums", null, null) | @Html.ActionLink("Finance", "Finance", "Scrums", null, null) | @Html.ActionLink("Eng", "Engineering", "Scrums", null, null) | @Html.ActionLink("SC", "Sc", "Scrums", null, null) | @Html.ActionLink("IT", "It", "Scrums", null, null) | @Html.ActionLink("Quality", "Quality", "Scrums", null, null) | @Html.ActionLink("Inventory", "Inventory", "Scrums", null, null) | @Html.ActionLink("Maintenance", "Maintenance", "Scrums", null, null)
+    
+</p>
+
+<br />
+
+<table id="scrum" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th></th>
+        <th>ScrumId</th>
+        <th>Creation Date</th>
+        <th>Action</th>
+        <th>Scrum Status</th>
+        <th>Due Date</th>
+        <th>Completion Date</th>
+        <th>Notes</th>
+        @*<th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedById)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResponsibleId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Action)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassificationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScrumStatusId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompletionDateTime)
+            </th>*@
+
+
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Scrums)
+        {
+            string selectedRow = "";
+            if (item.ScrumId == ViewBag.ScrumId)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "ScrumHome", new { id = item.ScrumId })|
+                    @Html.ActionLink("Edit", "Edit", new {id = item.ScrumId})|
+                    @Html.ActionLink("Details", "Details", new {id = item.ScrumId})|
+                    @Html.ActionLink("Delete", "Delete", new {id = item.ScrumId})
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScrumId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Action)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScrumStatusId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompletionDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.ScrumDetails != null)
+{
+    <h3>
+        Scrum Details
+    </h3>
+    <p>
+        @Html.ActionLink("Create New", "Create", "ScrumDetails", null, null)
+    </p>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>ScrumDetailId</th>
+            <th>Update</th>
+            <th>Date Updated</th>
+            <th>Updated By</th>
+            <th>Prior Due Date</th>
+            <th>New Due Date</th>
+            <th>Notes</th>
+        </tr>
+        @foreach (var item in Model.ScrumDetails)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScrumDetailId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScrumUpdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdateDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatePerson)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriorDueDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NewDueDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+
+@section scripts
+{
+<script>
+$(document).ready(function () {
+$("#scrum").DataTable();
+});
+
+</script>
+}

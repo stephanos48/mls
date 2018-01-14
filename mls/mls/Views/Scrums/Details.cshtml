@@ -1,0 +1,74 @@
+﻿@model mls.Models.Scrum
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Scrum</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedById)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedById)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponsibleId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponsibleId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Action)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Action)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DueDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DueDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompletionDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompletionDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ScrumId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

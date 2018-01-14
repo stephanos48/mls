@@ -1,0 +1,106 @@
+﻿@model mls.Models.BuildHistory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BuildHistory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MlsDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SerialNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssembledBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssembledBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InspectedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InspectedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShippedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BuildHistoryId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
