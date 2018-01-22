@@ -94,7 +94,7 @@
     <script>
         $(document).ready(function() {
             $("#master").DataTable({
-                columns: [
+                @*columns: [
                     { 'data': '' },
                     { 'data': 'CustomerPn' },
                     { 'data': 'PartDescription' },
@@ -108,7 +108,7 @@
                 ],
                 bServerSide: true,
                 sAjaxSource: 'WebService1.asmx/LoadData',
-                sServerMethod: 'post'
+                sServerMethod: 'post'*@
             });
 
         });

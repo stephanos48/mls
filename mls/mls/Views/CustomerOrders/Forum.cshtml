@@ -1,16 +1,27 @@
-﻿@*
+﻿@model IEnumerable<mls.Models.CustomerOrder>
 @{
     ViewBag.Title = "Forum";
 }
 
-<h2>Forum</h2>*@
-@model IEnumerable<mls.Models.CustomerOrder>
+<h2>Forum</h2>
 
 @section Scripts {
     <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/js/simpleControls.js"></script>
+    <script src="~/js/app-customers.js"></script>
+    <script src="~/js/customersController.js"></script>
 }
 
-<html ng-app>
+
+<div class="row" ng-app="app-customers">
+
+    <div ng-view></div>
+
+</div>
+
+
+<html ng-app="app-customers">
 <head>
     <title ng-bind="helloAngular"></title>
 </head>
@@ -20,5 +31,3 @@
 <h1>{{helloAngular}}</h1>
 
 
-</body>
-</html>

@@ -291,6 +291,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomerOrdersController.cs" />
+    <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\BuildHistoriesController.cs" />
     <Compile Include="Controllers\ChOilsController.cs" />
     <Compile Include="Controllers\CustomerOrdersController.cs" />
@@ -775,12 +776,18 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\car4.png" />
     <Content Include="images\mls.png" />
+    <Content Include="js\app-customers.js" />
+    <Content Include="js\customersController.js" />
+    <Content Include="js\simpleControls.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -817,6 +824,11 @@
     <Content Include="Files\O.P.3 - Order Cancellation Process Rev. 1.pdf" />
     <Content Include="Files\H.P.2 - Disciplinary Process Rev 2.pdf" />
     <Content Include="Files\IM.P.1 - Cycle Count Process Rev 3.pdf" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Properties\PublishProfiles\mlsportal.pubxml" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -2044,13 +2056,15 @@
     <Content Include="Views\CustomerOrders\DOP.cshtml" />
     <Content Include="Views\CustomerOrders\ROWastebuiltDip.cshtml" />
     <Content Include="Views\CustomerOrders\WbQoh.cshtml" />
+    <Content Include="Views\waitCursor.cshtml" />
+    <Content Include="Views\customerEditorView.cshtml" />
+    <Content Include="Views\CustomerOrders\ForumView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="fusioncharts\assets\" />
     <Folder Include="fusioncharts\export-handlers\" />
     <Folder Include="fusioncharts\js\" />
-    <Folder Include="js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
