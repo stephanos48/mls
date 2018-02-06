@@ -1,5 +1,7 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="../js/akfileuploader.js" />
 /// <reference path="../js/app-customers.js" />
+/// <reference path="../js/app-uploader.js" />
 /// <reference path="../js/customerscontroller.js" />
 /// <reference path="../js/simplecontrols.js" />
 /// <reference path="ai.0.22.9-build00167.min.js" />

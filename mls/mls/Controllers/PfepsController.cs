@@ -22,7 +22,8 @@ namespace mls.Controllers
         // GET: Pfeps
         public ActionResult Index()
         {
-            return View(db.Pfeps.ToList());
+            var query = db.Pfeps.ToList();
+            return View("~/Views/Pfeps/Index.cshtml", query);
         }
 
         [Authorize(Roles = "Admin")]

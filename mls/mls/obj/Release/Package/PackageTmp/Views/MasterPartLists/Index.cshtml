@@ -94,23 +94,7 @@
     <script>
         $(document).ready(function() {
             $("#master").DataTable({
-                @*columns: [
-                    { 'data': '' },
-                    { 'data': 'CustomerPn' },
-                    { 'data': 'PartDescription' },
-                    { 'data': 'PartPrice' },
-                    { 'data': 'PartCost' },
-                    { 'data': 'Weight' },
-                    { 'data': 'StdPack' },
-                    { 'data': 'Location' },
-                    { 'data': 'HtsCode' },
-                    { 'data': 'Notes' },
-                ],
-                bServerSide: true,
-                sAjaxSource: 'WebService1.asmx/LoadData',
-                sServerMethod: 'post'*@
-            });
-
+                'iDisplayLength': 100 });
         });
 
     </script>

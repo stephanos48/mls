@@ -292,8 +292,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomerOrdersController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
+    <Compile Include="Controllers\Api\ShipOutsController.cs" />
     <Compile Include="Controllers\BuildHistoriesController.cs" />
     <Compile Include="Controllers\ChOilsController.cs" />
+    <Compile Include="Controllers\CustomerComplaintsController.cs" />
     <Compile Include="Controllers\CustomerOrdersController.cs" />
     <Compile Include="Controllers\DownReportsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
@@ -529,13 +531,32 @@
     <Compile Include="Migrations\201712190333393_ncrchina.Designer.cs">
       <DependentUpon>201712190333393_ncrchina.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801252121586_cucstomercomplaint.cs" />
+    <Compile Include="Migrations\201801252121586_cucstomercomplaint.Designer.cs">
+      <DependentUpon>201801252121586_cucstomercomplaint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801252210118_customercomplaint1.cs" />
+    <Compile Include="Migrations\201801252210118_customercomplaint1.Designer.cs">
+      <DependentUpon>201801252210118_customercomplaint1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801270253493_complaint2.cs" />
+    <Compile Include="Migrations\201801270253493_complaint2.Designer.cs">
+      <DependentUpon>201801270253493_complaint2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802010853458_choilattach.cs" />
+    <Compile Include="Migrations\201802010853458_choilattach.Designer.cs">
+      <DependentUpon>201802010853458_choilattach.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivePart.cs" />
     <Compile Include="Models\BuildHistory.cs" />
     <Compile Include="Models\ChOil.cs" />
     <Compile Include="Models\Classification.cs" />
+    <Compile Include="Models\ComplaintSeverity.cs" />
+    <Compile Include="Models\ComplaintType.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerComplaint.cs" />
     <Compile Include="Models\CustomerDivision.cs" />
     <Compile Include="Models\CustomerOrder.cs" />
     <Compile Include="Models\Department.cs" />
@@ -582,7 +603,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ExpeditedFreightDataViewModel.cs" />
     <Compile Include="ViewModels\GraphNcrViewModel.cs" />
-    <Compile Include="ViewModels\LocationQtyViewModel.cs" />
+    <Compile Include="ViewModels\LocationsViewModel.cs" />
     <Compile Include="ViewModels\NcrViewModel.cs" />
     <Compile Include="ViewModels\NewDownViewModel.cs" />
     <Compile Include="ViewModels\NewOrderViewModel.cs" />
@@ -591,6 +612,7 @@
     <Compile Include="ViewModels\QohViewModel.cs" />
     <Compile Include="ViewModels\Save1PfepViewModel.cs" />
     <Compile Include="ViewModels\SaveBuildViewModel.cs" />
+    <Compile Include="ViewModels\SaveComplaintViewModel.cs" />
     <Compile Include="ViewModels\SaveDownViewModel.cs" />
     <Compile Include="ViewModels\SaveEmployeeViewModel.cs" />
     <Compile Include="ViewModels\SaveMasterViewModel.cs" />
@@ -604,6 +626,7 @@
     <Compile Include="ViewModels\SaveWorkOrderViewModel.cs" />
     <Compile Include="ViewModels\ScrumIndexDataViewModel.cs" />
     <Compile Include="ViewModels\SupplierIndexDataViewModel.cs" />
+    <Compile Include="ViewModels\WbOrderViewModel.cs" />
     <Compile Include="WebService1.asmx.cs">
       <DependentUpon>WebService1.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -786,6 +809,8 @@
     <Content Include="images\car4.png" />
     <Content Include="images\mls.png" />
     <Content Include="js\app-customers.js" />
+    <Content Include="js\akFileUploader.js" />
+    <Content Include="js\app-uploader.js" />
     <Content Include="js\customersController.js" />
     <Content Include="js\simpleControls.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
@@ -2059,6 +2084,23 @@
     <Content Include="Views\waitCursor.cshtml" />
     <Content Include="Views\customerEditorView.cshtml" />
     <Content Include="Views\CustomerOrders\ForumView.cshtml" />
+    <Content Include="Views\CustomerComplaints\Create.cshtml" />
+    <Content Include="Views\CustomerComplaints\Delete.cshtml" />
+    <Content Include="Views\CustomerComplaints\Details.cshtml" />
+    <Content Include="Views\CustomerComplaints\Edit.cshtml" />
+    <Content Include="Views\CustomerComplaints\Index.cshtml" />
+    <Content Include="Views\CustomerOrders\WB1.cshtml" />
+    <Content Include="Views\CustomerOrders\ROWastebuilt1.cshtml" />
+    <Content Include="Views\ShipOuts\RODetails.cshtml" />
+    <Content Include="Views\CustomerOrders\WbDetails.cshtml" />
+    <Content Include="Views\CustomerOrders\ROWastebuiltDip1.cshtml" />
+    <Content Include="Views\ShipOuts\ShipOut90.cshtml" />
+    <Content Include="Views\MasterPartLists\DipMasterPartList.cshtml" />
+    <Content Include="Views\MasterPartLists\UHMasterPartList.cshtml" />
+    <Content Include="Views\MasterPartLists\DttMasterPartList.cshtml" />
+    <Content Include="Views\MasterPartLists\CLMasterPartList.cshtml" />
+    <Content Include="Views\MasterPartLists\DopMasterPartList.cshtml" />
+    <Content Include="Views\CustomerOrders\WastebuiltDip1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2232,6 +2274,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712190333393_ncrchina.resx">
       <DependentUpon>201712190333393_ncrchina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801252121586_cucstomercomplaint.resx">
+      <DependentUpon>201801252121586_cucstomercomplaint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801252210118_customercomplaint1.resx">
+      <DependentUpon>201801252210118_customercomplaint1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801270253493_complaint2.resx">
+      <DependentUpon>201801270253493_complaint2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802010853458_choilattach.resx">
+      <DependentUpon>201802010853458_choilattach.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

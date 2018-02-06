@@ -490,3 +490,7 @@ C:\Users\steph\OneDrive\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.nc
 C:\Users\steph\OneDrive\Documents\GitHub\mls\mls\mls\obj\Debug\mls.csproj.GenerateResource.Cache
 C:\Users\steph\OneDrive\Documents\GitHub\mls\mls\mls\obj\Debug\mls.dll
 C:\Users\steph\OneDrive\Documents\GitHub\mls\mls\mls\obj\Debug\mls.pdb
+C:\Users\steph\OneDrive\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.cucstomercomplaint.resources
+C:\Users\steph\OneDrive\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.customercomplaint1.resources
+C:\Users\steph\OneDrive\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.complaint2.resources
+C:\Users\steph\OneDrive\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.choilattach.resources

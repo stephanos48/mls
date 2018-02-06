@@ -64,6 +64,26 @@ namespace mls.Controllers
            return View("ShipOut", query);
         }
 
+        public ActionResult ShipOut90()
+        {
+            var baselinedate = DateTime.Now.AddDays(-90);
+            var query = from a in db.ShipOuts
+                        where a.ShipDate >= baselinedate
+                        orderby a.ShipDate descending
+                        select a;
+            return View("ShipOut90", query);
+        }
+
+        // GET: ShipOuts
+        public ActionResult WBShipOut()
+        {
+            var query = from a in db.ShipOuts
+                        where a.CustomerId == 2 && a.CustomerDivisionId == 6
+                        orderby a.ShipDate descending
+                        select a;
+            return View("WBShipOut", query);
+        }
+
         // GET: ROShipOuts
         public ActionResult ROShipOut()
         {
@@ -87,6 +107,22 @@ namespace mls.Controllers
             }
             return View(shipOut);
         }
+
+        // GET: ShipOuts/Details/5
+        public ActionResult RODetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ShipOut wbshipOut = db.ShipOuts.Find(id);
+            if (wbshipOut == null)
+            {
+                return HttpNotFound();
+            }
+            return View(wbshipOut);
+        }
+
 
         // GET: ShipOuts/Create
         public ActionResult Create()

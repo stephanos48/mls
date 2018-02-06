@@ -39,6 +39,7 @@ namespace mls.Controllers
         // GET: ExpFreightDetails/Create
         public ActionResult Create()
         {
+            ViewBag.ExpeditedFreightId = new SelectList(db.ExpeditedFreights, "ExpeditedFreightId", "ExpeditedFreightNo");
             return View();
         }
 
@@ -55,7 +56,7 @@ namespace mls.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.ExpeditedFreightId = new SelectList(db.ExpeditedFreights, "ExpeditedFreightId", "ExpeditedFreightNo", expFreightDetail.ExpeditedFreightId);
             return View(expFreightDetail);
         }
 
@@ -71,6 +72,7 @@ namespace mls.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ExpeditedFreightId = new SelectList(db.ExpeditedFreights, "ExpeditedFreightId", "ExpeditedFreightNo", expFreightDetail.ExpeditedFreightId);
             return View(expFreightDetail);
         }
 
@@ -87,6 +89,7 @@ namespace mls.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ExpeditedFreightId = new SelectList(db.ExpeditedFreights, "ExpeditedFreightId", "ExpeditedFreightNo", expFreightDetail.ExpeditedFreightId);
             return View(expFreightDetail);
         }
 

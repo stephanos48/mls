@@ -1,0 +1,81 @@
+﻿@model IEnumerable<mls.Models.CustomerComplaint>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customer Complaints</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Sales", "CustomerOrders", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+<table id="complaint" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComplaintDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CommplaintDetail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComplaintSeverityId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CustomerComplaintId })|
+                @Html.ActionLink("Details", "Details", new { id = item.CustomerComplaintId })|
+                @Html.ActionLink("Delete", "Delete", new { id = item.CustomerComplaintId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComplaintDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerPn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommplaintDetail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComplaintSeverityId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+        </tr>
+    }
+        </tbody>
+
+</table>
+
+@Html.ActionLink("Export Data", "Export")
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#complaint").DataTable({
+                'iDisplayLength': 100 });
+            });
+
+    </script>
+}

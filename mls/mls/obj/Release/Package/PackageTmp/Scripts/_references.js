@@ -1,5 +1,6 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="../js/app-customers.js" />
+/// <reference path="../js/app-upload.js" />
 /// <reference path="../js/customerscontroller.js" />
 /// <reference path="../js/simplecontrols.js" />
 /// <reference path="ai.0.22.9-build00167.min.js" />

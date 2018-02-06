@@ -1,4 +1,4 @@
-﻿@model IEnumerable<mls.Models.MasterPartList>
+﻿@model mls.ViewModels.LocationsViewModel
 
 @{
     ViewBag.Title = "Locations";
@@ -7,37 +7,31 @@
 <h2>Locations</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "LogisticsBasic", "CustomerOrders", null, null)
+    @Html.ActionLink("Go Back", "Index", "ShipIns", null, null)
 </p>
 <table id="locations" class="table table-bordered table-hover">
     <thead>
     <tr>
         <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.CustomerPn)
+            CustomerPn
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PartDescription)
+            Part Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Weight)
+            Location
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes)
+            Qoh
         </th>
 
     </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model)
+    @foreach (var item in Model.MasterPartLists)
     {
         <tr>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.PartId })
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CustomerPn)
             </td>
@@ -53,9 +47,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Notes)
             </td>
-
-        </tr>
+            </tr>
     }
+            @foreach (var item in Model.TxQohs)
+            {
+               <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qoh)
+            </td>
+            </tr>   
+            }
+
     </tbody>
 </table>
 
@@ -63,7 +65,8 @@
 {
     <script>
         $(document).ready(function() {
-               $("#locations").DataTable();
+            $("#locations").DataTable({
+                'iDisplayLength': 100 });
             });
 
     </script>

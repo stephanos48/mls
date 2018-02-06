@@ -118,7 +118,11 @@ namespace mls.Models
 
         public DbSet<NcrChina> NcrChinas { get; set; }
 
+        public DbSet<ComplaintSeverity> ComplaintSeverities { get; set; }
 
+        public DbSet<ComplaintType> ComplaintTypes { get; set; }
+
+        public DbSet<CustomerComplaint> CustomerComplaints { get; set; }
         
     }
 }

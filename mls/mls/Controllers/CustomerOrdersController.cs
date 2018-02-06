@@ -10,6 +10,10 @@ using System.Web.Mvc;
 using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using mls.Models;
 using mls.ViewModels;
+using System.IO;
+using ClosedXML.Excel;
+using System.Web.UI.WebControls;
+using System.Web.UI;
 
 namespace mls.Controllers
 {
@@ -106,7 +110,22 @@ namespace mls.Controllers
             //               orderby a.OrderDateTime descending
             //               select a;
             // return View("Wastebuilt", query);
-            return View("ROWastebuilt");
+            return View("RODetails");
+        }
+
+        // GET: CustomerOrders/Details/5
+        public ActionResult WbDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CustomerOrder wbdetails = db.CustomerOrders.Find(id);
+            if (wbdetails == null)
+            {
+                return HttpNotFound();
+            }
+            return View(wbdetails);
         }
 
         // GET: CustomerOrders/Wastebuilt
@@ -121,16 +140,6 @@ namespace mls.Controllers
 
         // GET: CustomerOrders/Wastebuilt
         public ActionResult Wastebuilt()
-        {
-            //var query = from a in db.CustomerOrders
-            //               orderby a.OrderDateTime descending
-            //               select a;
-            // return View("Wastebuilt", query);
-            return View();
-        }
-
-        // GET: CustomerOrders/Wastebuilt
-        public ActionResult DipWastebuilt()
         {
             //var query = from a in db.CustomerOrders
             //               orderby a.OrderDateTime descending
@@ -162,6 +171,50 @@ namespace mls.Controllers
                     QOH = a.Qoh
                 };
             return View("WBQoh", query);
+            //return View();
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult WB1()
+        {
+            var query = from a in db.CustomerOrders
+                        where a.CustomerId == 2 && a.CustomerDivisionId == 6 && a.OrderStatusId != 7 && a.MlsDivisionId == 1
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("WB1", query);
+            //return View();
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult ROWastebuilt1()
+        {
+            var query = from a in db.CustomerOrders
+                        where a.CustomerId == 2 && a.CustomerDivisionId == 6 && a.OrderStatusId != 7 && a.MlsDivisionId == 1
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("ROWastebuilt1", query);
+            //return View();
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult WastebuiltDip1()
+        {
+            var query = from a in db.CustomerOrders
+                        where a.CustomerId == 2 && a.CustomerDivisionId == 6 && a.OrderStatusId != 7 && a.MlsDivisionId == 4
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("WastebuiltDip1", query);
+            //return View();
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult ROWastebuiltDip1()
+        {
+            var query = from a in db.CustomerOrders
+                        where a.CustomerId == 2 && a.CustomerDivisionId == 6 && a.OrderStatusId != 7 && a.MlsDivisionId == 4
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("ROWastebuiltDip1", query);
             //return View();
         }
 
@@ -1194,6 +1247,78 @@ namespace mls.Controllers
         public ActionResult Home()
         {
             return Home();
+        }
+        /*
+        public IList <WbOrderViewModel> GetWbOrderList()
+        {
+            var wborderlist = (from e in db.CustomerOrders where e.CustomerId == 2 && e.CustomerDivisionId == 6 && e.MlsDivisionId == 1 select new WbOrderViewModel { 
+            CustomerOrderId = e.CustomerOrderId,
+            CustomerOrderNumber = e.CustomerOrderNumber,
+            SoNumber = e.SoNumber,
+            OrderDateTime = e.OrderDateTime,
+            CustomerPn = e.CustomerPn,
+            OrderQty = e.OrderQty,
+            ShipQty = e.ShipQty,
+            PromiseDateTime = e.PromiseDateTime,
+            ShipDateTime = e.ShipDateTime,
+            Notes = e.Notes
+            }).ToList();
+            return wborderlist;
+        }
+        public ActionResult ExportWb()
+        {
+            var gv = new GridView();
+            gv.DataSource = this.GetWbOrderList();
+            gv.DataBind();
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; GetWbOrderList.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.Charset = "";
+            StringWriter objStringWriter = new StringWriter();
+            HtmlTextWriter objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
+            gv.RenderControl(objHtmlTextWriter);
+            Response.Output.Write(objStringWriter.ToString());
+            Response.Flush();
+            Response.End();
+            return View("WB1");
+        }
+        */
+        [HttpPost]
+        public FileResult ExportCOWB()
+        {
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[11] 
+            { new DataColumn("CustomerOrderId"),
+              new DataColumn("CustomerOrderNumber"),
+              new DataColumn("SoNumber"),
+              new DataColumn("OrderDateTime"),
+              new DataColumn("CustomerPn"),
+              new DataColumn("OrderQty"),
+              new DataColumn("ShipQty"),
+              new DataColumn("PromiseDateTime"),
+              new DataColumn("ShipDateTime"),
+              new DataColumn("OrderStatusId"),
+              new DataColumn("Notes") });
+
+            var customerorders = from co in db.CustomerOrders
+                                 where co.CustomerId == 2 && co.CustomerDivisionId == 6 && co.OrderStatusId == 7
+                                 select co;
+
+            foreach (var customerorder in customerorders)
+            {
+                dt.Rows.Add(customerorder.CustomerOrderId, customerorder.CustomerOrderNumber, customerorder.SoNumber, customerorder.OrderDateTime, customerorder.CustomerPn, customerorder.OrderQty, customerorder.ShipQty, customerorder.PromiseDateTime, customerorder.ShipDateTime, customerorder.OrderStatusId, customerorder.Notes);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xslx");
+                }
+            }
+
         }
 
         protected override void Dispose(bool disposing)

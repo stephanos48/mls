@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using mls.Models;
 using mls.ViewModels;
+using System.Dynamic;
 
 namespace mls.Controllers
 {
@@ -21,28 +22,82 @@ namespace mls.Controllers
         // GET: MasterPartLists
         public ActionResult Index()
         {
-            return View(db.MasterPartLists.ToList());
+            var query = db.MasterPartLists.ToList();
+            return View("~/Views/MasterPartLists/Index.cshtml", query);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult UHMasterPartList()
+        {
+            var query = from mp in db.MasterPartLists
+                        where mp.MlsDivisionId == 1
+                        select mp;
+            return View("~/Views/MasterPartLists/UHMasterPartList.cshtml", query);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult DipMasterPartList()
+        {
+            var query = from mp in db.MasterPartLists
+                        where mp.MlsDivisionId == 4
+                        select mp;
+            return View("~/Views/MasterPartLists/DipMasterPartList.cshtml", query);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult DopMasterPartList()
+        {
+            var query = from mp in db.MasterPartLists
+                        where mp.MlsDivisionId == 5
+                        select mp;
+            return View("~/Views/MasterPartLists/DopMasterPartList.cshtml", query);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult CLMasterPartList()
+        {
+            var query = from mp in db.MasterPartLists
+                        where mp.MlsDivisionId == 3
+                        select mp;
+            return View("~/Views/MasterPartLists/CLMasterPartList.cshtml", query);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult DttMasterPartList()
+        {
+            var query = from mp in db.MasterPartLists
+                        where mp.MlsDivisionId == 2
+                        select mp;
+            return View("~/Views/MasterPartLists/DttMasterPartList.cshtml", query);
         }
 
         // GET: Locations
-        public ActionResult Locations()
+        /*public ActionResult Locations()
         {
-            /*var query = from mp in db.MasterPartLists
-                join tx in db.TxQohs on mp.CustomerPn equals tx.Pn
-                orderby mp.CustomerPn descending
-                select new
-                {
-                   mp.CustomerPn,
-                   mp.PartDescription,
-                   tx.Qoh,
-                   mp.Location,
-                   mp.Weight,
-                   mp.Notes 
-                };*/
             var query = from a in db.MasterPartLists
+                //join tx in TxQohs on a.CustomerPn equals tx.Pn
                 orderby a.CustomerPn descending
                 select a;
-            return View("Locations", query);
+            return View("~/Views/MasterPartLists/Locations.cshtml", query);
+        }*/
+
+
+        public ActionResult Locations()
+        {
+            LocationsViewModel mymodel = new LocationsViewModel();
+            mymodel.MasterPartLists = GetMasterPartLists();
+            mymodel.TxQohs = GetTxQohs();
+            return View(mymodel);
+        }
+
+        private IEnumerable<TxQoh> GetTxQohs()
+        {
+            throw new NotImplementedException();
+        }
+
+        private IEnumerable<MasterPartList> GetMasterPartLists()
+        {
+            throw new NotImplementedException();
         }
 
         // GET: MasterPartLists/Details/5
