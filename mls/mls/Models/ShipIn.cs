@@ -34,6 +34,8 @@ namespace mls.Models
 
         public string Invoice { get; set; }
 
+        public string PoNo { get; set; }
+
         public string Seal { get; set; }
 
         public string Port { get; set; }

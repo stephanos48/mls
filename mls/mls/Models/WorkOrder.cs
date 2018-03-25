@@ -33,6 +33,10 @@ namespace mls.Models
 
         public string WorkOrderNumber { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? NeedDate { get; set; }
+
         [Required]
         [Display(Name = "Customer PN")]
         public string CustomerPn { get; set; }
@@ -75,6 +79,8 @@ namespace mls.Models
 
         [Display(Name = "Notes")]
         public string Notes { get; set; }
+
+        public virtual ICollection<WoDetail> WoDetails { get; set; }
 
     }
 }

@@ -84,20 +84,39 @@ namespace mls.Controllers
 
         public ActionResult Locations()
         {
-            LocationsViewModel mymodel = new LocationsViewModel();
-            mymodel.MasterPartLists = GetMasterPartLists();
-            mymodel.TxQohs = GetTxQohs();
-            return View(mymodel);
-        }
+            //LocationViewModel1 mymodel = new LocationsViewModel1();
+            var query = from a in db.MasterPartLists
+                        join tx in db.TxQohs on a.CustomerPn equals tx.Pn
+                        orderby a.CustomerPn descending
+                        select new
+                        {
+                            a.CustomerPn,
+                            a.PartDescription,
+                            a.Location,
+                            tx.Qoh
+                        };
+            //new LocationViewModel1
+            //{
+            //    a.CustomerPn, a.PartDescription, a.Location, tx.Qoh
+            //            }
+            
+            List<LocationViewModel1> locations = new List<LocationViewModel1>();
+            foreach (var loc in query.ToList())
+            {
+                LocationViewModel1 mymodel = new LocationViewModel1()
+                {
+                    Qoh = loc.Qoh,
+                    Location = loc.Location,
+                    CustomerPn = loc.CustomerPn,
+                    PartDescription = loc.PartDescription
+                };
 
-        private IEnumerable<TxQoh> GetTxQohs()
-        {
-            throw new NotImplementedException();
-        }
 
-        private IEnumerable<MasterPartList> GetMasterPartLists()
-        {
-            throw new NotImplementedException();
+                locations.Add(mymodel);
+            }
+
+
+            return View("~/Views/MasterPartLists/Locations.cshtml", locations);
         }
 
         // GET: MasterPartLists/Details/5

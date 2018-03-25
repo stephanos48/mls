@@ -1,0 +1,52 @@
+﻿@model List<mls.ViewModels.QohViewModel>
+
+@{
+    ViewBag.Title = "ThiQoh";
+}
+
+<h2>THI Qoh</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "ThiHome")
+</p>
+
+
+<table id="qoh" class="table table-bordered table-hover">
+
+    <thead>
+        <tr>
+            <th>
+                Part Number
+            </th>
+            <th>
+                Qoh
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qoh)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#qoh").DataTable({
+                'iDisplayLength': 100 });
+            });
+
+    </script>
+}
+

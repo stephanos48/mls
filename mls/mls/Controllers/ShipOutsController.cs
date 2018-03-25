@@ -84,6 +84,16 @@ namespace mls.Controllers
             return View("WBShipOut", query);
         }
 
+        // GET: ShipOuts
+        public ActionResult ThiShipOut()
+        {
+            var query = from a in db.ShipOuts
+                        where a.CustomerId == 8
+                        orderby a.ShipDate descending
+                        select a;
+            return View("ThiShipOut", query);
+        }
+
         // GET: ROShipOuts
         public ActionResult ROShipOut()
         {

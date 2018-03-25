@@ -88,9 +88,13 @@ namespace mls.Controllers
                     {
                         return RedirectToAction("LogisticsBasic", "CustomerOrders");
                     }
+                    else if (roles.Contains("Thi"))
+                    {
+                        return RedirectToAction("ThiHome", "CustomerOrders");
+                    }
                     else if (roles.Contains("View"))
                     {
-                        return RedirectToAction("ROIndex", "CustomerOrders");
+                        return RedirectToAction("Index1", "CustomerOrders");
                     }
                     else
                     {
@@ -174,8 +178,8 @@ namespace mls.Controllers
 
                     var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                     var roleManager = new RoleManager<IdentityRole>(roleStore);
-                    await roleManager.CreateAsync(new IdentityRole("Nov"));
-                    await UserManager.AddToRoleAsync(user.Id, "Nov");
+                    await roleManager.CreateAsync(new IdentityRole("QualityAdmin"));
+                    await UserManager.AddToRoleAsync(user.Id, "QualityAdmin");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     

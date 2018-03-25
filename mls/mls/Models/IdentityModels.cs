@@ -123,6 +123,16 @@ namespace mls.Models
         public DbSet<ComplaintType> ComplaintTypes { get; set; }
 
         public DbSet<CustomerComplaint> CustomerComplaints { get; set; }
-        
+
+        public DbSet<WoDetail> WoDetails { get; set; }
+
+        public DbSet<Productive> Productives { get; set; }
+
+        public DbSet<WoResponsible> WoResponsibles { get; set; }
+
+        public DbSet<BomLevel1> BomLevel1s { get; set; }
+
+        public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
+
     }
 }

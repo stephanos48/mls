@@ -11,7 +11,6 @@ using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using mls.Models;
 using mls.ViewModels;
 using System.IO;
-using ClosedXML.Excel;
 using System.Web.UI.WebControls;
 using System.Web.UI;
 
@@ -42,9 +41,13 @@ namespace mls.Controllers
             {
                 return View("NovHome");
             }
+            else if (User.IsInRole("Thi"))
+            {
+                return View("ThiHome");
+            }
             else if (User.IsInRole("View"))
             {
-                return View("ROIndex");
+                return View("Index1");
             }
             else
             {
@@ -71,6 +74,26 @@ namespace mls.Controllers
             //               select a;
             // return View("Wastebuilt", query);
             return View("Nov");
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult JbtOrlando()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("JBT_Orlando");
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult JbtOgden()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("JBT_Ogden");
         }
 
         // GET: CustomerOrders/Wastebuilt
@@ -113,6 +136,26 @@ namespace mls.Controllers
             return View("RODetails");
         }
 
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult Index1()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("~/Views/CustomerOrders/Index1.cshtml");
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult RoThi()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("ROThi");
+        }
+
         // GET: CustomerOrders/Details/5
         public ActionResult WbDetails(int? id)
         {
@@ -149,6 +192,16 @@ namespace mls.Controllers
         }
 
         // GET: CustomerOrders/Wastebuilt
+        public ActionResult SalesAll()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("SalesAll");
+        }
+
+        // GET: CustomerOrders/Wastebuilt
         public ActionResult Vsg()
         {
             //var query = from a in db.CustomerOrders
@@ -163,14 +216,56 @@ namespace mls.Controllers
         { 
             var query = from a in db.TxQohs
                 join mp in db.MasterPartLists on a.Pn equals mp.CustomerPn
-                where mp.CustomerId == 2 && mp.CustomerDivisionId == 6
+                where mp.CustomerId == 2 || mp.CustomerId == 1 && mp.CustomerDivisionId == 6 || mp.CustomerDivisionId == 1
                 orderby a.Pn descending
                 select new
                 {
                     PN = a.Pn,
                     QOH = a.Qoh
                 };
-            return View("WBQoh", query);
+
+            List<QohViewModel> quantities = new List<QohViewModel>();
+            foreach (var qoh in query.ToList())
+            {
+                QohViewModel mymodel = new QohViewModel()
+                {
+                    Pn = qoh.PN,
+                    Qoh = qoh.QOH
+                };
+                
+                quantities.Add(mymodel);
+            }
+
+            return View("WBQoh", quantities);
+            //return View();
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult ThiQoh()
+        {
+            var query = from a in db.TxQohs
+                        join mp in db.MasterPartLists on a.Pn equals mp.CustomerPn
+                        where mp.CustomerId == 8
+                        orderby a.Pn descending
+                        select new
+                        {
+                            PN = a.Pn,
+                            QOH = a.Qoh
+                        };
+
+            List<QohViewModel> quantities = new List<QohViewModel>();
+            foreach (var qoh in query.ToList())
+            {
+                QohViewModel mymodel = new QohViewModel()
+                {
+                    Pn = qoh.PN,
+                    Qoh = qoh.QOH
+                };
+
+                quantities.Add(mymodel);
+            }
+
+            return View("ThiQoh", quantities);
             //return View();
         }
 
@@ -226,6 +321,16 @@ namespace mls.Controllers
                         select a;
             return View("Wastebuilt", query);
             //return View();
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult ThiHome()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("ThiHome");
         }
 
         // GET: CustomerOrders/Wastebuilt
@@ -341,6 +446,37 @@ namespace mls.Controllers
             return PartialView("_RONewOrderPartialView", result);
         }
 
+        // GET: CustomerOrders/Wastebuilt/NewOrder
+        [HttpGet]
+        public ActionResult _PpNewOrder()
+        {
+            var queryNew = from a in db.CustomerOrders
+                           where a.OrderStatusId == 1
+                           orderby a.OrderDateTime descending
+                           select a;
+            List<NewOrderViewModel> result = new List<NewOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    CustomerOrderNumber = order.CustomerOrderNumber,
+                    OrderDateTime = order.OrderDateTime,
+                    SoNumber = order.SoNumber,
+                    CustomerPn = order.CustomerPn,
+                    PartDescription = order.PartDescription,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestedDateTime,
+                    PromiseDateTime = order.PromiseDateTime,
+                    ShipDateTime = order.ShipDateTime,
+                    Notes = order.Notes
+                });
+            }
+
+            return PartialView("_PNewOrderPartialView", result);
+        }
+
         // GET: CustomerOrders/Wastebuilt/Review
         [HttpGet]
         public ActionResult _PReview(int customer, int division, int mlsdivision)
@@ -432,6 +568,37 @@ namespace mls.Controllers
             }
 
             return PartialView("_ROReviewPartialView", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult _PpReview()
+        {
+            var queryNew = from a in db.CustomerOrders
+                           where a.OrderStatusId == 9 
+                           orderby a.OrderDateTime descending
+                           select a;
+            List<NewOrderViewModel> result = new List<NewOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    CustomerOrderNumber = order.CustomerOrderNumber,
+                    OrderDateTime = order.OrderDateTime,
+                    SoNumber = order.SoNumber,
+                    CustomerPn = order.CustomerPn,
+                    PartDescription = order.PartDescription,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestedDateTime,
+                    PromiseDateTime = order.PromiseDateTime,
+                    ShipDateTime = order.ShipDateTime,
+                    Notes = order.Notes
+                });
+            }
+
+            return PartialView("_PReviewPartialView", result);
         }
 
         // GET: CustomerOrders/Wastebuilt/StockOut
@@ -527,6 +694,37 @@ namespace mls.Controllers
             return PartialView("_ROStockOutPartialView", result);
         }
 
+        // GET: CustomerOrders/Wastebuilt/StockOut
+        [HttpGet]
+        public ActionResult _PpStockOut()
+        {
+            var queryNew = from a in db.CustomerOrders
+                           where a.OrderStatusId == 8 
+                           orderby a.OrderDateTime descending
+                           select a;
+            List<NewOrderViewModel> result = new List<NewOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    CustomerOrderNumber = order.CustomerOrderNumber,
+                    OrderDateTime = order.OrderDateTime,
+                    SoNumber = order.SoNumber,
+                    CustomerPn = order.CustomerPn,
+                    PartDescription = order.PartDescription,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestedDateTime,
+                    PromiseDateTime = order.PromiseDateTime,
+                    ShipDateTime = order.ShipDateTime,
+                    Notes = order.Notes
+                });
+            }
+
+            return PartialView("_PStockOutPartialView", result);
+        }
+
         [HttpGet]
         // GET: CustomerOrders/Wastebuilt/Sample
         public ActionResult _Sample(int customer, int division, int mlsdivision)
@@ -589,12 +787,74 @@ namespace mls.Controllers
             return PartialView("_ROSamplePartialView", result);
         }
 
+        [HttpGet]
+        // GET: CustomerOrders/Wastebuilt/Sample
+        public ActionResult _PpSample()
+        {
+            var queryNew = from a in db.CustomerOrders
+                           where a.OrderStatusId == 2 
+                           orderby a.OrderDateTime descending
+                           select a;
+            List<NewOrderViewModel> result = new List<NewOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    CustomerOrderNumber = order.CustomerOrderNumber,
+                    OrderDateTime = order.OrderDateTime,
+                    CustomerPn = order.CustomerPn,
+                    PartDescription = order.PartDescription,
+                    SoNumber = order.SoNumber,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestedDateTime,
+                    PromiseDateTime = order.PromiseDateTime,
+                    ShipDateTime = order.ShipDateTime,
+                    Notes = order.Notes
+                });
+            }
+
+            return PartialView("_SamplePartialView", result);
+        }
+
         // GET: CustomerOrders/Wastebuilt/Design
         [HttpGet]
         public ActionResult _Design(int customer, int division, int mlsdivision)
         {
             var queryNew = from a in db.CustomerOrders
                            where a.OrderStatusId == 3 && a.CustomerId == customer && a.CustomerDivisionId == division && a.MlsDivisionId == mlsdivision
+                           orderby a.OrderDateTime descending
+                           select a;
+            List<NewOrderViewModel> result = new List<NewOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    CustomerOrderNumber = order.CustomerOrderNumber,
+                    OrderDateTime = order.OrderDateTime,
+                    CustomerPn = order.CustomerPn,
+                    PartDescription = order.PartDescription,
+                    SoNumber = order.SoNumber,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestedDateTime,
+                    PromiseDateTime = order.PromiseDateTime,
+                    ShipDateTime = order.ShipDateTime,
+                    Notes = order.Notes
+                });
+            }
+
+            return PartialView("_DesignPartialView", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Design
+        [HttpGet]
+        public ActionResult _PpDesign()
+        {
+            var queryNew = from a in db.CustomerOrders
+                           where a.OrderStatusId == 3
                            orderby a.OrderDateTime descending
                            select a;
             List<NewOrderViewModel> result = new List<NewOrderViewModel>();
@@ -710,6 +970,35 @@ namespace mls.Controllers
         }
 
         // GET: CustomerOrders/Wastebuilt/Production
+        public ActionResult _PpProduction()
+        {
+            var queryNew = from a in db.CustomerOrders
+                           where a.OrderStatusId == 4
+                           orderby a.OrderDateTime descending
+                           select a;
+            List<NewOrderViewModel> result = new List<NewOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    CustomerOrderNumber = order.CustomerOrderNumber,
+                    OrderDateTime = order.OrderDateTime,
+                    CustomerPn = order.CustomerPn,
+                    PartDescription = order.PartDescription,
+                    SoNumber = order.SoNumber,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestedDateTime,
+                    PromiseDateTime = order.PromiseDateTime,
+                    ShipDateTime = order.ShipDateTime,
+                    Notes = order.Notes
+                });
+            }
+            return PartialView("_PProductionPartialView", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Production
         public ActionResult _ROProduction(int customer, int division, int mlsdivision)
         {
             var queryNew = from a in db.CustomerOrders
@@ -743,6 +1032,35 @@ namespace mls.Controllers
         {
             var queryNew = from a in db.CustomerOrders
                            where a.OrderStatusId == 5 && a.CustomerId == customer && a.CustomerDivisionId == division && a.MlsDivisionId == mlsdivision
+                           orderby a.OrderDateTime descending
+                           select a;
+            List<NewOrderViewModel> result = new List<NewOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    CustomerOrderNumber = order.CustomerOrderNumber,
+                    OrderDateTime = order.OrderDateTime,
+                    CustomerPn = order.CustomerPn,
+                    PartDescription = order.PartDescription,
+                    SoNumber = order.SoNumber,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestedDateTime,
+                    PromiseDateTime = order.PromiseDateTime,
+                    ShipDateTime = order.ShipDateTime,
+                    Notes = order.Notes
+                });
+            }
+            return PartialView("_POceanPartialView", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Ocean
+        public ActionResult _PpOcean()
+        {
+            var queryNew = from a in db.CustomerOrders
+                           where a.OrderStatusId == 5
                            orderby a.OrderDateTime descending
                            select a;
             List<NewOrderViewModel> result = new List<NewOrderViewModel>();
@@ -884,6 +1202,35 @@ namespace mls.Controllers
         }
 
         // GET: CustomerOrders/Wastebuilt/Tx
+        public ActionResult _PpTx()
+        {
+            var queryNew = from a in db.CustomerOrders
+                           where a.OrderStatusId == 6 
+                           orderby a.OrderDateTime descending
+                           select a;
+            List<NewOrderViewModel> result = new List<NewOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    CustomerOrderNumber = order.CustomerOrderNumber,
+                    OrderDateTime = order.OrderDateTime,
+                    CustomerPn = order.CustomerPn,
+                    PartDescription = order.PartDescription,
+                    SoNumber = order.SoNumber,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestedDateTime,
+                    PromiseDateTime = order.PromiseDateTime,
+                    ShipDateTime = order.ShipDateTime,
+                    Notes = order.Notes
+                });
+            }
+            return PartialView("_PTxPartialView", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Tx
         public ActionResult _ROTx(int customer, int division, int mlsdivision)
         {
             var queryNew = from a in db.CustomerOrders
@@ -917,6 +1264,35 @@ namespace mls.Controllers
         {
             var queryNew = from a in db.CustomerOrders
                            where a.OrderStatusId == 7 && a.CustomerId == customer && a.CustomerDivisionId == division && a.MlsDivisionId == mlsdivision
+                           orderby a.OrderDateTime descending
+                           select a;
+            List<NewOrderViewModel> result = new List<NewOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    CustomerOrderNumber = order.CustomerOrderNumber,
+                    OrderDateTime = order.OrderDateTime,
+                    CustomerPn = order.CustomerPn,
+                    PartDescription = order.PartDescription,
+                    SoNumber = order.SoNumber,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestedDateTime,
+                    PromiseDateTime = order.PromiseDateTime,
+                    ShipDateTime = order.ShipDateTime,
+                    Notes = order.Notes
+                });
+            }
+            return PartialView("_PClosedPartialView", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Closed
+        public ActionResult _PpClosed()
+        {
+            var queryNew = from a in db.CustomerOrders
+                           where a.OrderStatusId == 7
                            orderby a.OrderDateTime descending
                            select a;
             List<NewOrderViewModel> result = new List<NewOrderViewModel>();
@@ -1284,7 +1660,7 @@ namespace mls.Controllers
             return View("WB1");
         }
         */
-        [HttpPost]
+        /*[HttpPost]
         public FileResult ExportCOWB()
         {
             DataTable dt = new DataTable("Grid");
@@ -1319,7 +1695,7 @@ namespace mls.Controllers
                 }
             }
 
-        }
+        }*/
 
         protected override void Dispose(bool disposing)
         {

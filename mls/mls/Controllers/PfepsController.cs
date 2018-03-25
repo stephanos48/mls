@@ -18,12 +18,21 @@ namespace mls.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        [Authorize(Roles = "Admin")]
+
         // GET: Pfeps
         public ActionResult Index()
         {
-            var query = db.Pfeps.ToList();
-            return View("~/Views/Pfeps/Index.cshtml", query);
+            //var query = db.Pfeps.ToList();
+            //return View("~/Views/Pfeps/Index.cshtml", query);
+
+            if (User.IsInRole("Admin"))
+            {
+                return View("~/Views/Pfeps/Index.cshtml");
+            }
+            else
+            {
+                return View("~/Views/Pfeps/PfepPlan.cshtml");
+            }
         }
 
         [Authorize(Roles = "Admin")]
@@ -31,6 +40,12 @@ namespace mls.Controllers
         public ActionResult ManagePfep()
         {
             return View(db.Pfeps.ToList());
+        }
+
+        // GET: Pfep Plan
+        public ActionResult PfepPlan()
+        {
+            return View();
         }
 
         // GET: Wastebuilt Lift Parts
@@ -69,7 +84,7 @@ namespace mls.Controllers
             return View();
         }
 
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         // GET: Wastebuilt PFEP
         public ActionResult PfepWb()
         {

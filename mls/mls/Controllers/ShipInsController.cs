@@ -95,6 +95,18 @@ namespace mls.Controllers
 
         [Authorize]
         // GET: ShipIns
+        public ActionResult ThiTransit()
+        {
+            var query = from a in db.ShipIns
+                        where a.ShipInStatusId != 3 && a.CustomerId == 8
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("ThiTransit", query);
+            //return View(db.ShipIns.ToList());
+        }
+
+        [Authorize]
+        // GET: ShipIns
         public ActionResult WBReceipt()
         {
             var query = from a in db.ShipIns
@@ -102,6 +114,18 @@ namespace mls.Controllers
                         orderby a.ContainerUh descending
                         select a;
             return View("WBReceipt", query);
+            //return View(db.ShipIns.ToList());
+        }
+
+        [Authorize]
+        // GET: ShipIns
+        public ActionResult ThiReceipt()
+        {
+            var query = from a in db.ShipIns
+                        where a.ShipInStatusId == 3 && a.CustomerId == 8
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("ThiReceipt", query);
             //return View(db.ShipIns.ToList());
         }
 
@@ -121,11 +145,24 @@ namespace mls.Controllers
         // GET: ShipIns
         public ActionResult Receipt()
         {
+            var baselinedate = DateTime.Now.AddDays(-90);
+            var query = from a in db.ShipIns
+                        where a.ShipInStatusId == 3 && a.Receiptdate >= baselinedate
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("Receipt", query);
+            //return View(db.ShipIns.ToList());
+        }
+
+        [Authorize]
+        // GET: ShipIns
+        public ActionResult ReceiptAll()
+        {
             var query = from a in db.ShipIns
                         where a.ShipInStatusId == 3
                         orderby a.ContainerUh descending
                         select a;
-            return View("Receipt", query);
+            return View("ReceiptAll", query);
             //return View(db.ShipIns.ToList());
         }
 

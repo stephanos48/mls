@@ -32,6 +32,28 @@ namespace mls.Controllers
             NullValueHandling = NullValueHandling.Ignore
         };
 
+        public ActionResult graphpie()
+        {
+            return View();
+        }
+
+        public ActionResult getgraphdata()
+        {
+            int gay = db.NCRs.Where(x => x.NcrTypeId == 1).Count();
+            int supplier = db.NCRs.Where(x => x.NcrTypeId == 4).Count();
+            Ratio obj = new Ratio();
+            obj.gay = gay;
+            obj.supplier = supplier;
+
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+
+        public class Ratio
+        {
+            public int gay { get; set; }
+            public int supplier { get; set; }
+        }
+
         public IList<NcrViewModel> GetNcrList()
         {
             var ncrlist = (from ncr in db.NCRs
@@ -69,7 +91,7 @@ namespace mls.Controllers
             var queryAllNcRs = from a in db.NCRs
                 orderby a.NcrId descending
                 select a;
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("View"))
                 //return View("List", db.NCRs.ToList());
                 return View("List", queryAllNcRs.ToList());
             else

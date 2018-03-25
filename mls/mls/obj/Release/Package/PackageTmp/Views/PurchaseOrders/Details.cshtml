@@ -1,0 +1,218 @@
+﻿@model mls.Models.PurchaseOrder
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PurchaseOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PoNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipToAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipToAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConfirmTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConfirmTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipVia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipVia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Terms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Terms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reference)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reference)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerOrderNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerOrderNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MlsDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UhPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UhPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceivedQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceivedQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestedDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestedDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PromiseDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PromiseDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceiptDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceiptDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PurchaseOrderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

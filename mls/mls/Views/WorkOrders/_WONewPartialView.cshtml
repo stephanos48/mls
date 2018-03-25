@@ -8,6 +8,9 @@
             @Html.DisplayNameFor(model => model.WorkOrderId)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.MlsSo)
         </th>
         <th>
@@ -23,10 +26,10 @@
             @Html.DisplayNameFor(model => model.CreationDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CloseDate)
+            @Html.DisplayNameFor(model => model.NeedDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OrderTypeId)
+            @Html.DisplayNameFor(model => model.CloseDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Notes)
@@ -46,6 +49,9 @@
                 @Html.DisplayFor(modelItem => item.WorkOrderId)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.MlsDivisionId)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.MlsSo)
             </td>
             <td>
@@ -61,10 +67,10 @@
                 @Html.DisplayFor(modelItem => item.CreationDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CloseDate)
+                @Html.DisplayFor(modelItem => item.NeedDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OrderTypeId)
+                @Html.DisplayFor(modelItem => item.CloseDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Notes)

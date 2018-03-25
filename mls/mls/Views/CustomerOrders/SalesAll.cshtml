@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "SalesAll";
+}
+
+<h2>Open Orders - All</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index") | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br />
+
+<h4><u>New Orders</u></h4>
+@Html.Action("_PpNewOrder", "CustomerOrders")
+<br />
+<br />
+<h4><u>In Review</u></h4>
+@Html.Action("_PpReview", "CustomerOrders")
+<br />
+<br />
+<h4><u>Sample Needed</u></h4>
+@Html.Action("_PpSample", "CustomerOrders")
+<br />
+<br />
+<h4><u>Design</u></h4>
+@Html.Action("_PpDesign", "CustomerOrders")
+<br />
+<br />
+<h4><u>Stock Out</u></h4>
+@Html.Action("_PpStockOut", "CustomerOrders")
+<br />
+<br />
+<h4><u>Production</u></h4>
+@Html.Action("_PpProduction", "CustomerOrders")
+<br />
+<br />
+<h4><u>In Transit</u></h4>
+@Html.Action("_PpOcean", "CustomerOrders")
+<br />
+<br />
+<h4><u>Texas</u></h4>
+@Html.Action("_PpTx", "CustomerOrders")
+<br />
+<br />

@@ -1,0 +1,158 @@
+﻿@model mls.ViewModels.ProductionIndexDataViewModel
+
+@{
+    ViewBag.Title = "ProductionPlan";
+}
+
+<h2>Production Plan</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index") | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br />
+
+<table id="wo" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>WorkOrderId</th>
+            <th>MLS SO</th>
+            <th>Customer PO</th>
+            <th>Customer PN</th>
+            <th>Quantity</th>
+            <th>NeedDate</th>
+            <th>CreationDate</th>
+            <th>CloseDate</th>
+            <th>Notes</th>
+            @*<th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SupplierId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SupplierName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SupplierNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SupplierType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Country)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Website)
+                </th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.WorkOrders)
+        {
+            string selectedRow = "";
+            if (item.WorkOrderId == ViewBag.WorkOrderId)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "ProductionPlan1", new { id = item.WorkOrderId })|
+                    @Html.ActionLink("Edit", "Edit", new { id = item.WorkOrderId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.WorkOrderId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.WorkOrderId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkOrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MlsSo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NeedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CloseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.WoDetails != null)
+{
+    <h3>
+        Work Order Detail
+    </h3>
+    <p>
+        @Html.ActionLink("Create New", "Create", "WoDetails", null, null)
+    </p>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Work Order #</th>
+            <th>WorkDate</th>
+            <th>Employee</th>
+            <th>Objective</th>
+            <th>TotalTime</th>
+            <th>Risk</th>
+            <th>RiskAction</th>
+            <th>Notes</th>
+        </tr>
+        @foreach (var item in Model.WoDetails)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkOrders.WorkOrderNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WoResponsible)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Objective)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Risk)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RiskAction)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+               $("#wo").DataTable();
+            });
+
+    </script>
+}

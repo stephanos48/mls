@@ -17,9 +17,41 @@ namespace mls.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: WorkOrders
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View(db.WorkOrders.ToList());
+            var viewModel = new ProductionIndexDataViewModel();
+            viewModel.WorkOrders = db.WorkOrders
+                .Include(i => i.WoDetails);
+
+            if (id != null)
+            {
+                ViewBag.WorkOrderId = id.Value;
+                viewModel.WoDetails = viewModel.WorkOrders.Single(
+                    i => i.WorkOrderId == id.Value).WoDetails;
+            }
+            
+            return View(viewModel);
+        }
+
+        public ActionResult ProductionPlan()
+        {
+            return View();
+        }
+
+        public ActionResult ProductionPlan1(int? id)
+        {
+            var viewModel = new ProductionIndexDataViewModel();
+            viewModel.WorkOrders = db.WorkOrders
+                .Include(i => i.WoDetails);
+
+            if (id != null)
+            {
+                ViewBag.WorkOrderId = id.Value;
+                viewModel.WoDetails = viewModel.WorkOrders.Single(
+                    i => i.WorkOrderId == id.Value).WoDetails;
+            }
+
+            return View(viewModel);
         }
 
         // GET: WorkOrders
@@ -48,6 +80,12 @@ namespace mls.Controllers
 
         // GET: WorkOrders/WOUH/
         public ActionResult WOUH()
+        {
+            return View();
+        }
+
+        // GET: WorkOrders/WDIP/
+        public ActionResult WDIP()
         {
             return View();
         }
@@ -244,6 +282,37 @@ namespace mls.Controllers
             return PartialView("_WONewPartialView", result);
         }
 
+        public ActionResult _PpNewWorkOrders()
+        {
+            var queryNew = from a in db.WorkOrders
+                           where a.WoOrderStatusId == 1
+                           orderby a.WorkOrderId descending
+                           select a;
+            List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewWorkOrderViewModel
+                {
+                    WorkOrderId = order.WorkOrderId,
+                    MlsSo = order.MlsSo,
+                    MlsDivisionId = order.MlsDivisionId,
+                    WorkOrderNumber = order.WorkOrderNumber,
+                    Customer = order.Customer,
+                    CreationDate = order.CreationDate,
+                    CustomerPn = order.CustomerPn,
+                    Qty = order.Qty,
+                    NeedDate = order.NeedDate,
+                    CloseDate = order.CloseDate,
+                    CustomerPo = order.CustomerPo,
+                    StartTime = order.StartTime,
+                    FinishTime = order.FinishTime,
+                    OrderTypeId = order.OrderTypeId,
+                    Notes = order.Notes
+                });
+            }
+            return PartialView("_WONewPartialView", result);
+        }
+
         // GET: WorkOrders/BayneLifters/Closed
         public ActionResult _WoScheduling(int woPartType)
         {
@@ -264,6 +333,38 @@ namespace mls.Controllers
                     CustomerPn = order.CustomerPn,
                     Qty = order.Qty,
                     CloseDate = order.CloseDate,
+                    CustomerPo = order.CustomerPo,
+                    StartTime = order.StartTime,
+                    FinishTime = order.FinishTime,
+                    OrderTypeId = order.OrderTypeId,
+                    Notes = order.Notes
+                });
+            }
+            return PartialView("_WOSchedulingPartialView", result);
+        }
+
+        // GET: WorkOrders/BayneLifters/Closed
+        public ActionResult _PpScheduling()
+        {
+            var queryNew = from a in db.WorkOrders
+                           where a.WoOrderStatusId == 2
+                           orderby a.WorkOrderId descending
+                           select a;
+            List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewWorkOrderViewModel
+                {
+                    WorkOrderId = order.WorkOrderId,
+                    MlsSo = order.MlsSo,
+                    MlsDivisionId = order.MlsDivisionId,
+                    WorkOrderNumber = order.WorkOrderNumber,
+                    Customer = order.Customer,
+                    CreationDate = order.CreationDate,
+                    CustomerPn = order.CustomerPn,
+                    Qty = order.Qty,
+                    CloseDate = order.CloseDate,
+                    NeedDate = order.NeedDate,
                     CustomerPo = order.CustomerPo,
                     StartTime = order.StartTime,
                     FinishTime = order.FinishTime,
@@ -305,6 +406,38 @@ namespace mls.Controllers
         }
 
         // GET: WorkOrders/BayneLifters/Closed
+        public ActionResult _PpHold()
+        {
+            var queryNew = from a in db.WorkOrders
+                           where a.WoOrderStatusId == 3
+                           orderby a.WorkOrderId descending
+                           select a;
+            List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewWorkOrderViewModel
+                {
+                    WorkOrderId = order.WorkOrderId,
+                    MlsSo = order.MlsSo,
+                    MlsDivisionId = order.MlsDivisionId,
+                    WorkOrderNumber = order.WorkOrderNumber,
+                    Customer = order.Customer,
+                    CreationDate = order.CreationDate,
+                    CustomerPn = order.CustomerPn,
+                    Qty = order.Qty,
+                    CloseDate = order.CloseDate,
+                    NeedDate = order.NeedDate,
+                    CustomerPo = order.CustomerPo,
+                    StartTime = order.StartTime,
+                    FinishTime = order.FinishTime,
+                    OrderTypeId = order.OrderTypeId,
+                    Notes = order.Notes
+                });
+            }
+            return PartialView("_WOHoldPartialView", result);
+        }
+
+        // GET: WorkOrders/BayneLifters/Closed
         public ActionResult _WoProduction(int woPartType)
         {
             var queryNew = from a in db.WorkOrders
@@ -335,6 +468,38 @@ namespace mls.Controllers
         }
 
         // GET: WorkOrders/BayneLifters/Closed
+        public ActionResult _PpProduction()
+        {
+            var queryNew = from a in db.WorkOrders
+                           where a.WoOrderStatusId == 4
+                           orderby a.WorkOrderId descending
+                           select a;
+            List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewWorkOrderViewModel
+                {
+                    WorkOrderId = order.WorkOrderId,
+                    MlsSo = order.MlsSo,
+                    MlsDivisionId = order.MlsDivisionId,
+                    WorkOrderNumber = order.WorkOrderNumber,
+                    Customer = order.Customer,
+                    CreationDate = order.CreationDate,
+                    CustomerPn = order.CustomerPn,
+                    Qty = order.Qty,
+                    CloseDate = order.CloseDate,
+                    NeedDate = order.NeedDate,
+                    CustomerPo = order.CustomerPo,
+                    StartTime = order.StartTime,
+                    FinishTime = order.FinishTime,
+                    OrderTypeId = order.OrderTypeId,
+                    Notes = order.Notes
+                });
+            }
+            return PartialView("_WOProductionPartialView", result);
+        }
+
+        // GET: WorkOrders/BayneLifters/Closed
         public ActionResult _WOClosed(int woPartType)
         {
             var queryNew = from a in db.WorkOrders
@@ -354,6 +519,38 @@ namespace mls.Controllers
                     CustomerPn = order.CustomerPn,
                     Qty = order.Qty,
                     CloseDate = order.CloseDate,
+                    CustomerPo = order.CustomerPo,
+                    StartTime = order.StartTime,
+                    FinishTime = order.FinishTime,
+                    OrderTypeId = order.OrderTypeId,
+                    Notes = order.Notes
+                });
+            }
+            return PartialView("_WOClosedPartialView", result);
+        }
+
+        // GET: WorkOrders/BayneLifters/Closed
+        public ActionResult _PpClosed()
+        {
+            var queryNew = from a in db.WorkOrders
+                           where a.WoOrderStatusId == 5
+                           orderby a.WorkOrderId descending
+                           select a;
+            List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewWorkOrderViewModel
+                {
+                    WorkOrderId = order.WorkOrderId,
+                    MlsSo = order.MlsSo,
+                    MlsDivisionId = order.MlsDivisionId,
+                    WorkOrderNumber = order.WorkOrderNumber,
+                    Customer = order.Customer,
+                    CreationDate = order.CreationDate,
+                    CustomerPn = order.CustomerPn,
+                    Qty = order.Qty,
+                    CloseDate = order.CloseDate,
+                    NeedDate = order.NeedDate,
                     CustomerPo = order.CustomerPo,
                     StartTime = order.StartTime,
                     FinishTime = order.FinishTime,

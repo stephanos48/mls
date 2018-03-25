@@ -1,0 +1,48 @@
+﻿@using mls.Controllers
+@model IEnumerable<mls.Models.CustomerOrder>
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Home</h2>
+<br />
+<br />
+<p>
+
+    <h4><u>Departments</u></h4>
+    <br />
+
+    @Html.ActionLink("Metrics / Performance", "Index", "Scrums", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Sales", "Sales")
+    <br />
+    <br />
+    @Html.ActionLink("Operations", "Index", "WorkOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Supply Chain", "PfepPlan", "Pfeps", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Logistics", "Index", "ShipIns", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Quality", "QualityHome", "NCRs", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("HR", "HRHome", "Employees", null, null)
+    <br />
+    <br />
+
+</p>
+
+@*
+    <script>
+        $(document).ready(function() {
+            $("#customerorder .js-delete").on("click",function() {
+                confirm("Are you sure you want to delete this order?")
+            });
+        });
+    </script>
+*@

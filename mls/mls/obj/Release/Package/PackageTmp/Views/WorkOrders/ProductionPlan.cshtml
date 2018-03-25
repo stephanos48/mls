@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "ProductionPlan";
+}
+
+<h2>Production Plan</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index") | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br />
+
+<h4><u>New Orders / Backlog</u></h4>
+@Html.Action("_PpNewWorkOrders", "WorkOrders")
+<br />
+<br />
+<h4><u>Stock Out / Hold</u></h4>
+@Html.Action("_PpHold", "WorkOrders")
+<br />
+<br />
+<h4><u>Scheduling / Slotting</u></h4>
+@Html.Action("_PpScheduling", "WorkOrders")
+<br />
+<br />
+<h4><u>Production (Slotted)</u></h4>
+@Html.Action("_PpProduction", "WorkOrders")
+<br />
+<br />

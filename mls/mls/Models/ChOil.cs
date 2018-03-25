@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -23,10 +24,10 @@ namespace mls.Models
 
         public string Notes { get; set; }
 
-        [Required]
-        [NotMapped]
-        public HttpPostedFileBase Attachment { get; set; }
+        //[DisplayName("Upload File")]
+        //public string ImagePath { get; set; }
 
+        //public HttpPostedFileBase ImageFile { get; set; }
 
     }
 }

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DocumentFormat.OpenXml.Drawing.Charts;
-using mls.Models;
 
 
 namespace mls.ViewModels
