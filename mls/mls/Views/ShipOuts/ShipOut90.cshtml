@@ -105,10 +105,10 @@
 @section scripts
 {
     <script>
-        $(document)
-            .ready(function() {
-                $("#shipout").DataTable();
-            });
+        $(document).ready(function () {
+            $("#shipout").DataTable({
+                'iDisplayLength': 100 });
+        });
 
     </script>
 }

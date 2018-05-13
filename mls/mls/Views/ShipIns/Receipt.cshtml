@@ -84,9 +84,10 @@
 @section scripts
 {
     <script>
-        $(document).ready(function() {
-               $("#receipt").DataTable();
-            });
+        $(document).ready(function () {
+            $("#receipt").DataTable({
+                'iDisplayLength': 100 });
+        });
 
     </script>
 }

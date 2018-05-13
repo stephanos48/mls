@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>All Purchase Orders</h2>
 
 <p>
     @Html.ActionLink("Go Back", "Index", "Pfeps", null, null) | @Html.ActionLink("Create New", "Create")
@@ -89,7 +89,7 @@
                     @Html.DisplayFor(modelItem => item.ReceiptDateTime)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.OrderStatusId)
+                    @Html.DisplayFor(modelItem => item.PoOrderStatusId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Notes)
@@ -104,7 +104,8 @@
 {
     <script>
         $(document).ready(function () {
-        $("#purchase").DataTable();
+            $("#purchase").DataTable({
+                'iDisplayLength': 100 });
         });
 
     </script>

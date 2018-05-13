@@ -20,6 +20,47 @@ namespace mls.Controllers
             return View(db.PurchaseOrders.ToList());
         }
 
+        public ActionResult PoHome()
+        {
+            return View("PoHome");
+        }
+
+        public ActionResult HeilPo()
+        {
+            var query = from a in db.PurchaseOrders
+                        where a.CustomerId == 1 && a.CustomerDivisionId == 1
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoHome", query);
+        }
+
+        public ActionResult MarathonPo()
+        {
+            var query = from a in db.PurchaseOrders
+                        where a.CustomerId == 1 && a.CustomerDivisionId == 2
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoHome", query);
+        }
+
+        public ActionResult BaynePo()
+        {
+            var query = from a in db.PurchaseOrders
+                        where a.CustomerId == 1 && a.CustomerDivisionId == 4
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoHome", query);
+        }
+
+        public ActionResult PcPo()
+        {
+            var query = from a in db.PurchaseOrders
+                        where a.CustomerId == 1 && a.CustomerDivisionId == 9
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoHome", query);
+        }
+
         // GET: PurchaseOrders/Details/5
         public ActionResult Details(int? id)
         {

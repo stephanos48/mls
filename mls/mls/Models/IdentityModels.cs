@@ -134,5 +134,7 @@ namespace mls.Models
 
         public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
 
+        public DbSet<PoOrderStatus> PoOrderStatuses { get; set; }
+
     }
 }

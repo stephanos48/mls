@@ -87,10 +87,10 @@ namespace mls.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? ReceiptDateTime { get; set; }
 
-        public OrderStatus OrderStatus { get; set; }
+        public PoOrderStatus PoOrderStatus { get; set; }
 
         [Display(Name = "Status")]
-        public byte OrderStatusId { get; set; }
+        public byte PoOrderStatusId { get; set; }
 
         public string Notes { get; set; }
 

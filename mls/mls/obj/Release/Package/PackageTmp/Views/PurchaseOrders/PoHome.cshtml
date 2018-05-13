@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "PoHome";
+}
+
+<h2>MLS Purchase Order Home</h2>
+
+<p>
+    <h4><u>Customer PO Reports</u></h4>
+    <br />
+    <br />
+    @Html.ActionLink("Heil POs", "HeilPo", "PurchaseOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Open Order Status - Fab", "WastebuiltDip1", "CustomerOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Qoh TX", "WBQoh", "CustomerOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("In Transit", "WbTransit", "ShipIns", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Receipt History", "WBReceipt", "ShipIns", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("WB Ship Out History", "WBShipOut", "ShipOuts", null, null)
+    <br />
+    <br />
+    @*-> @Html.ActionLink("PFEP Cylinders", "Ops")
+        <br />
+        <br />*@
+    <h4><u>WB PFEP Plans</u></h4>
+    <br />
+    @Html.ActionLink("WB PFEP Cyl", "WB1Pfep", "Pfeps", null, null)
+    <br />
+    <br />
+
+
+</p>
