@@ -1,0 +1,112 @@
+﻿@model IEnumerable<mls.Models.ShipOut>
+
+@{
+    ViewBag.Title = "ChShipOut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>TX Ship Out History</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "ChHome", "CustomerOrders", null, null)
+</p>
+
+@*@using (Html.BeginForm())
+    {
+        <p>
+            Find by name: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }*@
+
+<table id="chshipout" class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carrier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrackingInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PoNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pn)
+            </th>
+            @*<th>
+                    @Html.ActionLink("Pn", "ShipOut", new { sortOrder = ViewBag.NameSortParm})
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Sn)
+            </th>
+            @*<th>
+                    @Html.ActionLink("ShipDate", "ShipOut", new {sortOrder = ViewBag.NameSortParm})
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ShipDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Details", "RODetails", new { id = item.ShipOutId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carrier)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrackingInfo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quote)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PoNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document)
+            .ready(function() {
+                $("#chshipout").DataTable({
+               'iDisplayLength': 100 });
+            });
+
+    </script>
+}

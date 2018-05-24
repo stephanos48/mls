@@ -12,6 +12,7 @@ using Microsoft.Ajax.Utilities;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class ShipInsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

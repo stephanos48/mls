@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "DipPos";
+}
+
+<h2>DipPos</h2>
+
+<br />
+<p>
+    @Html.ActionLink("Go Back", "PoHome") | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br />
+
+<h4><u>New Orders</u></h4>
+@Html.Action("_BusNewOrder", "PurchaseOrders", new { MlsDivision = 4 })
+<br />
+<br />
+<h4><u>Hot Order</u></h4>
+@Html.Action("_BusHotOrder", "PurchaseOrders", new { MlsDivision = 4 })
+<br />
+<br />
+<h4><u>Past Due</u></h4>
+@Html.Action("_BusPastDueOrder", "PurchaseOrders", new { MlsDivision = 4 })
+<br />
+<br />
+<h4><u>Open Orders</u></h4>
+@Html.Action("_BusOpenOrder", "PurchaseOrders", new { MlsDivision = 4 })
+<br />
+<br />
+<h4><u>Closed Orders</u></h4>
+@Html.Action("_BusClosedOrder", "PurchaseOrders", new { MlsDivision = 4 })
+

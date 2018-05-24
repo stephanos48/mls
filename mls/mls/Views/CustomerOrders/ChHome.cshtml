@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "ChHome";
+}
+
+<h2>Columbus Hydraulics' Home</h2>
+<br />
+<p>
+    <h4><u>CH Reports</u></h4>
+    <br />
+    <br />
+    @Html.ActionLink("Open Order Status", "RoColumbus", "CustomerOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("In Transit", "WbTransit", "ShipIns", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Receipt History", "WBReceipt", "ShipIns", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("WB Ship Out History", "WBShipOut", "ShipOuts", null, null)
+    <br />
+    <br />
+
+
+
+</p>

@@ -10,6 +10,7 @@ using mls.Models;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class ScrumDetailsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

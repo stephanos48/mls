@@ -91,7 +91,7 @@ namespace mls.Controllers
             var queryAllNcRs = from a in db.NCRs
                 orderby a.NcrId descending
                 select a;
-            if (User.IsInRole("Admin") || User.IsInRole("View"))
+            if (User.IsInRole("Admin") || User.IsInRole("QualityAdmin"))
                 //return View("List", db.NCRs.ToList());
                 return View("List", queryAllNcRs.ToList());
             else
@@ -303,7 +303,7 @@ namespace mls.Controllers
                               where a.StatusId == 2
                               orderby a.NcrId descending
                               select a;
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("QualityAdmin"))
                 return View("Closed", queryClosed.ToList());
             else
                 return View("ROClosed", queryClosed.ToList());
@@ -316,7 +316,7 @@ namespace mls.Controllers
                               where a.StatusId == 2
                               orderby a.NcrId descending
                               select a;
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("QualityAdmin"))
                 return View("Closed", queryClosed.ToList());
             else
                 return View("ROClosed", queryClosed.ToList());
@@ -330,7 +330,7 @@ namespace mls.Controllers
                            && a.StatusId != 2
                            orderby a.NcrId descending
                            select a;
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("QualityAdmin"))
                 return View("RTV", queryRtv.ToList());
             else
                 return View("RORTV", queryRtv.ToList());
@@ -344,7 +344,7 @@ namespace mls.Controllers
                            && a.StatusId != 2
                            orderby a.NcrId descending
                            select a;
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("QualityAdmin"))
                 return View("RTV", queryRtv.ToList());
             else
                 return View("RORTV", queryRtv.ToList());
@@ -358,7 +358,7 @@ namespace mls.Controllers
                               && a.StatusId != 2
                               orderby a.NcrId descending
                               select a;
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("QualityAdmin"))
                 return View("Rework", queryRework.ToList());
             else
                 return View("RORework", queryRework.ToList());
@@ -372,7 +372,7 @@ namespace mls.Controllers
                               && a.StatusId != 2
                               orderby a.NcrId descending
                               select a;
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("QualityAdmin"))
                 return View("Rework", queryRework.ToList());
             else
                 return View("RORework", queryRework.ToList());
@@ -385,7 +385,7 @@ namespace mls.Controllers
                                    where a.DispositionId == 5
                                    orderby a.NcrId descending
                                    select a;
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("QualityAdmin"))
                 return View("Disposition", queryDisposition.ToList());
             else
                 return View("RODisposition", queryDisposition.ToList());
@@ -398,7 +398,7 @@ namespace mls.Controllers
                                    where a.DispositionId == 5
                                    orderby a.NcrId descending
                                    select a;
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("QualityAdmin"))
                 return View("Disposition", queryDisposition.ToList());
             else
                 return View("RODisposition", queryDisposition.ToList());
@@ -415,7 +415,7 @@ namespace mls.Controllers
                              && a.StatusId != 2
                              orderby a.NcrId descending
                              select a;
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("QualityAdmin"))
                 return View("Scrap", queryScrap.ToList());
             else
                 return View("ROScrap", queryScrap.ToList());
@@ -429,7 +429,7 @@ namespace mls.Controllers
                              && a.StatusId != 2
                              orderby a.NcrId descending
                              select a;
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("QualityAdmin"))
                 return View("Scrap", queryScrap.ToList());
             else
                 return View("ROScrap", queryScrap.ToList());

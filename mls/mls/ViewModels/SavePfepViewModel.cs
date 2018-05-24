@@ -33,6 +33,8 @@ namespace mls.ViewModels
 
         public int? Ocean { get; set; }
 
+        public int? Po { get; set; }
+
         public int? Oo { get; set; }
 
         public Pfep Pfep { get; set; }

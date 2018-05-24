@@ -25,7 +25,7 @@ namespace mls.Controllers
             //var query = db.Pfeps.ToList();
             //return View("~/Views/Pfeps/Index.cshtml", query);
 
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("OpsPower") || User.IsInRole("InvPower") || User.IsInRole("PurPower"))
             {
                 return View("~/Views/Pfeps/Index.cshtml");
             }
@@ -35,7 +35,7 @@ namespace mls.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, PurPower, OpsPower, InvPower")]
         // GET: Wastebuilt PFEP
         public ActionResult ManagePfep()
         {
@@ -84,9 +84,16 @@ namespace mls.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Sales, PurPower, InvPower, OpsPower")]
         // GET: Wastebuilt PFEP
         public ActionResult PfepWb()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin, Sales, PurPower, InvPower, OpsPower")]
+        // GET: Wastebuilt PFEP
+        public ActionResult PfepWbFab()
         {
             return View();
         }
@@ -272,6 +279,7 @@ namespace mls.Controllers
                 join pfep in db.Pfeps on mp.CustomerPn equals pfep.CustomerPn
                 join ship in db.ShipIns.Where(r => r.ShipInStatusId != 3) on mp.CustomerPn equals ship.Pn into shipgroup
                 join tx in db.TxQohs on mp.CustomerPn equals tx.Pn
+                join po in db.PurchaseOrders.Where(r => r.PoOrderStatusId != 5) on mp.CustomerPn equals po.CustomerPn into pogroup
                 where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && tx.Qoh == 0
                 orderby mp.CustomerPn
                 select new
@@ -281,6 +289,7 @@ namespace mls.Controllers
                     pfep.PfepTx,
                     pfep.KbQty,
                     tx.Qoh,
+                    PO = (int?)pogroup.Sum(c => c.OrderQty) - (int?)pogroup.Sum(c => c.ReceivedQty),
                     OO = (int?)ordergroup.Sum(c => c.OrderQty) - (int?)ordergroup.Sum(c => c.ShipQty),
                     Ocean = (int?)shipgroup.Sum(s => s.Qty)
                 };
@@ -361,6 +370,7 @@ namespace mls.Controllers
                     PfepTx = pfep.PfepTx,
                     KbQty = pfep.KbQty,
                     Qoh = pfep.Qoh,
+                    Po = pfep.PO,
                     Oo = pfep.OO,
                     Ocean = pfep.Ocean,
                 });
@@ -381,6 +391,7 @@ namespace mls.Controllers
                 join pfep in db.Pfeps on mp.CustomerPn equals pfep.CustomerPn
                 join ship in db.ShipIns.Where(r => r.ShipInStatusId != 3) on mp.CustomerPn equals ship.Pn into shipgroup
                 join tx in db.TxQohs on mp.CustomerPn equals tx.Pn
+                join po in db.PurchaseOrders.Where(r => r.PoOrderStatusId != 5) on mp.CustomerPn equals po.CustomerPn into pogroup
                 where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && tx.Qoh <= pfep.Min.Value && tx.Qoh != 0
                 orderby mp.CustomerPn
                 select new
@@ -390,6 +401,7 @@ namespace mls.Controllers
                     pfep.PfepTx,
                     pfep.KbQty,
                     tx.Qoh,
+                    PO = (int?)pogroup.Sum(c => c.OrderQty) - (int?)pogroup.Sum(c => c.ReceivedQty),
                     OO = (int?) ordergroup.Sum(c => c.OrderQty) - (int?)ordergroup.Sum(c => c.ShipQty),
                     Ocean = (int?) shipgroup.Sum(s => s.Qty)
                 };
@@ -444,6 +456,7 @@ namespace mls.Controllers
                     PfepTx = pfep.PfepTx,
                     KbQty = pfep.KbQty,
                     Qoh = pfep.Qoh,
+                    Po = pfep.PO,
                     Oo = pfep.OO,
                     Ocean = pfep.Ocean,
                 });
@@ -464,6 +477,7 @@ namespace mls.Controllers
                            join pfep in db.Pfeps on mp.CustomerPn equals pfep.CustomerPn
                            join ship in db.ShipIns.Where(r => r.ShipInStatusId != 3) on mp.CustomerPn equals ship.Pn into shipgroup
                            join tx in db.TxQohs on mp.CustomerPn equals tx.Pn
+                           join po in db.PurchaseOrders.Where(r => r.PoOrderStatusId != 5) on mp.CustomerPn equals po.CustomerPn into pogroup
                            where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && tx.Qoh <= pfep.PfepTx
                            orderby mp.CustomerPn
                            select new
@@ -473,6 +487,7 @@ namespace mls.Controllers
                                pfep.PfepTx,
                                pfep.KbQty,
                                tx.Qoh,
+                               PO = (int?)pogroup.Sum(c => c.OrderQty) - (int?)pogroup.Sum(c => c.ReceivedQty),
                                OO = (int?)ordergroup.Sum(c => c.OrderQty) - (int?)ordergroup.Sum(c => c.ShipQty),
                                Ocean = (int?)shipgroup.Sum(s => s.Qty)
                            };
@@ -524,6 +539,7 @@ namespace mls.Controllers
                     PfepTx = pfep.PfepTx,
                     KbQty = pfep.KbQty,
                     Qoh = pfep.Qoh,
+                    Po = pfep.PO,
                     Oo = pfep.OO,
                     Ocean = pfep.Ocean,
                 });
@@ -545,6 +561,7 @@ namespace mls.Controllers
                            join pfep in db.Pfeps on mp.CustomerPn equals pfep.CustomerPn
                            join ship in db.ShipIns.Where(r => r.ShipInStatusId != 3) on mp.CustomerPn equals ship.Pn into shipgroup
                            join tx in db.TxQohs on mp.CustomerPn equals tx.Pn
+                           join po in db.PurchaseOrders.Where(r => r.PoOrderStatusId != 5) on mp.CustomerPn equals po.CustomerPn into pogroup
                            where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1
                            orderby mp.CustomerPn 
                            select new
@@ -554,6 +571,7 @@ namespace mls.Controllers
                                pfep.PfepTx,
                                pfep.KbQty,
                                tx.Qoh,
+                               PO = (int?)pogroup.Sum(c => c.OrderQty) - (int?)pogroup.Sum(c => c.ReceivedQty),
                                OO = (int?)ordergroup.Sum(c => c.OrderQty) - (int?)ordergroup.Sum(c => c.ShipQty),
                                Ocean = (int?)shipgroup.Sum(s => s.Qty)
                            };
@@ -606,6 +624,7 @@ namespace mls.Controllers
                     PfepTx = pfep.PfepTx,
                     KbQty = pfep.KbQty,
                     Qoh = pfep.Qoh,
+                    Po = pfep.PO,
                     Oo = pfep.OO,
                     Ocean = pfep.Ocean,
                 });

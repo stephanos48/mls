@@ -49,6 +49,30 @@ namespace mls.Controllers
             {
                 return View("Index1");
             }
+            else if (User.IsInRole("QualityAdmin"))
+            {
+                return View("Index");
+            }
+            else if (User.IsInRole("Sales"))
+            {
+                return View("Index");
+            }
+            else if (User.IsInRole("OpsPower"))
+            {
+                return View("Index");
+            }
+            else if (User.IsInRole("InvPower"))
+            {
+                return View("Index");
+            }
+            else if (User.IsInRole("PurPower"))
+            {
+                return View("Index");
+            }
+            else if (User.IsInRole("EngPower"))
+            {
+                return View("Index");
+            }
             else
             {
                 return RedirectToAction("Index", "Home");

@@ -5,11 +5,11 @@
 
 <h2>Supply Chain Home</h2>
 
+<br />
+
 <p>
     @Html.ActionLink("Go Back", "Index", "CustomerOrders", null, null)
 </p>
-
-<br />
 
 <p>
 
@@ -22,13 +22,49 @@
     @Html.ActionLink("Supplier Info", "Index", "Suppliers", null, null)
     <br />
     <br />
-    @Html.ActionLink("Purchase Order Home", "PoHome", "PurchaseOrders", null, null)
+    @Html.ActionLink("Purchase Orders", "PoHome", "PurchaseOrders", null, null)
     <br />
     <br />
     @*-> @Html.ActionLink("Quality", "QualityHome", "NCRs", null, null)
-    <br />
-    <br />*@
+        <br />
+        <br />*@
 
+</p>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("InvPower"))
+        {
+            <p>
+                <h4><u>Supply Chain Inputs</u></h4>
+                <br />
+                @Html.ActionLink("Manage Pfep Plans", "ManagePfep")
+                <br />
+                <br />
+                @Html.ActionLink("Master Part List - All", "Index", "MasterPartLists", null, null)
+                <br />
+                <br />
+                @Html.ActionLink("Master Part List - UH", "UHMasterPartList", "MasterPartLists", null, null)
+                <br />
+                <br />
+                @Html.ActionLink("Master Part List - DIP", "DipMasterPartList", "MasterPartLists", null, null)
+                <br />
+                <br />
+                @Html.ActionLink("Master Part List - DOP", "DopMasterPartList", "MasterPartLists", null, null)
+                <br />
+                <br />
+                @Html.ActionLink("Master Part List - CL", "CLMasterPartList", "MasterPartLists", null, null)
+                <br />
+                <br />
+                @Html.ActionLink("Master Part List - DTT", "DttMasterPartList", "MasterPartLists", null, null)
+                <br />
+                <br />
+            </p>
+        }
+    }
+
+@*
+<p>
     <h4><u>Supply Chain Inputs</u></h4>
     <br />
     @Html.ActionLink("Manage Pfep Plans", "ManagePfep")
@@ -53,4 +89,4 @@
     <br />
     <br />
 </p>
-
+*@

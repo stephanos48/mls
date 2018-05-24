@@ -96,6 +96,30 @@ namespace mls.Controllers
                     {
                         return RedirectToAction("Index1", "CustomerOrders");
                     }
+                    else if (roles.Contains("QualityAdmin"))
+                    {
+                        return RedirectToAction("Index", "CustomerOrders");
+                    }
+                    else if (roles.Contains("Sales"))
+                    {
+                        return RedirectToAction("Index", "CustomerOrders");
+                    }
+                    else if (roles.Contains("OpsPower"))
+                    {
+                        return RedirectToAction("Index", "CustomerOrders");
+                    }
+                    else if (roles.Contains("InvPower"))
+                    {
+                        return RedirectToAction("Index", "CustomerOrders");
+                    }
+                    else if (roles.Contains("PurPower"))
+                    {
+                        return RedirectToAction("Index", "CustomerOrders");
+                    }
+                    else if (roles.Contains("EngPower"))
+                    {
+                        return RedirectToAction("Index", "CustomerOrders");
+                    }
                     else
                     {
                         return RedirectToLocal(returnUrl);
@@ -178,8 +202,8 @@ namespace mls.Controllers
 
                     var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                     var roleManager = new RoleManager<IdentityRole>(roleStore);
-                    await roleManager.CreateAsync(new IdentityRole("QualityAdmin"));
-                    await UserManager.AddToRoleAsync(user.Id, "QualityAdmin");
+                    await roleManager.CreateAsync(new IdentityRole("HrPower"));
+                    await UserManager.AddToRoleAsync(user.Id, "HrPower");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     

@@ -17,16 +17,13 @@
                 @Html.DisplayNameFor(model => model.PoNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SupplierId)
+                Order Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderDateTime)
+                Customer Po
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UhPn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PartDescription)
+                @Html.DisplayNameFor(model => model.CustomerPn)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.OrderQty)
@@ -35,13 +32,13 @@
                 @Html.DisplayNameFor(model => model.ReceivedQty)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RequestedDateTime)
+                Request Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PromiseDateTime)
+                Promise Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ReceiptDateTime)
+                Receipt Date
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Notes)
@@ -54,24 +51,21 @@
         {
             <tr>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.PurchaseOrderId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.PurchaseOrderId }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PurchaseOrderId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.PurchaseOrderId })|
                     @Html.ActionLink("Delete", "Delete", new { id = item.PurchaseOrderId })
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PoNumber)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SupplierId)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.OrderDateTime)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UhPn)
+                    @Html.DisplayFor(modelItem => item.CustomerOrderNumber)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PartDescription)
+                    @Html.DisplayFor(modelItem => item.CustomerPn)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.OrderQty)
@@ -87,9 +81,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ReceiptDateTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PoOrderStatusId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Notes)

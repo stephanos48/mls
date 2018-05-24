@@ -18,7 +18,7 @@ namespace mls.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, InvPower")]
         // GET: MasterPartLists
         public ActionResult Index()
         {
@@ -26,7 +26,7 @@ namespace mls.Controllers
             return View("~/Views/MasterPartLists/Index.cshtml", query);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, InvPower")]
         public ActionResult UHMasterPartList()
         {
             var query = from mp in db.MasterPartLists
@@ -35,7 +35,7 @@ namespace mls.Controllers
             return View("~/Views/MasterPartLists/UHMasterPartList.cshtml", query);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, InvPower")]
         public ActionResult DipMasterPartList()
         {
             var query = from mp in db.MasterPartLists
@@ -44,7 +44,7 @@ namespace mls.Controllers
             return View("~/Views/MasterPartLists/DipMasterPartList.cshtml", query);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, InvPower")]
         public ActionResult DopMasterPartList()
         {
             var query = from mp in db.MasterPartLists
@@ -53,7 +53,7 @@ namespace mls.Controllers
             return View("~/Views/MasterPartLists/DopMasterPartList.cshtml", query);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, InvPower")]
         public ActionResult CLMasterPartList()
         {
             var query = from mp in db.MasterPartLists
@@ -62,7 +62,7 @@ namespace mls.Controllers
             return View("~/Views/MasterPartLists/CLMasterPartList.cshtml", query);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, InvPower")]
         public ActionResult DttMasterPartList()
         {
             var query = from mp in db.MasterPartLists

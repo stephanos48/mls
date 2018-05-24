@@ -11,6 +11,7 @@ using mls.ViewModels;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class BomLevel1Controller : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

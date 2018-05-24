@@ -13,6 +13,7 @@ using mls.ViewModels;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class NcrChinasController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
