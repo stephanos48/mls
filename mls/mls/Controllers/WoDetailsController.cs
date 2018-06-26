@@ -78,7 +78,7 @@ namespace mls.Controllers
         //public ActionResult Create(WoDetail woDetail)
         {
             if (ModelState.IsValid)
-            {
+            { 
                 db.WoDetails.Add(woDetail);
                 db.SaveChanges();
                 return RedirectToAction("ProductionPlan1", "WorkOrders");

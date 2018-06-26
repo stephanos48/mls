@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "RoColumbus1";
+}
+
+<h2>CH Open Order Report - Std View</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "ChHome")
+</p>
+
+<h4><u>New Orders</u></h4>
+@Html.Action("_RONewOrder", "CustomerOrders", new { Customer = 21, Division = 7, MlsDivision = 1 })
+<br />
+<br />
+<h4><u>In Review</u></h4>
+@Html.Action("_ROReview", "CustomerOrders", new { Customer = 21, Division = 7, MlsDivision = 1 })
+<br />
+<br />
+<h4><u>Sample Needed</u></h4>
+@Html.Action("_ROSample", "CustomerOrders", new { Customer = 21, Division = 7, MlsDivision = 1 })
+<br />
+<br />
+<h4><u>Design</u></h4>
+@Html.Action("_RODesign", "CustomerOrders", new { Customer = 21, Division = 7, MlsDivision = 1 })
+<br />
+<br />
+<h4><u>Production</u></h4>
+@Html.Action("_ROProduction", "CustomerOrders", new { Customer = 21, Division = 7, MlsDivision = 1 })
+<br />
+<br />
+<h4><u>In Transit</u></h4>
+@Html.Action("_ROOcean", "CustomerOrders", new { Customer = 21, Division = 7, MlsDivision = 1 })
+<br />
+<br />
+<h4><u>Texas</u></h4>
+@Html.Action("_ROTx", "CustomerOrders", new { Customer = 21, Division = 7, MlsDivision = 1 })
+<br />
+<br />
+<h4><u>Shipped</u></h4>
+@Html.Action("_ROClosed", "CustomerOrders", new { Customer = 21, Division = 7, MlsDivision = 1 })
+

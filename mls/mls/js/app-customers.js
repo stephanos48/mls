@@ -13,7 +13,7 @@
         $routeProvider.when("/", {
             controller: "customersController",
             controllerAs: "vm",
-            templateUrl: "/views/customerorders/ForumView.cshtml"
+            templateUrl: "/views/customerorders/Forum.cshtml"
         });
 
         $routeProvider.when("/editor", {

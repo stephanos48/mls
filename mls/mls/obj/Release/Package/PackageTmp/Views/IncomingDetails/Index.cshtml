@@ -1,0 +1,96 @@
+﻿@model IEnumerable<mls.Models.IncomingDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Incoming Details</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "QualityHome", "NCRs", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+
+<table id="ii" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.InspectionDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InspectionCriteria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InspectionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QtyReceived)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QtyInspected)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QtyGood)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QtyBad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IncomingDetailId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IncomingDetailId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IncomingDetailId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionCriteria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtyReceived)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtyInspected)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtyGood)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtyBad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#ii").DataTable({
+                'iDisplayLength': 100
+            });
+        });
+    </script>
+}

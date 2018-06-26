@@ -136,5 +136,17 @@ namespace mls.Models
 
         public DbSet<PoOrderStatus> PoOrderStatuses { get; set; }
 
+        public DbSet<IncomingList> IncomingLists { get; set; }
+
+        public DbSet<InspStatus> InspStatuses { get; set; }
+
+        public System.Data.Entity.DbSet<mls.Models.IncomingTopLevel> IncomingTopLevels { get; set; }
+
+        public System.Data.Entity.DbSet<mls.Models.IncomingDetail> IncomingDetails { get; set; }
+
+        public DbSet<IncomingLog> IncomingLogs { get; set; }
+
+        public DbSet<InspectionStatus> InspectionStatuses { get; set; }
+
     }
 }

@@ -4,10 +4,7 @@
     <tr>
         <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.CreationDateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MlsDivisionId)
+            Date Created
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CustomerPn)
@@ -22,10 +19,7 @@
             @Html.DisplayNameFor(model => model.CustomerPo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EstArrivalDateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DownStatusId)
+            ETA
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Reason)
@@ -39,15 +33,12 @@
     {
         <tr>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.DownReportId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.DownReportId }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.DownReportId })|
+                @Html.ActionLink("Details", "Details", new { id = item.DownReportId })|
                 @Html.ActionLink("Delete", "Delete", new { id = item.DownReportId })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreationDateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MlsDivisionId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CustomerPn)
@@ -63,9 +54,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EstArrivalDateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DownStatusId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Reason)

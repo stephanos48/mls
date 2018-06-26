@@ -1,0 +1,90 @@
+﻿@model mls.Models.IncomingLog
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IncomingLog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InspectionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InspectionType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InspectionLength)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InspectionLength)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IncomingStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IncomingStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IncomingRemovalDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IncomingRemovalDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InspectionMethod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InspectionMethod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InspectionCriteria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InspectionCriteria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InspectionStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InspectionStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IncomingLogId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

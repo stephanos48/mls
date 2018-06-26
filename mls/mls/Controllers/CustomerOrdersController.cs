@@ -73,6 +73,10 @@ namespace mls.Controllers
             {
                 return View("Index");
             }
+            else if (User.IsInRole("Columbus"))
+            {
+                return View("ChHome");
+            }
             else
             {
                 return RedirectToAction("Index", "Home");
@@ -118,6 +122,16 @@ namespace mls.Controllers
             //               select a;
             // return View("Wastebuilt", query);
             return View("JBT_Ogden");
+        }
+
+        // GET: CustomerOrders/
+        public ActionResult NovHyd()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("Nov_Hyd");
         }
 
         // GET: CustomerOrders/Wastebuilt
@@ -206,6 +220,16 @@ namespace mls.Controllers
         }
 
         // GET: CustomerOrders/Wastebuilt
+        public ActionResult RoColumbus1()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("RoColumbus1");
+        }
+
+        // GET: CustomerOrders/Wastebuilt
         public ActionResult Wastebuilt()
         {
             //var query = from a in db.CustomerOrders
@@ -265,6 +289,35 @@ namespace mls.Controllers
         }
 
         // GET: CustomerOrders/Wastebuilt
+        public ActionResult ChQoh()
+        {
+            var query = from a in db.TxQohs
+                        join mp in db.MasterPartLists on a.Pn equals mp.CustomerPn
+                        where mp.CustomerId == 21
+                        orderby a.Pn descending
+                        select new
+                        {
+                            PN = a.Pn,
+                            QOH = a.Qoh
+                        };
+
+            List<QohViewModel> quantities = new List<QohViewModel>();
+            foreach (var qoh in query.ToList())
+            {
+                QohViewModel mymodel = new QohViewModel()
+                {
+                    Pn = qoh.PN,
+                    Qoh = qoh.QOH
+                };
+
+                quantities.Add(mymodel);
+            }
+
+            return View("ChQoh", quantities);
+            //return View();
+        }
+
+        // GET: CustomerOrders/Wastebuilt
         public ActionResult ThiQoh()
         {
             var query = from a in db.TxQohs
@@ -312,6 +365,17 @@ namespace mls.Controllers
                         orderby a.OrderDateTime descending
                         select a;
             return View("ROWastebuilt1", query);
+            //return View();
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult RoColumbus()
+        {
+            var query = from a in db.CustomerOrders
+                        where a.CustomerId == 21 && a.CustomerDivisionId == 7 && a.OrderStatusId != 7 && a.MlsDivisionId == 1
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("RoColumbus", query);
             //return View();
         }
 
@@ -365,6 +429,16 @@ namespace mls.Controllers
             //               select a;
             // return View("Wastebuilt", query);
             return View("WbHome");
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult ChHome()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("ChHome");
         }
 
         // GET: CustomerOrders/NOV
@@ -1441,6 +1515,12 @@ namespace mls.Controllers
 
         // GET: CustomerOrders/Forum 
         public ActionResult Forum()
+        {
+            return View();
+        }
+
+        // GET: CustomerOrders/Forum 
+        public ActionResult Columbus()
         {
             return View();
         }

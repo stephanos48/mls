@@ -302,6 +302,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomerOrdersController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
+    <Compile Include="Controllers\Api\IncomingTopLevelAPIController.cs" />
     <Compile Include="Controllers\Api\ShipOutsController.cs" />
     <Compile Include="Controllers\BomLevel1Controller.cs" />
     <Compile Include="Controllers\BuildHistoriesController.cs" />
@@ -314,8 +315,12 @@
     <Compile Include="Controllers\ExpFreightDetailsController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IncomingDetailsController.cs" />
+    <Compile Include="Controllers\IncomingLogsController.cs" />
+    <Compile Include="Controllers\IncomingTopLevelsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MasterPartListsController.cs" />
+    <Compile Include="Controllers\MvcMasterDetailsController.cs" />
     <Compile Include="Controllers\NcrChinasController.cs" />
     <Compile Include="Controllers\NCRsController.cs" />
     <Compile Include="Controllers\PfepsController.cs" />
@@ -624,6 +629,30 @@
     <Compile Include="Migrations\201805130153278_postatus.Designer.cs">
       <DependentUpon>201805130153278_postatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806111940372_incominginsp01.cs" />
+    <Compile Include="Migrations\201806111940372_incominginsp01.Designer.cs">
+      <DependentUpon>201806111940372_incominginsp01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806111945575_incominginsp02.cs" />
+    <Compile Include="Migrations\201806111945575_incominginsp02.Designer.cs">
+      <DependentUpon>201806111945575_incominginsp02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806182309124_removeincoming.cs" />
+    <Compile Include="Migrations\201806182309124_removeincoming.Designer.cs">
+      <DependentUpon>201806182309124_removeincoming.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806182315251_incomingkey.cs" />
+    <Compile Include="Migrations\201806182315251_incomingkey.Designer.cs">
+      <DependentUpon>201806182315251_incomingkey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806201916516_updateincomingdetail.cs" />
+    <Compile Include="Migrations\201806201916516_updateincomingdetail.Designer.cs">
+      <DependentUpon>201806201916516_updateincomingdetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806250158542_inspectionlog.cs" />
+    <Compile Include="Migrations\201806250158542_inspectionlog.Designer.cs">
+      <DependentUpon>201806250158542_inspectionlog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivePart.cs" />
@@ -651,6 +680,12 @@
     <Compile Include="Models\FPaymentMethod.cs" />
     <Compile Include="Models\FreightType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IncomingDetail.cs" />
+    <Compile Include="Models\IncomingList.cs" />
+    <Compile Include="Models\IncomingLog.cs" />
+    <Compile Include="Models\IncomingTopLevel.cs" />
+    <Compile Include="Models\InspectionStatus.cs" />
+    <Compile Include="Models\InspStatus.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MasterPartList.cs" />
     <Compile Include="Models\MlsDivision.cs" />
@@ -687,7 +722,9 @@
     <Compile Include="ViewModels\BomViewModel.cs" />
     <Compile Include="ViewModels\ExpeditedFreightDataViewModel.cs" />
     <Compile Include="ViewModels\GraphNcrViewModel.cs" />
+    <Compile Include="ViewModels\IncomingIndexDataViewModel.cs" />
     <Compile Include="ViewModels\LocationViewModel1.cs" />
+    <Compile Include="ViewModels\MvcMasterDetails.cs" />
     <Compile Include="ViewModels\NcrViewModel.cs" />
     <Compile Include="ViewModels\NewDownViewModel.cs" />
     <Compile Include="ViewModels\NewOrderViewModel.cs" />
@@ -701,6 +738,7 @@
     <Compile Include="ViewModels\SaveComplaintViewModel.cs" />
     <Compile Include="ViewModels\SaveDownViewModel.cs" />
     <Compile Include="ViewModels\SaveEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\SaveIncomingViewModel.cs" />
     <Compile Include="ViewModels\SaveMasterViewModel.cs" />
     <Compile Include="ViewModels\SaveNcrChinaViewModel.cs" />
     <Compile Include="ViewModels\SaveNcrViewModel.cs" />
@@ -925,6 +963,7 @@
     <Content Include="Scripts\chart\exporting.js" />
     <Content Include="Scripts\chart\highcharts.js" />
     <Content Include="Scripts\chart\series-label.js" />
+    <Content Include="Scripts\Controllers\IncomingTopLevelController.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -957,6 +996,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Module\MyApp.js" />
     <Content Include="Scripts\ng-file-upload-all.js" />
     <Content Include="Scripts\ng-file-upload-all.min.js" />
     <Content Include="Scripts\ng-file-upload-shim.js" />
@@ -967,6 +1007,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\Services\IncomingTopLevelService.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -2310,12 +2351,37 @@
     <Content Include="Views\Pfeps\PfepWbFab.cshtml" />
     <Content Include="Views\PurchaseOrders\JbtOrlando.cshtml" />
     <Content Include="Views\PurchaseOrders\JbtOgden.cshtml" />
+    <Content Include="Views\IncomingTopLevels\Create.cshtml" />
+    <Content Include="Views\IncomingTopLevels\Delete.cshtml" />
+    <Content Include="Views\IncomingTopLevels\Details.cshtml" />
+    <Content Include="Views\IncomingTopLevels\Edit.cshtml" />
+    <Content Include="Views\IncomingTopLevels\Index.cshtml" />
+    <Content Include="Views\CustomerOrders\RoColumbus1.cshtml" />
+    <Content Include="Views\IncomingDetails\Create.cshtml" />
+    <Content Include="Views\IncomingDetails\Delete.cshtml" />
+    <Content Include="Views\IncomingDetails\Details.cshtml" />
+    <Content Include="Views\IncomingDetails\Edit.cshtml" />
+    <Content Include="Views\IncomingDetails\Index.cshtml" />
+    <Content Include="Views\CustomerOrders\Columbus.cshtml" />
+    <Content Include="Views\CustomerOrders\Nov_Hyd.cshtml" />
+    <Content Include="Views\Scrums\ProductionMeeting.cshtml" />
+    <Content Include="Views\IncomingTopLevels\Angular.cshtml" />
+    <Content Include="Views\IncomingTopLevels\_ShowIncoming.cshtml" />
+    <Content Include="Views\MvcMasterDetails\Index.cshtml" />
+    <Content Include="Views\IncomingLogs\Create.cshtml" />
+    <Content Include="Views\IncomingLogs\Delete.cshtml" />
+    <Content Include="Views\IncomingLogs\Details.cshtml" />
+    <Content Include="Views\IncomingLogs\Edit.cshtml" />
+    <Content Include="Views\IncomingLogs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="fusioncharts\assets\" />
     <Folder Include="fusioncharts\export-handlers\" />
     <Folder Include="fusioncharts\js\" />
+    <Folder Include="Scripts\Common\" />
+    <Folder Include="Scripts\Directives\" />
+    <Folder Include="Scripts\Plugins\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -2543,6 +2609,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805130153278_postatus.resx">
       <DependentUpon>201805130153278_postatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806111940372_incominginsp01.resx">
+      <DependentUpon>201806111940372_incominginsp01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806111945575_incominginsp02.resx">
+      <DependentUpon>201806111945575_incominginsp02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806182309124_removeincoming.resx">
+      <DependentUpon>201806182309124_removeincoming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806182315251_incomingkey.resx">
+      <DependentUpon>201806182315251_incomingkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806201916516_updateincomingdetail.resx">
+      <DependentUpon>201806201916516_updateincomingdetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806250158542_inspectionlog.resx">
+      <DependentUpon>201806250158542_inspectionlog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

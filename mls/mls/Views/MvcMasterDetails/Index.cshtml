@@ -1,0 +1,332 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Master Details entry form</h2>
+
+<div class="container">
+    <div class="master">
+        <h4>Incoming Top Level</h4>
+        <table>
+            <tr>
+                <td>Incoming Vessel No</td>
+                <td>
+                    <input type="text" id="incomingVesselNo" />
+                    <span class="error">Order no required</span>
+                </td>
+                <td>Inspection Date</td>
+                <td>
+                    <input type="text" id="inspectionDateTime" />
+                    <span class="error">Valid order date required (ex. MM-dd-yyyy)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Notes</td>
+                <td colspan="3">
+                    <textarea id="notes" style="width:100%"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="details">
+        <h4>Incoming Details</h4>
+        <table width="100%">
+            <tr>
+                <td>Part Number</td>
+                <td>Qty Received</td>
+                <td>Qty Inspected</td>
+                <td>Qty Good</td>
+                <td>Qty Bad</td>
+                <td>Inspector Name</td>
+                <td>Notes</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="partNumber" />
+                    <span class="error">Part Number required</span>
+                </td>
+                <td>
+                    <input type="number" id="qtyReceived" />
+                    <span class="error">Valid quantity required</span>
+                </td>
+                <td>
+                    <input type="number" id="qtyInspected" />
+                    <span class="error">Valid quantity required</span>
+                </td>
+                <td>
+                    <input type="number" id="qtyGood" />
+                    <span class="error">Valid quantity required</span>
+                </td>
+                <td>
+                    <input type="number" id="qtyBad" />
+                    <span class="error">Valid quantity required</span>
+                </td>
+                <td>
+                    <input type="text" id="inspectorName" />
+                    <span class="error">Valid name required</span>
+                </td>
+                <td>
+                    <input type="text" id="notes" />
+                    <span class="error">Valid notes required</span>
+                </td>
+                <td>
+                    <input type="button" id="add" value="add" />
+                </td>
+            </tr>
+        </table>
+        <div id="incomingDetails" class="tablecontainer">
+
+        </div>
+        <div style="padding:10px 0px; text-align:right">
+            <input id="submit" type="button" value="Save" style="padding:10px 20px" />
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/3.3.1/themes/smoothness/jquery-ui.css">
+@section Scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        //Date Picker
+        $(function () {
+            $('#inspectionDate').datepicker({
+                dateFormat : 'mm-dd-yy'
+            });
+        });
+
+        $(document).ready(function () {
+            var incomingDetails = [];
+            //Add button click function
+            $('#add').click(function () {
+                //Check validation of order item
+                var isValidItem = true;
+                if ($('#partNumber').val().trim() == '') {
+                    isValidItem = false;
+                    $('#partNumber').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#partNumber').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (!($('#qtyReceived').val().trim() != '' && !isNaN($('#qtyReceived').val().trim()))) {
+                    isValidItem = false;
+                    $('#qtyReceived').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#qtyReceived').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (!($('#qtyInspected').val().trim() != '' && !isNaN($('#qtyInspected').val().trim()))) {
+                    isValidItem = false;
+                    $('#qtyInspected').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#qtyInspected').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (!($('#qtyGood').val().trim() != '' && !isNaN($('#qtyGood').val().trim()))) {
+                    isValidItem = false;
+                    $('#qtyGood').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#qtyGood').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (!($('#qtyBad').val().trim() != '' && !isNaN($('#qtyBad').val().trim()))) {
+                    isValidItem = false;
+                    $('#qtyBad').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#qtyBad').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (!($('#inspectorName').val().trim() != '' && !isNaN($('#inspectorName').val().trim()))) {
+                    isValidItem = false;
+                    $('#inspectorName').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#inspectorName').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (!($('#notes').val().trim() != '' && !isNaN($('#notes').val().trim()))) {
+                    isValidItem = false;
+                    $('#notes').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#notes').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                //Add item to list if valid
+                if (isValidItem) {
+                    incomingDetails.push({
+                        PartNumber: $('#partNumber').val().trim(),
+                        QtyReceived: parseInt($('#qtyReceived').val().trim()),
+                        QtyInspected: parseFloat($('#qtyInspected').val().trim()),
+                        QtyGood: parseInt($('#qtyGood').val().trim()),
+                        QtyBad: parseFloat($('#qtyBad').val().trim()),
+                        InspectorName: $('#inspectorName').val().trim(),
+                        Notes: $('#notes').val().trim(),
+                    });
+
+                    //Clear fields
+                    $('#partNumber').val('').focus();
+                    $('#qtyReceived,#qtyInspected,#qtyGood,#qtyBad,#inspectorName,#notes').val('');
+
+                }
+                //populate order items
+                GeneratedItemsTable();
+
+            });
+            //Save button click function
+            $('#submit').click(function () {
+                //validation of order
+                var isAllValid = true;
+                if (incomingDetails.length == 0) {
+                    $('#incomingDetails').html('<span style="color:red;">Please add incoming items</span>');
+                    isAllValid = false;
+                }
+
+                if ($('#incomingVesselNo').val().trim() == '') {
+                    $('#incomingVesselNo').siblings('span.error').css('visibility', 'visible');
+                    isAllValid = false;
+                }
+                else {
+                    $('#incomingVesselNo').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if ($('#inspectionDate').val().trim() == '') {
+                    $('#inspectionDate').siblings('span.error').css('visibility', 'visible');
+                    isAllValid = false;
+                }
+                else {
+                    $('#inspectionDate').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if ($('#notes').val().trim() == '') {
+                    $('#notes').siblings('span.error').css('visibility', 'visible');
+                    isAllValid = false;
+                }
+                else {
+                    $('#notes').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                //Save if valid
+                if (isAllValid) {
+                    var data = {
+                        IncomingVesselNo: $('#incomingVesselNo').val().trim(),
+                        InspectionDate: $('#inspectionDateTime').val().trim(),
+                        //Sorry forgot to add Description Field
+                        Notes : $('#notes').val().trim(),
+                        IncomingDetails : incomingDetails
+                    }
+
+                    $(this).val('Please wait...');
+
+                    $.ajax({
+                        url: '/MvcMasterDetails/SaveOrder',
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        dataType: "JSON",
+                        contentType: "application/json",
+                        success: function (d) {
+                            //check is successfully save to database
+                            if (d.status == true) {
+                                //will send status from server side
+                                alert('Successfully done.');
+                                //clear form
+                                incomingDetails = [];
+                                $('#incomingVesselNo').val('');
+                                $('#inspectionDate').val('');
+                                $('#incomingDetails').empty();
+                            }
+                            else {
+                                alert('Failed');
+                            }
+                            $('#submit').val('Save');
+                        },
+                        error: function () {
+                            alert('Error. Please try again.');
+                            $('#submit').val('Save');
+                        }
+                    });
+                }
+
+            });
+            //function for show added items in table
+            function GeneratedItemsTable() {
+                if (incomingDetails.length > 0)
+                {
+                    var $table = $('<table/>');
+                    $table.append('<thead><tr><th>PartNumber</th><th>QtyReceived</th><th>QtyInspected</th><th>QtyGood</th><th>QtyBad</th><th>InspectorName</th><th>Notes</th><th></th></tr></thead>');
+                    var $tbody = $('<tbody/>');
+                    $.each(incomingDetails, function (i, val) {
+                        var $row = $('<tr/>');
+                        $row.append($('<td/>').html(val.PartNumber));
+                        $row.append($('<td/>').html(val.QtyReceived));
+                        $row.append($('<td/>').html(val.QtyInspected));
+                        $row.append($('<td/>').html(val.QtyGood));
+                        $row.append($('<td/>').html(val.QtyBad));
+                        $row.append($('<td/>').html(val.InspectorName));
+                        $row.append($('<td/>').html(val.Notes));
+                        var $remove = $('<a href="#">Remove</a>');
+                        $remove.click(function (e) {
+                            e.preventDefault();
+                            incomingDetails.splice(i, 1);
+                            GeneratedItemsTable();
+                        });
+                        $row.append($('<td/>').html($remove));
+                        $tbody.append($row);
+                    });
+                    console.log("current", incomingDetails);
+                    $table.append($tbody);
+                    $('#incomingDetails').html($table);
+                }
+                else {
+                    $('#incomingDetails').html('');
+                }
+            }
+        });
+
+    </script>
+}
+
+<style>
+    /*Adding some css for looks good*/
+    span.error {
+        display: block;
+        visibility: hidden;
+        color: red;
+        font-size: 90%;
+    }
+
+
+    /*css for table*/
+    .container td {
+        vertical-align: top;
+    }
+
+    .tablecontainer table {
+        width: 100%;
+        border-collapse: collapse;
+        border-top: 1px solid #BFAEAE;
+        border-right: 1px solid #BFAEAE;
+    }
+
+    .tablecontainer th {
+        border-bottom: 2px solid #BFAEAE !important;
+    }
+
+    .tablecontainer th, .tablecontainer td {
+        text-align: left;
+        border-left: 1px solid #BFAEAE;
+        padding: 5px;
+        border-bottom: 1px solid #BFAEAE;
+    }
+
+    .ui-widget {
+        font-size: 12px !important;
+    }
+</style>

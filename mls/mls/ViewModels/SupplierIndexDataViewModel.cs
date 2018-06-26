@@ -10,6 +10,7 @@ namespace mls.ViewModels
     {
 
         public IEnumerable<Supplier> Suppliers { get; set; }
+
         public IEnumerable<SupplierContact> SupplierContacts { get; set; }
         
     }

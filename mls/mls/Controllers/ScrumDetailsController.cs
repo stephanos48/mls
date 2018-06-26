@@ -45,7 +45,7 @@ namespace mls.Controllers
         // GET: ScrumDetails/Create
         public ActionResult Create()
         {
-            ViewBag.ScrumId = new SelectList(db.Scrums, "ScrumId", "Action");
+            ViewBag.ScrumId = new SelectList(db.Scrums, "ScrumId", "ScrumId");
             return View();
         }
 
@@ -62,7 +62,7 @@ namespace mls.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ScrumId = new SelectList(db.Scrums, "ScrumId", "Action", scrumDetail.ScrumId);
+            ViewBag.ScrumId = new SelectList(db.Scrums, "ScrumId", "ScrumId", scrumDetail.ScrumId);
             return View(scrumDetail);
         }
 
@@ -78,7 +78,7 @@ namespace mls.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ScrumId = new SelectList(db.Scrums, "ScrumId", "Action", scrumDetail.ScrumId);
+            ViewBag.ScrumId = new SelectList(db.Scrums, "ScrumId", "ScrumId", scrumDetail.ScrumId);
             return View(scrumDetail);
         }
 
@@ -95,7 +95,7 @@ namespace mls.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ScrumId = new SelectList(db.Scrums, "ScrumId", "Action", scrumDetail.ScrumId);
+            ViewBag.ScrumId = new SelectList(db.Scrums, "ScrumId", "ScrumId", scrumDetail.ScrumId);
             return View(scrumDetail);
         }
 

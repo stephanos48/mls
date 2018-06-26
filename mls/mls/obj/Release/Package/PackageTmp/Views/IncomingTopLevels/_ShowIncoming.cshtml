@@ -1,0 +1,28 @@
+﻿<h2>incoming inspection</h2>
+
+<br />
+
+<div ng-controller='IncomingTopLevelController' class="col-md-12">
+    <div>
+        <div class="row" style="background-color: #f0f0f0;">
+            <div class="col-md-2">Id</div>
+            <div class="col-md-2">Incoming Vessel No</div>
+            <div class="col-md-2">Inspection Date Time</div>
+            <div class="col-md-2">Notes</div>
+            <div class="col-md-2">&nbsp;</div>
+            <div class="col-md-2">&nbsp;</div>
+        </div>
+        <div ng-repeat="incomingTopLevel in IncomingTopLevels" class="row">
+            <div class="col-md-2">{{incomingTopLevel.IncomingTopLevelId}}</div>
+            <div class="col-md-2">{{incomingTopLevel.IncomingVesselNo}}</div>
+            <div class="col-md-2">{{incomingTopLevel.InspectionDateTime}}</div>
+            <div class="col-md-2">{{incomingTopLevel.Notes}}</div>
+            <div class="col-md-2">&nbsp;</div>
+            <div class="col-md-2">&nbsp;</div>
+        </div>
+    </div>
+</div>
+<div class="alert alert-danger" ng-if="error != null">
+    <strong>Danger!</strong> {{error}}
+
+</div>

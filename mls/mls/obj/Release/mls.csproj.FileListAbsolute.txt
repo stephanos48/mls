@@ -771,3 +771,9 @@ C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.postatus
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.csproj.GenerateResource.Cache
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.dll
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.pdb
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.incominginsp01.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.incominginsp02.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.removeincoming.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.incomingkey.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.updateincomingdetail.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.inspectionlog.resources

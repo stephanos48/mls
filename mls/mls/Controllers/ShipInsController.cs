@@ -26,7 +26,7 @@ namespace mls.Controllers
 
         [Authorize]
         // GET: ShipIns
-        public ActionResult Transit()
+        public ActionResult Transit() 
         {
             var query = from a in db.ShipIns
                         where a.ShipInStatusId != 3
@@ -96,6 +96,18 @@ namespace mls.Controllers
 
         [Authorize]
         // GET: ShipIns
+        public ActionResult ChTransit()
+        {
+            var query = from a in db.ShipIns
+                        where a.ShipInStatusId != 3 && a.CustomerId == 21
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("ChTransit", query);
+            //return View(db.ShipIns.ToList());
+        }
+
+        [Authorize]
+        // GET: ShipIns
         public ActionResult ThiTransit()
         {
             var query = from a in db.ShipIns
@@ -120,6 +132,18 @@ namespace mls.Controllers
 
         [Authorize]
         // GET: ShipIns
+        public ActionResult ChReceipt()
+        {
+            var query = from a in db.ShipIns
+                        where a.ShipInStatusId == 3 && a.CustomerId == 21
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("ChReceipt", query);
+            //return View(db.ShipIns.ToList());
+        }
+
+        [Authorize]
+        // GET: ShipIns
         public ActionResult ThiReceipt()
         {
             var query = from a in db.ShipIns
@@ -129,7 +153,7 @@ namespace mls.Controllers
             return View("ThiReceipt", query);
             //return View(db.ShipIns.ToList());
         }
-
+          
         [Authorize]
         // GET: ShipIns
         public ActionResult NovReceipt()

@@ -1,0 +1,18 @@
+﻿
+@{ 
+    ViewBag.Title = "Angular";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Angular</h2>
+<div>
+    <div ng-view>
+
+    </div>    
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Controllers/IncomingTopLevelController.js"></script>
+    <script src="~/Scripts/Services/IncomingTopLevelService.js"></script>
+
+}

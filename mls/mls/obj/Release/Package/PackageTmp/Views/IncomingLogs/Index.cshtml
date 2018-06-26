@@ -1,0 +1,84 @@
+﻿@model IEnumerable<mls.Models.IncomingLog>
+
+@{
+    ViewBag.Title = "Incoming Log";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "QualityHome", "NCRs", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+
+<table id="ii" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InspectionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InspectionLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IncomingStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InspectionMethod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InspectionCriteria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IncomingLogId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.IncomingLogId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IncomingLogId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionLength)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncomingStartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionMethod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionCriteria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#ii").DataTable({
+                'iDisplayLength': 100
+            });
+        });
+    </script>
+}

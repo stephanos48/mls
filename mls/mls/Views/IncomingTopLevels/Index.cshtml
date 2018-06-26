@@ -1,0 +1,145 @@
+﻿@model mls.ViewModels.IncomingIndexDataViewModel
+
+@{
+    ViewBag.Title = "Incoming Inspection";
+}
+
+<h2>Incoming Inspection</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "QualityHome", "NCRs", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br />
+
+@if (Model.IncomingDetails != null)
+{
+    <h3>
+        Incoming Inspection Details
+    </h3>
+    <p>
+        @Html.ActionLink("Create New", "Create", "IncomingDetails", null, null)
+    </p>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th></th>
+            <th>Inspection Date</th>
+            <th>Part Number</th>
+            <th>Serial Number</th>
+            <th>Inspection Criteria</th>
+            <th>Inspection Type</th>
+            <th>Qty Received</th>
+            <th>Qty Inspected</th>
+            <th>Qty Good</th>
+            <th>Qty Bad</th>
+            <th>Inspector Name</th>
+            <th>Notes</th>
+        </tr>
+        @foreach (var item in Model.IncomingDetails)
+        {
+            <tr>
+                <td>
+                @*@Html.ActionLink("Edit", "Edit", "IncomingDetails", null, new { id = item.IncomingDetailId })|
+                @Html.ActionLink("Details", "Details", new { id = item.IncomingDetailId })|
+                @Html.ActionLink("Delete", "Delete", new { id = item.IncomingDetailId })*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionCriteria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtyReceived)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtyInspected)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtyGood)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtyBad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+<br />
+<br />
+
+<table id="ii" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                IncomingId
+            </th>
+            <th>
+                Incoming Vessel Number
+            </th>
+            <th>
+                Inspection Date
+            </th>
+            <th>
+                Notes
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.IncomingTopLevels)
+        {
+            string selectedRow = "";
+            if (item.IncomingTopLevelId == ViewBag.IncomingTopLevelId)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Index", new { id = item.IncomingTopLevelId })|
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IncomingTopLevelId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.IncomingTopLevelId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IncomingTopLevelId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncomingTopLevelId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncomingVesselNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#ii").DataTable({
+                'iDisplayLength': 100 });
+            });
+    </script>
+}

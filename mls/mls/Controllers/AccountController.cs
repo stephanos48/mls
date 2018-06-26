@@ -120,6 +120,10 @@ namespace mls.Controllers
                     {
                         return RedirectToAction("Index", "CustomerOrders");
                     }
+                    else if (roles.Contains("Columbus"))
+                    {
+                        return RedirectToAction("ChHome", "CustomerOrders");
+                    }
                     else
                     {
                         return RedirectToLocal(returnUrl);
@@ -202,8 +206,8 @@ namespace mls.Controllers
 
                     var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                     var roleManager = new RoleManager<IdentityRole>(roleStore);
-                    await roleManager.CreateAsync(new IdentityRole("HrPower"));
-                    await UserManager.AddToRoleAsync(user.Id, "HrPower");
+                    await roleManager.CreateAsync(new IdentityRole("Columbus"));
+                    await UserManager.AddToRoleAsync(user.Id, "Columbus");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
