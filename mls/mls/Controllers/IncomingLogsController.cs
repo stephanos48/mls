@@ -46,7 +46,7 @@ namespace mls.Controllers
             {
                 InspectionStatuses = inspectionstatuses
             };
-            return View();
+            return View("Create", viewModel);
 
         }
 

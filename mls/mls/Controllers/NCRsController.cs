@@ -32,6 +32,11 @@ namespace mls.Controllers
             NullValueHandling = NullValueHandling.Ignore
         };
 
+        public ActionResult IncomingHome()
+        {
+            return View("");
+        }
+
         public ActionResult graphpie()
         {
             return View();

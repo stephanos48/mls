@@ -260,6 +260,35 @@ namespace mls.Controllers
         }
 
         // GET: CustomerOrders/Wastebuilt
+        public ActionResult Forecast()
+        {
+            var query = from a in db.TxQohs
+                        join mp in db.MasterPartLists on a.Pn equals mp.CustomerPn
+                        where mp.CustomerId == 2 || mp.CustomerId == 1 && mp.CustomerDivisionId == 6 || mp.CustomerDivisionId == 1
+                        orderby a.Pn descending
+                        select new
+                        {
+                            PN = a.Pn,
+                            QOH = a.Qoh
+                        };
+
+            List<QohViewModel> quantities = new List<QohViewModel>();
+            foreach (var qoh in query.ToList())
+            {
+                QohViewModel mymodel = new QohViewModel()
+                {
+                    Pn = qoh.PN,
+                    Qoh = qoh.QOH
+                };
+
+                quantities.Add(mymodel);
+            }
+
+            return View("WBQoh", quantities);
+            //return View();
+        }
+
+        // GET: CustomerOrders/Wastebuilt
         public ActionResult WBQoh()
         { 
             var query = from a in db.TxQohs

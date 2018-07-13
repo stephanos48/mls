@@ -777,3 +777,8 @@ C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.removein
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.incomingkey.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.updateincomingdetail.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.inspectionlog.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\bin\BouncyCastle.Crypto.dll
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\bin\MailKit.dll
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\bin\MimeKit.dll
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\bin\MailKit.xml
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\bin\MimeKit.xml
