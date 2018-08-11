@@ -104,6 +104,16 @@ namespace mls.Controllers
             return View("ThiShipOut", query);
         }
 
+        // GET: ShipOuts
+        public ActionResult JbtOrlandoShipOut()
+        {
+            var query = from a in db.ShipOuts
+                        where a.CustomerId == 19
+                        orderby a.ShipDate descending
+                        select a;
+            return View("JbtOrlandoShipOut", query);
+        }
+
         // GET: ROShipOuts
         public ActionResult ROShipOut()
         {
@@ -143,6 +153,20 @@ namespace mls.Controllers
             return View(wbshipOut);
         }
 
+        // GET: ShipOuts/Details/5
+        public ActionResult JbtDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ShipOut jbtshipOut = db.ShipOuts.Find(id);
+            if (jbtshipOut == null)
+            {
+                return HttpNotFound();
+            }
+            return View(jbtshipOut);
+        }
 
         // GET: ShipOuts/Create
         public ActionResult Create()

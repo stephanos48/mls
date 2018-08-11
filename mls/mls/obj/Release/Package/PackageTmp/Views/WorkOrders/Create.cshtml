@@ -128,6 +128,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.WorkOrder.PromiseDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WorkOrder.PromiseDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WorkOrder.PromiseDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.WorkOrder.CloseDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.WorkOrder.CloseDate, new { htmlAttributes = new { @class = "form-control" } })

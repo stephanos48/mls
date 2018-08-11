@@ -37,6 +37,10 @@ namespace mls.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? NeedDate { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? PromiseDate { get; set; }
+
         [Required]
         [Display(Name = "Customer PN")]
         public string CustomerPn { get; set; }

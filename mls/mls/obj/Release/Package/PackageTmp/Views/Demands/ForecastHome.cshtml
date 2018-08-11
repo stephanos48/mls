@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "ForecastHome";
+}
+
+<h2>Customer Forecasts</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "Pfeps", null, null)
+</p>
+
+<br />
+
+<p>
+
+    <h4><u>Customer Forecasts</u></h4>
+    <br />
+
+    @Html.ActionLink("Heil Forecast", "Heil")
+    <br />
+    <br />
+    @Html.ActionLink("VSG Forecast", "VSG")
+    <br />
+    <br />
+    @Html.ActionLink("Hunter Forecast", "Hunter")
+    <br />
+    <br />
+    @*-> @Html.ActionLink("Quality", "QualityHome", "NCRs", null, null)
+        <br />
+        <br />*@
+
+</p>
+
+<h4><u>Update Demand Info</u></h4>
+<br />
+@Html.ActionLink("Demand Info", "Index", "Demands", null, null)
+<br />
+<br />
+
+<h4><u>Update ShipCommit Info</u></h4>
+<br />
+@Html.ActionLink("Ship Commit Info", "Index", "ShipCommits", null, null)
+<br />
+<br />

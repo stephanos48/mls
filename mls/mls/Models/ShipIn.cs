@@ -47,7 +47,6 @@ namespace mls.Models
 
         public string UhPn { get; set; }
         
-
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Ship Date")]
@@ -57,6 +56,8 @@ namespace mls.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "ETA Date")]
         public DateTime? Etadate { get; set; }
+
+        public string ArrivalWk { get; set; }
 
         [Display(Name = "Quantity")]
         public int Qty { get; set; }

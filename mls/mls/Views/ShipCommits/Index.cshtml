@@ -1,0 +1,130 @@
+﻿@model IEnumerable<mls.Models.ShipCommit>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<h2>Update Ship Commit Info</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "ForecastHome", "Demands", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+<br />
+
+<table id="commit" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                CustomerPn
+            </th>
+            <th>
+                Wk1
+            </th>
+            <th>
+                Wk2
+            </th>
+            <th>
+                Wk3
+            </th>
+            <th>
+                Wk4
+            </th>
+            <th>
+                Wk5
+            </th>
+            <th>
+                Wk6
+            </th>
+            <th>
+                Wk7
+            </th>
+            <th>
+                Wk8
+            </th>
+            <th>
+                Wk9
+            </th>
+            <th>
+                Wk10
+            </th>
+            <th>
+                Wk11
+            </th>
+            <th>
+                Wk12
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ShipCommitId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.ShipCommitId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ShipCommitId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipCommit30)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipCommit31)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipCommit32)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipCommit33)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipCommit34)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipCommit35)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipCommit36)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipCommit37)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipCommit38)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipCommit39)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipCommit40)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipCommit41)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#commit").DataTable({
+             'iDisplayLength': 100 });
+            });
+
+    </script>
+}

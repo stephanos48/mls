@@ -148,5 +148,19 @@ namespace mls.Models
 
         public DbSet<InspectionStatus> InspectionStatuses { get; set; }
 
+        public DbSet<Practice> Practices { get; set; }
+
+        public DbSet<Demand> Demands { get; set; }
+
+        public DbSet<WkSchedule> WkSchedules { get; set; }
+
+        public DbSet<CustomerQoh> CustomerQohs { get; set; }
+
+        public DbSet<ShipCommit> ShipCommits { get; set; }
+
+        public DbSet<ShipOut2> ShipOut2s { get; set; }
+
+        public DbSet<ShipOut2Detail> ShipOut2Details { get; set; }
+
     }
 }

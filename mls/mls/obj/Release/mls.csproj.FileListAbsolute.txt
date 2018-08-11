@@ -782,3 +782,13 @@ C:\Users\Helena\Documents\GitHub\mls\mls\mls\bin\MailKit.dll
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\bin\MimeKit.dll
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\bin\MailKit.xml
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\bin\MimeKit.xml
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.imageupload.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.wkschedule.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.demandwk1.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.demand2.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.customerqoh.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.updatedemand.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.shipcommit.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.promisedate.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.looney.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.shipout2.resources

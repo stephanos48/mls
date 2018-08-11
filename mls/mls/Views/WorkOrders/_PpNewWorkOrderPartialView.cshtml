@@ -21,9 +21,9 @@
             <th>Customer PO</th>
             <th>Customer PN</th>
             <th>Quantity</th>
-            <th>NeedDate</th>
             <th>CreationDate</th>
-            <th>CloseDate</th>
+            <th>NeedDate</th>
+            <th>PromiseDate</th>
             <th>Notes</th>
             @*<th></th>
                 <th>
@@ -80,13 +80,13 @@
                     @Html.DisplayFor(modelItem => item.Qty)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NeedDate)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.CreationDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CloseDate)
+                    @Html.DisplayFor(modelItem => item.NeedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PromiseDate)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Notes)

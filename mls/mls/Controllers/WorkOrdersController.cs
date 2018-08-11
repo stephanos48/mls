@@ -257,7 +257,7 @@ namespace mls.Controllers
         {
             var queryNew = from a in db.WorkOrders
                            where a.WoOrderStatusId == 1 && a.WoPartTypeId == woPartType 
-                           orderby a.WorkOrderId descending
+                           orderby a.PromiseDate descending
                            select a;
             List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
             foreach (var order in queryNew.ToList())
@@ -272,6 +272,8 @@ namespace mls.Controllers
                     CustomerPn = order.CustomerPn,
                     Qty = order.Qty,
                     CloseDate = order.CloseDate,
+                    NeedDate = order.NeedDate,
+                    PromiseDate = order.PromiseDate,
                     CustomerPo = order.CustomerPo,
                     StartTime = order.StartTime,
                     FinishTime = order.FinishTime,
@@ -286,7 +288,7 @@ namespace mls.Controllers
         {
             var queryNew = from a in db.WorkOrders
                            where a.WoOrderStatusId == 1
-                           orderby a.WorkOrderId descending
+                           orderby a.PromiseDate descending
                            select a;
             List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
             foreach (var order in queryNew.ToList())
@@ -301,8 +303,9 @@ namespace mls.Controllers
                     CreationDate = order.CreationDate,
                     CustomerPn = order.CustomerPn,
                     Qty = order.Qty,
-                    NeedDate = order.NeedDate,
                     CloseDate = order.CloseDate,
+                    NeedDate = order.NeedDate,
+                    PromiseDate = order.PromiseDate,
                     CustomerPo = order.CustomerPo,
                     StartTime = order.StartTime,
                     FinishTime = order.FinishTime,
@@ -318,7 +321,7 @@ namespace mls.Controllers
         {
             var queryNew = from a in db.WorkOrders
                            where a.WoOrderStatusId == 2 && a.WoPartTypeId == woPartType
-                           orderby a.WorkOrderId descending
+                           orderby a.PromiseDate descending
                            select a;
             List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
             foreach (var order in queryNew.ToList())
@@ -333,6 +336,8 @@ namespace mls.Controllers
                     CustomerPn = order.CustomerPn,
                     Qty = order.Qty,
                     CloseDate = order.CloseDate,
+                    NeedDate = order.NeedDate,
+                    PromiseDate = order.PromiseDate,
                     CustomerPo = order.CustomerPo,
                     StartTime = order.StartTime,
                     FinishTime = order.FinishTime,
@@ -348,7 +353,7 @@ namespace mls.Controllers
         {
             var queryNew = from a in db.WorkOrders
                            where a.WoOrderStatusId == 2
-                           orderby a.WorkOrderId descending
+                           orderby a.PromiseDate descending
                            select a;
             List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
             foreach (var order in queryNew.ToList())
@@ -365,6 +370,7 @@ namespace mls.Controllers
                     Qty = order.Qty,
                     CloseDate = order.CloseDate,
                     NeedDate = order.NeedDate,
+                    PromiseDate = order.PromiseDate,
                     CustomerPo = order.CustomerPo,
                     StartTime = order.StartTime,
                     FinishTime = order.FinishTime,
@@ -380,7 +386,7 @@ namespace mls.Controllers
         {
             var queryNew = from a in db.WorkOrders
                            where a.WoOrderStatusId == 3 && a.WoPartTypeId == woPartType
-                           orderby a.WorkOrderId descending
+                           orderby a.PromiseDate descending
                            select a;
             List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
             foreach (var order in queryNew.ToList())
@@ -395,6 +401,8 @@ namespace mls.Controllers
                     CustomerPn = order.CustomerPn,
                     Qty = order.Qty,
                     CloseDate = order.CloseDate,
+                    NeedDate = order.NeedDate,
+                    PromiseDate = order.PromiseDate,
                     CustomerPo = order.CustomerPo,
                     StartTime = order.StartTime,
                     FinishTime = order.FinishTime,
@@ -410,7 +418,7 @@ namespace mls.Controllers
         {
             var queryNew = from a in db.WorkOrders
                            where a.WoOrderStatusId == 3
-                           orderby a.WorkOrderId descending
+                           orderby a.PromiseDate descending
                            select a;
             List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
             foreach (var order in queryNew.ToList())
@@ -427,6 +435,7 @@ namespace mls.Controllers
                     Qty = order.Qty,
                     CloseDate = order.CloseDate,
                     NeedDate = order.NeedDate,
+                    PromiseDate = order.PromiseDate,
                     CustomerPo = order.CustomerPo,
                     StartTime = order.StartTime,
                     FinishTime = order.FinishTime,
@@ -442,7 +451,7 @@ namespace mls.Controllers
         {
             var queryNew = from a in db.WorkOrders
                            where a.WoOrderStatusId == 4 && a.WoPartTypeId == woPartType
-                           orderby a.WorkOrderId descending
+                           orderby a.PromiseDate descending
                            select a;
             List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
             foreach (var order in queryNew.ToList())
@@ -457,6 +466,8 @@ namespace mls.Controllers
                     CustomerPn = order.CustomerPn,
                     Qty = order.Qty,
                     CloseDate = order.CloseDate,
+                    NeedDate = order.NeedDate,
+                    PromiseDate = order.PromiseDate,
                     CustomerPo = order.CustomerPo,
                     StartTime = order.StartTime,
                     FinishTime = order.FinishTime,
@@ -472,7 +483,7 @@ namespace mls.Controllers
         {
             var queryNew = from a in db.WorkOrders
                            where a.WoOrderStatusId == 4
-                           orderby a.WorkOrderId descending
+                           orderby a.PromiseDate descending
                            select a;
             List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
             foreach (var order in queryNew.ToList())
@@ -489,6 +500,7 @@ namespace mls.Controllers
                     Qty = order.Qty,
                     CloseDate = order.CloseDate,
                     NeedDate = order.NeedDate,
+                    PromiseDate = order.PromiseDate,
                     CustomerPo = order.CustomerPo,
                     StartTime = order.StartTime,
                     FinishTime = order.FinishTime,
@@ -504,7 +516,7 @@ namespace mls.Controllers
         {
             var queryNew = from a in db.WorkOrders
                            where a.WoOrderStatusId == 5 && a.WoPartTypeId == woPartType
-                           orderby a.WorkOrderId descending
+                           orderby a.PromiseDate descending
                            select a;
             List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
             foreach (var order in queryNew.ToList())
@@ -518,7 +530,9 @@ namespace mls.Controllers
                     CreationDate = order.CreationDate,
                     CustomerPn = order.CustomerPn,
                     Qty = order.Qty,
-                    CloseDate = order.CloseDate,
+                    CloseDate = order.CloseDate,              
+                    NeedDate = order.NeedDate,
+                    PromiseDate = order.PromiseDate,
                     CustomerPo = order.CustomerPo,
                     StartTime = order.StartTime,
                     FinishTime = order.FinishTime,
@@ -534,7 +548,7 @@ namespace mls.Controllers
         {
             var queryNew = from a in db.WorkOrders
                            where a.WoOrderStatusId == 5
-                           orderby a.WorkOrderId descending
+                           orderby a.PromiseDate descending
                            select a;
             List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
             foreach (var order in queryNew.ToList())
@@ -551,6 +565,7 @@ namespace mls.Controllers
                     Qty = order.Qty,
                     CloseDate = order.CloseDate,
                     NeedDate = order.NeedDate,
+                    PromiseDate = order.PromiseDate,
                     CustomerPo = order.CustomerPo,
                     StartTime = order.StartTime,
                     FinishTime = order.FinishTime,

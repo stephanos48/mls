@@ -96,6 +96,30 @@ namespace mls.Controllers
 
         [Authorize]
         // GET: ShipIns
+        public ActionResult JbtOrlandoTransit()
+        {
+            var query = from a in db.ShipIns
+                        where a.ShipInStatusId != 3 && a.CustomerId == 19
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("JbtOrlandoTransit", query);
+            //return View(db.ShipIns.ToList());
+        }
+
+        [Authorize]
+        // GET: ShipIns
+        public ActionResult JBTOrlandoReceipt()
+        {
+            var query = from a in db.ShipIns
+                        where a.ShipInStatusId == 3 && a.CustomerId == 19
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("JBTOrlandoReceipt", query);
+            //return View(db.ShipIns.ToList());
+        }
+
+        [Authorize]
+        // GET: ShipIns
         public ActionResult ChTransit()
         {
             var query = from a in db.ShipIns
@@ -205,6 +229,21 @@ namespace mls.Controllers
 
         // GET: ShipIns/Details/5
         public ActionResult WbDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ShipIn shipIn = db.ShipIns.Find(id);
+            if (shipIn == null)
+            {
+                return HttpNotFound();
+            }
+            return View(shipIn);
+        }
+
+        // GET: ShipIns/Details/5
+        public ActionResult JbtDetail(int? id)
         {
             if (id == null)
             {

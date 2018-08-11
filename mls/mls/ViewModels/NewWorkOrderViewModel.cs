@@ -50,6 +50,10 @@ namespace mls.ViewModels
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? NeedDate { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? PromiseDate { get; set; }
+
         [Display(Name = "Start Time")]
         public string StartTime { get; set; }
 

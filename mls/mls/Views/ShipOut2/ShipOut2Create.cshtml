@@ -1,0 +1,418 @@
+﻿
+@{
+    ViewBag.Title = "ShipOut2Create";
+}
+
+<h2>ShipOut2Create</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "ShipIns", null, null)
+</p>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/yeti/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<br /><br />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <h2 class="panel-title pull-left" style="margin-left:10px;">
+                <strong>Ship Out</strong>
+            </h2>
+            <button style="margin-right:10px" class="btn btn-primary pull-right" onclick="addNewOrder()">New Ship Out</button>
+        </div>
+    </div>
+
+    @*Receive All Database Data From Controller And Display Those Data In Client Side*@
+
+    @if (Model.Count() != 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class="panel-body">
+                <table class="table table-striped table-responsive">
+                    <tbody>
+                        <tr>
+                            <td>Customer : @item.Customer </td>
+                            <td>Customer Division : @item.CustomerDivision </td>
+                            <td>Freight Type : @item.FreightType </td>
+                            <td>Payment Method : @item.FpaymentMethod </td>
+                            <td>Carrier : @item.Carrier </td>
+                            <td>Tracking Info : @item.TrackingInfo </td>
+                            <td>Destination : @item.Destination </td>
+                            <td>Quote : @item.Quote </td>
+                            <td>Sold To : @item.SoldTo </td>
+                            <td>Ship To : @item.ShipTo </td>
+                            <td>Ship Terms : @item.ShipTerms </td>
+                            <td>Ship City : @item.ShipCity </td>
+                            <td>Ship State : @item.ShipState </td>
+                            <td>Ship Zip : @item.ShipZip </td>
+                            <td>Ship Description : @item.ShipDescription </td>
+                            <td>Ship Weight : @item.ShipWeight </td>
+                            <td>Ship Date : @item.ShipDate </td>
+                            <td>ETA Date : @item.ETADate </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td>PN</td>
+                                            <td>SN</td>
+                                            <td>Qty</td>
+                                            <td>Manifest No</td>
+                                            <td>PO No</td>
+                                            <td>SO No</td>
+                                            <td>Pallet No</td>
+                                            <td>Notes</td>
+                                        </tr>
+                                        @{
+                                            var totalInspected = 0;
+                                        }
+                                        @foreach (var order in item.ShipOut2Details)
+                                        {
+                                            <tr>
+                                                <td>@order.Pn</td>
+                                                <td>@order.Sn</td>
+                                                <td>@order.Qty</td>
+                                                <td>@order.ManifestNo</td>
+                                                <td>@order.PoNo</td>
+                                                <td>@order.SoNo</td>
+                                                <td>@order.PalletNo</td>
+                                                <td>@order.Notes</td>
+                                            </tr>
+                                            totalInspected = totalInspected + @Convert.ToInt32(order.Qty);
+                                        }
+                                    </tbody>
+                                </table>
+                                <span class="pull-right" style="margin-right:100px;"><strong>Total Shipped :  </strong> @totalInspected</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            }
+        }
+        else
+        {
+            <div class="panel-body">
+                <h3 style="color:red;">Empty!</h3>
+            </div>
+
+        }
+</div>
+
+@*Design Bootdtrap Modal With Order Form*@
+
+<div class="modal fade" id="newOrderModal">
+    <div class="modal-dialog modal-lg" style=" width 900px !important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4>Add New Ship Out</h4>
+            </div>
+            <form id="NewOrderForm">
+                <div class="modal-body">
+                    @*Customer Details*@
+                    <h5 style="color:#ff6347">Ship Out</h5>
+                    <hr />
+                    <div class="form-horizontal">
+                        <input type="hidden" id="ShipOut2Id" />
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                Customer
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="customer" name="customer" placeholder="Customer" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Customer Division
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="division" name="division" placeholder="Division" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Freight Type
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="ftype" name="ftype" placeholder="Ftype" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Payment Method
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="fpay" name="fpay" placeholder="Fpay" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Carrier
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="carrier" name="carrier" placeholder="Carrier" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Tracking Info
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="tracking" name="tracking" placeholder="Tracking" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Destination
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="destination" name="destination" placeholder="Destination" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Quote
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="quote" name="quote" placeholder="Quote" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Sold To
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="soldto" name="soldto" placeholder="SoldTo" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Ship To
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="shipto" name="shipto" placeholder="ShipTo" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Ship Terms
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="shipterms" name="shipterms" placeholder="ShipTerms" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Ship City
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="shipcity" name="shipcity" placeholder="ShipCity" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Ship State
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="shipstate" name="shipstate" placeholder="ShipState" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Ship Zip
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="shipzip" name="shipzip" placeholder="ShipDescription" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Ship Weight
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="weight" name="weight" placeholder="Weight" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Ship Date
+                            </label>
+                            <div class="col-md-4">
+                                <input type="date" id="shipdate" name="shipdate" placeholder="ShipDate" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                ETA Date
+                            </label>
+                            <div class="col-md-4">
+                                <input type="date" id="etadate" name="etadate" placeholder="ETADate" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Order Details*@
+                    <h5 style="margin-top:10px;color:#ff6347">Ship Out Details</h5>
+                    <hr />
+                    <div class="form-horizontal">
+                        <input type="hidden" id="ShipOut2Id" />
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                PN
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="pn" name="pn" placeholder="Pn" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                SN
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="sn" name="sn" placeholder="Sn" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Qty
+                            </label>
+                            <div class="col-md-4">
+                                <input type="number" id="qty" name="qty" placeholder="Qty" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Manifest No
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="manifestno" name="manifestno" placeholder="ManifestNo" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                PO No
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="pono" name="pono" placeholder="PoNo" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                SO No
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="sono" name="sono" placeholder="SoNo" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Pallet No
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="palletno" name="palletno" placeholder="PalletNo" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Notes
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="notes" name="notes" placeholder="Notes" class="form-control" />
+                            </div>
+                            
+                            <div class="col-md-2 col-lg-offset-8">
+                                <a id="addToList" class="btn btn-primary">Add To List</a>
+                            </div>
+                        </div>
+
+                        <table id="detailsTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%">Pn</th>
+                                    <th style="width:10%">Sn</th>
+                                    <th style="width:10%">Qty</th>
+                                    <th style="width:10%">Manifest No</th>
+                                    <th style="width:10%">PO No</th>
+                                    <th style="width:10%">SO No</th>
+                                    <th style="width:10%">Pallet No</th>
+                                    <th style="width:20%">Notes</th>
+                                    <th style="width:10%"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="saveOrder" type="submit" class="btn btn-danger">Save Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        //Show Modal.
+        function addNewOrder() {
+            $("#newOrderModal").modal();
+        }
+        //Add Multiple Order.
+        $("#addToList").click(function (e) {
+            e.preventDefault();
+
+            if ($.trim($("#customer").val()) == "" || $.trim($("#division").val()) == "" || $.trim($("#ftype").val()) == "" || $.trim($("#foay").val()) == "" || $.trim($("#carrier").val()) == "" || $.trim($("#destination").val()) == "" || $.trim($("#quote").val()) == "" || $.trim($("#soldto").val()) == "" || $.trim($("#shipto").val()) == "" || $.trim($("#shipterms").val()) == "" || $.trim($("#shipcity").val()) == "" || $.trim($("#shipstate").val()) == "" || $.trim($("#shipzip").val()) == "" || $.trim($("#shipdescription").val()) == "" || $.trim($("#weight").val()) == "" || $.trim($("#quote").val()) == "") return;
+
+            var partNumber = $("#partNumber").val(),
+                name = $("#name").val(),
+                notes = $("#notes").val(),
+                qtyReceived = $("#qtyReceived").val(),
+                qtyInspected = $("#qtyInspected").val(),
+                qtyGood = $("#qtyGood").val(),
+                qtyBad = $("#qtyBad").val(),
+                detailsTableBody = $("#detailsTable tbody");
+
+            var productItem = '<tr><td>' + partNumber + '</td><td>' + name + '</td><td>' + notes + '</td><td>' + parseInt(qtyReceived) + '</td><td>' + parseInt(qtyInspected) + '</td><td>' + parseInt(qtyGood) + '</td><td>' + parseInt(qtyBad) + '</td><td><a data-itemId="0" href="#" class="deleteItem">Remove</a></td></tr>';
+            detailsTableBody.append(productItem);
+            clearItem();
+        });
+        //After Add A New Order In The List, Clear Clean The Form For Add More Order.
+        function clearItem() {
+            $("#partNumber").val('');
+            $("#name").val('');
+            $("#notes").val('');
+            $("#qtyReceived").val('');
+            $("#qtyInspected").val('');
+            $("#qtyGood").val('');
+            $("#qtyBad").val('');
+        }
+        // After Add A New Order In The List, If You Want, You Can Remove It.
+        $(document).on('click', 'a.deleteItem', function (e) {
+            e.preventDefault();
+            var $self = $(this);
+            if ($(this).attr('data-itemId') == "0") {
+                $(this).parents('tr').css("background-color", "#ff6347").fadeOut(800, function () {
+                    $(this).remove();
+                });
+            }
+        });
+        //After Click Save Button Pass All Data View To Controller For Save Database
+        function saveOrder(data) {
+            return $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: 'POST',
+                url: "/IncomingTopLevels/SaveOrder",
+                data: data,
+                success: function (result) {
+                    alert(result);
+                    location.reload();
+                },
+                error: function () {
+                    alert("Error!")
+                }
+            });
+        }
+        //Collect Multiple Order List For Pass To Controller
+        $("#saveOrder").click(function (e) {
+            e.preventDefault();
+
+            var orderArr = [];
+            orderArr.length = 0;
+
+            $.each($("#detailsTable tbody tr"), function () {
+                orderArr.push({
+                    partNumber: $(this).find('td:eq(0)').html(),
+                    name: $(this).find('td:eq(1)').html(),
+                    notes: $(this).find('td:eq(2)').html(),
+                    qtyReceived: $(this).find('td:eq(3)').html(),
+                    qtyInspected: $(this).find('td:eq(4)').html(),
+                    qtyGood: $(this).find('td:eq(5)').html(),
+                    qtyBad: $(this).find('td:eq(6)').html()
+                });
+            });
+
+            var data = JSON.stringify({
+                incomingVesselNo: $("#vesselno").val(),
+                date: $("#date").val(),
+                notes: $("#notes1").val(),
+                incomingDetail: orderArr
+            });
+
+            $.when(saveOrder(data)).then(function (response) {
+                console.log(response);
+            }).fail(function (err) {
+                console.log(err);
+            });
+        });
+    </script>
+}

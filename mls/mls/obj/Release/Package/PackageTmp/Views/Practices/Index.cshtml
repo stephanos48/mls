@@ -1,0 +1,70 @@
+﻿@model IEnumerable<mls.Models.Practice>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@* ########### Add New Product Form Design ############## *@
+
+<div class="container">
+    <h2 class="text-center">Add New Product</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form id="AddProduct" method="post" enctype="multipart/form-data" onsubmit="return AjaxPost(this)">
+                <label>Title</label><br />
+                <input type="text" id="Name" name="Name" class="form-control" /><br />
+
+                <label>Price</label><br />
+                <input type="number" id="Price" name="Price" class="form-control" /><br />
+
+                <label>Image</label><br />
+                <input type="file" id="UploadImage" name="UploadImage" class="form-control" /><br />
+                <button class="btn btn-danger">Add</button>
+            </form>
+        </div>
+    </div>
+</div><br /><br /><br /><br />
+@* ########### Display All Product ############## *@
+<div class="container">
+    <h2>Product List</h2>
+    @foreach (var item in Model)
+    {
+        double price = Convert.ToInt32(@item.Price);
+        <div class="col-md-3" style="margin-bottom:25px">
+            <div class="thumbnail">
+                <div class="img-responsive" style="margin-bottom:20px">
+                    <img src="~/images/@item.PicUrl" height="350" width="240" />
+                </div>
+                <div class="caption" style="border-top:3px solid #808080">
+                    <h4><a href="#">@item.Name</a></h4>
+                    <h3>@price.ToString("F2")$</h3>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@* ###########
+        Pass Add New Product Form Data From View to Controller
+        For Save It In Database
+    ############## *@
+
+<script>
+    function AjaxPost(formData) {
+        var ajaxConfig = {
+            type: "POST",
+            url: "/Practices/SaveData",
+            data: new FormData(formData),
+            success: function (result) {
+                alert(result);
+                window.location.href = "/Practices/Index";
+            }
+        }
+        if ($(formData).attr('enctype') == "multipart/form-data") {
+            ajaxConfig["contentType"] = false;
+            ajaxConfig["processData"] = false;
+        }
+        $.ajax(ajaxConfig);
+        return false;
+    }
+</script>

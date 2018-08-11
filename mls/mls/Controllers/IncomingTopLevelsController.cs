@@ -143,6 +143,42 @@ namespace mls.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult IncomingInsp()
+        {
+            List<IncomingTopLevel> IncomingTopLevelandDetailList = db.IncomingTopLevels.ToList();
+            return View(IncomingTopLevelandDetailList);
+        }
+
+        [HttpPost]
+        public ActionResult SaveOrder(string incomingVesselNo, DateTime date, string notes, IncomingDetail[] incomingDetail)
+        {
+            string result = "Error! Order Is Not Complete!";
+            if (incomingVesselNo != null && date != null && notes != null)
+            {
+                IncomingTopLevel model = new IncomingTopLevel();
+                model.IncomingVesselNo = incomingVesselNo;
+                model.InspectionDateTime = date;
+                model.Notes = notes;
+                db.IncomingTopLevels.Add(model);
+
+                foreach (var item in incomingDetail)
+                {
+                    IncomingDetail O = new IncomingDetail();
+                    O.PartNumber = item.PartNumber;
+                    O.InspectorName = item.InspectorName;
+                    O.Notes = item.Notes;
+                    O.QtyReceived = item.QtyReceived;
+                    O.QtyInspected = item.QtyInspected;
+                    O.QtyGood = item.QtyGood;
+                    O.QtyBad = item.QtyBad;
+                    db.IncomingDetails.Add(O);
+                }
+                db.SaveChanges();
+                result = "Success! Order Is Complete!";
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

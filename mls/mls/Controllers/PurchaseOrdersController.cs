@@ -22,6 +22,11 @@ namespace mls.Controllers
             return View(db.PurchaseOrders.ToList());
         }
 
+        public ActionResult Columbus()
+        {
+            return View("Columbus");
+        }
+
         public ActionResult PoHome()
         {
             return View("PoHome");

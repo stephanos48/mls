@@ -44,19 +44,28 @@ namespace mls.Controllers
 
         public ActionResult getgraphdata()
         {
-            int gay = db.NCRs.Where(x => x.NcrTypeId == 1).Count();
+            int internalncr = db.NCRs.Where(x => x.NcrTypeId == 1).Count();
+            int customer = db.NCRs.Where(x => x.NcrTypeId == 2).Count();
+            int warranty = db.NCRs.Where(x => x.NcrTypeId == 3).Count();
             int supplier = db.NCRs.Where(x => x.NcrTypeId == 4).Count();
+            int other = db.NCRs.Where(x => x.NcrTypeId == 5).Count();
             Ratio obj = new Ratio();
-            obj.gay = gay;
+            obj.internalncr = internalncr;
+            obj.customer = customer;
+            obj.warranty = warranty;
             obj.supplier = supplier;
+            obj.other = other;
 
             return Json(obj, JsonRequestBehavior.AllowGet);
         }
 
         public class Ratio
         {
-            public int gay { get; set; }
+            public int internalncr { get; set; }
+            public int customer { get; set; }
+            public int warranty { get; set; }
             public int supplier { get; set; }
+            public int other { get; set; }
         }
 
         public IList<NcrViewModel> GetNcrList()
