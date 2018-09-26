@@ -38,6 +38,15 @@ namespace mls.Controllers
             return View();
         }
 
+        public ActionResult Schedule()
+        {
+            var query = from c in db.WorkOrders
+                        where c.WoOrderStatusId == 4 
+                        orderby c.PromiseDate ascending
+                        select c;
+            return View(query.ToList());
+        }
+
         public ActionResult ProductionPlan1(int? id)
         {
             var viewModel = new ProductionIndexDataViewModel();
@@ -575,6 +584,8 @@ namespace mls.Controllers
             }
             return PartialView("_WOClosedPartialView", result);
         }
+
+
 
         protected override void Dispose(bool disposing)
         {

@@ -13,6 +13,53 @@
 
 <br/>
 
+@if (Model.SupplierContacts != null)
+{
+    <h3>
+        Supplier Contacts
+    </h3>
+    <p>
+        @Html.ActionLink("Create New", "Create", "SupplierContacts", null, null)
+    </p>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Cell</th>
+            <th>Office</th>
+            <th>Fax</th>
+            <th>Email</th>
+            <th>Notes</th>
+        </tr>
+        @foreach (var item in Model.SupplierContacts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierContactName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierContactTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierContactCell)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierContactPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierContactFax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierContactEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </table>
+}
+
 <table id="supplier" class="table table-bordered table-hover">
     <thead>
     <tr>
@@ -89,52 +136,7 @@
     </tbody>
 </table>
 
-@if (Model.SupplierContacts != null)
-{
-    <h3>
-        Supplier Contacts
-    </h3>
-    <p>
-        @Html.ActionLink("Create New", "Create", "SupplierContacts", null, null) 
-    </p>
-    <table class="table table-bordered table-hover">
-        <tr>
-            <th>Name</th>
-            <th>Title</th>
-            <th>Cell</th>
-            <th>Office</th>
-            <th>Fax</th>
-            <th>Email</th>
-            <th>Notes</th>
-        </tr>
-        @foreach (var item in Model.SupplierContacts)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SupplierContactName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SupplierContactTitle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SupplierContactCell)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SupplierContactPhone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SupplierContactFax)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SupplierContactEmail)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Notes)
-                </td>
-            </tr>
-        }
-    </table>
-}
+
 
 @section scripts
 {

@@ -25,6 +25,8 @@ namespace mls.Models
 
         public decimal Cost { get; set; }
 
+        public string Chargeback { get; set; }
+
         public string Notes { get; set; }
 
         public int ExpeditedFreightId { get; set; }

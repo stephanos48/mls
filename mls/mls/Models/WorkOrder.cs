@@ -81,9 +81,44 @@ namespace mls.Models
         [Display(Name = "WoStatus")]
         public byte WoOrderStatusId { get; set; }
 
+        [Display(Name = "WO Detail")]
+        public string WoNotes { get; set; }
+
         [Display(Name = "Notes")]
         public string Notes { get; set; }
 
+        public string Day1 { get; set; }
+
+        public string Day2 { get; set; }
+
+        public string Day3 { get; set; }
+
+        public string Day4 { get; set; }
+
+        public string Day5 { get; set; }
+
+        public string Day6 { get; set; }
+
+        public string Day7 { get; set; }
+
+        public string Day8 { get; set; }
+
+        public string Day9 { get; set; }
+
+        public string Day10 { get; set; }
+
+        public string Wk3 { get; set; }
+
+        public string Wk4 { get; set; }
+
+        public string Wk5 { get; set; }
+
+        public string Wk6 { get; set; }
+
+        public string Wk7 { get; set; }
+
+        public string Wk8 { get; set; }
+        
         public virtual ICollection<WoDetail> WoDetails { get; set; }
 
     }

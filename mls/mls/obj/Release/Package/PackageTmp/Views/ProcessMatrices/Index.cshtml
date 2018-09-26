@@ -1,0 +1,72 @@
+﻿@model IEnumerable<mls.Models.ProcessMatrix>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProcessStatusId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RevLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RetentionPeriod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PicUrl)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ProcessMatrixId })|
+            @Html.ActionLink("Details", "Details", new { id = item.ProcessMatrixId })|
+            @Html.ActionLink("Delete", "Delete", new { id = item.ProcessMatrixId })|
+            @Html.ActionLink("Download", "Download1", new { id = item.ProcessMatrixId })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProcessStatusId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RevLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RetentionPeriod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PicUrl)
+        </td>
+    </tr>
+}
+
+</table>

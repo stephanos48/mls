@@ -8,6 +8,51 @@
 
 <h2>Expedited Freight</h2>
 
+@if (Model.ExpFreightDetails != null)
+{
+    <h3>
+        Expedited Freight Details
+    </h3>
+    <p>
+        @Html.ActionLink("Create New", "Create", "ExpFreightDetails", null, null)
+    </p>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Transport Mode</th>
+            <th>Departure Date</th>
+            <th>Arrival Date</th>
+            <th>Cost</th>
+            <th>Chargeback</th>
+            <th>Notes</th>
+        </tr>
+        @foreach (var item in Model.ExpFreightDetails)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpediteMode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Chargeback)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+<br />
+
 <p>
     @Html.ActionLink("Go Back", "Index", "ShipIns", null, null) | @Html.ActionLink("Create New", "Create")
 </p>
@@ -16,12 +61,12 @@
     <tr>
         <th></th>
         <th>Expedited Freight No</th>
+        <th>Customer</th>
+        <th>Status</th>
         <th>Part Number</th>
         <th>Freight Type</th>
-        <th>Requested By</th>
-        <th>Requested Date</th>
-        <th>Need Date</th>
         <th>Destination</th>
+        <th>MLS Invoice No</th>
         <th>Reason</th>
         <th>Notes</th>
         @*<th>
@@ -65,12 +110,18 @@
             <tr class="@selectedRow">
                 <td>
                     @Html.ActionLink("Select", "Index", new { id = item.ExpeditedFreightId })|
-                    @Html.ActionLink("Edit", "Edit", new {id = item.ExpeditedFreightId}) |
-                    @Html.ActionLink("Details", "Details", new {id = item.ExpeditedFreightId}) |
+                    @Html.ActionLink("Edit", "Edit", new {id = item.ExpeditedFreightId})|
+                    @Html.ActionLink("Details", "Details", new {id = item.ExpeditedFreightId})|
                     @Html.ActionLink("Delete", "Delete", new {id = item.ExpeditedFreightId})
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ExpeditedFreightNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PartNumber)
@@ -79,16 +130,10 @@
                     @Html.DisplayFor(modelItem => item.ExpeditedFreightType)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RequestedBy)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RequestDateTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NeedDateTime)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceNo)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Reason)
@@ -102,50 +147,12 @@
     </tbody>
 </table>
 
-@if (Model.ExpFreightDetails != null)
-{
-    <h3>
-        Expedited Freight Details
-    </h3>
-    <p>
-        @Html.ActionLink("Create New", "Create", "ExpFreightDetails", null, null)
-    </p>
-    <table class="table table-bordered table-hover">
-        <tr>
-            <th>Transport Mode</th>
-            <th>Departure Date</th>
-            <th>Arrival Date</th>
-            <th>Cost</th>
-            <th>Notes</th>
-        </tr>
-        @foreach (var item in Model.ExpFreightDetails)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ExpediteMode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDateTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ArrivalDateTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cost)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Notes)
-                </td>
-            </tr>
-        }
-    </table>
-}
-
 @section scripts
 {
     <script>
         $(document).ready(function() {
-               $("#expedite").DataTable();
+            $("#expedite").DataTable({
+                'iDisplayLength': 100 });
             });
 
     </script>

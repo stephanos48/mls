@@ -14,6 +14,24 @@ namespace mls.Models
         [Display(Name = "Exp Freight #")]
         public string ExpeditedFreightNo { get; set; }
 
+        [Display(Name = "Customer")]
+        public byte CustomerId { get; set; }
+
+        public CustomerDivision CustomerDivision { get; set; }
+
+        [Display(Name = "Customer Division")]
+        public byte CustomerDivisionId { get; set; }
+
+        public MlsDivision MlsDivision { get; set; }
+
+        [Display(Name = "MLS Division")]
+        public byte MlsDivisionId { get; set; }
+
+        [Display(Name = "Status")]
+        public byte StatusId { get; set; }
+
+        public Status Status { get; set; }
+
         public string PartNumber { get; set; }
 
         [Display(Name = "Exp Freight Type")]
@@ -32,8 +50,16 @@ namespace mls.Models
         [Display(Name = "Need Date")]
         public DateTime? NeedDateTime { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Ship Date")]
+        public DateTime? ShipDateTime { get; set; }
+
         [Display(Name = "Destination")]
         public string Destination { get; set; }
+
+        [Display(Name = "Invoice #")]
+        public string InvoiceNo { get; set; }
 
         [Display(Name = "Reason")]
         public string Reason { get; set; }

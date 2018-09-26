@@ -60,7 +60,6 @@
                             <td>Ship Weight : @item.ShipWeight </td>
                             <td>Ship Date : @item.ShipDate </td>
                             <td>ETA Date : @item.ETADate </td>
-                            <td>Notes : @item.Notes</td>
                         </tr>
                         <tr>
                             <td colspan="3">
@@ -238,7 +237,7 @@
                     <h5 style="margin-top:10px;color:#ff6347">Ship Out Details</h5>
                     <hr />
                     <div class="form-horizontal">
-                        <input type="hidden" id="IncomingTopLevelId" />
+                        <input type="hidden" id="ShipOut2Id" />
                         <div class="form-group">
                             <label class="control-label col-md-2">
                                 PN
@@ -259,45 +258,36 @@
                                 <input type="number" id="qty" name="qty" placeholder="Qty" class="form-control" />
                             </div>
                             <label class="control-label col-md-2">
-                                SN
+                                Manifest No
                             </label>
                             <div class="col-md-4">
-                                <input type="text" id="sn" name="sn" placeholder="Sn" class="form-control" />
+                                <input type="text" id="manifestno" name="manifestno" placeholder="ManifestNo" class="form-control" />
                             </div>
-
+                            <label class="control-label col-md-2">
+                                PO No
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="pono" name="pono" placeholder="PoNo" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                SO No
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="sono" name="sono" placeholder="SoNo" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Pallet No
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="palletno" name="palletno" placeholder="PalletNo" class="form-control" />
+                            </div>
                             <label class="control-label col-md-2">
                                 Notes
                             </label>
                             <div class="col-md-4">
                                 <input type="text" id="notes" name="notes" placeholder="Notes" class="form-control" />
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2">
-                                Quantity Received
-                            </label>
-                            <div class="col-md-4">
-                                <input type="number" id="qtyReceived" name="qtyReceived" placeholder="Qty Received" class="form-control" />
-                            </div>
-                            <label class="control-label col-md-2">
-                                Quantity Inspected
-                            </label>
-                            <div class="col-md-4">
-                                <input type="number" id="qtyInspected" name="qtyInspected" placeholder="Qty Inspected" class="form-control" />
-                            </div>
-                            <label class="control-label col-md-2">
-                                Quantity Good
-                            </label>
-                            <div class="col-md-4">
-                                <input type="number" id="qtyGood" name="qtyGood" placeholder="Qty Good" class="form-control" />
-                            </div>
-                            <label class="control-label col-md-2">
-                                Quantity Bad
-                            </label>
-                            <div class="col-md-4">
-                                <input type="number" id="qtyBad" name="qtyBad" placeholder="Qty Bad" class="form-control" />
-                            </div>
+                            
                             <div class="col-md-2 col-lg-offset-8">
                                 <a id="addToList" class="btn btn-primary">Add To List</a>
                             </div>
@@ -306,13 +296,14 @@
                         <table id="detailsTable" class="table">
                             <thead>
                                 <tr>
-                                    <th style="width:15%">Part Number</th>
-                                    <th style="width:15%">Inspector Name</th>
+                                    <th style="width:10%">Pn</th>
+                                    <th style="width:10%">Sn</th>
+                                    <th style="width:10%">Qty</th>
+                                    <th style="width:10%">Manifest No</th>
+                                    <th style="width:10%">PO No</th>
+                                    <th style="width:10%">SO No</th>
+                                    <th style="width:10%">Pallet No</th>
                                     <th style="width:20%">Notes</th>
-                                    <th style="width:10%">Qty Received</th>
-                                    <th style="width:10%">Qty Inspected</th>
-                                    <th style="width:10%">Qty Good</th>
-                                    <th style="width:10%">Qty Bad</th>
                                     <th style="width:10%"></th>
                                 </tr>
                             </thead>
@@ -339,7 +330,7 @@
         $("#addToList").click(function (e) {
             e.preventDefault();
 
-            if ($.trim($("#partNumber").val()) == "" || $.trim($("#name").val()) == "" || $.trim($("#notes").val()) == "" || $.trim($("#qtyReceived").val()) == "" || $.trim($("#qtyInspected").val()) == "" || $.trim($("#qtyGood").val()) == "" || $.trim($("#qtyBad").val()) == "") return;
+            if ($.trim($("#customer").val()) == "" || $.trim($("#division").val()) == "" || $.trim($("#ftype").val()) == "" || $.trim($("#foay").val()) == "" || $.trim($("#carrier").val()) == "" || $.trim($("#destination").val()) == "" || $.trim($("#quote").val()) == "" || $.trim($("#soldto").val()) == "" || $.trim($("#shipto").val()) == "" || $.trim($("#shipterms").val()) == "" || $.trim($("#shipcity").val()) == "" || $.trim($("#shipstate").val()) == "" || $.trim($("#shipzip").val()) == "" || $.trim($("#shipdescription").val()) == "" || $.trim($("#weight").val()) == "" || $.trim($("#quote").val()) == "") return;
 
             var partNumber = $("#partNumber").val(),
                 name = $("#name").val(),

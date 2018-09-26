@@ -49,7 +49,7 @@ namespace mls.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ExpFreightDetailId,ExpediteMode,StartDateTime,ArrivalDateTime,Cost,Notes")] ExpFreightDetail expFreightDetail)
+        public ActionResult Create([Bind(Include = "ExpFreightDetailId,ExpediteMode,StartDateTime,ArrivalDateTime,Cost,Notes,ExpeditedFreightId")] ExpFreightDetail expFreightDetail)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace mls.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ExpFreightDetailId,ExpediteMode,StartDateTime,ArrivalDateTime,Cost,Notes")] ExpFreightDetail expFreightDetail)
+        public ActionResult Edit([Bind(Include = "ExpFreightDetailId,ExpediteMode,StartDateTime,ArrivalDateTime,Cost,Notes,ExpeditedFreightId")] ExpFreightDetail expFreightDetail)
         {
             if (ModelState.IsValid)
             {

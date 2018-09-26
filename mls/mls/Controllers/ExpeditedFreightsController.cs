@@ -22,6 +22,11 @@ namespace mls.Controllers
         //  return View(db.ExpeditedFreights.ToList());
         //}
 
+        public ActionResult ExpFreightHome()
+        {
+            return View();
+        }
+
         public ActionResult Index(int? id)
         {
             var viewModel = new ExpeditedFreightDataViewModel();
@@ -56,7 +61,21 @@ namespace mls.Controllers
         // GET: ExpeditedFreights/Create
         public ActionResult Create()
         {
-            return View();
+
+            var statuses = db.Statuses.ToList();
+            var customers = db.Customers.ToList();
+            var customerdivisions = db.CustomerDivisions.ToList();
+            var mlsdivisions = db.MlsDivisions.ToList();
+
+            var viewModel = new SaveExpFreightViewModel()
+            {
+                Statuses = statuses,
+                Customers = customers,
+                CustomerDivisions = customerdivisions,
+                MlsDivisions = mlsdivisions
+            };
+
+            return View("Create", viewModel);
         }
 
         // POST: ExpeditedFreights/Create
@@ -64,7 +83,8 @@ namespace mls.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ExpeditedFreightId,ExpeditedFreightNo,PartNumber,ExpeditedFreightType,RequestedBy,RequestDateTime,NeedDateTime,Destination,Reason,Notes")] ExpeditedFreight expeditedFreight)
+        //public ActionResult Create([Bind(Include = "ExpeditedFreightId,ExpeditedFreightNo,PartNumber,StatusId, ExpeditedFreightType,RequestedBy,RequestDateTime,NeedDateTime,InvoiceNo, Destination,Reason,Notes")] ExpeditedFreight expeditedFreight)
+        public ActionResult Create(ExpeditedFreight expeditedFreight)
         {
             if (ModelState.IsValid)
             {
@@ -73,12 +93,29 @@ namespace mls.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(expeditedFreight);
+            return View();
+            //return View(expeditedFreight);
         }
 
         // GET: ExpeditedFreights/Edit/5
         public ActionResult Edit(int? id)
         {
+            var expeditedfreights = db.ExpeditedFreights.SingleOrDefault(c => c.ExpeditedFreightId == id);
+
+            var statuses = db.Statuses.ToList();
+            var customers = db.Customers.ToList();
+            var customerdivisions = db.CustomerDivisions.ToList();
+            var mlsdivisions = db.MlsDivisions.ToList();
+
+            var viewModel = new SaveExpFreightViewModel()
+            {
+                ExpeditedFreight = expeditedfreights,
+                Statuses = statuses,
+                Customers = customers,
+                CustomerDivisions = customerdivisions,
+                MlsDivisions = mlsdivisions
+            };
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -88,7 +125,8 @@ namespace mls.Controllers
             {
                 return HttpNotFound();
             }
-            return View(expeditedFreight);
+            return View("Edit", viewModel);
+            //return View(expeditedFreight);
         }
 
         // POST: ExpeditedFreights/Edit/5
@@ -96,7 +134,8 @@ namespace mls.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ExpeditedFreightId,ExpeditedFreightNo,PartNumber,ExpeditedFreightType,RequestedBy,RequestDateTime,NeedDateTime,Destination,Reason,Notes")] ExpeditedFreight expeditedFreight)
+        //public ActionResult Edit([Bind(Include = "ExpeditedFreightId,ExpeditedFreightNo,StatusId, PartNumber,ExpeditedFreightType,RequestedBy,RequestDateTime,InvoiceNo, NeedDateTime,Destination,Reason,Notes")] ExpeditedFreight expeditedFreight)
+        public ActionResult Edit(ExpeditedFreight expeditedFreight)
         {
             if (ModelState.IsValid)
             {

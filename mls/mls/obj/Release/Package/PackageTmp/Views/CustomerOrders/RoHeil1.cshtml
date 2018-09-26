@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "RoHeil1";
+}
+
+<h2>Heil Open Order Report - Std View</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "HeilHome")
+</p>
+
+<h4><u>New Orders</u></h4>
+@Html.Action("_RONewOrder", "CustomerOrders", new { Customer = 1, Division = 1, MlsDivision = 1 })
+<br />
+<br />
+<h4><u>In Review</u></h4>
+@Html.Action("_ROReview", "CustomerOrders", new { Customer = 1, Division = 1, MlsDivision = 1 })
+<br />
+<br />
+<h4><u>Production</u></h4>
+@Html.Action("_ROProduction", "CustomerOrders", new { Customer = 1, Division = 1, MlsDivision = 1 })
+<br />
+<br />
+<h4><u>In Transit</u></h4>
+@Html.Action("_ROOcean", "CustomerOrders", new { Customer = 1, Division = 1, MlsDivision = 1 })
+<br />
+<br />
+<h4><u>Texas</u></h4>
+@Html.Action("_ROTx", "CustomerOrders", new { Customer = 1, Division = 1, MlsDivision = 1 })
+<br />
+<br />
+<h4><u>Shipped</u></h4>
+@Html.Action("_ROClosed", "CustomerOrders", new { Customer = 1, Division = 1, MlsDivision = 1 })
+

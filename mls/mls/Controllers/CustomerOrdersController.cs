@@ -81,6 +81,10 @@ namespace mls.Controllers
             {
                 return View("JBT_OrlandoHome");
             }
+            else if (User.IsInRole("Heil"))
+            {
+                return View("HeilHome");
+            }
             else
             {
                 return RedirectToAction("Index", "Home");
@@ -231,6 +235,21 @@ namespace mls.Controllers
                 return HttpNotFound();
             }
             return View(wbdetails);
+        }
+
+        // GET: CustomerOrders/Details/5
+        public ActionResult HeilDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CustomerOrder heildetails = db.CustomerOrders.Find(id);
+            if (heildetails == null)
+            {
+                return HttpNotFound();
+            }
+            return View(heildetails);
         }
 
         // GET: CustomerOrders/Wastebuilt
@@ -429,6 +448,55 @@ namespace mls.Controllers
         }
 
         // GET: CustomerOrders/Wastebuilt
+        public ActionResult HeilQoh()
+        {
+            var query = from a in db.TxQohs
+                        join mp in db.MasterPartLists on a.Pn equals mp.CustomerPn
+                        where mp.CustomerId == 1 && mp.CustomerDivisionId == 1
+                        orderby a.Pn descending
+                        select new
+                        {
+                            PN = a.Pn,
+                            QOH = a.Qoh
+                        };
+
+            List<QohViewModel> quantities = new List<QohViewModel>();
+            foreach (var qoh in query.ToList())
+            {
+                QohViewModel mymodel = new QohViewModel()
+                {
+                    Pn = qoh.PN,
+                    Qoh = qoh.QOH
+                };
+
+                quantities.Add(mymodel);
+            }
+
+            return View("HeilQoh", quantities);
+            //return View();
+        }
+
+        public ActionResult RoHeil()
+        {
+            var query = from a in db.CustomerOrders
+                        where a.CustomerId == 1 && a.CustomerDivisionId == 1
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("RoHeil", query);
+            //return View();
+        }
+
+        public ActionResult RoHeil1()
+        {
+            var query = from a in db.CustomerOrders
+                        where a.CustomerId == 1 && a.CustomerDivisionId == 1
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("RoHeil1", query);
+            //return View();
+        }
+
+        // GET: CustomerOrders/Wastebuilt
         public ActionResult WB1()
         {
             var query = from a in db.CustomerOrders
@@ -501,6 +569,15 @@ namespace mls.Controllers
             //               select a;
             // return View("Wastebuilt", query);
             return View("ThiHome");
+        }
+
+        public ActionResult HeilHome()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("HeilHome");
         }
 
         // GET: CustomerOrders/Wastebuilt

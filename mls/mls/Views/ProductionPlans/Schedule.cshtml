@@ -1,0 +1,180 @@
+﻿@model List<mls.Models.ProductionPlan>
+
+@{
+    ViewBag.Title = "Schedule";
+}
+
+<h2>Production Schedule</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "ScheduleHome", "ProductionPlans", null, null)
+</p>
+
+<br />
+ 
+<table id="schedule" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Pn
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                OnHold
+            </th>
+            <th>
+                Scheduling
+            </th>
+            <th></th>
+            <th>
+                Day1
+            </th>
+            <th>
+                Day2
+            </th>
+            <th>
+                Day3
+            </th>
+            <th>
+                Day4
+            </th>
+            <th>
+                Day5
+            </th>
+            <th>
+                Day6
+            </th>
+            <th>
+                Day7
+            </th>
+            <th>
+                Day8
+            </th>
+            <th>
+                Day9
+            </th>
+            <th>
+                Day10
+            </th>
+            <th>
+                Wk3
+            </th>
+            <th>
+                Wk4
+            </th>
+            <th>
+                Wk5
+            </th>
+            <th>
+                Wk6
+            </th>
+            <th>
+                Wk7
+            </th>
+            <th>
+                Wk8
+            </th>
+            <th>
+                Notes
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OnHold)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Schedule)
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day4)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day5)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day6)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day7)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day8)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day9)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day10)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wk3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wk4)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wk5)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wk6)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wk7)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wk8)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    @*<script>
+        $(document).ready(function() {
+            $("#schedule").DataTable({
+                'iDisplayLength': 100 });
+            });
+
+    </script>*@
+
+    <script>
+    $(document).ready(function() {
+
+    $('td').each(function() {
+
+        var cellvalue = $.trim($(this).text());
+        if ( cellvalue < 0) {
+            $(this).css('backgroundColor', 'red');
+        }
+    });
+
+    });
+    </script>
+}

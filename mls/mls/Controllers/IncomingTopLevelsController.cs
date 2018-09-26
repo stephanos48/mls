@@ -74,7 +74,7 @@ namespace mls.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IncomingTopLevelId,IncomingVesselNo,InspectionDateTime,Notes")] IncomingTopLevel incomingTopLevel)
+        public ActionResult Create([Bind(Include = "IncomingTopLevelId,IncomingVesselNo,ETADateTime,InspectionDateTime,Notes")] IncomingTopLevel incomingTopLevel)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace mls.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IncomingTopLevelId,IncomingVesselNo,InspectionDateTime,Notes")] IncomingTopLevel incomingTopLevel)
+        public ActionResult Edit([Bind(Include = "IncomingTopLevelId,IncomingVesselNo,ETADateTime,InspectionDateTime,Notes")] IncomingTopLevel incomingTopLevel)
         {
             if (ModelState.IsValid)
             {

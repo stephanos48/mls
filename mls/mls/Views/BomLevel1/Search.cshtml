@@ -1,0 +1,86 @@
+﻿@model IEnumerable<mls.Models.BomLevel1>
+
+@{
+    ViewBag.Title = "BOMs";
+}
+
+<h2>BOMs</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "EngHome", "BomLevel1", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br />
+<table id="bom" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                BomNo
+            </th>
+            <th>
+                UnitNo
+            </th>
+            <th>
+                DetailPn
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                QtyPer
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @*@if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="3" style="color:red">
+                        No Matches Found.  Please request assembly be added to BOM.
+                    </td>
+                </tr>
+            }
+            else
+            {*@
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BomLevel1Id })|
+                    @Html.ActionLink("Details", "Details", new { id = item.BomLevel1Id })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BomLevel1Id })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BomNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DetailPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtyPer)
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#bom").DataTable({
+                'iDisplayLength': 100 });
+            });
+
+    </script>
+}

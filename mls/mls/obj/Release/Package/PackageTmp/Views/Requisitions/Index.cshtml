@@ -1,0 +1,102 @@
+﻿@model IEnumerable<mls.Models.Requisition>
+
+@{
+    ViewBag.Title = "Requisition";
+}
+
+<h2>Requisition</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "Pfeps", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Closed", "Closed")
+</p>
+<br />
+<table id="requisition" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequisitionId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NeedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EtaDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Requestor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.RequisitionId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.RequisitionId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.RequisitionId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequisitionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Supplier)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NeedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EtaDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Requestor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#requisition").DataTable({
+                'iDisplayLength': 100 });
+        });
+
+    </script>
+}

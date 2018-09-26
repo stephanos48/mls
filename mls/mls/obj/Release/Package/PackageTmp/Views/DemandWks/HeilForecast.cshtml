@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "HeilForecast";
+}
+
+<h2>HeilForecast</h2>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/yeti/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<h2>Original Array</h2>
+<div id="orgTable">
+
+
+</div>
+
+
+<h2>Converted Array</h2>
+<div id="pivotTable">
+
+
+</div>
+
+
+
+@section scripts{
+    <script>
+
+    function getPivotArray(dataArray, rowIndex, colIndex, dataIndex) {
+        //Code from https://techbrij.com
+        var result = {}, ret = [];
+        var newCols = [];
+        for (var i = 0; i < dataArray.length; i++) {
+
+            if (!result[dataArray[i][rowIndex]]) {
+                result[dataArray[i][rowIndex]] = {};
+            }
+            result[dataArray[i][rowIndex]][dataArray[i][colIndex]] = dataArray[i][dataIndex];
+
+            //To get column names
+            if (newCols.indexOf(dataArray[i][colIndex]) == -1) {
+                newCols.push(dataArray[i][colIndex]);
+            }
+        }
+
+        newCols.sort();
+        var item = [];
+
+        //Add Header Row
+        item.push('Item');
+        item.push.apply(item, newCols);
+        ret.push(item);
+
+        //Add content
+        for (var key in result) {
+            item = [];
+            item.push(key);
+            for (var i = 0; i < newCols.length; i++) {
+                item.push(result[key][newCols[i]] || "-");
+            }
+            ret.push(item);
+        }
+        return ret;
+    }
+
+    function arrayToHTMLTable(myArray) {
+        var result = "<table border='1' cellpadding='7' cellspacing='0'>";
+        for (var i = 0; i < myArray.length; i++) {
+            result += "<tr>";
+            for (var j = 0; j < myArray[i].length; j++) {
+                result += "<td>" + myArray[i][j] + "</td>";
+            }
+            result += "</tr>";
+        }
+        result += "</table>";
+
+        return result;
+    }
+
+    $(function () {
+        var output = getPivotArray(arr, 0, 1, 2);
+        $('#orgTable').html(arrayToHTMLTable(arr));
+        $('#pivotTable').html(arrayToHTMLTable(output));
+    });
+
+    </script>

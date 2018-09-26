@@ -162,5 +162,23 @@ namespace mls.Models
 
         public DbSet<ShipOut2Detail> ShipOut2Details { get; set; }
 
+        public DbSet<DemandWk> DemandWks { get; set; }
+
+        public DbSet<CommitWk> CommitWks { get; set; }
+
+        public DbSet<CalendarWk> CalendarWks { get; set; }
+
+        public DbSet<ProcessMatrix> ProcessMatrixes { get; set; }
+
+        public DbSet<ProcessStatus> ProcessStatuses { get; set; }
+
+        public DbSet<ProductionPlan> ProductionPlans { get; set; }
+
+        public DbSet<Requisition> Requisitions { get; set; }
+
+        public DbSet<CheckRequest> CheckRequests { get; set; }
+
+        public DbSet<CheckStatus> CheckStatuses { get; set; }
+
     }
 }

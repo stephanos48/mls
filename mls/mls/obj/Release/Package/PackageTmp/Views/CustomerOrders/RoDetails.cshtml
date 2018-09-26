@@ -149,5 +149,35 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Wastebuilt"))
+        {
+            @Html.ActionLink("Back to List", "WbHome")
+        }
+        else if (User.IsInRole("Heil"))
+        {
+            @Html.ActionLink("Back to List", "HeilHome")
+        }
+        else if (User.IsInRole("Nov"))
+        {
+            @Html.ActionLink("Back to List", "NovHome")
+        }
+        else if (User.IsInRole("Columbus"))
+        {
+            @Html.ActionLink("Back to List", "ChHome")
+        }
+        else if (User.IsInRole("Thi"))
+        {
+            @Html.ActionLink("Back to List", "ThiHome")
+        }
+        else if (User.IsInRole("JbtOrlando"))
+        {
+            @Html.ActionLink("Back to List", "Jbt_OrlandoHome")
+        }
+        else
+        {
+            @Html.ActionLink("Back to List", "Sales")
+        }
+    }
 </p>

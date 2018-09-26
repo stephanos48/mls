@@ -85,6 +85,16 @@ namespace mls.Controllers
         }
 
         // GET: ShipOuts
+        public ActionResult HeilShipOut()
+        {
+            var query = from a in db.ShipOuts
+                        where a.CustomerId == 1 && a.CustomerDivisionId == 1
+                        orderby a.ShipDate descending
+                        select a;
+            return View("HeilShipOut", query);
+        }
+
+        // GET: ShipOuts
         public ActionResult ChShipOut()
         {
             var query = from a in db.ShipOuts

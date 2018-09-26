@@ -19,6 +19,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.StatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusId)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.PartNumber)
         </dt>
 
@@ -74,6 +82,14 @@
             @Html.DisplayFor(model => model.Reason)
         </dd>
 
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceNo)
+        </dt>
+
         <dt>
             @Html.DisplayNameFor(model => model.Notes)
         </dt>
@@ -85,6 +101,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ExpeditedFreightId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ExpeditedFreightId })|
     @Html.ActionLink("Back to List", "Index")
 </p>

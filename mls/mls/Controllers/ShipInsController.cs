@@ -84,6 +84,18 @@ namespace mls.Controllers
 
         [Authorize]
         // GET: ShipIns
+        public ActionResult HeilTransit()
+        {
+            var query = from a in db.ShipIns
+                        where a.ShipInStatusId != 3 && a.CustomerId == 1 && a.CustomerDivisionId == 1
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("HeilTransit", query);
+            //return View(db.ShipIns.ToList());
+        }
+
+        [Authorize]
+        // GET: ShipIns
         public ActionResult WbTransit()
         {
             var query = from a in db.ShipIns
@@ -115,6 +127,18 @@ namespace mls.Controllers
                         orderby a.ContainerUh descending
                         select a;
             return View("JBTOrlandoReceipt", query);
+            //return View(db.ShipIns.ToList());
+        }
+
+        [Authorize]
+        // GET: ShipIns
+        public ActionResult HeilReceipt()
+        {
+            var query = from a in db.ShipIns
+                        where a.ShipInStatusId == 3 && a.CustomerId == 1 && a.CustomerDivisionId == 1
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("HeilReceipt", query);
             //return View(db.ShipIns.ToList());
         }
 

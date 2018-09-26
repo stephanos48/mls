@@ -23,6 +23,20 @@ namespace mls.Controllers
             //return View();
         }
 
+        // GET: BomLevel1
+        public ActionResult Search()
+        {
+            return View(db.BomLevel1s);
+            //return View();
+        }
+
+        // GET: BomLevel1
+        public ActionResult EngHome()
+        {
+            return View();
+            //return View();
+        }
+
         // GET: BomLevel1/Details/5
         public ActionResult Details(int? id)
         {
@@ -91,6 +105,8 @@ namespace mls.Controllers
             return View(bom);
 
         }*/
+
+
 
         // GET: BomLevel1/Create
         public ActionResult Create()

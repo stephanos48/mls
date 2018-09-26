@@ -32,6 +32,16 @@ namespace mls.Controllers
             return View("PoHome");
         }
 
+        public ActionResult HualinCustomer()
+        {
+            return View("HualinCustomer");
+        }
+
+        public ActionResult LishenCustomer()
+        {
+            return View("LishenCustomer");
+        }
+
         public ActionResult HeilPos()
         {
             return View("HeilPos");

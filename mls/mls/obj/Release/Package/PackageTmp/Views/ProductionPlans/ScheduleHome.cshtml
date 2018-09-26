@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "ScheduleHome";
+}
+
+<h2>Schedule Home</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "WorkOrders", null, null)
+</p>
+
+<br />
+
+<p>
+
+    <h4><u>Production Schedules</u></h4>
+    <br />
+
+    @Html.ActionLink("TX Production Schedule", "Schedule")
+    <br />
+    <br />
+    @*-> @Html.ActionLink("Quality", "QualityHome", "NCRs", null, null)
+        <br />
+        <br />*@
+
+</p>
+
+<h4><u>Create New Schedule Item</u></h4>
+<br />
+@Html.ActionLink("Create New", "Create", "ProductionPlans", null, null)
+<br />
+<br />
+
+<h4><u>Review Schedule Details and Edit</u></h4>
+<br />
+@Html.ActionLink("Schedule Detail", "Index", "ProductionPlans", null, null)
+<br />
+<br />

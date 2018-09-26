@@ -128,6 +128,10 @@ namespace mls.Controllers
                     {
                         return RedirectToAction("JBT_OrlandoHome", "CustomerOrders");
                     }
+                    else if (roles.Contains("Heil"))
+                    {
+                        return RedirectToAction("HeilHome", "CustomerOrders");
+                    }
                     else
                     {
                         return RedirectToLocal(returnUrl);
