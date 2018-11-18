@@ -20,7 +20,7 @@ namespace mls.Controllers
         {
             var query = from a in db.Requisitions
                         where a.StatusId != 2 
-                        orderby a.RequestDate descending
+                        orderby a.RequisitionId descending
                         select a;
             return View("Index", query);
             //return View(db.Requisitions.ToList());
@@ -30,7 +30,7 @@ namespace mls.Controllers
         {
             var query = from a in db.Requisitions
                         where a.StatusId == 2
-                        orderby a.RequestDate descending
+                        orderby a.RequisitionId descending
                         select a;
             return View("Closed", query);
             //return View(db.Requisitions.ToList());

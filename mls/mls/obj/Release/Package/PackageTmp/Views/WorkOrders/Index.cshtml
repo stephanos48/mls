@@ -16,7 +16,7 @@
     <h4><u>Operational Apps</u></h4>
     <br />
 
-    @Html.ActionLink("Production Schedule", "Schedule", "WorkOrders", null, null)
+    @Html.ActionLink("Production Schedule", "Schedule1", "WorkOrders", null, null)
     <br />
     <br />
     @Html.ActionLink("Production Plan", "ProductionPlan")
@@ -25,7 +25,7 @@
     @Html.ActionLink("Production Plan Update", "ProductionPlan1")
     <br />
     <br />
-    @Html.ActionLink("Production Detail View", "Index", "WoDetails", null, null)
+    @Html.ActionLink("Production Detail View", "WoDetails", "WoDetails", null, null)
     <br />
     <br />
      @Html.ActionLink("Production Actions", "ProductionMeeting", "Scrums", null, null)
@@ -58,7 +58,13 @@
 
     <h4><u>Operational Inputs</u></h4>
     <br />
-    @Html.ActionLink("Create New Work Order", "Create")
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
+        {
+            @Html.ActionLink("Create New", "Create")
+        }
+    }
     <br />
     <br />
     @Html.ActionLink("Create New Stock Out", "Create", "DownReports", null, null)

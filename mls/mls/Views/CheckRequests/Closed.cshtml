@@ -1,0 +1,116 @@
+﻿@model IEnumerable<mls.Models.CheckRequest>
+
+@{
+    ViewBag.Title = "Checks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Closed Check Requests</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "CheckRequests", null, null)
+</p>
+<table id="check" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckStatusId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MailDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualMailDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipMethod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrackingInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CheckRequestId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.CheckRequestId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CheckRequestId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Supplier)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckStatusId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MailDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActualMailDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipMethod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrackingInfo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#check").DataTable({
+                'iDisplayLength': 100 });
+            });
+
+    </script>
+}
+

@@ -96,6 +96,18 @@ namespace mls.Controllers
 
         [Authorize]
         // GET: ShipIns
+        public ActionResult PcTransit()
+        {
+            var query = from a in db.ShipIns
+                        where a.ShipInStatusId != 3 && (a.CustomerDivisionId == 1 || a.CustomerDivisionId == 9 || a.CustomerDivisionId == 4)
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("PcTransit", query);
+            //return View(db.ShipIns.ToList());
+        }
+
+        [Authorize]
+        // GET: ShipIns
         public ActionResult WbTransit()
         {
             var query = from a in db.ShipIns
@@ -139,6 +151,18 @@ namespace mls.Controllers
                         orderby a.ContainerUh descending
                         select a;
             return View("HeilReceipt", query);
+            //return View(db.ShipIns.ToList());
+        }
+
+        [Authorize]
+        // GET: ShipIns
+        public ActionResult PcReceipt()
+        {
+            var query = from a in db.ShipIns
+                        where a.ShipInStatusId == 3 && (a.CustomerDivisionId == 1 || a.CustomerDivisionId == 9 || a.CustomerDivisionId == 4)
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("PcReceipt", query);
             //return View(db.ShipIns.ToList());
         }
 
@@ -313,6 +337,20 @@ namespace mls.Controllers
 
         // GET: ShipIns/Details/5
         public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ShipIn shipIn = db.ShipIns.Find(id);
+            if (shipIn == null)
+            {
+                return HttpNotFound();
+            }
+            return View(shipIn);
+        }
+
+        public ActionResult RoDetail(int? id)
         {
             if (id == null)
             {

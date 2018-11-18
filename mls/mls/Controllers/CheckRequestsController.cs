@@ -17,9 +17,29 @@ namespace mls.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: CheckRequests
-        public async Task<ActionResult> Index()
+        /*public async Task<ActionResult> Index()
         {
             return View(await db.CheckRequests.ToListAsync());
+        }*/
+
+        public ActionResult Index()
+        {
+            var query = from a in db.CheckRequests
+                        where a.CheckStatusId != 4
+                        orderby a.CheckRequestId descending
+                        select a;
+            return View("Index", query);
+            //return View(await db.CheckRequests.ToListAsync());
+        }
+
+        public ActionResult Closed()
+        {
+            var query = from a in db.CheckRequests
+                        where a.CheckStatusId == 4 
+                        orderby a.CheckRequestId descending
+                        select a;
+            return View("Closed", query);
+            //return View(await db.CheckRequests.ToListAsync());
         }
 
         // GET: CheckRequests/Details/5

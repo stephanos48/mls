@@ -1,0 +1,138 @@
+﻿@model mls.Models.CustomerQuote
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CustomerQuote</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MlsDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuoteDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuoteDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Eau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Eau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChinaBom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChinaBom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExchangeRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExchangeRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuotedPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuotedPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriceBreak)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceBreak)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tariff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tariff)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Terms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Terms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuoteBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuoteBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerQuoteId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

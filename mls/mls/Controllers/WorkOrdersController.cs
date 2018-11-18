@@ -47,6 +47,15 @@ namespace mls.Controllers
             return View(query.ToList());
         }
 
+        public ActionResult Schedule1()
+        {
+            var query = from c in db.WorkOrders
+                        where c.WoOrderStatusId == 4
+                        orderby c.ShipDate ascending
+                        select c;
+            return View(query.ToList());
+        }
+
         public ActionResult ProductionPlan1(int? id)
         {
             var viewModel = new ProductionIndexDataViewModel();

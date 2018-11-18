@@ -10,5 +10,7 @@ namespace mls.Models
         public int DepartmentId { get; set; }
 
         public string DepartmentName { get; set; }
+
+        public ICollection<Checklist> Checklist { get; set; }
     }
 }

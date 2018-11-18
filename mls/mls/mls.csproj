@@ -334,10 +334,13 @@
     <Compile Include="Controllers\Api\ShipOutsController.cs" />
     <Compile Include="Controllers\BomLevel1Controller.cs" />
     <Compile Include="Controllers\BuildHistoriesController.cs" />
+    <Compile Include="Controllers\ChecklistsController.cs" />
     <Compile Include="Controllers\CheckRequestsController.cs" />
     <Compile Include="Controllers\ChOilsController.cs" />
+    <Compile Include="Controllers\ContainerPoTrackersController.cs" />
     <Compile Include="Controllers\CustomerComplaintsController.cs" />
     <Compile Include="Controllers\CustomerOrdersController.cs" />
+    <Compile Include="Controllers\CustomerQuotesController.cs" />
     <Compile Include="Controllers\DemandsController.cs" />
     <Compile Include="Controllers\DemandWksController.cs" />
     <Compile Include="Controllers\DownReportsController.cs" />
@@ -359,6 +362,7 @@
     <Compile Include="Controllers\ProcessMatricesController.cs" />
     <Compile Include="Controllers\ProductionPlansController.cs" />
     <Compile Include="Controllers\PurchaseOrdersController.cs" />
+    <Compile Include="Controllers\QuotesController.cs" />
     <Compile Include="Controllers\RequisitionsController.cs" />
     <Compile Include="Controllers\ScrumDetailsController.cs" />
     <Compile Include="Controllers\ScrumsController.cs" />
@@ -786,12 +790,51 @@
     <Compile Include="Migrations\201809211955415_checkstatus.Designer.cs">
       <DependentUpon>201809211955415_checkstatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809280536485_crupdate1.cs" />
+    <Compile Include="Migrations\201809280536485_crupdate1.Designer.cs">
+      <DependentUpon>201809280536485_crupdate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809291732507_calwk.cs" />
+    <Compile Include="Migrations\201809291732507_calwk.Designer.cs">
+      <DependentUpon>201809291732507_calwk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810260326204_woupdate20181025.cs" />
+    <Compile Include="Migrations\201810260326204_woupdate20181025.Designer.cs">
+      <DependentUpon>201810260326204_woupdate20181025.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811070601548_containertracker.cs" />
+    <Compile Include="Migrations\201811070601548_containertracker.Designer.cs">
+      <DependentUpon>201811070601548_containertracker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811130654443_customerquote20181112.cs" />
+    <Compile Include="Migrations\201811130654443_customerquote20181112.Designer.cs">
+      <DependentUpon>201811130654443_customerquote20181112.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811130741408_quote20181113.cs" />
+    <Compile Include="Migrations\201811130741408_quote20181113.Designer.cs">
+      <DependentUpon>201811130741408_quote20181113.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811170522023_quote20181116.cs" />
+    <Compile Include="Migrations\201811170522023_quote20181116.Designer.cs">
+      <DependentUpon>201811170522023_quote20181116.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811180158212_quotesv120181117.cs" />
+    <Compile Include="Migrations\201811180158212_quotesv120181117.Designer.cs">
+      <DependentUpon>201811180158212_quotesv120181117.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811181441188_customerquote20181118.cs" />
+    <Compile Include="Migrations\201811181441188_customerquote20181118.Designer.cs">
+      <DependentUpon>201811181441188_customerquote20181118.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivePart.cs" />
     <Compile Include="Models\BomLevel1.cs" />
     <Compile Include="Models\BuildHistory.cs" />
     <Compile Include="Models\CalendarWk.cs" />
+    <Compile Include="Models\CalWk.cs" />
+    <Compile Include="Models\Checklist.cs" />
+    <Compile Include="Models\ChecklistType.cs" />
     <Compile Include="Models\CheckRequest.cs" />
     <Compile Include="Models\CheckStatus.cs" />
     <Compile Include="Models\ChOil.cs" />
@@ -799,11 +842,13 @@
     <Compile Include="Models\CommitWk.cs" />
     <Compile Include="Models\ComplaintSeverity.cs" />
     <Compile Include="Models\ComplaintType.cs" />
+    <Compile Include="Models\ContainerPoTracker.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerComplaint.cs" />
     <Compile Include="Models\CustomerDivision.cs" />
     <Compile Include="Models\CustomerOrder.cs" />
     <Compile Include="Models\CustomerQoh.cs" />
+    <Compile Include="Models\CustomerQuote.cs" />
     <Compile Include="Models\Demand.cs" />
     <Compile Include="Models\DemandWk.cs" />
     <Compile Include="Models\Department.cs" />
@@ -844,6 +889,7 @@
     <Compile Include="Models\ProductionPlan.cs" />
     <Compile Include="Models\Productive.cs" />
     <Compile Include="Models\PurchaseOrder.cs" />
+    <Compile Include="Models\Quote.cs" />
     <Compile Include="Models\Requisition.cs" />
     <Compile Include="Models\Scrum.cs" />
     <Compile Include="Models\ScrumCreatedBy.cs" />
@@ -870,6 +916,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\BomViewModel.cs" />
+    <Compile Include="ViewModels\DemandViewModel.cs" />
     <Compile Include="ViewModels\ExpeditedFreightDataViewModel.cs" />
     <Compile Include="ViewModels\ForecastViewModel.cs" />
     <Compile Include="ViewModels\GraphNcrViewModel.cs" />
@@ -886,8 +933,10 @@
     <Compile Include="ViewModels\QohViewModel.cs" />
     <Compile Include="ViewModels\Save1PfepViewModel.cs" />
     <Compile Include="ViewModels\SaveBuildViewModel.cs" />
+    <Compile Include="ViewModels\SaveChecklistViewModel.cs" />
     <Compile Include="ViewModels\SaveCheckRequestViewModel.cs" />
     <Compile Include="ViewModels\SaveComplaintViewModel.cs" />
+    <Compile Include="ViewModels\SaveCustomerQuotesViewModel.cs" />
     <Compile Include="ViewModels\SaveDownViewModel.cs" />
     <Compile Include="ViewModels\SaveEmployeeViewModel.cs" />
     <Compile Include="ViewModels\SaveExpFreightViewModel.cs" />
@@ -898,6 +947,7 @@
     <Compile Include="ViewModels\SaveOrderViewModel.cs" />
     <Compile Include="ViewModels\SavePfepViewModel.cs" />
     <Compile Include="ViewModels\SavePurchaseOrderViewModel.cs" />
+    <Compile Include="ViewModels\SaveQuoteViewModel.cs" />
     <Compile Include="ViewModels\SaveReqViewModel.cs" />
     <Compile Include="ViewModels\SaveScrumViewModel.cs" />
     <Compile Include="ViewModels\SaveShipInViewModel.cs" />
@@ -2621,6 +2671,46 @@
     <Content Include="Views\CheckRequests\Details.cshtml" />
     <Content Include="Views\CheckRequests\Edit.cshtml" />
     <Content Include="Views\CheckRequests\Index.cshtml" />
+    <Content Include="Views\CheckRequests\Closed.cshtml" />
+    <Content Include="Views\Scrums\ProductionMeetingClosed.cshtml" />
+    <Content Include="Views\CustomerOrders\THI.cshtml" />
+    <Content Include="Views\ExpeditedFreights\Paid.cshtml" />
+    <Content Include="Views\ExpeditedFreights\Open.cshtml" />
+    <Content Include="Views\Demands\_ForecastPartialView.cshtml" />
+    <Content Include="Views\Demands\_DemandPartialView.cshtml" />
+    <Content Include="Views\Demands\_ShipCommitPartialView.cshtml" />
+    <Content Include="Views\Demands\HeilForecast.cshtml" />
+    <Content Include="Views\CustomerOrders\PcHome.cshtml" />
+    <Content Include="Views\ShipIns\PcTransit.cshtml" />
+    <Content Include="Views\CustomerOrders\PcQoh.cshtml" />
+    <Content Include="Views\ShipIns\PcReceipt.cshtml" />
+    <Content Include="Views\ShipIns\HeilReceipt.cshtml" />
+    <Content Include="Views\CustomerOrders\RoPc.cshtml" />
+    <Content Include="Views\CustomerOrders\RoPc1.cshtml" />
+    <Content Include="Views\ShipOuts\PcShipOut.cshtml" />
+    <Content Include="Views\WorkOrders\PcSchedule.cshtml" />
+    <Content Include="Views\WorkOrders\Schedule1.cshtml" />
+    <Content Include="Views\Checklists\Create.cshtml" />
+    <Content Include="Views\Checklists\Delete.cshtml" />
+    <Content Include="Views\Checklists\Details.cshtml" />
+    <Content Include="Views\Checklists\Edit.cshtml" />
+    <Content Include="Views\Checklists\Index.cshtml" />
+    <Content Include="Views\ContainerPoTrackers\Create.cshtml" />
+    <Content Include="Views\ContainerPoTrackers\Delete.cshtml" />
+    <Content Include="Views\ContainerPoTrackers\Details.cshtml" />
+    <Content Include="Views\ContainerPoTrackers\Edit.cshtml" />
+    <Content Include="Views\ContainerPoTrackers\Index.cshtml" />
+    <Content Include="Views\CustomerQuotes\Create.cshtml" />
+    <Content Include="Views\CustomerQuotes\Delete.cshtml" />
+    <Content Include="Views\CustomerQuotes\Details.cshtml" />
+    <Content Include="Views\CustomerQuotes\Edit.cshtml" />
+    <Content Include="Views\CustomerQuotes\Index.cshtml" />
+    <Content Include="Views\Quotes\Create.cshtml" />
+    <Content Include="Views\Quotes\Delete.cshtml" />
+    <Content Include="Views\Quotes\Details.cshtml" />
+    <Content Include="Views\Quotes\Edit.cshtml" />
+    <Content Include="Views\Quotes\Index.cshtml" />
+    <Content Include="Views\CustomerOrders\SalesAllAlt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2947,6 +3037,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809211955415_checkstatus.resx">
       <DependentUpon>201809211955415_checkstatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809280536485_crupdate1.resx">
+      <DependentUpon>201809280536485_crupdate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809291732507_calwk.resx">
+      <DependentUpon>201809291732507_calwk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810260326204_woupdate20181025.resx">
+      <DependentUpon>201810260326204_woupdate20181025.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811070601548_containertracker.resx">
+      <DependentUpon>201811070601548_containertracker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811130654443_customerquote20181112.resx">
+      <DependentUpon>201811130654443_customerquote20181112.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811130741408_quote20181113.resx">
+      <DependentUpon>201811130741408_quote20181113.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811170522023_quote20181116.resx">
+      <DependentUpon>201811170522023_quote20181116.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811180158212_quotesv120181117.resx">
+      <DependentUpon>201811180158212_quotesv120181117.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811181441188_customerquote20181118.resx">
+      <DependentUpon>201811181441188_customerquote20181118.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

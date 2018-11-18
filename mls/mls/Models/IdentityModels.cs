@@ -180,5 +180,17 @@ namespace mls.Models
 
         public DbSet<CheckStatus> CheckStatuses { get; set; }
 
+        public DbSet<CalWk> CalWks { get; set; }
+
+        public DbSet<ContainerPoTracker> ContainerPoTrackers { get; set; }
+
+        public DbSet<Checklist> Checklists { get; set; }
+
+        public DbSet<ChecklistType> ChecklistTypes { get; set; }
+
+        public DbSet<Quote> Quotes { get; set; }
+
+        public DbSet<CustomerQuote> CustomerQuotes { get; set; }
+
     }
 }

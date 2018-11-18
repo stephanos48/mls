@@ -40,5 +40,7 @@ namespace mls.Models
 
         public virtual ICollection<SupplierContact> SupplierContacts { get; set; }
 
+        public virtual ICollection<Quote> Quotes { get; set; }
+
     }
 }

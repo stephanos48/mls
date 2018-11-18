@@ -1,0 +1,98 @@
+﻿@model IEnumerable<mls.Models.Quote>
+
+@{
+    ViewBag.Title = "Supplier Quotes";
+
+}
+
+<h2>Supplier Quotes</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "Pfeps", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+<table id="quote" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuoteDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuotedPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceBreak)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tariff)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Terms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuoteBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.QuoteId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.QuoteId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.QuoteId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuoteDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuotedPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceBreak)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tariff)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Terms)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuoteBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#quote").DataTable({
+              'iDisplayLength': 100 });
+            });
+
+    </script>
+}

@@ -41,6 +41,10 @@ namespace mls.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? PromiseDate { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? ShipDate { get; set; }
+
         [Required]
         [Display(Name = "Customer PN")]
         public string CustomerPn { get; set; }
@@ -83,6 +87,12 @@ namespace mls.Models
 
         [Display(Name = "WO Detail")]
         public string WoNotes { get; set; }
+
+        public string Parts { get; set; }
+
+        public string Equipment { get; set; }
+
+        public string Resources { get; set; }
 
         [Display(Name = "Notes")]
         public string Notes { get; set; }

@@ -1,0 +1,128 @@
+﻿@model List<mls.ViewModels.ForecastViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="tab-content">
+    <div class="well tab-pane" id="Demand">
+        <table id="demand" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        CustomerPn
+                    </th>
+                    <th>
+                        COH
+                    </th>
+                    <th>
+                        TOH
+                    </th>
+                    <th></th>
+                    <th>
+                        Wk1
+                    </th>
+                    <th>
+                        Wk2
+                    </th>
+                    <th>
+                        Wk3
+                    </th>
+                    <th>
+                        Wk4
+                    </th>
+                    <th>
+                        Wk5
+                    </th>
+                    <th>
+                        Wk6
+                    </th>
+                    <th>
+                        Wk7
+                    </th>
+                    <th>
+                        Wk8
+                    </th>
+                    <th>
+                        Wk9
+                    </th>
+                    <th>
+                        Wk10
+                    </th>
+                    <th>
+                        Wk11
+                    </th>
+                    <th>
+                        Wk12
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerPn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.COH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TOH)
+                        </td>
+                        <td></td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wk1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wk2)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wk3)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wk4)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wk5)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wk6)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wk7)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wk8)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wk9)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wk10)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wk11)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wk12)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    @section scripts
+{
+        <script>
+            $(document).ready(function () {
+                $("#demand").DataTable({
+                    'iDisplayLength': 100
+                });
+            });
+
+        </script>
+}

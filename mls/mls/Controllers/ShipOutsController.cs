@@ -95,6 +95,16 @@ namespace mls.Controllers
         }
 
         // GET: ShipOuts
+        public ActionResult PcShipOut()
+        {
+            var query = from a in db.ShipOuts
+                        where a.CustomerId == 1 && a.CustomerDivisionId == 9
+                        orderby a.ShipDate descending
+                        select a;
+            return View("PcShipOut", query);
+        }
+
+        // GET: ShipOuts
         public ActionResult ChShipOut()
         {
             var query = from a in db.ShipOuts
@@ -155,12 +165,12 @@ namespace mls.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShipOut wbshipOut = db.ShipOuts.Find(id);
-            if (wbshipOut == null)
+            ShipOut shipOut = db.ShipOuts.Find(id);
+            if (shipOut == null)
             {
                 return HttpNotFound();
             }
-            return View(wbshipOut);
+            return View(shipOut);
         }
 
         // GET: ShipOuts/Details/5

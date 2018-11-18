@@ -1,0 +1,82 @@
+﻿@model mls.Models.Quote
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Quote</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuoteDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuoteDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuotedPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuotedPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriceBreak)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceBreak)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tariff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tariff)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Terms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Terms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuoteBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuoteBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.QuoteId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

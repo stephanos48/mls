@@ -81,7 +81,7 @@ namespace mls.Controllers
             { 
                 db.WoDetails.Add(woDetail);
                 db.SaveChanges();
-                return RedirectToAction("ProductionPlan1", "WorkOrders");
+                return RedirectToAction("WoDetails", "WoDetails");
             }
 
             ViewBag.WorkOrderId = new SelectList(db.WorkOrders, "WorkOrderId", "WorkOrderId", woDetail.WorkOrderId); 
@@ -131,7 +131,7 @@ namespace mls.Controllers
             {
                 db.Entry(woDetail).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("WoDetails", "WoDetails");
             }
             ViewBag.WorkOrderId = new SelectList(db.WorkOrders, "WorkOrderId", "WorkOrderId", woDetail.WorkOrderId);
             return View(woDetail);

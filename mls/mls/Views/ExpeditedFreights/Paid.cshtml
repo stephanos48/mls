@@ -1,0 +1,107 @@
+﻿@model IEnumerable<mls.Models.ExpeditedFreight>
+
+@{
+    ViewBag.Title = "Expedited Freight";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Expedited Freight - Paid</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "ExpFreightHome", "ExpeditedFreights", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+<table id="expedite" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Expedited Freight No</th>
+            <th>Customer</th>
+            <th>Status</th>
+            <th>Part Number</th>
+            <th>Freight Type</th>
+            <th>Destination</th>
+            <th>MLS Invoice No</th>
+            <th>Reason</th>
+            <th>Notes</th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.ExpeditedFreightNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PartNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ExpeditedFreightType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RequestedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RequestDateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NeedDateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Destination)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reason)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Notes)
+                </th>
+                <th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ExpeditedFreightId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.ExpeditedFreightId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ExpeditedFreightId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpeditedFreightNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpeditedFreightType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reason)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#expedite").DataTable({
+                'iDisplayLength': 100 });
+            });
+
+    </script>
+}

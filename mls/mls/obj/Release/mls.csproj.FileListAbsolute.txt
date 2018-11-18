@@ -818,3 +818,12 @@ C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.expfreig
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.expfreightupdate1.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.checkrequest.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.checkstatus.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.crupdate1.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.calwk.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.woupdate20181025.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.containertracker.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.customerquote20181112.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.quote20181113.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.quote20181116.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.quotesv120181117.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.customerquote20181118.resources

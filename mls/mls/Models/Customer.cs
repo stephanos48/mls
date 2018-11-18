@@ -32,5 +32,8 @@ namespace mls.Models
         public int NcrChinaId { get; set; }
 
         public virtual NcrChina NcrChinas { get; set; }
+
+        public virtual ICollection<Quote> Quotes { get; set; }
+
     }
 }

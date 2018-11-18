@@ -139,6 +139,22 @@ namespace mls.Controllers
             return View(viewModel);
         }
 
+        // GET: Maintenance
+        public ActionResult ProductionMeetingClosed(int? id)
+        {
+            var viewModel = new ScrumIndexDataViewModel();
+            viewModel.Scrums = db.Scrums.Where(x => x.DepartmentId == 16 && x.ScrumStatusId == 10)
+                .Include(i => i.ScrumDetails);
+
+            if (id != null)
+            {
+                ViewBag.ScrumId = id.Value;
+                viewModel.ScrumDetails = viewModel.Scrums.Single(
+                    i => i.ScrumId == id.Value).ScrumDetails;
+            }
+            return View(viewModel);
+        }
+
         // GET: ScrumHome
         public ActionResult ScrumHome(int? id)
         {

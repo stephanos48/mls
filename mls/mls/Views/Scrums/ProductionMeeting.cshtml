@@ -8,7 +8,7 @@
 <h2>Production Meeting Actions</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "Index", "WorkOrders", null, null) | @Html.ActionLink("Create New", "Create") 
+    @Html.ActionLink("Go Back", "Index", "WorkOrders", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Closed", "ProductionMeetingClosed")
 </p>
 
 <br />
@@ -62,15 +62,14 @@
     <thead>
         <tr>
             <th></th>
-            <th>Scrum Id</th>
-            <th>Created By Id</th>
-            <th>Creation Date Time</th>
-            <th>Responsible Id</th>
-            <th>Action</th>
-            <th>Classificaiton Id</th>
-            <th>Scrum Status Id</th>
-            <th>Due Date Time</th>
-            <th>Completion Date Time</th>
+            <th>ScrumId</th>
+            <th>CreationDate</th>
+            <th>ResponsibleId</th>
+            <th>ActionItem</th>
+            <th>ClassificaitonId</th>
+            <th>ScrumStatusId</th>
+            <th>DueDate</th>
+            <th>CompletionDate</th>
         </tr>
     </thead>
     <tbody>
@@ -90,9 +89,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ScrumId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedById)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreationDateTime)

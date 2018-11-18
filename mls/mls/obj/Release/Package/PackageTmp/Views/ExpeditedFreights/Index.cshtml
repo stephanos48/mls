@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Expedited Freight</h2>
+<h2>Expedited Freight - All</h2>
 
 @if (Model.ExpFreightDetails != null)
 {
@@ -14,7 +14,7 @@
         Expedited Freight Details
     </h3>
     <p>
-        @Html.ActionLink("Create New", "Create", "ExpFreightDetails", null, null)
+        @Html.ActionLink("Create New", "Create", "ExpFreightDetails", null, null) 
     </p>
     <table class="table table-bordered table-hover">
         <tr>
@@ -54,7 +54,7 @@
 <br />
 
 <p>
-    @Html.ActionLink("Go Back", "Index", "ShipIns", null, null) | @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Go Back", "Index", "ShipIns", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Paid", "Paid")
 </p>
 <table id="expedite" class="table table-bordered table-hover">
     <thead>

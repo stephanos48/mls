@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Heil_Cylinder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Heil Forecast Cylinders</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "ForecastHome")
+</p>
+
+<br />
+<body>
+    <div>
+        <ul class="nav nav-tabs">
+            @if (ViewBag.Condition == 0)
+            {
+                <li class="nav active">@Html.ActionLink("Forecast", "HeilForecast", new { condition = 0 }, new { @id = "Forecast" })</li>
+                <li class="nav">@Html.ActionLink("Demand", "HeilForecast", new { condition = 1 }, new { @id = "Demand" })</li>
+                <li class="nav">@Html.ActionLink("Commits", "HeilForecast", new { condition = 2 }, new { @id = "Commits" })</li>
+            }
+            else if (ViewBag.Condition == 1)
+            {
+                <li class="nav">@Html.ActionLink("Forecast", "HeilForecast", new { condition = 0 }, new { @id = "Forecast" })</li>
+                <li class="nav active">@Html.ActionLink("Demand", "HeilForecast", new { condition = 1 }, new { @id = "Demand" })</li>
+                <li class="nav">@Html.ActionLink("Commits", "HeilForecast", new { condition = 2 }, new { @id = "Commits" })</li>
+            }
+            else if (ViewBag.Condition == 2)
+            {
+                <li class="nav">@Html.ActionLink("Forecast", "HeilForecast", new { condition = 0 }, new { @id = "Forecast" })</li>
+                <li class="nav">@Html.ActionLink("Demand", "HeilForecast", new { condition = 1 }, new { @id = "Demand" })</li>
+                <li class="nav active">@Html.ActionLink("Commits", "HeilForecast", new { condition = 2 }, new { @id = "Commits" })</li>
+            }
+        </ul>
+        <div class="tab-content">
+            @if (ViewBag.Condition == 0)
+            {
+                <div class="tab-pane fade in active" id="Forecast">
+                    @Html.Action("_Forecast", "Demands", new { customer = 1, div = 1, mls = 1 })
+                </div>
+            }
+            else if (ViewBag.Condition == 1)
+            {
+                <div class="tab-pane fade  in active" id="Demand">
+                    @Html.Action("_Demand", "Demands", new { customer = 1, div = 1, mls = 1 })
+                </div>
+            }
+            else if (ViewBag.Condition == 2)
+            {
+                <div class="tab-pane fade  in active" id="Commits">
+                    @Html.Action("_Commits", "Demands", new { customer = 1, div = 1, mls = 1 })
+                </div>
+            }
+        </div>
+    </div>
+</body>
+

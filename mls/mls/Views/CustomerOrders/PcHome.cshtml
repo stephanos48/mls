@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "PcHome";
+}
+
+<h2>Parts Central Home</h2>
+<br />
+<p>
+    <h4><u>PC Reports</u></h4>
+    <br />
+
+    @Html.ActionLink("Open Order Status - Std", "RoPc1", "CustomerOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Open Order Status - Alt View", "RoPc", "CustomerOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Qoh TX", "PcQoh", "CustomerOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("In Transit", "PcTransit", "ShipIns", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Receipt History", "PcReceipt", "ShipIns", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Ship Out History", "PcShipOut", "ShipOuts", null, null)
+    <br />
+    <br />
+

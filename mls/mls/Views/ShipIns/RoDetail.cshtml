@@ -223,6 +223,10 @@
         {
             @Html.ActionLink("Back to List", "JbtOrlandoTransit")
         }
+        else if (User.IsInRole("Pc"))
+        {
+            @Html.ActionLink("Back to List", "PcTransit")
+        }
         else
         {
             @Html.ActionLink("Back to List", "Transit")

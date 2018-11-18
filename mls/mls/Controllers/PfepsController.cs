@@ -22,17 +22,20 @@ namespace mls.Controllers
         // GET: Pfeps
         public ActionResult Index()
         {
+
+            return View("~/Views/Pfeps/Index.cshtml");
+
             //var query = db.Pfeps.ToList();
             //return View("~/Views/Pfeps/Index.cshtml", query);
 
-            if (User.IsInRole("Admin") || User.IsInRole("OpsPower") || User.IsInRole("InvPower") || User.IsInRole("PurPower"))
-            {
-                return View("~/Views/Pfeps/Index.cshtml");
-            }
-            else
-            {
-                return View("~/Views/Pfeps/PfepPlan.cshtml");
-            }
+            //if (User.IsInRole("Admin") || User.IsInRole("OpsPower") || User.IsInRole("InvPower") || User.IsInRole("PurPower"))
+            //{
+            //    return View("~/Views/Pfeps/Index.cshtml");
+            //}
+            //else
+            //{
+            //    return View("~/Views/Pfeps/PfepPlan.cshtml");
+            //}
         }
 
         [Authorize(Roles = "Admin, PurPower, OpsPower, InvPower")]

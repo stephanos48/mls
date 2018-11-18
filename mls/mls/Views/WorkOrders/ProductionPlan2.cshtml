@@ -6,7 +6,11 @@
 <h2>ProductionPlan2</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "Index") | @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Go Back", "Index") | @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
+        {@Html.ActionLink("Create New", "Create")}
+    }@Html.ActionLink("Create New", "Create")
 </p>
 
 <br />

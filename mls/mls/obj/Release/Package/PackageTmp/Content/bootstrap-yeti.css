@@ -7068,3 +7068,8 @@ input[type="checkbox"] {
 .modal .close {
   color: #222222;
 }
+
+.nopadding {
+   padding: -70px !important;
+   margin: -70px !important;
+}

@@ -85,6 +85,10 @@ namespace mls.Controllers
             {
                 return View("HeilHome");
             }
+            else if (User.IsInRole("Pc"))
+            {
+                return View("PcHome");
+            }
             else
             {
                 return RedirectToAction("Index", "Home");
@@ -110,6 +114,16 @@ namespace mls.Controllers
             //               select a;
             // return View("Wastebuilt", query);
             return View("Nov");
+        }
+
+        // GET: CustomerOrders/Pc
+        public ActionResult PcHome()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("PcHome");
         }
 
         // GET: CustomerOrders/Wastebuilt
@@ -152,6 +166,16 @@ namespace mls.Controllers
             return View("JBT_Ogden");
         }
 
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult THI()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("THI");
+        }
+
         // GET: CustomerOrders/
         public ActionResult NovHyd()
         {
@@ -190,16 +214,6 @@ namespace mls.Controllers
             //               select a;
             // return View("Wastebuilt", query);
             return View("RONov");
-        }
-
-        // GET: CustomerOrders/Wastebuilt
-        public ActionResult RoDetails()
-        {
-            //var query = from a in db.CustomerOrders
-            //               orderby a.OrderDateTime descending
-            //               select a;
-            // return View("Wastebuilt", query);
-            return View("RODetails");
         }
 
         // GET: CustomerOrders/Wastebuilt
@@ -328,6 +342,35 @@ namespace mls.Controllers
             }
 
             return View("WBQoh", quantities);
+            //return View();
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult PcQoh()
+        {
+            var query = from a in db.TxQohs
+                        join mp in db.MasterPartLists on a.Pn equals mp.CustomerPn
+                        where mp.CustomerId == 1 && mp.CustomerDivisionId == 9
+                        orderby a.Pn ascending
+                        select new
+                        {
+                            PN = a.Pn,
+                            QOH = a.Qoh
+                        };
+
+            List<QohViewModel> quantities = new List<QohViewModel>();
+            foreach (var qoh in query.ToList())
+            {
+                QohViewModel mymodel = new QohViewModel()
+                {
+                    Pn = qoh.PN,
+                    Qoh = qoh.QOH
+                };
+
+                quantities.Add(mymodel);
+            }
+
+            return View("PcQoh", quantities);
             //return View();
         }
 
@@ -496,6 +539,26 @@ namespace mls.Controllers
             //return View();
         }
 
+        public ActionResult RoPc1()
+        {
+            //var query = from a in db.CustomerOrders
+            //            where a.CustomerId == 1 && a.CustomerDivisionId == 9
+            //            orderby a.OrderDateTime descending
+            //            select a;
+            //return View("RoPc1", query);
+            return View();
+        }
+
+        public ActionResult RoPc()
+        {
+            var query = from a in db.CustomerOrders
+                        where a.CustomerId == 1 && a.CustomerDivisionId == 9
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("RoPc", query);
+            //return View();
+        }
+
         // GET: CustomerOrders/Wastebuilt
         public ActionResult WB1()
         {
@@ -515,6 +578,17 @@ namespace mls.Controllers
                         orderby a.OrderDateTime descending
                         select a;
             return View("ROWastebuilt1", query);
+            //return View();
+        }
+
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult SalesAllAlt()
+        {
+            var query = from a in db.CustomerOrders
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("SalesAllAlt", query);
             //return View();
         }
 
@@ -1731,8 +1805,23 @@ namespace mls.Controllers
             return View("~/Views/ShipIns/Index.cshtml");
         }
 
-    // GET: CustomerOrders/Details/5
-    public ActionResult Details(int? id)
+        // GET: CustomerOrders/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CustomerOrder customerOrder = db.CustomerOrders.Find(id);
+            if (customerOrder == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customerOrder);
+        }
+
+        // GET: CustomerOrders/Details/5
+        public ActionResult RoDetails(int? id)
         {
             if (id == null)
             {

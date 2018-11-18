@@ -41,6 +41,8 @@ namespace mls.Models
         public string EmployeeCountry { get; set; }
 
         public string EmployeeNotes { get; set; }
-        
+
+        public ICollection<Checklist> Checklist { get; set; }
+
     }
 }

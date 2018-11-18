@@ -43,6 +43,24 @@ namespace mls.Controllers
             return View(viewModel);
         }
 
+        public ActionResult Paid()
+        {
+            var query = from a in db.ExpeditedFreights
+                        where a.StatusId == 2
+                        orderby a.ExpeditedFreightId descending
+                        select a;
+            return View("Paid", query);
+        }
+
+        public ActionResult Open()
+        {
+            var query = from a in db.ExpeditedFreights
+                        where a.StatusId != 2
+                        orderby a.ExpeditedFreightId descending
+                        select a;
+            return View("Open", query);
+        }
+
         // GET: ExpeditedFreights/Details/5
         public ActionResult Details(int? id)
         {

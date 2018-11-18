@@ -1,7 +1,7 @@
 ﻿@model mls.Models.ShipOut
 
 @{
-    ViewBag.Title = "WBDetails";
+    ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
@@ -197,5 +197,39 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "WBShipOut")
+@if (User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("Wastebuilt"))
+    {
+        @Html.ActionLink("Back to List", "WBShipOut")
+    }
+    else if (User.IsInRole("Heil"))
+    {
+        @Html.ActionLink("Back to List", "HeilShipOut")
+    }
+    else if (User.IsInRole("Nov"))
+    {
+        @Html.ActionLink("Back to List", "NovHome")
+    }
+    else if (User.IsInRole("Columbus"))
+    {
+        @Html.ActionLink("Back to List", "ChShipOut")
+    }
+    else if (User.IsInRole("Thi"))
+    {
+        @Html.ActionLink("Back to List", "ThiShipOut")
+    }
+    else if (User.IsInRole("JbtOrlando"))
+    {
+        @Html.ActionLink("Back to List", "JbtOrlandoShipOut")
+    }
+    else if (User.IsInRole("Pc"))
+    {
+        @Html.ActionLink("Back to List", "PcShipOut")
+    }
+    else
+    {
+        @Html.ActionLink("Back to List", "ShipOut")
+    }
+}
 </p>

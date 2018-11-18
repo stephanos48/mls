@@ -7,7 +7,7 @@
 <h2>Production Plan</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "Index") | @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Go Back", "Index") | @if (User.Identity.IsAuthenticated){if (User.IsInRole("Admin") || User.IsInRole("OpsPower")){@Html.ActionLink("Create New", "Create")}}
 </p>
 
 <br />
@@ -116,9 +116,13 @@
             <tr class="@selectedRow">
                 <td>
                     @Html.ActionLink("Select", "ProductionPlan1", new { id = item.WorkOrderId })|
-                    @Html.ActionLink("Edit", "Edit", new { id = item.WorkOrderId })|
+                    @if (User.Identity.IsAuthenticated){if (User.IsInRole("Admin") || User.IsInRole("OpsPower")){@Html.ActionLink("Edit", "Edit", new { id = item.WorkOrderId })}}|
                     @Html.ActionLink("Details", "Details", new { id = item.WorkOrderId })|
-                    @Html.ActionLink("Delete", "Delete", new { id = item.WorkOrderId })
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
+                        {@Html.ActionLink("Delete", "Delete", new { id = item.WorkOrderId })}
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.WorkOrderId)

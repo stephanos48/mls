@@ -7,7 +7,41 @@
 <h2>Heil</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "ForecastHome", "Demands", null, null)
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Wastebuilt"))
+        {
+            @Html.ActionLink("Go Back", "WbHome", "CustomerOrders", null, null)
+        }
+        else if (User.IsInRole("Heil"))
+        {
+            @Html.ActionLink("Go Back", "HeilHome", "CustomerOrders", null, null)
+        }
+        else if (User.IsInRole("Nov"))
+        {
+            @Html.ActionLink("Go Back", "NovHome", "CustomerOrders", null, null)
+        }
+        else if (User.IsInRole("Columbus"))
+        {
+            @Html.ActionLink("Go Back", "ChHome", "CustomerOrders", null, null)
+        }
+        else if (User.IsInRole("Thi"))
+        {
+            @Html.ActionLink("Go Back", "ThiHome", "CustomerOrders", null, null)
+        }
+        else if (User.IsInRole("JbtOrlando"))
+        {
+            @Html.ActionLink("Go Back", "JBT_OrlandoHome", "CustomerOrders", null, null)
+        }
+        else if (User.IsInRole("Pc"))
+        {
+            @Html.ActionLink("Go Back", "PcHome", "CustomerOrders", null, null)
+        }
+        else
+        {
+            @Html.ActionLink("Go Back", "ForecastHome", "Demands", null, null)
+        }
+    }
 </p>
 
 <br />
@@ -16,10 +50,10 @@
 
 <br />
 
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#ForecastTab">Forecast</a></li>
-    <li><a href="#DemandTab">Demand</a></li>
-    <li><a href="#CommitTab">Ship Commits</a></li>
+<ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a data-target="#ForecastTab" data-toggle="tab">Forecast</a></li>
+    <li><a data-target="#DemandTab" data-toggle="tab">Demand</a></li>
+    <li><a data-target="#CommitTab" data-toggle="tab">Ship Commits</a></li>
     <li></li>
 </ul>
 
@@ -359,7 +393,6 @@
             $("#forecast").DataTable({
                 'iDisplayLength': 100 });
             });
-
     </script>
 
     <script>

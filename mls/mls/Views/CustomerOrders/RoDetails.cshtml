@@ -175,6 +175,10 @@
         {
             @Html.ActionLink("Back to List", "Jbt_OrlandoHome")
         }
+        else if (User.IsInRole("Pc"))
+        {
+            @Html.ActionLink("Back to List", "PcHome")
+        }
         else
         {
             @Html.ActionLink("Back to List", "Sales")

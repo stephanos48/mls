@@ -8,20 +8,23 @@
 <h2>Check Requests</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "Index", "Pfeps", null, null) | @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Go Back", "Index", "Pfeps", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Closed", "Closed")
 </p>
 <table id="check" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th></th>
             <th>
+                @Html.DisplayNameFor(model => model.MlsCo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CheckNo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CheckStatusId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PartNumber)
@@ -59,13 +62,16 @@
                     @Html.ActionLink("Delete", "Delete", new { id = item.CheckRequestId })
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.MlsCo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Supplier)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.CheckNo)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Amount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CheckStatusId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PartNumber)

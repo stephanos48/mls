@@ -8,7 +8,7 @@ namespace mls.Models
 {
     public class Requisition
     {
-
+        [Display(Name = "ReqId")]
         public int RequisitionId { get; set; }
 
         public Status Status { get; set; }
@@ -20,20 +20,23 @@ namespace mls.Models
 
         public string Description { get; set; }
 
-        [Display(Name = "Part Number (if known)")]
+        [Display(Name = "PartNumber")]
         public string PartNumber { get; set; }
 
-        [Display(Name = "Request Date")]
+        [Display(Name = "Quantity")]
+        public int Quantity { get; set; }
+
+        [Display(Name = "RequestDate")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? RequestDate { get; set; }
 
-        [Display(Name = "Need Date")]
+        [Display(Name = "NeedDate")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? NeedDate { get; set; }
 
-        [Display(Name = "ETA Date")]
+        [Display(Name = "ETADate")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? EtaDate { get; set; }
