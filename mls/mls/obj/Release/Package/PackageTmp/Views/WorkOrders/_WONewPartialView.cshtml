@@ -41,9 +41,10 @@
     {
         <tr>
             <td>
+                @if (User.Identity.IsAuthenticated)
                 {
-                if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
-                {@Html.ActionLink("Edit", "Edit", new { id = item.WorkOrderId })}
+                    if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
+                    {@Html.ActionLink("Edit", "Edit", new { id = item.WorkOrderId })}
                 }|
                 @Html.ActionLink("Details", "Details", new { id = item.WorkOrderId })|
                 @if (User.Identity.IsAuthenticated)

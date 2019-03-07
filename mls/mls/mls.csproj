@@ -826,6 +826,34 @@
     <Compile Include="Migrations\201811181441188_customerquote20181118.Designer.cs">
       <DependentUpon>201811181441188_customerquote20181118.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812051657462_cordertype20181205.cs" />
+    <Compile Include="Migrations\201812051657462_cordertype20181205.Designer.cs">
+      <DependentUpon>201812051657462_cordertype20181205.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812160832004_reqstatus20181216.cs" />
+    <Compile Include="Migrations\201812160832004_reqstatus20181216.Designer.cs">
+      <DependentUpon>201812160832004_reqstatus20181216.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901310455412_ncrcost20190130.cs" />
+    <Compile Include="Migrations\201901310455412_ncrcost20190130.Designer.cs">
+      <DependentUpon>201901310455412_ncrcost20190130.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901310534012_ncrremovencost.cs" />
+    <Compile Include="Migrations\201901310534012_ncrremovencost.Designer.cs">
+      <DependentUpon>201901310534012_ncrremovencost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901310609340_ncraddback20190131.cs" />
+    <Compile Include="Migrations\201901310609340_ncraddback20190131.Designer.cs">
+      <DependentUpon>201901310609340_ncraddback20190131.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901312334501_customerorderline20190131.cs" />
+    <Compile Include="Migrations\201901312334501_customerorderline20190131.Designer.cs">
+      <DependentUpon>201901312334501_customerorderline20190131.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902060833553_new20190205.cs" />
+    <Compile Include="Migrations\201902060833553_new20190205.Designer.cs">
+      <DependentUpon>201902060833553_new20190205.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivePart.cs" />
@@ -843,6 +871,7 @@
     <Compile Include="Models\ComplaintSeverity.cs" />
     <Compile Include="Models\ComplaintType.cs" />
     <Compile Include="Models\ContainerPoTracker.cs" />
+    <Compile Include="Models\COrderType.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerComplaint.cs" />
     <Compile Include="Models\CustomerDivision.cs" />
@@ -890,6 +919,7 @@
     <Compile Include="Models\Productive.cs" />
     <Compile Include="Models\PurchaseOrder.cs" />
     <Compile Include="Models\Quote.cs" />
+    <Compile Include="Models\ReqStatus.cs" />
     <Compile Include="Models\Requisition.cs" />
     <Compile Include="Models\Scrum.cs" />
     <Compile Include="Models\ScrumCreatedBy.cs" />
@@ -924,11 +954,15 @@
     <Compile Include="ViewModels\LocationViewModel1.cs" />
     <Compile Include="ViewModels\MvcMasterDetails.cs" />
     <Compile Include="ViewModels\NcrViewModel.cs" />
+    <Compile Include="ViewModels\NewChecklistViewModel.cs" />
     <Compile Include="ViewModels\NewDownViewModel.cs" />
     <Compile Include="ViewModels\NewOrderViewModel.cs" />
     <Compile Include="ViewModels\NewPurchaseOrderViewModel.cs" />
+    <Compile Include="ViewModels\NewReqViewModel.cs" />
     <Compile Include="ViewModels\NewScrumViewModel.cs" />
     <Compile Include="ViewModels\NewWorkOrderViewModel.cs" />
+    <Compile Include="ViewModels\OpenDownViewModel.cs" />
+    <Compile Include="ViewModels\OpenOrderViewModel.cs" />
     <Compile Include="ViewModels\ProductionIndexDataViewModel.cs" />
     <Compile Include="ViewModels\QohViewModel.cs" />
     <Compile Include="ViewModels\Save1PfepViewModel.cs" />
@@ -2711,6 +2745,66 @@
     <Content Include="Views\Quotes\Edit.cshtml" />
     <Content Include="Views\Quotes\Index.cshtml" />
     <Content Include="Views\CustomerOrders\SalesAllAlt.cshtml" />
+    <Content Include="Views\CustomerOrders\SalesClosed.cshtml" />
+    <Content Include="Views\CustomerOrders\HeilAlt.cshtml" />
+    <Content Include="Views\Pfeps\PfepJbtOrlando.cshtml" />
+    <Content Include="Views\CustomerOrders\HeilAltClosed.cshtml" />
+    <Content Include="Views\Pfeps\PfepUsaParts.cshtml" />
+    <Content Include="Views\CustomerOrders\PickSchedule.cshtml" />
+    <Content Include="Views\CustomerOrders\PickScheduleClosed.cshtml" />
+    <Content Include="Views\CustomerOrders\AssemblySchedule.cshtml" />
+    <Content Include="Views\CustomerOrders\ClosedAssembly.cshtml" />
+    <Content Include="Views\Checklists\_ChecklistDaily.cshtml" />
+    <Content Include="Views\Checklists\_ChecklistWeekly.cshtml" />
+    <Content Include="Views\Checklists\_ChecklistBiWeekly.cshtml" />
+    <Content Include="Views\Checklists\_ChecklistMonthly.cshtml" />
+    <Content Include="Views\Checklists\_ChecklistQuarterly.cshtml" />
+    <Content Include="Views\Checklists\_ChecklistSemiAnnually.cshtml" />
+    <Content Include="Views\Checklists\_ChecklistAnnually.cshtml" />
+    <Content Include="Views\Checklists\Ops.cshtml" />
+    <Content Include="Views\Checklists\Logistics.cshtml" />
+    <Content Include="Views\Checklists\Quality.cshtml" />
+    <Content Include="Views\Checklists\Eng.cshtml" />
+    <Content Include="Views\Checklists\SupplyChain.cshtml" />
+    <Content Include="Views\Checklists\Sales.cshtml" />
+    <Content Include="Views\Checklists\Exec.cshtml" />
+    <Content Include="Views\Checklists\HR.cshtml" />
+    <Content Include="Views\Requisitions\_ReqNew.cshtml" />
+    <Content Include="Views\Requisitions\_ReqSupplierSearch.cshtml" />
+    <Content Include="Views\Requisitions\_ReqOrdered.cshtml" />
+    <Content Include="Views\Requisitions\_ReqComplete.cshtml" />
+    <Content Include="Views\Requisitions\ReqStatus.cshtml" />
+    <Content Include="Views\PurchaseOrders\FrontierBolt.cshtml" />
+    <Content Include="Views\Pfeps\PfepJbtOgden.cshtml" />
+    <Content Include="Views\CustomerOrders\HydSales.cshtml" />
+    <Content Include="Views\CustomerOrders\PcAlt.cshtml" />
+    <Content Include="Views\CustomerOrders\HydSalesAllAlt.cshtml" />
+    <Content Include="Views\CustomerOrders\HydSalesAllAltClosed.cshtml" />
+    <Content Include="Views\CustomerOrders\ClAlt.cshtml" />
+    <Content Include="Views\CustomerOrders\ClAltClosed.cshtml" />
+    <Content Include="Views\CustomerOrders\DttSales.cshtml" />
+    <Content Include="Views\CustomerOrders\DttSalesClosed.cshtml" />
+    <Content Include="Views\CustomerOrders\DopSales.cshtml" />
+    <Content Include="Views\CustomerOrders\DopSalesClosed.cshtml" />
+    <Content Include="Views\CustomerOrders\DipSales.cshtml" />
+    <Content Include="Views\CustomerOrders\DipSalesClosed.cshtml" />
+    <Content Include="Views\CustomerOrders\DipSalesAll.cshtml" />
+    <Content Include="Views\CustomerOrders\PcAltClosed.cshtml" />
+    <Content Include="Views\CustomerOrders\ColumbusAlt.cshtml" />
+    <Content Include="Views\CustomerOrders\ColumbusAltClosed.cshtml" />
+    <Content Include="Views\CustomerOrders\HunterAlt.cshtml" />
+    <Content Include="Views\CustomerOrders\HunterAltClosed.cshtml" />
+    <Content Include="Views\CustomerOrders\MarathonAlt.cshtml" />
+    <Content Include="Views\CustomerOrders\MarathonAltClosed.cshtml" />
+    <Content Include="Views\CustomerOrders\ThiAlt.cshtml" />
+    <Content Include="Views\CustomerOrders\ThiAltClosed.cshtml" />
+    <Content Include="Views\CustomerOrders\OldSales.cshtml" />
+    <Content Include="Views\WorkOrders\Schedule2.cshtml" />
+    <Content Include="Views\WorkOrders\Schedule3.cshtml" />
+    <Content Include="Views\CustomerOrders\PcPickSchedule.cshtml" />
+    <Content Include="Views\CustomerOrders\PcPickScheduleClosed.cshtml" />
+    <Content Include="Views\DownReports\Index.cshtml" />
+    <Content Include="Views\DownReports\Closed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3064,6 +3158,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811181441188_customerquote20181118.resx">
       <DependentUpon>201811181441188_customerquote20181118.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812051657462_cordertype20181205.resx">
+      <DependentUpon>201812051657462_cordertype20181205.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812160832004_reqstatus20181216.resx">
+      <DependentUpon>201812160832004_reqstatus20181216.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901310455412_ncrcost20190130.resx">
+      <DependentUpon>201901310455412_ncrcost20190130.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901310534012_ncrremovencost.resx">
+      <DependentUpon>201901310534012_ncrremovencost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901310609340_ncraddback20190131.resx">
+      <DependentUpon>201901310609340_ncraddback20190131.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901312334501_customerorderline20190131.resx">
+      <DependentUpon>201901312334501_customerorderline20190131.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902060833553_new20190205.resx">
+      <DependentUpon>201902060833553_new20190205.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

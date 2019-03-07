@@ -14,6 +14,9 @@ namespace mls.Models
         [Display(Name = "MLS PO")]
         public string PoNumber { get; set; }
 
+        [Display(Name = "PO Line")]
+        public string PoLine { get; set; }
+
         public Supplier Supplier { get; set; }
 
         [Display(Name = "Supplier")]

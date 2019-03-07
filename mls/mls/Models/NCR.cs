@@ -122,5 +122,9 @@ namespace mls.Models
 
         public string RtvStatus { get; set; }
 
+        public string ReworkCost { get; set; }
+
+        public string ScrapCost { get; set; }
+
     }
 }

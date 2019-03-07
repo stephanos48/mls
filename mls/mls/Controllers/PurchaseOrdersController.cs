@@ -107,6 +107,11 @@ namespace mls.Controllers
             return View();
         }
 
+        public ActionResult FrontierBolt()
+        {
+            return View();
+        }
+
         public ActionResult HualinOrders()
         {
             return View();

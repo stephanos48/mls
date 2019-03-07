@@ -7,9 +7,12 @@
 <h2>Details</h2>
 
 <div>
-    <h4>DownReport</h4>
+    <h4>Down Report</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DownReportId)
+        </dt>
         <dt>
             @Html.DisplayNameFor(model => model.CreationDateTime)
         </dt>
@@ -59,14 +62,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Reason)
         </dt>
 
@@ -85,6 +80,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.DownReportId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DownReportId })|
+    @Html.ActionLink("Back to List", "DownAlt")
 </p>

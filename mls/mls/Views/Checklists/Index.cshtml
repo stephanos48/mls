@@ -8,9 +8,9 @@
 <h2>Checklist Home</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "Index", "Scrums", null, null) | @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Go Back", "Index", "Scrums", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Ops", "Ops") | @Html.ActionLink("SC", "SupplyChain") | @Html.ActionLink("Eng", "Eng") | @Html.ActionLink("Quality", "Quality") | @Html.ActionLink("Logistics", "Logistics") | @Html.ActionLink("Sales", "Sales") | @Html.ActionLink("Exec", "Exec") | @Html.ActionLink("HR", "HR")
 </p>
-<table id="checklist" class="table" table-bordered table-hover"> 
+<table id="checklist" class="table table-bordered table-hover"> 
     <thead>
         <tr>
             <th></th>
@@ -18,7 +18,7 @@
                 @Html.DisplayNameFor(model => model.DepartmentId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ChecklistTypeId)
+                @Html.DisplayNameFor(model => model.ChecklistId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EmployeeId)

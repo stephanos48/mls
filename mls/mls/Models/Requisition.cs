@@ -11,10 +11,10 @@ namespace mls.Models
         [Display(Name = "ReqId")]
         public int RequisitionId { get; set; }
 
-        public Status Status { get; set; }
+        public ReqStatus ReqStatus { get; set; }
 
         [Display(Name = "Status")]
-        public byte StatusId { get; set; }
+        public byte ReqStatusId { get; set; }
 
         public string Supplier { get; set; }
 

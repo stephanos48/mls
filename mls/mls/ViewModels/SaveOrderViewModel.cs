@@ -19,6 +19,8 @@ namespace mls.ViewModels
 
         public IEnumerable<OrderStatus> OrderStatuses { get; set; }
 
+        public IEnumerable<COrderType> COrderTypes { get; set; }
+
         public CustomerOrder CustomerOrder { get; set; }
     }
 }

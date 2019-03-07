@@ -192,5 +192,9 @@ namespace mls.Models
 
         public DbSet<CustomerQuote> CustomerQuotes { get; set; }
 
+        public DbSet<COrderType> COrderTypes { get; set; }
+
+        public DbSet<ReqStatus> ReqStatuses { get; set; }
+
     }
 }

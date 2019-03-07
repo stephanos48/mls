@@ -1,4 +1,4 @@
-﻿@model IEnumerable<mls.Models.CustomerOrder>
+﻿@model List<mls.ViewModels.OpenOrderViewModel>
 
 @{
     ViewBag.Title = "SalesAllAlt";
@@ -7,43 +7,49 @@
 <h2>Sales All - Alt View</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "Sales")
+    @Html.ActionLink("Go Back", "Sales") | @Html.ActionLink("Closed", "SalesClosed")
 </p>
 <br />
 
-<table id="wb" class="table table-bordered table-hover">
+<table id="heil" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th></th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderStatusId)
+                Staus
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SoNumber)
+                SoNo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerOrderNumber)
+                CustomerPo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderDateTime)
+                OrderDate
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerPn)
+                CustomerPn
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderQty)
+                OhQty
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ShipQty)
+                OrderQty
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PromiseDateTime)
+                QtyShipped
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ShipDateTime)
+                RequestDate
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Notes)
+                PromiseDate
+            </th>
+            <th>
+                ShipDate
+            </th>
+            <th>
+                Notes
             </th>
 
         </tr>
@@ -54,7 +60,9 @@
         {
             <tr>
                 <td>
-                    @Html.ActionLink("Details", "WbDetails", new { id = item.CustomerOrderId })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CustomerOrderId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.CustomerOrderId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CustomerOrderId })
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.OrderStatusId)
@@ -63,7 +71,7 @@
                     @Html.DisplayFor(modelItem => item.SoNumber)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CustomerOrderNumber)
+                    @Html.DisplayFor(modelItem => item.CustomerPo)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.OrderDateTime)
@@ -72,10 +80,16 @@
                     @Html.DisplayFor(modelItem => item.CustomerPn)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.OhQty)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.OrderQty)
                 </td>
                 <td>
                     @Html.DisplayFor(mmodelItem => item.ShipQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(mmodelItem => item.RequestedDateTime)
                 </td>
                 <td>
                     @Html.DisplayFor(mmodelItem => item.PromiseDateTime)
@@ -92,11 +106,16 @@
     </tbody>
 </table>
 
+@*@using (Html.BeginForm("ExportWb", "CustomerOrders", FormMethod.Post))
+    {
+        <input type="submit" value="Export" />
+    }*@
+
 @section scripts
 {
     <script>
         $(document).ready(function() {
-            $("#wb").DataTable({
+            $("#heil").DataTable({
                 'iDisplayLength': 100 });
             });
 

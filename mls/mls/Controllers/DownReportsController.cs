@@ -82,7 +82,7 @@ namespace mls.Controllers
             {
                 db.DownReports.Add(downReport);
                 db.SaveChanges();
-                return RedirectToAction("Index", "WorkOrders");
+                return RedirectToAction("DownAlt", "WorkOrders");
             }
 
             return View();
@@ -128,7 +128,7 @@ namespace mls.Controllers
             {
                 db.Entry(downReport).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("DownAlt");
             }
             //return View(downReport);
             return View();
@@ -157,7 +157,7 @@ namespace mls.Controllers
             DownReport downReport = db.DownReports.Find(id);
             db.DownReports.Remove(downReport);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("DownAlt");
         }
 
         public ActionResult _ClosedDownPartialView()
@@ -273,6 +273,90 @@ namespace mls.Controllers
             }
 
             return PartialView("_NewDownPartialView", result);
+        }
+
+        [HttpGet]
+        public ActionResult DownAlt()
+        {
+            var queryNew = from co in db.DownReports
+                           where co.DownStatusId != 4
+                           orderby co.CreationDateTime ascending
+                           select new
+                           {
+                               DownReportId = co.DownReportId,
+                               MlsDivisionId = co.MlsDivisionId,
+                               CreationDateTime = co.CreationDateTime,
+                               CustomerPn = co.CustomerPn,
+                               CustomerPo = co.CustomerPo,
+                               QtyNeeded = co.QtyNeeded,
+                               MlsWo = co.MlsWo,
+                               EstArrivalDateTime = co.EstArrivalDateTime,
+                               DownStatusId = co.DownStatusId,
+                               Reason = co.Reason,
+                               Notes = co.Notes
+                           };
+            List<OpenDownViewModel> result = new List<OpenDownViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenDownViewModel
+                {
+                    DownReportId = order.DownReportId,
+                    MlsDivisionId = order.MlsDivisionId,
+                    CreationDateTime = order.CreationDateTime,
+                    CustomerPn = order.CustomerPn,
+                    CustomerPo = order.CustomerPo,
+                    QtyNeeded = order.QtyNeeded,
+                    MlsWo = order.MlsWo,
+                    EstArrivalDateTime = order.EstArrivalDateTime,
+                    DownStatusId = order.DownStatusId,
+                    Reason = order.Reason,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("Index", result);
+        }
+
+        [HttpGet]
+        public ActionResult DownAltClosed()
+        {
+            var queryNew = from co in db.DownReports
+                           where co.DownStatusId == 4
+                           orderby co.CreationDateTime ascending
+                           select new
+                           {
+                               DownReportId = co.DownReportId,
+                               MlsDivisionId = co.MlsDivisionId,
+                               CreationDateTime = co.CreationDateTime,
+                               CustomerPn = co.CustomerPn,
+                               CustomerPo = co.CustomerPo,
+                               QtyNeeded = co.QtyNeeded,
+                               MlsWo = co.MlsWo,
+                               EstArrivalDateTime = co.EstArrivalDateTime,
+                               DownStatusId = co.DownStatusId,
+                               Reason = co.Reason,
+                               Notes = co.Notes
+                           };
+            List<OpenDownViewModel> result = new List<OpenDownViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenDownViewModel
+                {
+                    DownReportId = order.DownReportId,
+                    MlsDivisionId = order.MlsDivisionId,
+                    CreationDateTime = order.CreationDateTime,
+                    CustomerPn = order.CustomerPn,
+                    CustomerPo = order.CustomerPo,
+                    QtyNeeded = order.QtyNeeded,
+                    MlsWo = order.MlsWo,
+                    EstArrivalDateTime = order.EstArrivalDateTime,
+                    DownStatusId = order.DownStatusId,
+                    Reason = order.Reason,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("Closed", result);
         }
 
         protected override void Dispose(bool disposing)

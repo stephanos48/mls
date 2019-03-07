@@ -15,6 +15,9 @@ namespace mls.Models
         [Display(Name = "Customer PO")]
         public string CustomerOrderNumber { get; set; }
 
+        [Display(Name ="Customer PO Line")]
+        public string CustomerOrderLine { get; set; }
+
         [Display(Name = "MLS SO")]
         public string SoNumber { get; set; }
 
@@ -37,6 +40,11 @@ namespace mls.Models
 
         [Display(Name = "MLS Division")]
         public byte MlsDivisionId { get; set; }
+
+        public COrderType COrderType { get; set; }
+
+        [Display(Name = "Order Type")]
+        public byte COrderTypeId { get; set; }
 
         [Display(Name = "Customer PN")]
         public string CustomerPn { get; set; }

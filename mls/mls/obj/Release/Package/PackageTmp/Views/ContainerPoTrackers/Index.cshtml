@@ -1,15 +1,16 @@
 ﻿@model IEnumerable<mls.Models.ContainerPoTracker>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "PoTracker";
 }
 
-<h2>Index</h2>
+<h2>Container PO Tracker</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Go Back", "Index", "ShipIns", null, null) | @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table id="container" class="table table-bordered table-striped table-hover">
+    <thead>
     <tr>
         <th></th>
         <th>
@@ -37,39 +38,51 @@
             @Html.DisplayNameFor(model => model.Notes)
         </th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ContainerPoTrackerId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ContainerPoTrackerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ContainerPoTrackerId })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PartNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PoNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date1stDateTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Open1stQty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContainerQty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ConfirmedDateTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContainerNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Notes)
-        </td>
-    </tr>
-}
-
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ContainerPoTrackerId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.ContainerPoTrackerId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ContainerPoTrackerId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PoNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date1stDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Open1stQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContainerQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConfirmedDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContainerNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+               $("#container").DataTable();
+            });
+
+    </script>
+}

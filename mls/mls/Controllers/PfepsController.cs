@@ -82,6 +82,18 @@ namespace mls.Controllers
         }
 
         // GET: Wastebuilt PFEP
+        public ActionResult PfepJbtOrlando()
+        {
+            return View();
+        }
+
+        // GET: Wastebuilt PFEP
+        public ActionResult PfepJbtOgden()
+        {
+            return View();
+        }
+
+        // GET: Wastebuilt PFEP
         public ActionResult WB1Pfep()
         {
             return View();
@@ -139,6 +151,12 @@ namespace mls.Controllers
 
         // GET: Bayne Actuator PFEP
         public ActionResult Bayne_Actuator()
+        {
+            return View();
+        }
+
+        // GET: Bayne Actuator PFEP
+        public ActionResult PfepUsaParts()
         {
             return View();
         }

@@ -15,10 +15,10 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Requisition.StatusId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Requisition.ReqStatusId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Requisition.StatusId, new SelectList(Model.Statuses, "StatusId", "StatusName"), "Select Status", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Requisition.StatusId, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Requisition.ReqStatusId, new SelectList(Model.ReqStatuses, "ReqStatusId", "ReqStatusName"), "Select Status", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Requisition.ReqStatusId, "", new { @class = "text-danger" })
             </div>
         </div>
 

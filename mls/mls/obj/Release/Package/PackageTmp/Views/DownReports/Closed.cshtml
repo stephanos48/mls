@@ -1,0 +1,106 @@
+﻿@model List<mls.ViewModels.OpenDownViewModel>
+
+@{
+    ViewBag.Title = "DownAlt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Stock Outs - Closed</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "DownAlt")
+</p>
+<br />
+<table id="heil" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Id
+            </th>
+            <th>
+                CreationDate
+            </th>
+            <th>
+                CustomerPn
+            </th>
+            <th>
+                QtyNeeded
+            </th>
+            <th>
+                MlsWo
+            </th>
+            <th>
+                CustomerPo
+            </th>
+            <th>
+                EstArrivalDate
+            </th>
+            <th>
+                ReasonPartNeeded
+            </th>
+            <th>
+                Notes
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DownReportId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.DownReportId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DownReportId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DownReportId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtyNeeded)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MlsWo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstArrivalDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(mmodelItem => item.Reason)
+                </td>
+                <td>
+                    @Html.DisplayFor(mmodelItem => item.Notes)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*@using (Html.BeginForm("ExportWb", "CustomerOrders", FormMethod.Post))
+    {
+        <input type="submit" value="Export" />
+    }*@
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#heil").DataTable({
+                'iDisplayLength': 100 });
+            });
+
+    </script>
+}
+

@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "ReqStatus";
+}
+
+<h2>Requisition Status</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "Pfeps", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Open", "Index") | @Html.ActionLink("Closed", "Closed")
+</p>
+
+<br />
+
+<h4><u>New Reqs</u></h4>
+@Html.Action("_ReqNew", "Requisitions", new { Status = 1 })
+<br />
+<br />
+<h4><u>Supplier Search</u></h4>
+@Html.Action("_ReqSupplierSearch", "Requisitions", new { Status = 2 })
+<br />
+<br />
+<h4><u>Ordered</u></h4>
+@Html.Action("_ReqOrdered", "Requisitions", new { Status = 3 })
+<br />
+<br />
+

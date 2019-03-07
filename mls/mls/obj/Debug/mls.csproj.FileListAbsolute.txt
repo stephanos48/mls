@@ -827,3 +827,10 @@ C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.quote20181
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.quote20181116.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.quotesv120181117.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.customerquote20181118.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.cordertype20181205.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.reqstatus20181216.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.ncrcost20190130.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.ncrremovencost.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.ncraddback20190131.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.customerorderline20190131.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.new20190205.resources

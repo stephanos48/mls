@@ -150,6 +150,179 @@ namespace mls.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult _ChecklistDaily(int department)
+        {
+            var queryNew = from a in db.Checklists
+                           where a.ChecklistTypeId == 1 && a.DepartmentId == department
+                           select a;
+            List<NewChecklistViewModel> result = new List<NewChecklistViewModel>();
+            foreach (var check in queryNew.ToList())
+            {
+                result.Add(new NewChecklistViewModel
+                {
+                    ChecklistId = check.ChecklistId,
+                    Employee = check.EmployeeId,
+                    ChecklistAction = check.ChecklistAction,
+                    Notes = check.Notes
+                });
+            }
+            return PartialView("_ChecklistDaily", result);
+        }
+
+        public ActionResult _ChecklistWeekly(int department)
+        {
+            var queryNew = from a in db.Checklists
+                           where a.ChecklistTypeId == 2 && a.DepartmentId == department
+                           select a;
+            List<NewChecklistViewModel> result = new List<NewChecklistViewModel>();
+            foreach (var check in queryNew.ToList())
+            {
+                result.Add(new NewChecklistViewModel
+                {
+                    ChecklistId = check.ChecklistId,
+                    Employee = check.EmployeeId,
+                    ChecklistAction = check.ChecklistAction,
+                    Notes = check.Notes
+                });
+            }
+            return PartialView("_ChecklistWeekly", result);
+        }
+
+        public ActionResult _ChecklistBiWeekly(int department)
+        {
+            var queryNew = from a in db.Checklists
+                           where a.ChecklistTypeId == 3 && a.DepartmentId == department
+                           select a;
+            List<NewChecklistViewModel> result = new List<NewChecklistViewModel>();
+            foreach (var check in queryNew.ToList())
+            {
+                result.Add(new NewChecklistViewModel
+                {
+                    ChecklistId = check.ChecklistId,
+                    Employee = check.EmployeeId,
+                    ChecklistAction = check.ChecklistAction,
+                    Notes = check.Notes
+                });
+            }
+            return PartialView("_ChecklistBiWeekly", result);
+        }
+
+        public ActionResult _ChecklistMonthly(int department)
+        {
+            var queryNew = from a in db.Checklists
+                           where a.ChecklistTypeId == 4 && a.DepartmentId == department
+                           select a;
+            List<NewChecklistViewModel> result = new List<NewChecklistViewModel>();
+            foreach (var check in queryNew.ToList())
+            {
+                result.Add(new NewChecklistViewModel
+                {
+                    ChecklistId = check.ChecklistId,
+                    Employee = check.EmployeeId,
+                    ChecklistAction = check.ChecklistAction,
+                    Notes = check.Notes
+                });
+            }
+            return PartialView("_ChecklistMonthly", result);
+        }
+
+        public ActionResult _ChecklistQuarterly(int department)
+        {
+            var queryNew = from a in db.Checklists
+                           where a.ChecklistTypeId == 5 && a.DepartmentId == department
+                           select a;
+            List<NewChecklistViewModel> result = new List<NewChecklistViewModel>();
+            foreach (var check in queryNew.ToList())
+            {
+                result.Add(new NewChecklistViewModel
+                {
+                    ChecklistId = check.ChecklistId,
+                    Employee = check.EmployeeId,
+                    ChecklistAction = check.ChecklistAction,
+                    Notes = check.Notes
+                });
+            }
+            return PartialView("_ChecklistQuarterly", result);
+        }
+
+        public ActionResult _ChecklistSemiAnnually(int department)
+        {
+            var queryNew = from a in db.Checklists
+                           where a.ChecklistTypeId == 6 && a.DepartmentId == department
+                           select a;
+            List<NewChecklistViewModel> result = new List<NewChecklistViewModel>();
+            foreach (var check in queryNew.ToList())
+            {
+                result.Add(new NewChecklistViewModel
+                {
+                    ChecklistId = check.ChecklistId,
+                    Employee = check.EmployeeId,
+                    ChecklistAction = check.ChecklistAction,
+                    Notes = check.Notes
+                });
+            }
+            return PartialView("_ChecklistSemiAnnually", result);
+        }
+
+        public ActionResult _ChecklistAnnually(int department)
+        {
+            var queryNew = from a in db.Checklists
+                           where a.ChecklistTypeId == 7 && a.DepartmentId == department
+                           select a;
+            List<NewChecklistViewModel> result = new List<NewChecklistViewModel>();
+            foreach (var check in queryNew.ToList())
+            {
+                result.Add(new NewChecklistViewModel
+                {
+                    ChecklistId = check.ChecklistId,
+                    Employee = check.EmployeeId,
+                    ChecklistAction = check.ChecklistAction,
+                    Notes = check.Notes
+                });
+            }
+            return PartialView("_ChecklistAnnually", result);
+        }
+
+        public ActionResult Ops()
+        {
+            return View("Ops");
+        }
+
+        public ActionResult Exec()
+        {
+            return View("Exec");
+        }
+
+        public ActionResult Quality()
+        {
+            return View("Quality");
+        }
+
+        public ActionResult SupplyChain()
+        {
+            return View("SupplyChain");
+        }
+
+        public ActionResult Logistics()
+        {
+            return View("Logistics");
+        }
+
+        public ActionResult Eng()
+        {
+            return View("Eng");
+        }
+
+        public ActionResult Sales()
+        {
+            return View("Sales");
+        }
+
+        public ActionResult HR()
+        {
+            return View("HR");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

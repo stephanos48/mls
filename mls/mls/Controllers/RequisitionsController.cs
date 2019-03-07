@@ -19,7 +19,7 @@ namespace mls.Controllers
         public ActionResult Index()
         {
             var query = from a in db.Requisitions
-                        where a.StatusId != 2 
+                        where a.ReqStatusId != 4
                         orderby a.RequisitionId descending
                         select a;
             return View("Index", query);
@@ -29,7 +29,7 @@ namespace mls.Controllers
         public ActionResult Closed()
         {
             var query = from a in db.Requisitions
-                        where a.StatusId == 2
+                        where a.ReqStatusId == 4
                         orderby a.RequisitionId descending
                         select a;
             return View("Closed", query);
@@ -54,11 +54,11 @@ namespace mls.Controllers
         // GET: Requisitions/Create
         public ActionResult Create()
         {
-            var statuses = db.Statuses.ToList();
+            var statuses = db.ReqStatuses.ToList();
 
             var viewModel = new SaveReqViewModel()
             {
-                Statuses = statuses
+                ReqStatuses = statuses
             };
 
             return View("Create", viewModel);
@@ -76,7 +76,7 @@ namespace mls.Controllers
             {
                 db.Requisitions.Add(requisition);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ReqStatus");
             }
 
             //return View(requisition);
@@ -88,12 +88,12 @@ namespace mls.Controllers
         {
             var requisitions = db.Requisitions.SingleOrDefault(c => c.RequisitionId == id);
 
-            var statuses = db.Statuses.ToList();
+            var statuses = db.ReqStatuses.ToList();
 
             var viewModel = new SaveReqViewModel()
             {
                 Requisition = requisitions,
-                Statuses = statuses
+                ReqStatuses = statuses
             };
             if (id == null)
             {
@@ -120,7 +120,7 @@ namespace mls.Controllers
             {
                 db.Entry(requisition).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ReqStatus");
             }
             return View();
             //return View(requisition);
@@ -149,7 +149,108 @@ namespace mls.Controllers
             Requisition requisition = db.Requisitions.Find(id);
             db.Requisitions.Remove(requisition);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("ReqStatus");
+        }
+
+        public ActionResult _ReqNew(int status)
+        {
+            var queryNew = from a in db.Requisitions
+                           where a.ReqStatusId == 1
+                           select a;
+            List<NewReqViewModel> result = new List<NewReqViewModel>();
+            foreach (var req in queryNew.ToList())
+            {
+                result.Add(new NewReqViewModel
+                {
+                    RequisitionId = req.RequisitionId,
+                    PartNumber = req.PartNumber,
+                    Description = req.Description,
+                    Quantity = req.Quantity,
+                    RequestDate = req.RequestDate,
+                    NeedDate = req.NeedDate,
+                    EtaDate = req.EtaDate,
+                    Requestor = req.Requestor,
+                    Notes = req.Notes
+                });
+            }
+            return PartialView("_ReqNew", result);
+        }
+
+        public ActionResult _ReqSupplierSearch(int status)
+        {
+            var queryNew = from a in db.Requisitions
+                           where a.ReqStatusId == 2
+                           select a;
+            List<NewReqViewModel> result = new List<NewReqViewModel>();
+            foreach (var req in queryNew.ToList())
+            {
+                result.Add(new NewReqViewModel
+                {
+                    RequisitionId = req.RequisitionId,
+                    PartNumber = req.PartNumber,
+                    Description = req.Description,
+                    Quantity = req.Quantity,
+                    RequestDate = req.RequestDate,
+                    NeedDate = req.NeedDate,
+                    EtaDate = req.EtaDate,
+                    Requestor = req.Requestor,
+                    Notes = req.Notes
+                });
+            }
+            return PartialView("_ReqSupplierSearch", result);
+        }
+
+        public ActionResult _ReqOrdered(int status)
+        {
+            var queryNew = from a in db.Requisitions
+                           where a.ReqStatusId == 3
+                           select a;
+            List<NewReqViewModel> result = new List<NewReqViewModel>();
+            foreach (var req in queryNew.ToList())
+            {
+                result.Add(new NewReqViewModel
+                {
+                    RequisitionId = req.RequisitionId,
+                    PartNumber = req.PartNumber,
+                    Description = req.Description,
+                    Quantity = req.Quantity,
+                    RequestDate = req.RequestDate,
+                    NeedDate = req.NeedDate,
+                    EtaDate = req.EtaDate,
+                    Requestor = req.Requestor,
+                    Notes = req.Notes
+                });
+            }
+            return PartialView("_ReqOrdered", result);
+        }
+
+        public ActionResult _ReqComplete(int status)
+        {
+            var queryNew = from a in db.Requisitions
+                           where a.ReqStatusId == 4
+                           select a;
+            List<NewReqViewModel> result = new List<NewReqViewModel>();
+            foreach (var req in queryNew.ToList())
+            {
+                result.Add(new NewReqViewModel
+                {
+                    RequisitionId = req.RequisitionId,
+                    PartNumber = req.PartNumber,
+                    Description = req.Description,
+                    Quantity = req.Quantity,
+                    RequestDate = req.RequestDate,
+                    NeedDate = req.NeedDate,
+                    EtaDate = req.EtaDate,
+                    Requestor = req.Requestor,
+                    Notes = req.Notes
+                });
+            }
+            return PartialView("_ReqComplete", result);
+        }
+
+        public ActionResult ReqStatus()
+        {
+            return View("ReqStatus");
         }
 
         protected override void Dispose(bool disposing)

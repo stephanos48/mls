@@ -57,6 +57,8 @@ namespace mls.Models
 
         public string PoNumber { get; set; }
 
+        public string PoNumberLine { get; set; }
+
         public string SoNumber { get; set; }
 
         public string PalletNo { get; set; }

@@ -116,6 +116,30 @@ namespace mls.Controllers
             return View("Nov");
         }
 
+        public ActionResult OldSales()
+        {
+            return View("OldSales");
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult HydSales()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("HydSales");
+        }
+
+        public ActionResult DipSales()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("DipSales");
+        }
+
         // GET: CustomerOrders/Pc
         public ActionResult PcHome()
         {
@@ -235,7 +259,7 @@ namespace mls.Controllers
             // return View("Wastebuilt", query);
             return View("ROThi");
         }
-
+        
         // GET: CustomerOrders/Details/5
         public ActionResult WbDetails(int? id)
         {
@@ -266,6 +290,7 @@ namespace mls.Controllers
             return View(heildetails);
         }
 
+        
         // GET: CustomerOrders/Wastebuilt
         public ActionResult ROWastebuilt()
         {
@@ -286,6 +311,7 @@ namespace mls.Controllers
             return View("RoColumbus1");
         }
 
+        
         // GET: CustomerOrders/Wastebuilt
         public ActionResult Wastebuilt()
         {
@@ -522,7 +548,7 @@ namespace mls.Controllers
         public ActionResult RoHeil()
         {
             var query = from a in db.CustomerOrders
-                        where a.CustomerId == 1 && a.CustomerDivisionId == 1
+                        where a.CustomerId == 1 && a.CustomerDivisionId == 1 && a.OrderStatusId != 7
                         orderby a.OrderDateTime descending
                         select a;
             return View("RoHeil", query);
@@ -578,17 +604,6 @@ namespace mls.Controllers
                         orderby a.OrderDateTime descending
                         select a;
             return View("ROWastebuilt1", query);
-            //return View();
-        }
-
-
-        // GET: CustomerOrders/Wastebuilt
-        public ActionResult SalesAllAlt()
-        {
-            var query = from a in db.CustomerOrders
-                        orderby a.OrderDateTime descending
-                        select a;
-            return View("SalesAllAlt", query);
             //return View();
         }
 
@@ -1858,13 +1873,15 @@ namespace mls.Controllers
             var customerdivisions = db.CustomerDivisions.ToList();
             var mlsdivisions = db.MlsDivisions.ToList();
             var orderstatuses = db.OrderStatuses.ToList();
+            var cordertypes = db.COrderTypes.ToList();
 
             var viewModel = new SaveOrderViewModel()
             {
                 Customers = customers,
                 CustomerDivisions = customerdivisions,
                 MlsDivisions = mlsdivisions,
-                OrderStatuses = orderstatuses
+                OrderStatuses = orderstatuses,
+                COrderTypes = cordertypes
 
             };
 
@@ -1900,6 +1917,7 @@ namespace mls.Controllers
             var customerdivisions = db.CustomerDivisions.ToList();
             var mlsdivisions = db.MlsDivisions.ToList();
             var orderstatuses = db.OrderStatuses.ToList();
+            var cordertypes = db.COrderTypes.ToList();
 
             var viewModel = new SaveOrderViewModel()
             {
@@ -1907,7 +1925,8 @@ namespace mls.Controllers
                 Customers = customers,
                 CustomerDivisions = customerdivisions,
                 MlsDivisions = mlsdivisions,
-                OrderStatuses = orderstatuses
+                OrderStatuses = orderstatuses,
+                COrderTypes = cordertypes
             };
             if (id == null)
             {
@@ -1976,6 +1995,1459 @@ namespace mls.Controllers
         {
             return Home();
         }
+        
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult SalesAllAlt()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.OrderStatusId != 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("SalesAllAlt", result);
+            //return View();
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult SalesClosed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.OrderStatusId == 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("SalesClosed", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult HeilAlt()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.CustomerId == 1 && co.CustomerDivisionId == 1 && co.OrderStatusId != 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               PoLine = co.CustomerOrderLine,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    CustomerOrderLine = order.PoLine,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("HeilAlt", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult HeilAltClosed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.CustomerId == 1 && co.CustomerDivisionId == 1 && co.OrderStatusId == 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               PoLine = co.CustomerOrderLine,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    CustomerOrderLine = order.PoLine,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("HeilAltClosed", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult PickSchedule()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.OrderStatusId != 7 && co.COrderTypeId == 1
+                           orderby co.ShipDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               CustomerDivision = co.CustomerDivisionId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               PoLine = co.CustomerOrderLine,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerDivisionId = order.CustomerDivision,
+                    CustomerPo = order.CustomerPo,
+                    CustomerOrderLine = order.PoLine,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("PickSchedule", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult PickScheduleClosed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.OrderStatusId == 7 && co.COrderTypeId == 1
+                           orderby co.ShipDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               CustomerDivision = co.CustomerDivisionId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               PoLine = co.CustomerOrderLine,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerDivisionId = order.CustomerDivision,
+                    CustomerPo = order.CustomerPo,
+                    CustomerOrderLine = order.PoLine,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("PickScheduleClosed", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult PcPickSchedule()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.OrderStatusId != 7 && co.COrderTypeId == 1 && co.CustomerDivisionId == 9
+                           orderby co.ShipDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               CustomerDivision = co.CustomerDivisionId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               PoLine = co.CustomerOrderLine,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerDivisionId = order.CustomerDivision,
+                    CustomerPo = order.CustomerPo,
+                    CustomerOrderLine = order.PoLine,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("PcPickSchedule", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult PcPickScheduleClosed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.OrderStatusId == 7 && co.COrderTypeId == 1 && co.CustomerDivisionId == 9
+                           orderby co.ShipDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               CustomerDivision = co.CustomerDivisionId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               PoLine = co.CustomerOrderLine,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerDivisionId = order.CustomerDivision,
+                    CustomerPo = order.CustomerPo,
+                    CustomerOrderLine = order.PoLine,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("PcPickScheduleClosed", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult AssemblySchedule()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.OrderStatusId != 7 && co.COrderTypeId == 2
+                           orderby co.ShipDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               PoLine = co.CustomerOrderLine,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    CustomerOrderLine = order.PoLine,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("AssemblySchedule", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult ClosedAssembly()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.OrderStatusId == 7 && co.COrderTypeId == 2
+                           orderby co.ShipDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               PoLine = co.CustomerOrderLine,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    CustomerOrderLine = order.PoLine,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("ClosedAssembly", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult PcAlt()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.CustomerId == 1 && co.CustomerDivisionId == 9 && co.OrderStatusId != 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("PcAlt", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult PcAltClosed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.CustomerId == 1 && co.CustomerDivisionId == 9 && co.OrderStatusId == 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("PcAltClosed", result);
+        }
+
+                // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult HydSalesAllAlt()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.MlsDivisionId == 1 && co.OrderStatusId != 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("HydSalesAllAlt", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult HydSalesAllAltClosed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.MlsDivisionId == 1 && co.OrderStatusId == 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("HydSalesAllAltClosed", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult ClAlt()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.MlsDivisionId == 3 && co.OrderStatusId != 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("ClAlt", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult ClAltClosed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.MlsDivisionId == 3 && co.OrderStatusId == 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("ClAltClosed", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult DttSales()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.MlsDivisionId == 2 && co.OrderStatusId != 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("DttSales", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult DttSalesClosed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.MlsDivisionId == 2 && co.OrderStatusId == 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("DttSalesClosed", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult DopSales()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.MlsDivisionId == 5 && co.OrderStatusId != 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("DopSales", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult DopSalesClosed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.MlsDivisionId == 5 && co.OrderStatusId == 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("DopSalesClosed", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult DipSalesAll()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.MlsDivisionId == 4 && co.OrderStatusId != 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               PoLine = co.CustomerOrderLine,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    CustomerOrderLine = order.PoLine,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("DipSalesAll", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult DipSalesClosed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.MlsDivisionId == 4 && co.OrderStatusId == 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               PoLine = co.CustomerOrderLine,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    CustomerOrderLine = order.PoLine,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("DipSalesClosed", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult ColumbusAlt()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.CustomerId == 21 && co.OrderStatusId != 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("ColumbusAlt", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult ColumbusAltClosed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.CustomerId == 21 && co.OrderStatusId == 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("ColumbusAltClosed", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult HunterAlt()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.CustomerId == 4 && co.OrderStatusId != 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("HunterAlt", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult HunterAltClosed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.CustomerId == 4 && co.OrderStatusId == 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("HunterAltClosed", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult MarathonAlt()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.CustomerId == 1 && co.CustomerDivisionId == 2 && co.OrderStatusId != 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("MarathonAlt", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult MarathonAltClosed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.CustomerId == 1 && co.CustomerDivisionId == 2 && co.OrderStatusId == 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("MarathonAltClosed", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult ThiAlt()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.CustomerId == 8 && co.OrderStatusId != 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("ThiAlt", result);
+        }
+
+        // GET: CustomerOrders/Wastebuilt/Review
+        [HttpGet]
+        public ActionResult ThiAltClosed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           where co.CustomerId == 8 && co.OrderStatusId == 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("ThiAltClosed", result);
+        }
+
         /*
         public IList <WbOrderViewModel> GetWbOrderList()
         {

@@ -9,7 +9,7 @@ namespace mls.ViewModels
     public class SaveReqViewModel
     {
 
-        public IEnumerable<Status> Statuses { get; set; }
+        public IEnumerable<ReqStatus> ReqStatuses { get; set; }
 
         public Requisition Requisition { get; set; }
 

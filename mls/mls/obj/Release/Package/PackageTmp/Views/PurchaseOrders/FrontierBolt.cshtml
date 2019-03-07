@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "FontierBolt";
+}
+
+<h2>FontierBolt</h2>
+
+<br />
+<p>
+    @Html.ActionLink("Go Back", "PoHome") | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br />
+
+<h4><u>New Orders</u></h4>
+@Html.Action("_CompNewOrder", "PurchaseOrders", new { MlsSupplier = 26 })
+<br />
+<br />
+<h4><u>Past Due</u></h4>
+@Html.Action("_CompPastDueOrder", "PurchaseOrders", new { MlsSupplier = 26 })
+<br />
+<br />
+<h4><u>Hot Order</u></h4>
+@Html.Action("_CompHotOrder", "PurchaseOrders", new { MlsSupplier = 26 })
+<br />
+<br />
+<h4><u>Open Orders</u></h4>
+@Html.Action("_CompOpenOrder", "PurchaseOrders", new { MlsSupplier = 26 })
+<br />
+<br />
+<h4><u>Closed Orders</u></h4>
+@Html.Action("_CompClosedOrder", "PurchaseOrders", new { MlsSupplier = 26 })
+

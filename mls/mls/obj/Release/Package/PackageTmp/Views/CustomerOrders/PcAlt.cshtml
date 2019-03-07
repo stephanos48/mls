@@ -1,0 +1,124 @@
+﻿@model List<mls.ViewModels.OpenOrderViewModel>
+
+@{
+    ViewBag.Title = "PcAlt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Pc Open Orders</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "HydSales") | @Html.ActionLink("Closed", "PcAltClosed")
+</p>
+<br />
+<table id="heil" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Staus
+            </th>
+            <th>
+                SoNo
+            </th>
+            <th>
+                CustomerPo
+            </th>
+            <th>
+                OrderDate
+            </th>
+            <th>
+                CustomerPn
+            </th>
+            <th>
+                OhQty
+            </th>
+            <th>
+                OrderQty
+            </th>
+            <th>
+                QtyShipped
+            </th>
+            <th>
+                RequestDate
+            </th>
+            <th>
+                PromiseDate
+            </th>
+            <th>
+                ShipDate
+            </th>
+            <th>
+                Notes
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CustomerOrderId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.CustomerOrderId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CustomerOrderId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderStatusId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OhQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(mmodelItem => item.ShipQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(mmodelItem => item.RequestedDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(mmodelItem => item.PromiseDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(mmodelItem => item.Notes)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*@using (Html.BeginForm("ExportWb", "CustomerOrders", FormMethod.Post))
+    {
+        <input type="submit" value="Export" />
+    }*@
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#heil").DataTable({
+                'iDisplayLength': 100 });
+            });
+
+    </script>
+}
+

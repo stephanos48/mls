@@ -27,11 +27,11 @@
 @Html.Action("_AllParts", "Pfeps", new { parttype = 1, customer = 2, division = 6 })
 <br />
 <br />
-<h4><u>In Transit</u></h4>
+@*<h4><u>In Transit</u></h4>
 @Html.Action("_Transit", "ShipIns", new { division = 6 })
 <br />
 <br />
-@*<h4><u>In Transit</u></h4>
+<h4><u>In Transit</u></h4>
     @Html.Action("_BATransit", "ShipIns", new { Customer = 2, Division = 6 })
     <br />
     <br />

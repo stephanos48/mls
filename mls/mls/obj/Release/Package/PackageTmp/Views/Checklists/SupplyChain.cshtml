@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "SupplyChain";
+}
+
+<h2>Supply Chain Checklists</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index") | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br />
+
+<h4><u>Daily Checklist</u></h4>
+@Html.Action("_ChecklistDaily", "Checklists", new { Department = 14 })
+<br />
+<br />
+<h4><u>Weekly Checklist</u></h4>
+@Html.Action("_ChecklistWeekly", "Checklists", new { Department = 14 })
+<br />
+<br />
+<h4><u>Bi-Weekly Checklist</u></h4>
+@Html.Action("_ChecklistBiWeekly", "Checklists", new { Department = 14 })
+<br />
+<br />
+<h4><u>Monthly Checklist</u></h4>
+@Html.Action("_ChecklistMonthly", "Checklists", new { Department = 14 })
+<br />
+<br />
+<h4><u>Quarterly Checklist</u></h4>
+@Html.Action("_ChecklistQuarterly", "Checklists", new { Department = 14 })
+<br />
+<br />
+<h4><u>Semi-Annual Checklist</u></h4>
+@Html.Action("_ChecklistSemiAnnually", "Checklists", new { Department = 14 })
+<br />
+<br />
+<h4><u>Annual Checklist</u></h4>
+@Html.Action("_ChecklistAnnually", "Checklists", new { Department = 14 })
+<br />
+<br />
