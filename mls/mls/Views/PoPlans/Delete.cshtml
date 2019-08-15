@@ -1,0 +1,176 @@
+﻿@model mls.Models.PoPlan
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PoPlan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PoNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PoLine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoLine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerOrderNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerOrderNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MlsDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UhPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UhPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceivedQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceivedQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestedDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestedDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PromiseDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PromiseDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceiptDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceiptDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PoOrderStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoOrderStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "PoPlanStatus")
+        </div>
+    }
+</div>

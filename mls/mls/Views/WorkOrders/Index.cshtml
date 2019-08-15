@@ -43,7 +43,7 @@
     @Html.ActionLink("Production Detail View", "WoDetails", "WoDetails", null, null)
     <br />
     <br />
-     @Html.ActionLink("Production Actions", "ProductionMeeting", "Scrums", null, null)
+    @Html.ActionLink("Production Actions", "ProductionMeeting", "Scrums", null, null)
     <br />
     <br />
     @Html.ActionLink("Work Orders", "WODivision")
@@ -62,14 +62,43 @@
     <br />
     <br />
     @*-> @Html.ActionLink("Supply Chain", "SC")
-    <br />
-    <br />
-    -> @Html.ActionLink("Logistics", "Index", "ShipIns", null, null)
-    <br />
-    <br />
-    -> @Html.ActionLink("Quality", "QualityHome", "NCRs", null, null)
-    <br />
-    <br />*@
+        <br />
+        <br />
+        -> @Html.ActionLink("Logistics", "Index", "ShipIns", null, null)
+        <br />
+        <br />
+        -> @Html.ActionLink("Quality", "QualityHome", "NCRs", null, null)
+        <br />
+        <br />*@
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("InvPower") || User.IsInRole("OpsPower"))
+        { 
+        <p>
+            <h4><u>Tx Qoh</u></h4>
+            <br />
+            @Html.ActionLink("UH Tx Qoh", "TxQohUH", "TxQohs1", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("DIP Tx Qoh", "TxQohDIP", "TxQohs1", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("DDT Tx Qoh", "TxQohDTT", "TxQohs1", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("CL Tx Qoh", "TxQohCL", "TxQohs1", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("DOP Tx Qoh", "TxQohDOP", "TxQohs1", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("All Tx Qoh", "Index", "TxQohs1", null, null)
+            <br />
+            <br />
+        </p>
+        }
+    }
 
     <h4><u>Operational Inputs</u></h4>
     <br />

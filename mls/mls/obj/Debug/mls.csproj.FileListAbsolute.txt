@@ -834,3 +834,16 @@ C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.ncrremoven
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.ncraddback20190131.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.customerorderline20190131.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.new20190205.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.productionstockout20190308.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.shipplancreate.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.shipplanstatusupdate.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.poplan20190802.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.updatepoplan20190802.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.poplanchanges20190803.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.cqstatusadded20190805.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.updatecqprice20190805.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.operatorcqstatusupdate20190805.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.updatequotemodel20190805.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.createcqstatus0190805.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.cqupdate20190808.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.addsafety20190809.resources

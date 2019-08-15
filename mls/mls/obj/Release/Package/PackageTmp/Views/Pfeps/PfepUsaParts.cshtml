@@ -11,31 +11,31 @@
 <br />
 
 <h4><u>Stock Out</u></h4>
-@Html.Action("_StockOut", "Pfeps", new { parttype = 25, customer = 23, division = 7 })
+@Html.Action("_UsaStockOut", "Pfeps", new { customer = 23, division = 7 })
 <br />
 <br />
 <h4><u>Low Stock</u></h4>
-@Html.Action("_LowStock", "Pfeps", new { parttype = 25, customer = 23, division = 7 })
+@Html.Action("_UsaLowStock", "Pfeps", new { customer = 23, division = 7 })
 <br />
 <br />
 <h4><u>Need to Order / In Transit</u></h4>
-@Html.Action("_NeedToOrder", "Pfeps", new { parttype = 25, customer = 23, division = 7 })
+@Html.Action("_UsaNeedToOrder", "Pfeps", new { customer = 23, division = 7 })
 <br />
 <br />
 <h4><u>All Parts</u></h4>
-@Html.Action("_AllParts", "Pfeps", new { parttype = 25, customer = 23, division = 7 })
-<br />
-<br />
-<h4><u>In Transit</u></h4>
-@Html.Action("_Transit", "ShipIns", new { division = 7 })
+@Html.Action("_UsaAllParts", "Pfeps", new { customer = 23, division = 7 })
 <br />
 <br />
 @*<h4><u>In Transit</u></h4>
-    @Html.Action("_BATransit", "ShipIns", new { Customer = 2, Division = 6 })
+    @Html.Action("_Transit", "ShipIns", new { division = 7 })
     <br />
     <br />
-    <h4><u>Production Detail</u></h4>
-    @Html.Action("_Tx", "Pfeps", new { Customer = 2, Division = 6 })
-    <br />
-    <br />*@
+    <h4><u>In Transit</u></h4>
+        @Html.Action("_BATransit", "ShipIns", new { Customer = 2, Division = 6 })
+        <br />
+        <br />
+        <h4><u>Production Detail</u></h4>
+        @Html.Action("_Tx", "Pfeps", new { Customer = 2, Division = 6 })
+        <br />
+        <br />*@
 

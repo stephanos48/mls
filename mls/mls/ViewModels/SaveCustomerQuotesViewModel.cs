@@ -15,6 +15,8 @@ namespace mls.ViewModels
 
         public IEnumerable<MlsDivision> MlsDivisions { get; set; }
 
+        public IEnumerable<CQStatus> CQStatuses { get; set; }
+
         public CustomerQuote CustomerQuote { get; set; }
         
     }

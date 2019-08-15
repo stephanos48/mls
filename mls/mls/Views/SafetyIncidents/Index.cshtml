@@ -1,0 +1,77 @@
+﻿@model IEnumerable<mls.Models.SafetyIncident>
+
+@{
+    ViewBag.Title = "SI";
+}
+
+<h2>Safety Incidents</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "HRHome", "Employees", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+<table id="incident" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.IncidentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IncidentDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IncidentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorrectieAction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SafetyIncidentId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.SafetyIncidentId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SafetyIncidentId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncidentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncidentDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncidentType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CorrectieAction)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#incident").DataTable({
+              'iDisplayLength': 100 });
+            });
+
+    </script>
+}

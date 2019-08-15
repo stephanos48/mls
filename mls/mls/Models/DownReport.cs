@@ -41,6 +41,6 @@ namespace mls.Models
 
         public string Notes { get; set; }
 
-
+        public virtual ICollection<WorkOrder> WorkOrders { get; set; }
     }
 }

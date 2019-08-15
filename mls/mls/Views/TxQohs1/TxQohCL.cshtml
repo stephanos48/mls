@@ -1,0 +1,74 @@
+﻿@model List<mls.ViewModels.QohViewModel>
+
+@{
+    ViewBag.Title = "TxQoh";
+}
+
+<h2>Tx Qoh CL</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "WorkOrders", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+<br />
+<table id="txqoh" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Id
+            </th>
+            <th>
+                PN
+            </th>
+            <th>
+                QOH
+            </th>
+            <th>
+                NcrQty
+            </th>
+            <th>
+                Notes
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Txqohid })|
+                    @Html.ActionLink("Details", "Details", new { id = item.Txqohid })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Txqohid })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Txqohid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qoh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NcrQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#txqoh").DataTable({
+              'iDisplayLength': 100 });
+            });
+
+    </script>
+}
+

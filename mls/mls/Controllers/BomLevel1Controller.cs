@@ -66,7 +66,8 @@ namespace mls.Controllers
                             a.DetailPn,
                             a.Description,
                             tx.Qoh,
-                            a.QtyPer
+                            a.QtyPer,
+                            tx.NcrQty
                         };
             //new LocationViewModel1
             //{
@@ -84,6 +85,7 @@ namespace mls.Controllers
                     Description = bom.Description,
                     Qoh = bom.Qoh,
                     QtyPer = bom.QtyPer,
+                    NcrQty = bom.NcrQty,
                     BuildAbility = (bom.Qoh / bom.QtyPer)
 
                 };

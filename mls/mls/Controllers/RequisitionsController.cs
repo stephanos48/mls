@@ -29,7 +29,7 @@ namespace mls.Controllers
         public ActionResult Closed()
         {
             var query = from a in db.Requisitions
-                        where a.ReqStatusId == 4
+                        where a.ReqStatusId == 5
                         orderby a.RequisitionId descending
                         select a;
             return View("Closed", query);
@@ -200,10 +200,34 @@ namespace mls.Controllers
             return PartialView("_ReqSupplierSearch", result);
         }
 
-        public ActionResult _ReqOrdered(int status)
+        public ActionResult _ReqPayment(int status)
         {
             var queryNew = from a in db.Requisitions
                            where a.ReqStatusId == 3
+                           select a;
+            List<NewReqViewModel> result = new List<NewReqViewModel>();
+            foreach (var req in queryNew.ToList())
+            {
+                result.Add(new NewReqViewModel
+                {
+                    RequisitionId = req.RequisitionId,
+                    PartNumber = req.PartNumber,
+                    Description = req.Description,
+                    Quantity = req.Quantity,
+                    RequestDate = req.RequestDate,
+                    NeedDate = req.NeedDate,
+                    EtaDate = req.EtaDate,
+                    Requestor = req.Requestor,
+                    Notes = req.Notes
+                });
+            }
+            return PartialView("_ReqPayment", result);
+        }
+
+        public ActionResult _ReqOrdered(int status)
+        {
+            var queryNew = from a in db.Requisitions
+                           where a.ReqStatusId == 4
                            select a;
             List<NewReqViewModel> result = new List<NewReqViewModel>();
             foreach (var req in queryNew.ToList())
@@ -227,7 +251,7 @@ namespace mls.Controllers
         public ActionResult _ReqComplete(int status)
         {
             var queryNew = from a in db.Requisitions
-                           where a.ReqStatusId == 4
+                           where a.ReqStatusId == 5
                            select a;
             List<NewReqViewModel> result = new List<NewReqViewModel>();
             foreach (var req in queryNew.ToList())

@@ -7,44 +7,32 @@
 <h2>Customer Quotes</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "Index", "Pfeps", null, null) | @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Go Back", "Sales", "ShipPlans", null, null) | @Html.ActionLink("Create New", "Create")
 </p>
 <table id="customerquote" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th></th>
             <th>
-                @Html.DisplayNameFor(model => model.Pn)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.QuoteDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Eau)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ChinaBom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weight)
+                @Html.DisplayNameFor(model => model.Pn)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ExchangeRate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.QuotedPrice)
+                @Html.DisplayNameFor(model => model.UsaBom)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PriceBreak)
+                @Html.DisplayNameFor(model => model.FreightCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Tariff)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Terms)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QuoteBy)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Notes)
@@ -61,37 +49,25 @@
                     @Html.ActionLink("Delete", "Delete", new { id = item.CustomerQuoteId })
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Pn)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.QuoteDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Eau)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ChinaBom)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Weight)
+                    @Html.DisplayFor(modelItem => item.Pn)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ExchangeRate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.QuotedPrice)
+                    @Html.DisplayFor(modelItem => item.UsaBom)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PriceBreak)
+                    @Html.DisplayFor(modelItem => item.FreightCost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Tariff)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Terms)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.QuoteBy)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Notes)

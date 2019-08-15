@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "EsgStatus";
+}
+
+<h2>Jbt Status</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Sales", "ShipPlans", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Slot Schedule", "JbtSlotted") | @Html.ActionLink("Jbt Open", "JbtOpen") | @Html.ActionLink("Shipped Orders", "JbtShipped") | @Html.ActionLink("Canceled Orders", "JbtCanceled")
+</p>
+
+<br />
+
+<br />
+
+<h4><u>SO Issues Needing Review</u></h4>
+@Html.Action("_OrderIssuesCustomer", "ShipPlans", new { status = 2, customer = 19 })
+<br />
+<br />
+<h4><u>SO To Cancel</u></h4>
+@Html.Action("_OrderIssuesCustomer", "ShipPlans", new { status = 8, customer = 19 })

@@ -358,20 +358,25 @@
     <Compile Include="Controllers\NcrChinasController.cs" />
     <Compile Include="Controllers\NCRsController.cs" />
     <Compile Include="Controllers\PfepsController.cs" />
+    <Compile Include="Controllers\PoPlansController.cs" />
     <Compile Include="Controllers\PracticesController.cs" />
     <Compile Include="Controllers\ProcessMatricesController.cs" />
     <Compile Include="Controllers\ProductionPlansController.cs" />
     <Compile Include="Controllers\PurchaseOrdersController.cs" />
     <Compile Include="Controllers\QuotesController.cs" />
     <Compile Include="Controllers\RequisitionsController.cs" />
+    <Compile Include="Controllers\SafetyIncidentsController.cs" />
     <Compile Include="Controllers\ScrumDetailsController.cs" />
     <Compile Include="Controllers\ScrumsController.cs" />
     <Compile Include="Controllers\ShipCommitsController.cs" />
     <Compile Include="Controllers\ShipInsController.cs" />
     <Compile Include="Controllers\ShipOut2Controller.cs" />
     <Compile Include="Controllers\ShipOutsController.cs" />
+    <Compile Include="Controllers\ShipPlansController.cs" />
     <Compile Include="Controllers\SupplierContactsController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
+    <Compile Include="Controllers\TxQohs1Controller.cs" />
+    <Compile Include="Controllers\TxQohsController.cs" />
     <Compile Include="Controllers\WoDetailsController.cs" />
     <Compile Include="Migrations\201706260010371_ptid.cs" />
     <Compile Include="Migrations\201706260010371_ptid.Designer.cs">
@@ -854,6 +859,58 @@
     <Compile Include="Migrations\201902060833553_new20190205.Designer.cs">
       <DependentUpon>201902060833553_new20190205.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903081155106_productionstockout20190308.cs" />
+    <Compile Include="Migrations\201903081155106_productionstockout20190308.Designer.cs">
+      <DependentUpon>201903081155106_productionstockout20190308.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907121819025_shipplancreate.cs" />
+    <Compile Include="Migrations\201907121819025_shipplancreate.Designer.cs">
+      <DependentUpon>201907121819025_shipplancreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907121951257_shipplanstatusupdate.cs" />
+    <Compile Include="Migrations\201907121951257_shipplanstatusupdate.Designer.cs">
+      <DependentUpon>201907121951257_shipplanstatusupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908030015428_poplan20190802.cs" />
+    <Compile Include="Migrations\201908030015428_poplan20190802.Designer.cs">
+      <DependentUpon>201908030015428_poplan20190802.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908030524033_updatepoplan20190802.cs" />
+    <Compile Include="Migrations\201908030524033_updatepoplan20190802.Designer.cs">
+      <DependentUpon>201908030524033_updatepoplan20190802.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908040326114_poplanchanges20190803.cs" />
+    <Compile Include="Migrations\201908040326114_poplanchanges20190803.Designer.cs">
+      <DependentUpon>201908040326114_poplanchanges20190803.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908051929205_cqstatusadded20190805.cs" />
+    <Compile Include="Migrations\201908051929205_cqstatusadded20190805.Designer.cs">
+      <DependentUpon>201908051929205_cqstatusadded20190805.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908051937330_updatecqprice20190805.cs" />
+    <Compile Include="Migrations\201908051937330_updatecqprice20190805.Designer.cs">
+      <DependentUpon>201908051937330_updatecqprice20190805.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908051945333_operatorcqstatusupdate20190805.cs" />
+    <Compile Include="Migrations\201908051945333_operatorcqstatusupdate20190805.Designer.cs">
+      <DependentUpon>201908051945333_operatorcqstatusupdate20190805.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908052009208_updatequotemodel20190805.cs" />
+    <Compile Include="Migrations\201908052009208_updatequotemodel20190805.Designer.cs">
+      <DependentUpon>201908052009208_updatequotemodel20190805.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908052132531_createcqstatus0190805.cs" />
+    <Compile Include="Migrations\201908052132531_createcqstatus0190805.Designer.cs">
+      <DependentUpon>201908052132531_createcqstatus0190805.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908090327071_cqupdate20190808.cs" />
+    <Compile Include="Migrations\201908090327071_cqupdate20190808.Designer.cs">
+      <DependentUpon>201908090327071_cqupdate20190808.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908090543302_addsafety20190809.cs" />
+    <Compile Include="Migrations\201908090543302_addsafety20190809.Designer.cs">
+      <DependentUpon>201908090543302_addsafety20190809.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivePart.cs" />
@@ -872,6 +929,7 @@
     <Compile Include="Models\ComplaintType.cs" />
     <Compile Include="Models\ContainerPoTracker.cs" />
     <Compile Include="Models\COrderType.cs" />
+    <Compile Include="Models\CQStatus.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerComplaint.cs" />
     <Compile Include="Models\CustomerDivision.cs" />
@@ -912,6 +970,7 @@
     <Compile Include="Models\PartType.cs" />
     <Compile Include="Models\Pfep.cs" />
     <Compile Include="Models\PoOrderStatus.cs" />
+    <Compile Include="Models\PoPlan.cs" />
     <Compile Include="Models\Practice.cs" />
     <Compile Include="Models\ProcessMatrix.cs" />
     <Compile Include="Models\ProcessStatus.cs" />
@@ -921,6 +980,7 @@
     <Compile Include="Models\Quote.cs" />
     <Compile Include="Models\ReqStatus.cs" />
     <Compile Include="Models\Requisition.cs" />
+    <Compile Include="Models\SafetyIncident.cs" />
     <Compile Include="Models\Scrum.cs" />
     <Compile Include="Models\ScrumCreatedBy.cs" />
     <Compile Include="Models\ScrumDetail.cs" />
@@ -932,6 +992,8 @@
     <Compile Include="Models\ShipOut.cs" />
     <Compile Include="Models\ShipOut2.cs" />
     <Compile Include="Models\ShipOut2Detail.cs" />
+    <Compile Include="Models\ShipPlan.cs" />
+    <Compile Include="Models\ShipPlanStatus.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\StockOut.cs" />
     <Compile Include="Models\Supplier.cs" />
@@ -957,13 +1019,16 @@
     <Compile Include="ViewModels\NewChecklistViewModel.cs" />
     <Compile Include="ViewModels\NewDownViewModel.cs" />
     <Compile Include="ViewModels\NewOrderViewModel.cs" />
+    <Compile Include="ViewModels\NewPoPlanViewModel.cs" />
     <Compile Include="ViewModels\NewPurchaseOrderViewModel.cs" />
     <Compile Include="ViewModels\NewReqViewModel.cs" />
     <Compile Include="ViewModels\NewScrumViewModel.cs" />
+    <Compile Include="ViewModels\NewShipPlanViewModel.cs" />
     <Compile Include="ViewModels\NewWorkOrderViewModel.cs" />
     <Compile Include="ViewModels\OpenDownViewModel.cs" />
     <Compile Include="ViewModels\OpenOrderViewModel.cs" />
     <Compile Include="ViewModels\ProductionIndexDataViewModel.cs" />
+    <Compile Include="ViewModels\ProductionStockOutViewModel.cs" />
     <Compile Include="ViewModels\QohViewModel.cs" />
     <Compile Include="ViewModels\Save1PfepViewModel.cs" />
     <Compile Include="ViewModels\SaveBuildViewModel.cs" />
@@ -980,12 +1045,14 @@
     <Compile Include="ViewModels\SaveNcrViewModel.cs" />
     <Compile Include="ViewModels\SaveOrderViewModel.cs" />
     <Compile Include="ViewModels\SavePfepViewModel.cs" />
+    <Compile Include="ViewModels\SavePoPlanViewModel.cs" />
     <Compile Include="ViewModels\SavePurchaseOrderViewModel.cs" />
     <Compile Include="ViewModels\SaveQuoteViewModel.cs" />
     <Compile Include="ViewModels\SaveReqViewModel.cs" />
     <Compile Include="ViewModels\SaveScrumViewModel.cs" />
     <Compile Include="ViewModels\SaveShipInViewModel.cs" />
     <Compile Include="ViewModels\SaveShipOutViewModel.cs" />
+    <Compile Include="ViewModels\SaveShipPlanViewModel.cs" />
     <Compile Include="ViewModels\SaveWoDetailViewModel.cs" />
     <Compile Include="ViewModels\SaveWorkOrderViewModel.cs" />
     <Compile Include="ViewModels\ScrumIndexDataViewModel.cs" />
@@ -2805,6 +2872,103 @@
     <Content Include="Views\CustomerOrders\PcPickScheduleClosed.cshtml" />
     <Content Include="Views\DownReports\Index.cshtml" />
     <Content Include="Views\DownReports\Closed.cshtml" />
+    <Content Include="Views\CustomerOrders\RoHeil1Closed.cshtml" />
+    <Content Include="Views\TxQohs\Create.cshtml" />
+    <Content Include="Views\TxQohs\Delete.cshtml" />
+    <Content Include="Views\TxQohs\Details.cshtml" />
+    <Content Include="Views\TxQohs\Edit.cshtml" />
+    <Content Include="Views\TxQohs\Index.cshtml" />
+    <Content Include="Views\TxQohs\TxQohUH.cshtml" />
+    <Content Include="Views\TxQohs\TxQohDIP.cshtml" />
+    <Content Include="Views\TxQohs\TxQohDTT.cshtml" />
+    <Content Include="Views\TxQohs\TxQohCL.cshtml" />
+    <Content Include="Views\TxQohs\TxQohDOP.cshtml" />
+    <Content Include="Views\TxQohs1\Create.cshtml" />
+    <Content Include="Views\TxQohs1\Delete.cshtml" />
+    <Content Include="Views\TxQohs1\Details.cshtml" />
+    <Content Include="Views\TxQohs1\Edit.cshtml" />
+    <Content Include="Views\TxQohs1\Index.cshtml" />
+    <Content Include="Views\TxQohs1\TxQohCL.cshtml" />
+    <Content Include="Views\TxQohs1\TxQohDIP.cshtml" />
+    <Content Include="Views\TxQohs1\TxQohDOP.cshtml" />
+    <Content Include="Views\TxQohs1\TxQohDTT.cshtml" />
+    <Content Include="Views\TxQohs1\TxQohUH.cshtml" />
+    <Content Include="Views\Requisitions\_ReqPayment.cshtml" />
+    <Content Include="Views\Requisitions\Print.cshtml" />
+    <Content Include="Views\ShipPlans\Create.cshtml" />
+    <Content Include="Views\ShipPlans\Delete.cshtml" />
+    <Content Include="Views\ShipPlans\Details.cshtml" />
+    <Content Include="Views\ShipPlans\Edit.cshtml" />
+    <Content Include="Views\ShipPlans\Index.cshtml" />
+    <Content Include="Views\ShipPlans\ShipPlanStatus.cshtml" />
+    <Content Include="Views\ShipPlans\_ShipNew.cshtml" />
+    <Content Include="Views\ShipPlans\_ShipIssue.cshtml" />
+    <Content Include="Views\ShipPlans\_ShipPrep.cshtml" />
+    <Content Include="Views\ShipPlans\_ShipCarrierPickUp.cshtml" />
+    <Content Include="Views\ShipPlans\ShipPlanClosed.cshtml" />
+    <Content Include="Views\ShipPlans\Slotted.cshtml" />
+    <Content Include="Views\ShipPlans\HydOpen.cshtml" />
+    <Content Include="Views\ShipPlans\DipOpen.cshtml" />
+    <Content Include="Views\ShipPlans\DttOpen.cshtml" />
+    <Content Include="Views\ShipPlans\CLOpen.cshtml" />
+    <Content Include="Views\ShipPlans\DopOpen.cshtml" />
+    <Content Include="Views\ShipPlans\LookUp.cshtml" />
+    <Content Include="Views\PoPlans\Create.cshtml" />
+    <Content Include="Views\PoPlans\Delete.cshtml" />
+    <Content Include="Views\PoPlans\Details.cshtml" />
+    <Content Include="Views\PoPlans\Edit.cshtml" />
+    <Content Include="Views\PoPlans\Index.cshtml" />
+    <Content Include="Views\PoPlans\HydOpen.cshtml" />
+    <Content Include="Views\PoPlans\PoPlanStatus.cshtml" />
+    <Content Include="Views\PoPlans\DipOpen.cshtml" />
+    <Content Include="Views\PoPlans\DttOpen.cshtml" />
+    <Content Include="Views\PoPlans\ClOpen.cshtml" />
+    <Content Include="Views\PoPlans\DopOpen.cshtml" />
+    <Content Include="Views\PoPlans\PoPlanClosed.cshtml" />
+    <Content Include="Views\PoPlans\_Issues.cshtml" />
+    <Content Include="Views\PoPlans\LookUp.cshtml" />
+    <Content Include="Views\PoPlans\InTransit.cshtml" />
+    <Content Include="Views\PoPlans\_Cancel.cshtml" />
+    <Content Include="Views\SafetyIncidents\Create.cshtml" />
+    <Content Include="Views\SafetyIncidents\Delete.cshtml" />
+    <Content Include="Views\SafetyIncidents\Details.cshtml" />
+    <Content Include="Views\SafetyIncidents\Edit.cshtml" />
+    <Content Include="Views\SafetyIncidents\Index.cshtml" />
+    <Content Include="Views\ShipPlans\CanceledOrders.cshtml" />
+    <Content Include="Views\ShipPlans\_OrdersToCancel.cshtml" />
+    <Content Include="Views\ShipPlans\EsgStatus.cshtml" />
+    <Content Include="Views\ShipPlans\Sales.cshtml" />
+    <Content Include="Views\ShipPlans\HydSales.cshtml" />
+    <Content Include="Views\ShipPlans\EsgOpen.cshtml" />
+    <Content Include="Views\ShipPlans\EsgShipped.cshtml" />
+    <Content Include="Views\ShipPlans\EsgSlotted.cshtml" />
+    <Content Include="Views\ShipPlans\EsgCanceled.cshtml" />
+    <Content Include="Views\ShipPlans\JbtCanceled.cshtml" />
+    <Content Include="Views\ShipPlans\JbtOpen.cshtml" />
+    <Content Include="Views\ShipPlans\JbtShipped.cshtml" />
+    <Content Include="Views\ShipPlans\JbtSlotted.cshtml" />
+    <Content Include="Views\ShipPlans\JbtStatus.cshtml" />
+    <Content Include="Views\ShipPlans\DipSales.cshtml" />
+    <Content Include="Views\ShipPlans\WbCanceled.cshtml" />
+    <Content Include="Views\ShipPlans\WbOpen.cshtml" />
+    <Content Include="Views\ShipPlans\WbShipped.cshtml" />
+    <Content Include="Views\ShipPlans\WbSlotted.cshtml" />
+    <Content Include="Views\ShipPlans\WbStatus.cshtml" />
+    <Content Include="Views\ShipPlans\ThiCanceled.cshtml" />
+    <Content Include="Views\ShipPlans\ThiOpen.cshtml" />
+    <Content Include="Views\ShipPlans\ThiShipped.cshtml" />
+    <Content Include="Views\ShipPlans\ThiSlotted.cshtml" />
+    <Content Include="Views\ShipPlans\ThiStatus.cshtml" />
+    <Content Include="Views\ShipPlans\ChCanceled.cshtml" />
+    <Content Include="Views\ShipPlans\ChOpen.cshtml" />
+    <Content Include="Views\ShipPlans\ChShipped.cshtml" />
+    <Content Include="Views\ShipPlans\ChSlotted.cshtml" />
+    <Content Include="Views\ShipPlans\ChStatus.cshtml" />
+    <Content Include="Views\ShipPlans\HunterCanceled.cshtml" />
+    <Content Include="Views\ShipPlans\HunterOpen.cshtml" />
+    <Content Include="Views\ShipPlans\HunterShipped.cshtml" />
+    <Content Include="Views\ShipPlans\HunterSlotted.cshtml" />
+    <Content Include="Views\ShipPlans\HunterStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3179,6 +3343,45 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902060833553_new20190205.resx">
       <DependentUpon>201902060833553_new20190205.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903081155106_productionstockout20190308.resx">
+      <DependentUpon>201903081155106_productionstockout20190308.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907121819025_shipplancreate.resx">
+      <DependentUpon>201907121819025_shipplancreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907121951257_shipplanstatusupdate.resx">
+      <DependentUpon>201907121951257_shipplanstatusupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908030015428_poplan20190802.resx">
+      <DependentUpon>201908030015428_poplan20190802.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908030524033_updatepoplan20190802.resx">
+      <DependentUpon>201908030524033_updatepoplan20190802.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908040326114_poplanchanges20190803.resx">
+      <DependentUpon>201908040326114_poplanchanges20190803.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908051929205_cqstatusadded20190805.resx">
+      <DependentUpon>201908051929205_cqstatusadded20190805.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908051937330_updatecqprice20190805.resx">
+      <DependentUpon>201908051937330_updatecqprice20190805.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908051945333_operatorcqstatusupdate20190805.resx">
+      <DependentUpon>201908051945333_operatorcqstatusupdate20190805.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908052009208_updatequotemodel20190805.resx">
+      <DependentUpon>201908052009208_updatequotemodel20190805.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908052132531_createcqstatus0190805.resx">
+      <DependentUpon>201908052132531_createcqstatus0190805.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908090327071_cqupdate20190808.resx">
+      <DependentUpon>201908090327071_cqupdate20190808.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908090543302_addsafety20190809.resx">
+      <DependentUpon>201908090543302_addsafety20190809.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

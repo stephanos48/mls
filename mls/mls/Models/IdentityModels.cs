@@ -62,8 +62,8 @@ namespace mls.Models
 
         public DbSet<Pfep> Pfeps { get; set; }
 
-        public DbSet<TxQoh> TxQohs { get; set; } 
-        
+        public DbSet<TxQoh> TxQohs { get; set; }
+
         public DbSet<PartType> PartTypes { get; set; }
 
         public DbSet<WorkOrder> WorkOrders { get; set; }
@@ -196,5 +196,14 @@ namespace mls.Models
 
         public DbSet<ReqStatus> ReqStatuses { get; set; }
 
+        public DbSet<ShipPlan> ShipPlans { get; set; }
+
+        public DbSet<ShipPlanStatus> ShipPlanStatuses { get; set; }
+
+        public DbSet<PoPlan> PoPlans { get; set; }
+
+        public DbSet<CQStatus> CQStatuses { get; set; }
+
+        public System.Data.Entity.DbSet<mls.Models.SafetyIncident> SafetyIncidents { get; set; }
     }
 }

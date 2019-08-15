@@ -33,6 +33,22 @@ namespace mls.Controllers
             return View(viewModel);
         }
 
+        public ActionResult ScheduleStockOut(int? id)
+        {
+            var viewModel = new ProductionStockOutViewModel();
+            viewModel.WorkOrders = db.WorkOrders
+                .Include(i => i.DownReports);
+
+            if (id != null)
+            {
+                ViewBag.WorkOrderId = id.Value;
+                viewModel.DownReports = viewModel.WorkOrders.Where(
+                    i => i.WorkOrderId == id.Value).Single().DownReports;
+            }
+
+            return View(viewModel);
+        }
+
         public ActionResult ProductionPlan()
         {
             return View();

@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "PoPlanStatus";
+}
+
+<h2>Po Plan Status</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "Pfeps", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Order LookUp", "LookUp") | @Html.ActionLink("In Transit", "InTransit") | @Html.ActionLink("Hyd Open", "HydOpen") | @Html.ActionLink("Dip Open", "DipOpen") | @Html.ActionLink("Dtt Open", "DttOpen") | @Html.ActionLink("Dop Open", "DopOpen") | @Html.ActionLink("CL Open", "CLOpen") | @Html.ActionLink("Received Orders", "PoPlanClosed")
+</p>
+
+<br />
+
+<h4><u>PO Issues Needing Review</u></h4>
+@Html.Action("_Issues", "PoPlans", new { Status = 3 })
+<br />
+<br />
+<h4><u>POs To Cancel</u></h4>
+@Html.Action("_Cancel", "PoPlans", new { Status = 6 })
+<br />
+<br />

@@ -557,11 +557,113 @@ namespace mls.Controllers
 
         public ActionResult RoHeil1()
         {
-            var query = from a in db.CustomerOrders
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.CustomerId == 1 && co.CustomerDivisionId == 1 && co.OrderStatusId != 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               PoLine = co.CustomerOrderLine,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    CustomerOrderLine = order.PoLine,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("ROHeil1", result);
+        
+            /*var query = from a in db.CustomerOrders
                         where a.CustomerId == 1 && a.CustomerDivisionId == 1
                         orderby a.OrderDateTime descending
                         select a;
-            return View("RoHeil1", query);
+            return View("RoHeil1", query);*/
+            //return View();
+        }
+
+        public ActionResult RoHeil1Closed()
+        {
+            var queryNew = from co in db.CustomerOrders
+                           join so in db.ShipOuts on new { x1 = co.CustomerOrderNumber, x2 = co.CustomerPn } equals new { x1 = so.PoNumber, x2 = so.Pn } into g
+                           join tx in db.TxQohs on co.CustomerPn equals tx.Pn
+                           where co.CustomerId == 1 && co.CustomerDivisionId == 1 && co.OrderStatusId == 7
+                           orderby co.OrderDateTime ascending
+                           select new
+                           {
+                               CustomerOrderId = co.CustomerOrderId,
+                               OrderStatus = co.OrderStatusId,
+                               SoNo = co.SoNumber,
+                               CustomerPo = co.CustomerOrderNumber,
+                               PoLine = co.CustomerOrderLine,
+                               OrderDate = co.OrderDateTime,
+                               CustomerPn = co.CustomerPn,
+                               OhQty = tx.Qoh,
+                               OrderQty = co.OrderQty,
+                               ShipQty = (int?)g.Sum(x => x.Quantity),
+                               RequestDate = co.RequestedDateTime,
+                               PromiseDate = co.PromiseDateTime,
+                               ShipDate = co.ShipDateTime,
+                               Notes = co.Notes
+                           };
+            List<OpenOrderViewModel> result = new List<OpenOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new OpenOrderViewModel
+                {
+                    CustomerOrderId = order.CustomerOrderId,
+                    OrderStatusId = order.OrderStatus,
+                    CustomerPo = order.CustomerPo,
+                    CustomerOrderLine = order.PoLine,
+                    OrderDateTime = order.OrderDate,
+                    SoNumber = order.SoNo,
+                    CustomerPn = order.CustomerPn,
+                    OhQty = order.OhQty,
+                    OrderQty = order.OrderQty,
+                    ShipQty = order.ShipQty,
+                    RequestedDateTime = order.RequestDate,
+                    PromiseDateTime = order.PromiseDate,
+                    ShipDateTime = order.ShipDate,
+                    Notes = order.Notes
+                });
+            }
+
+            return View("RoHeil1Closed", result);
+
+            /*var query = from a in db.CustomerOrders
+                        where a.CustomerId == 1 && a.CustomerDivisionId == 1
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("RoHeil1", query);*/
             //return View();
         }
 

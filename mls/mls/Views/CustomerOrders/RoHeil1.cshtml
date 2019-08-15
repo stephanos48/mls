@@ -1,33 +1,126 @@
-﻿@{
-    ViewBag.Title = "RoHeil1";
+﻿@model List<mls.ViewModels.OpenOrderViewModel>
+
+@{
+    ViewBag.Title = "RoHeil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Heil Open Order Report - Std View</h2>
+<h2>Heil Open Orders</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "HeilHome")
+    @Html.ActionLink("Go Back", "HeilHome") | @Html.ActionLink("Closed", "RoHeil1Closed")
 </p>
+<br />
+<table id="heil" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Status
+            </th>
+            <th>
+                SoNo
+            </th>
+            <th>
+                CustomerPo
+            </th>
+            <th>
+                PoLine
+            </th>
+            <th>
+                OrderDate
+            </th>
+            <th>
+                CustomerPn
+            </th>
+            <th>
+                OhQty
+            </th>
+            <th>
+                OrderQty
+            </th>
+            <th>
+                QtyShipped
+            </th>
+            <th>
+                RequestDate
+            </th>
+            <th>
+                PromiseDate
+            </th>
+            <th>
+                ShipDate
+            </th>
+            <th>
+                Notes
+            </th>
 
-<h4><u>New Orders</u></h4>
-@Html.Action("_RONewOrder", "CustomerOrders", new { Customer = 1, Division = 1, MlsDivision = 1 })
-<br />
-<br />
-<h4><u>In Review</u></h4>
-@Html.Action("_ROReview", "CustomerOrders", new { Customer = 1, Division = 1, MlsDivision = 1 })
-<br />
-<br />
-<h4><u>Production</u></h4>
-@Html.Action("_ROProduction", "CustomerOrders", new { Customer = 1, Division = 1, MlsDivision = 1 })
-<br />
-<br />
-<h4><u>In Transit</u></h4>
-@Html.Action("_ROOcean", "CustomerOrders", new { Customer = 1, Division = 1, MlsDivision = 1 })
-<br />
-<br />
-<h4><u>Texas</u></h4>
-@Html.Action("_ROTx", "CustomerOrders", new { Customer = 1, Division = 1, MlsDivision = 1 })
-<br />
-<br />
-<h4><u>Shipped</u></h4>
-@Html.Action("_ROClosed", "CustomerOrders", new { Customer = 1, Division = 1, MlsDivision = 1 })
+        </tr>
+    </thead>
+    <tbody>
 
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderStatusId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerOrderLine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OhQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(mmodelItem => item.ShipQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(mmodelItem => item.RequestedDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(mmodelItem => item.PromiseDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(mmodelItem => item.Notes)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*@using (Html.BeginForm("ExportWb", "CustomerOrders", FormMethod.Post))
+    {
+        <input type="submit" value="Export" />
+    }*@
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#heil").DataTable({
+                'iDisplayLength': 100 });
+            });
+
+    </script>
+}

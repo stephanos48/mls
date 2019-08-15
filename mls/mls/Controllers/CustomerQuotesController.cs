@@ -12,14 +12,18 @@ using mls.ViewModels;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class CustomerQuotesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: CustomerQuotes
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.CustomerQuotes.ToListAsync());
+            var query = from a in db.CustomerQuotes
+                           orderby a.Pn ascending
+                           select a;
+            return View("Index", query);
         }
 
         // GET: CustomerQuotes/Details/5
@@ -43,14 +47,15 @@ namespace mls.Controllers
             var customers = db.Customers.ToList();
             var customerdivisions = db.CustomerDivisions.ToList();
             var mlsdivisions = db.MlsDivisions.ToList();
+            var cqstatus = db.CQStatuses.ToList();
 
             var viewModel = new SaveCustomerQuotesViewModel()
             {
 
                 Customers = customers,
                 CustomerDivisions = customerdivisions,
-                MlsDivisions = mlsdivisions
-
+                MlsDivisions = mlsdivisions,
+                CQStatuses = cqstatus
             };
 
             return View("Create", viewModel);
@@ -84,13 +89,15 @@ namespace mls.Controllers
             var customers = db.Customers.ToList();
             var customerdivisions = db.CustomerDivisions.ToList();
             var mlsdivisions = db.MlsDivisions.ToList();
+            var cqstatus = db.CQStatuses.ToList();
 
             var viewModel = new SaveCustomerQuotesViewModel()
             {
                 CustomerQuote = customerquotes,
                 Customers = customers,
                 CustomerDivisions = customerdivisions,
-                MlsDivisions = mlsdivisions
+                MlsDivisions = mlsdivisions,
+                CQStatuses = cqstatus
             };
             
             if (id == null)

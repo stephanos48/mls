@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Sales";
+}
+
+<h2>Sales</h2>
+<p>
+@Html.ActionLink("Go Back", "Index", "CustomerOrders", null, null)
+</p>
+<br />
+
+    <h4><u>Customer Orders</u></h4>
+    <br />
+    @Html.ActionLink("Sales Orders / Ship Plan - All", "ShipPlanStatus")
+    <br />
+    <br />
+    @Html.ActionLink("Chassisliner", "ClStatus")
+    <br />
+    <br />
+    @Html.ActionLink("Direct Outdoor", "DopStatus")
+    <br />
+    <br />
+    @Html.ActionLink("Drop Tail Trailer", "DttStatus")
+    <br />
+    <br />
+    @Html.ActionLink("Env. Solutions Group", "EsgStatus")
+    <br />
+    <br />
+    @Html.ActionLink("Columbus Hyd", "ChStatus")
+    <br />
+    <br />
+    @Html.ActionLink("DFW", "DfwStatus") - InProcess
+    <br />
+    <br />
+    @Html.ActionLink("Hercules", "HerculesStatus") - InProcess
+    <br />
+    <br />
+    @Html.ActionLink("Hunter", "HunterStatus")
+    <br />
+    <br />
+    @Html.ActionLink("John Bean Tech.", "JbtStatus")
+    <br />
+    <br />
+    @Html.ActionLink("Manitowoc", "ManStatus") - InProcess
+    <br />
+    <br />
+    @Html.ActionLink("National Oil Well", "NovStatus") - InProcess
+    <br />
+    <br />
+    @Html.ActionLink("Simonson", "SimonsonStatus") - InProcess
+    <br />
+    <br />
+    @Html.ActionLink("Texas Hyd", "ThiStatus")
+    <br />
+    <br />
+    @Html.ActionLink("Wastebuilt", "WbStatus")
+    <br />
+    <br />
+    @Html.ActionLink("Vehicle Services Group", "VsgStatus") - InProcess
+    <br />
+    <br />
+    <h4><u>Customer Feedback</u></h4>
+    <br />
+    @Html.ActionLink("Complaint Log", "Index", "CustomerComplaints", null, null)
+    <br />
+    <br />
+    <h4><u>Pricing</u></h4>
+    <br />
+    @Html.ActionLink("Customer Quotes", "Index", "CustomerQuotes", null, null)
+    <br />
+    <br />

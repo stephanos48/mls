@@ -1,0 +1,66 @@
+﻿@model mls.Models.SafetyIncident
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SafetyIncident</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IncidentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IncidentDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IncidentDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IncidentDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IncidentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IncidentType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrectieAction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrectieAction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SafetyIncidentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

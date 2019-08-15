@@ -1,0 +1,57 @@
+﻿@model IEnumerable<mls.Models.TxQoh>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UhPn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qoh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NcrQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Txqohid })|
+            @Html.ActionLink("Details", "Details", new { id = item.Txqohid })|
+            @Html.ActionLink("Delete", "Delete", new { id = item.Txqohid })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UhPn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Qoh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NcrQty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+    </tr>
+}
+
+</table>

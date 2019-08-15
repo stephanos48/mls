@@ -22,5 +22,7 @@ namespace mls.ViewModels
 
         public int BuildAbility { get; set; }
 
+        public int NcrQty { get; set; }
+
     }
 }

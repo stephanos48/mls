@@ -19,8 +19,12 @@
 @Html.Action("_ReqSupplierSearch", "Requisitions", new { Status = 2 })
 <br />
 <br />
-<h4><u>Ordered</u></h4>
-@Html.Action("_ReqOrdered", "Requisitions", new { Status = 3 })
+<h4><u>Ordered / Payment Needed</u></h4>
+@Html.Action("_ReqPayment", "Requisitions", new { Status = 3 })
+<br />
+<br />
+<h4><u>Ordered / Awaiting Delivery</u></h4>
+@Html.Action("_ReqOrdered", "Requisitions", new { Status = 4 })
 <br />
 <br />
 

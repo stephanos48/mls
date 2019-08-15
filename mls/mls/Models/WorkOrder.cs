@@ -130,6 +130,6 @@ namespace mls.Models
         public string Wk8 { get; set; }
         
         public virtual ICollection<WoDetail> WoDetails { get; set; }
-
+        public virtual ICollection<DownReport> DownReports { get; set; }
     }
 }
