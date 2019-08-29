@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using mls.Models;
-using mls.ViewModels;
+using mls.ViewModels; 
 
 namespace mls.Controllers
 {
@@ -109,6 +109,21 @@ namespace mls.Controllers
 
         // GET: ShipPlans/Details/5
         public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ShipPlan shipPlan = db.ShipPlans.Find(id);
+            if (shipPlan == null)
+            {
+                return HttpNotFound();
+            }
+            return View(shipPlan);
+        }
+
+        // GET: ShipPlans/Details/5
+        public ActionResult RoDetails(int? id)
         {
             if (id == null)
             {
@@ -473,6 +488,16 @@ namespace mls.Controllers
             //return View(db.ShipPlans.ToList());
         }
 
+        public ActionResult EsgRoOpen()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 9 && a.CustomerId == 1
+                        orderby a.ShipDateTime ascending
+                        select a;
+            return View("EsgRoOpen", query);
+            //return View(db.ShipPlans.ToList());
+        }
+
         public ActionResult EsgCanceled()
         {
             var query = from a in db.ShipPlans
@@ -500,6 +525,16 @@ namespace mls.Controllers
                         orderby a.ShipDateTime descending
                         select a;
             return View("EsgShipped", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult EsgRoShipped()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId == 5 && a.CustomerId == 1
+                        orderby a.ShipDateTime descending
+                        select a;
+            return View("EsgRoShipped", query);
             //return View(db.Requisitions.ToList());
         }
 
@@ -593,6 +628,16 @@ namespace mls.Controllers
             //return View(db.ShipPlans.ToList());
         }
 
+        public ActionResult ThiRoOpen()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 9 && a.CustomerId == 8
+                        orderby a.ShipDateTime ascending
+                        select a;
+            return View("ThiRoOpen", query);
+            //return View(db.ShipPlans.ToList());
+        }
+
         public ActionResult ThiCanceled()
         {
             var query = from a in db.ShipPlans
@@ -620,6 +665,16 @@ namespace mls.Controllers
                         orderby a.ShipDateTime descending
                         select a;
             return View("ThiShipped", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult ThiRoShipped()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId == 5 && a.CustomerId == 8
+                        orderby a.ShipDateTime descending
+                        select a;
+            return View("ThiRoShipped", query);
             //return View(db.Requisitions.ToList());
         }
 

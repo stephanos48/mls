@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "ThiHome";
+}
+
+<h2>THI Home</h2>
+<br />
+<p>
+    <h4><u>THI Reports</u></h4>
+    <br />
+
+    @Html.ActionLink("Open Order Status", "ThiRoOpen", "ShipPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Qoh TX", "ThiQoh", "CustomerOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("In Transit", "ThiRoTransit", "PoPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Receipt History", "ThiRoClosed", "PoPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Ship History", "ThiRoShipped", "ShipPlans", null, null)
+    <br />
+    <br />
+    @*-> @Html.ActionLink("PFEP Cylinders", "Ops")
+        <br />
+        <br />*@
+    <h4><u>THI PFEP Plans</u></h4>
+    <br />
+    @*@Html.ActionLink("WB PFEP Cyl", "WB1Pfep", "Pfeps", null, null)
+        <br />
+        <br />*@
+
+
+</p>

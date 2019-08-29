@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "NewEsgHome";
+}
+
+<h2>ESG Home</h2>
+
+<br />
+<p>
+    <h4><u>Esg Reports</u></h4>
+    <br />
+
+    @Html.ActionLink("Open Order Status", "EsgRoOpen", "ShipPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Qoh TX", "EsgQoh", "CustomerOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("In Transit", "EsgRoTransit", "PoPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Receipt History", "EsgRoClosed", "PoPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Ship History", "EsgRoShipped", "ShipPlans", null, null)
+    <br />
+    <br />
+    @*-> @Html.ActionLink("PFEP Cylinders", "Ops")
+        <br />
+        <br />*@
+    <h4><u>ESG PFEP Plans</u></h4>
+    <br />
+    @*@Html.ActionLink("WB PFEP Cyl", "WB1Pfep", "Pfeps", null, null)
+        <br />
+        <br />*@
+
+
+</p>

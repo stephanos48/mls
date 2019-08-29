@@ -29,6 +29,9 @@
                 @Html.DisplayNameFor(model => model.CustomerOrderNumber)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.ContainerUh)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CustomerPn)
             </th>
             <th>
@@ -45,9 +48,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Etadate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContainerUh)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Notes)
@@ -79,6 +79,9 @@
                     @Html.DisplayFor(modelItem => item.CustomerOrderNumber)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.ContainerUh)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.CustomerPn)
                 </td>
                 <td>
@@ -95,9 +98,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Etadate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ContainerUh)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Notes)

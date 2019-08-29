@@ -43,7 +43,7 @@ namespace mls.Controllers
             }
             else if (User.IsInRole("Thi"))
             {
-                return View("ThiHome");
+                return View("NewThiHome");
             }
             else if (User.IsInRole("View"))
             {
@@ -88,6 +88,10 @@ namespace mls.Controllers
             else if (User.IsInRole("Pc"))
             {
                 return View("PcHome");
+            }
+            else if (User.IsInRole("Esg"))
+            {
+                return View("NewEsgHome");
             }
             else
             {
@@ -458,6 +462,34 @@ namespace mls.Controllers
             //return View();
         }
 
+        public ActionResult EsgQoh()
+        {
+            var query = from a in db.TxQohs
+                        join mp in db.MasterPartLists on a.Pn equals mp.CustomerPn
+                        where mp.CustomerId == 1
+                        orderby a.Pn descending
+                        select new
+                        {
+                            PN = a.Pn,
+                            QOH = a.Qoh
+                        };
+
+            List<QohViewModel> quantities = new List<QohViewModel>();
+            foreach (var qoh in query.ToList())
+            {
+                QohViewModel mymodel = new QohViewModel()
+                {
+                    Pn = qoh.PN,
+                    Qoh = qoh.QOH
+                };
+
+                quantities.Add(mymodel);
+            }
+
+            return View("EsgQoh", quantities);
+            //return View();
+        }
+
         // GET: CustomerOrders/Wastebuilt
         public ActionResult ChQoh()
         {
@@ -762,6 +794,25 @@ namespace mls.Controllers
             return View("ThiHome");
         }
 
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult NewThiHome()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("NewThiHome");
+        }
+
+        public ActionResult NewEsgHome()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("NewEsgHome");
+        }
+
         public ActionResult HeilHome()
         {
             //var query = from a in db.CustomerOrders
@@ -769,6 +820,15 @@ namespace mls.Controllers
             //               select a;
             // return View("Wastebuilt", query);
             return View("HeilHome");
+        }
+
+        public ActionResult NewHeilHome()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("NewHeilHome");
         }
 
         // GET: CustomerOrders/Wastebuilt
@@ -782,6 +842,16 @@ namespace mls.Controllers
         }
 
         // GET: CustomerOrders/Wastebuilt
+        public ActionResult NewWbHome()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("NewWbHome");
+        }
+
+        // GET: CustomerOrders/Wastebuilt
         public ActionResult ChHome()
         {
             //var query = from a in db.CustomerOrders
@@ -789,6 +859,16 @@ namespace mls.Controllers
             //               select a;
             // return View("Wastebuilt", query);
             return View("ChHome");
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult NewChHome()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("NewChHome");
         }
 
         // GET: CustomerOrders/NOV
@@ -799,6 +879,16 @@ namespace mls.Controllers
             //               select a;
             // return View("Wastebuilt", query);
             return View("NovHome");
+        }
+
+        // GET: CustomerOrders/NOV
+        public ActionResult NewNovHome()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("NewNovHome");
         }
 
         // GET: CustomerOrders/Wastebuilt/NewOrder

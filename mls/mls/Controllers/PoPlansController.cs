@@ -37,6 +37,36 @@ namespace mls.Controllers
             //return View(db.Requisitions.ToList());
         }
 
+        public ActionResult ThiRoClosed()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 5 && a.CustomerId == 8
+                        orderby a.ReceiptDateTime descending
+                        select a;
+            return View("ThiRoClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult EsgRoClosed()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 5 && a.CustomerId == 1
+                        orderby a.ReceiptDateTime descending
+                        select a;
+            return View("EsgRoClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult PoPlanCanceled()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 7
+                        orderby a.ReceiptDateTime descending
+                        select a;
+            return View("PoPlanCanceled", query);
+            //return View(db.Requisitions.ToList());
+        }
+
         public ActionResult InTransit()
         {
             var query = from a in db.PoPlans
@@ -44,6 +74,26 @@ namespace mls.Controllers
                         orderby a.ContainerUh descending
                         select a;
             return View("InTransit", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult ThiRoTransit()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 2 && a.CustomerId == 8
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("ThiRoTransit", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult EsgRoTransit()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 2 && a.CustomerId == 1
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("EsgRoTransit", query);
             //return View(db.Requisitions.ToList());
         }
 
@@ -109,6 +159,21 @@ namespace mls.Controllers
 
         // GET: PoPlans/Details/5
         public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PoPlan poPlan = db.PoPlans.Find(id);
+            if (poPlan == null)
+            {
+                return HttpNotFound();
+            }
+            return View(poPlan);
+        }
+
+        // GET: PoPlans/Details/5
+        public ActionResult RoDetails(int? id)
         {
             if (id == null)
             {

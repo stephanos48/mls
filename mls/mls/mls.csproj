@@ -2969,6 +2969,20 @@
     <Content Include="Views\ShipPlans\HunterShipped.cshtml" />
     <Content Include="Views\ShipPlans\HunterSlotted.cshtml" />
     <Content Include="Views\ShipPlans\HunterStatus.cshtml" />
+    <Content Include="Views\PoPlans\PoPlanCanceled.cshtml" />
+    <Content Include="Views\CustomerOrders\NewThiHome.cshtml" />
+    <Content Include="Views\ShipPlans\ThiRoOpen.cshtml" />
+    <Content Include="Views\ShipPlans\ThiRoShipped.cshtml" />
+    <Content Include="Views\ShipPlans\RoDetails.cshtml" />
+    <Content Include="Views\PoPlans\ThiRoTransit.cshtml" />
+    <Content Include="Views\PoPlans\ThiRoClosed.cshtml" />
+    <Content Include="Views\PoPlans\RoDetails.cshtml" />
+    <Content Include="Views\CustomerOrders\NewEsgHome.cshtml" />
+    <Content Include="Views\CustomerOrders\EsgQoh.cshtml" />
+    <Content Include="Views\ShipPlans\EsgRoOpen.cshtml" />
+    <Content Include="Views\ShipPlans\EsgRoShipped.cshtml" />
+    <Content Include="Views\PoPlans\EsgRoTransit.cshtml" />
+    <Content Include="Views\PoPlans\EsgRoClosed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
