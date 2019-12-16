@@ -54,6 +54,10 @@ namespace mls.ViewModels
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? PromiseDate { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? ShipDate { get; set; }
+
         [Display(Name = "Start Time")]
         public string StartTime { get; set; }
 
@@ -83,8 +87,17 @@ namespace mls.ViewModels
         [Display(Name = "WoStatus")]
         public byte WoOrderStatusId { get; set; }
 
+        public PartStockOut PartStockOut { get; set; }
+
+        [Display(Name = "Stock Out")]
+        public byte PartStockOutId { get; set; }
+
         [Display(Name = "Notes")]
         public string Notes { get; set; }
+
+        public string PartsNeeded { get; set; }
+
+        public string PartStockOutNotes { get; set; }
 
     }
 }

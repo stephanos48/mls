@@ -847,3 +847,9 @@ C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.updatequ
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.createcqstatus0190805.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.cqupdate20190808.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.addsafety20190809.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.reqchanges20190919.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.addstockouts20191011.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.cyclecount20191013.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.addshiphot20191013.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.addwono20191015.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.shipdateadd20191021.resources

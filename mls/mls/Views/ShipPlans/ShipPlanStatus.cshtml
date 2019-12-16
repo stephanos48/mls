@@ -17,3 +17,7 @@
 <br />
 <h4><u>SO To Cancel</u></h4>
 @Html.Action("_OrdersToCancel", "ShipPlans", new { Status = 8 })
+<br />
+<br />
+<h4><u>HOT Orders</u></h4>
+@Html.Action("_ShipHot", "ShipPlans", new { Status = 1 })

@@ -31,7 +31,7 @@ namespace mls.Controllers
             }
             else if (User.IsInRole("Wastebuilt"))
             {
-                return View("WBHome");
+                return View("NewHomeWb");
             }
             else if (User.IsInRole("LogisticsBasic"))
             {
@@ -443,7 +443,9 @@ namespace mls.Controllers
                 select new
                 {
                     PN = a.Pn,
-                    QOH = a.Qoh
+                    QOH = a.Qoh,
+                    Ncr = a.NcrQty,
+                    Notes = a.Notes
                 };
 
             List<QohViewModel> quantities = new List<QohViewModel>();
@@ -452,7 +454,9 @@ namespace mls.Controllers
                 QohViewModel mymodel = new QohViewModel()
                 {
                     Pn = qoh.PN,
-                    Qoh = qoh.QOH
+                    Qoh = qoh.QOH,
+                    NcrQty = qoh.Ncr,
+                    Notes = qoh.Notes
                 };
                 
                 quantities.Add(mymodel);
@@ -842,13 +846,13 @@ namespace mls.Controllers
         }
 
         // GET: CustomerOrders/Wastebuilt
-        public ActionResult NewWbHome()
+        public ActionResult NewHomeWb()
         {
             //var query = from a in db.CustomerOrders
             //               orderby a.OrderDateTime descending
             //               select a;
             // return View("Wastebuilt", query);
-            return View("NewWbHome");
+            return View("NewHomeWb");
         }
 
         // GET: CustomerOrders/Wastebuilt

@@ -66,7 +66,34 @@ namespace mls.Controllers
         public ActionResult Schedule1()
         {
             var query = from c in db.WorkOrders
-                        where c.WoOrderStatusId == 4
+                        where c.PartStockOutId == 7 && c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6
+                        orderby c.ShipDate ascending
+                        select c;
+            return View(query.ToList());
+        }
+
+        public ActionResult ScheduleAll()
+        {
+            var query = from c in db.WorkOrders
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6
+                        orderby c.ShipDate ascending
+                        select c;
+            return View(query.ToList());
+        }
+
+        public ActionResult ScheduleClosed()
+        {
+            var query = from c in db.WorkOrders
+                        where c.WoOrderStatusId == 5
+                        orderby c.ShipDate ascending
+                        select c;
+            return View(query.ToList());
+        }
+
+        public ActionResult ScheduleCanceled()
+        {
+            var query = from c in db.WorkOrders
+                        where c.WoOrderStatusId == 6
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -75,7 +102,7 @@ namespace mls.Controllers
         public ActionResult Schedule2()
         {
             var query = from c in db.WorkOrders
-                        where c.WoOrderStatusId == 4 && c.CustomerDivisionId == 9
+                        where c.CustomerDivisionId == 9
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -84,7 +111,7 @@ namespace mls.Controllers
         public ActionResult Schedule3()
         {
             var query = from c in db.WorkOrders
-                        where c.WoOrderStatusId == 4 && c.MlsDivisionId == 4
+                        where c.MlsDivisionId == 4
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -112,6 +139,11 @@ namespace mls.Controllers
             return View();
         }
 
+        // GET: WorkOrders
+        public ActionResult PartStockOuts()
+        {
+            return View();
+        }
         // GET: WorkOrders/WOUH/BayneActuators
         public ActionResult BayneActuators()
         {
@@ -191,6 +223,7 @@ namespace mls.Controllers
             var customers = db.Customers.ToList();
             var customerdivisions = db.CustomerDivisions.ToList();
             var woorderstatuses = db.WoOrderStatuses.ToList();
+            var partstockouts = db.PartStockOuts.ToList();
             
             var viewModel = new SaveWorkOrderViewModel()
             {
@@ -200,7 +233,8 @@ namespace mls.Controllers
                 OrderTypes = ordertypes,
                 WoPartTypes = woparttypes,
                 MlsDivisions = mlsdivisions,
-                WoOrderStatuses = woorderstatuses
+                WoOrderStatuses = woorderstatuses,
+                PartStockOuts = partstockouts
             };
 
             return View("Create", viewModel);
@@ -236,6 +270,7 @@ namespace mls.Controllers
             var ordertypes = db.OrderTypes.ToList();
             var woparttypes = db.WoPartTypes.ToList();
             var woorderstatuses = db.WoOrderStatuses.ToList();
+            var partstockouts = db.PartStockOuts.ToList();
 
             var viewModel = new SaveWorkOrderViewModel()
             {
@@ -245,7 +280,8 @@ namespace mls.Controllers
                 MlsDivisions = mlsdivisions,
                 WoPartTypes = woparttypes,
                 OrderTypes = ordertypes,
-                WoOrderStatuses =woorderstatuses
+                WoOrderStatuses =woorderstatuses,
+                PartStockOuts = partstockouts
             };
 
 
@@ -302,6 +338,32 @@ namespace mls.Controllers
             db.WorkOrders.Remove(workOrder);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult _PartStockOut(int stockOutName)
+        {
+            var queryNew = from a in db.WorkOrders
+                           where a.PartStockOutId == stockOutName
+                           orderby a.PromiseDate descending
+                           select a;
+            List<NewWorkOrderViewModel> result = new List<NewWorkOrderViewModel>();
+            foreach (var order in queryNew.ToList())
+            {
+                result.Add(new NewWorkOrderViewModel
+                {
+                    WorkOrderId = order.WorkOrderId,
+                    MlsSo = order.MlsSo,
+                    CustomerPo = order.CustomerPo,
+                    WorkOrderNumber = order.WorkOrderNumber,
+                    CustomerPn = order.CustomerPn,
+                    Qty = order.Qty,
+                    PromiseDate = order.PromiseDate,
+                    PartsNeeded = order.PartsNeeded,
+                    PartStockOutNotes = order.PartStockOutNotes,
+                    Notes = order.Notes
+                });
+            }
+            return PartialView("_PartStockOutPartialView", result);
         }
 
         // GET: WorkOrders/BayneLifters/Closed

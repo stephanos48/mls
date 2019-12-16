@@ -85,8 +85,17 @@ namespace mls.Models
         [Display(Name = "WoStatus")]
         public byte WoOrderStatusId { get; set; }
 
+        public PartStockOut PartStockOut { get; set; }
+
+        [Display(Name = "Stock Out")]
+        public byte PartStockOutId { get; set; }
+
         [Display(Name = "WO Detail")]
         public string WoNotes { get; set; }
+
+        public string PartsNeeded { get; set; }
+
+        public string PartStockOutNotes { get; set; }
 
         public string Parts { get; set; }
 

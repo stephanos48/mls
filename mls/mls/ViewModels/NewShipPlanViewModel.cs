@@ -42,6 +42,9 @@ namespace mls.ViewModels
         [Display(Name = "MLS SO")]
         public string SoNumber { get; set; }
 
+        [Display(Name = "MLS WO")]
+        public string WoNumber { get; set; }
+
         [Display(Name = "Customer PN")]
         public string CustomerPn { get; set; }
 
@@ -72,6 +75,11 @@ namespace mls.ViewModels
 
         [Display(Name = "Status")]
         public byte ShipPlanStatusId { get; set; }
+
+        public CQStatus CQStatus { get; set; }
+
+        [Display(Name = "HOT")]
+        public byte CQStatusId { get; set; }
 
         public string Carrier { get; set; }
 

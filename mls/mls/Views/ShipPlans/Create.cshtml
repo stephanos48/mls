@@ -71,6 +71,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.ShipPlan.WoNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ShipPlan.WoNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ShipPlan.WoNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.ShipPlan.CustomerPn, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ShipPlan.CustomerPn, new { htmlAttributes = new { @class = "form-control" } })
@@ -139,6 +147,14 @@
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.ShipPlan.ShipPlanStatusId, new SelectList(Model.ShipPlanStatuses, "ShipPlanStatusId", "ShipPlanStatusName"), "Select Status", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ShipPlan.ShipPlanStatusId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ShipPlan.CQStatusId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ShipPlan.CQStatusId, new SelectList(Model.CQStatuses, "CQStatusId", "CQName"), "Hot Order?", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ShipPlan.CQStatusId, "", new { @class = "text-danger" })
             </div>
         </div>
 

@@ -7,7 +7,7 @@
 <h2>Shipped Out Orders</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "ShipPlanStatus")
+    @Html.ActionLink("Go Back", "ShipPlanStatus") | @Html.ActionLink("Shipped < 6 mo to 1y", "ShipPlanClosed180") | @Html.ActionLink("Shipped > 1 yr", "ShipPlanClosed365") 
 </p>
 <table id="shipplan" class="table table-bordered table-hover">
     <thead>

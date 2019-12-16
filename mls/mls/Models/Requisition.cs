@@ -16,6 +16,11 @@ namespace mls.Models
         [Display(Name = "Status")]
         public byte ReqStatusId { get; set; }
 
+        public MlsDivision MlsDivision { get; set; }
+
+        [Display(Name = "MlsDivision")]
+        public byte MlsDivisionId { get; set; }
+
         public string Supplier { get; set; }
 
         public string Description { get; set; }

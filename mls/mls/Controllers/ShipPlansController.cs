@@ -69,8 +69,32 @@ namespace mls.Controllers
 
         public ActionResult ShipPlanClosed()
         {
+            var baselinedate = DateTime.Now.AddDays(-180);
             var query = from a in db.ShipPlans
-                        where a.ShipPlanStatusId == 5
+                        where a.ShipPlanStatusId == 5 && a.ShipDateTime >= baselinedate
+                        orderby a.ShipDateTime descending
+                        select a;
+            return View("ShipPlanClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult ShipPlanClosed180()
+        {
+            var startdate = DateTime.Now.AddDays(-180);
+            var enddate = DateTime.Now.AddDays(-365);
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId == 5 && a.ShipDateTime >= startdate && a.ShipDateTime <= enddate
+                        orderby a.ShipDateTime descending
+                        select a;
+            return View("ShipPlanClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult ShipPlanClosed365()
+        {
+            var baselinedate = DateTime.Now.AddDays(-365);
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId == 5 && a.ShipDateTime <= baselinedate
                         orderby a.ShipDateTime descending
                         select a;
             return View("ShipPlanClosed", query);
@@ -144,13 +168,15 @@ namespace mls.Controllers
             var customers = db.Customers.ToList();
             var customerdivisions = db.CustomerDivisions.ToList();
             var mlsdivisions = db.MlsDivisions.ToList();
+            var cqstatuses = db.CQStatuses.ToList();
 
             var viewModel = new SaveShipPlanViewModel()
             {
                 Customers = customers,
                 CustomerDivisions = customerdivisions,
                 MlsDivisions = mlsdivisions,
-                ShipPlanStatuses = statuses
+                ShipPlanStatuses = statuses,
+                CQStatuses = cqstatuses
             };
 
             return View("Create", viewModel);
@@ -184,6 +210,7 @@ namespace mls.Controllers
             var customers = db.Customers.ToList();
             var customerdivisions = db.CustomerDivisions.ToList();
             var mlsdivisions = db.MlsDivisions.ToList();
+            var cqstatuses = db.CQStatuses.ToList();
 
             var viewModel = new SaveShipPlanViewModel()
             {
@@ -191,7 +218,8 @@ namespace mls.Controllers
                 Customers = customers,
                 CustomerDivisions = customerdivisions,
                 MlsDivisions = mlsdivisions,
-                ShipPlanStatuses = statuses
+                ShipPlanStatuses = statuses,
+                CQStatuses = cqstatuses
             };
 
             if (id == null)
@@ -303,6 +331,60 @@ namespace mls.Controllers
                 });
             }
             return PartialView("_ShipIssue", result);
+        }
+
+        public ActionResult _ShipHot(int status)
+        {
+            var queryNew = from a in db.ShipPlans
+                           where a.CQStatusId == 1
+                           orderby a.ShipDateTime ascending
+                           select a;
+            List<NewShipPlanViewModel> result = new List<NewShipPlanViewModel>();
+            foreach (var sp in queryNew.ToList())
+            {
+                result.Add(new NewShipPlanViewModel
+                {
+                    ShipPlanId = sp.ShipPlanId,
+                    CustomerPn = sp.CustomerPn,
+                    CustomerOrderNo = sp.CustomerOrderNo,
+                    CustomerOrderLine = sp.CustomerOrderLine,
+                    SoNumber = sp.SoNumber,
+                    OrderQty = sp.OrderQty,
+                    ShipQty = sp.ShipQty,
+                    RequestedDateTime = sp.RequestedDateTime,
+                    PromiseDateTime = sp.PromiseDateTime,
+                    ShipDateTime = sp.ShipDateTime,
+                    Notes = sp.Notes
+                });
+            }
+            return PartialView("_ShipHot", result);
+        }
+
+        public ActionResult _ShipHotCustomer(int customer)
+        {
+            var queryNew = from a in db.ShipPlans
+                           where a.CQStatusId == 1 && a.CustomerId == customer
+                           orderby a.ShipDateTime ascending
+                           select a;
+            List<NewShipPlanViewModel> result = new List<NewShipPlanViewModel>();
+            foreach (var sp in queryNew.ToList())
+            {
+                result.Add(new NewShipPlanViewModel
+                {
+                    ShipPlanId = sp.ShipPlanId,
+                    CustomerPn = sp.CustomerPn,
+                    CustomerOrderNo = sp.CustomerOrderNo,
+                    CustomerOrderLine = sp.CustomerOrderLine,
+                    SoNumber = sp.SoNumber,
+                    OrderQty = sp.OrderQty,
+                    ShipQty = sp.ShipQty,
+                    RequestedDateTime = sp.RequestedDateTime,
+                    PromiseDateTime = sp.PromiseDateTime,
+                    ShipDateTime = sp.ShipDateTime,
+                    Notes = sp.Notes
+                });
+            }
+            return PartialView("_ShipHotCustomer", result);
         }
 
         public ActionResult _ShipPrep(int status)
@@ -588,6 +670,16 @@ namespace mls.Controllers
             //return View(db.ShipPlans.ToList());
         }
 
+        public ActionResult WbRoOpenWb()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 9 && a.CustomerId == 2
+                        orderby a.ShipDateTime ascending
+                        select a;
+            return View("WbRoOpenWb", query);
+            //return View(db.ShipPlans.ToList());
+        }
+
         public ActionResult WbCanceled()
         {
             var query = from a in db.ShipPlans
@@ -615,6 +707,16 @@ namespace mls.Controllers
                         orderby a.ShipDateTime descending
                         select a;
             return View("WbShipped", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult WbRoShippedWb()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId == 5 && a.CustomerId == 2
+                        orderby a.ShipDateTime descending
+                        select a;
+            return View("WbRoShippedWb", query);
             //return View(db.Requisitions.ToList());
         }
 

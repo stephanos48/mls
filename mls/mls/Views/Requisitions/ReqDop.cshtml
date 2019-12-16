@@ -1,0 +1,29 @@
+﻿@model IEnumerable<mls.Models.Requisition>
+
+@{
+    ViewBag.Title = "Requisition";
+}
+
+<h2>Dop Reqs</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "ReqStatus") | @Html.ActionLink("Create New", "Create")
+</p>
+<br />
+
+<h4><u>New Reqs</u></h4>
+@Html.Action("_ReqNew1", "Requisitions", new { Status = 1, Div = 5 })
+<br />
+<br />
+<h4><u>Supplier Search</u></h4>
+@Html.Action("_ReqSupplierSearch1", "Requisitions", new { Status = 2, Div = 5 })
+<br />
+<br />
+<h4><u>Ordered / Payment Needed</u></h4>
+@Html.Action("_ReqPayment1", "Requisitions", new { Status = 3, Div = 5 })
+<br />
+<br />
+<h4><u>Ordered / Awaiting Delivery</u></h4>
+@Html.Action("_ReqOrdered1", "Requisitions", new { Status = 4, Div = 5 })
+<br />
+<br />

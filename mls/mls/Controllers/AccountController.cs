@@ -78,7 +78,7 @@ namespace mls.Controllers
                     }
                     else if (roles.Contains("Wastebuilt"))
                     {
-                        return RedirectToAction("WbHome", "CustomerOrders");
+                        return RedirectToAction("NewHomeWb", "CustomerOrders");
                     }
                     else if (roles.Contains("Nov"))
                     {

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<mls.Models.CycleCount>
+
+@{
+    ViewBag.Title = "CycleCount";
+}
+
+<h2>Cycle Counts</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "Pfeps", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+<table id="cyclecount" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.CycleCountDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SageQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PortalQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountOff)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CycleCountId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.CycleCountId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CycleCountId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CycleCountDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SageQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PortalQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActualQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountOff)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#cyclecount").DataTable({
+              'iDisplayLength': 100 });
+            });
+
+    </script>
+}

@@ -55,10 +55,12 @@ namespace mls.Controllers
         public ActionResult Create()
         {
             var statuses = db.ReqStatuses.ToList();
+            var mlsdivisions = db.MlsDivisions.ToList();
 
             var viewModel = new SaveReqViewModel()
             {
-                ReqStatuses = statuses
+                ReqStatuses = statuses,
+                MlsDivisions = mlsdivisions
             };
 
             return View("Create", viewModel);
@@ -89,10 +91,12 @@ namespace mls.Controllers
             var requisitions = db.Requisitions.SingleOrDefault(c => c.RequisitionId == id);
 
             var statuses = db.ReqStatuses.ToList();
+            var mlsdivisions = db.MlsDivisions.ToList();
 
             var viewModel = new SaveReqViewModel()
             {
                 Requisition = requisitions,
+                MlsDivisions = mlsdivisions,
                 ReqStatuses = statuses
             };
             if (id == null)
@@ -155,7 +159,7 @@ namespace mls.Controllers
         public ActionResult _ReqNew(int status)
         {
             var queryNew = from a in db.Requisitions
-                           where a.ReqStatusId == 1
+                           where a.ReqStatusId == status
                            select a;
             List<NewReqViewModel> result = new List<NewReqViewModel>();
             foreach (var req in queryNew.ToList())
@@ -179,7 +183,7 @@ namespace mls.Controllers
         public ActionResult _ReqSupplierSearch(int status)
         {
             var queryNew = from a in db.Requisitions
-                           where a.ReqStatusId == 2
+                           where a.ReqStatusId == status
                            select a;
             List<NewReqViewModel> result = new List<NewReqViewModel>();
             foreach (var req in queryNew.ToList())
@@ -203,7 +207,7 @@ namespace mls.Controllers
         public ActionResult _ReqPayment(int status)
         {
             var queryNew = from a in db.Requisitions
-                           where a.ReqStatusId == 3
+                           where a.ReqStatusId == status
                            select a;
             List<NewReqViewModel> result = new List<NewReqViewModel>();
             foreach (var req in queryNew.ToList())
@@ -227,7 +231,7 @@ namespace mls.Controllers
         public ActionResult _ReqOrdered(int status)
         {
             var queryNew = from a in db.Requisitions
-                           where a.ReqStatusId == 4
+                           where a.ReqStatusId == status
                            select a;
             List<NewReqViewModel> result = new List<NewReqViewModel>();
             foreach (var req in queryNew.ToList())
@@ -248,10 +252,106 @@ namespace mls.Controllers
             return PartialView("_ReqOrdered", result);
         }
 
-        public ActionResult _ReqComplete(int status)
+        public ActionResult _ReqNew1(int status, int div)
         {
             var queryNew = from a in db.Requisitions
-                           where a.ReqStatusId == 5
+                           where a.ReqStatusId == status && a.MlsDivisionId == div
+                           select a;
+            List<NewReqViewModel> result = new List<NewReqViewModel>();
+            foreach (var req in queryNew.ToList())
+            {
+                result.Add(new NewReqViewModel
+                {
+                    RequisitionId = req.RequisitionId,
+                    PartNumber = req.PartNumber,
+                    Description = req.Description,
+                    Quantity = req.Quantity,
+                    RequestDate = req.RequestDate,
+                    NeedDate = req.NeedDate,
+                    EtaDate = req.EtaDate,
+                    Requestor = req.Requestor,
+                    Notes = req.Notes
+                });
+            }
+            return PartialView("_ReqNew1", result);
+        }
+
+        public ActionResult _ReqSupplierSearch1(int status, int div)
+        {
+            var queryNew = from a in db.Requisitions
+                           where a.ReqStatusId == status && a.MlsDivisionId == div
+                           select a;
+            List<NewReqViewModel> result = new List<NewReqViewModel>();
+            foreach (var req in queryNew.ToList())
+            {
+                result.Add(new NewReqViewModel
+                {
+                    RequisitionId = req.RequisitionId,
+                    PartNumber = req.PartNumber,
+                    Description = req.Description,
+                    Quantity = req.Quantity,
+                    RequestDate = req.RequestDate,
+                    NeedDate = req.NeedDate,
+                    EtaDate = req.EtaDate,
+                    Requestor = req.Requestor,
+                    Notes = req.Notes
+                });
+            }
+            return PartialView("_ReqSupplierSearch1", result);
+        }
+
+        public ActionResult _ReqPayment1(int status, int div)
+        {
+            var queryNew = from a in db.Requisitions
+                           where a.ReqStatusId == status && a.MlsDivisionId == div
+                           select a;
+            List<NewReqViewModel> result = new List<NewReqViewModel>();
+            foreach (var req in queryNew.ToList())
+            {
+                result.Add(new NewReqViewModel
+                {
+                    RequisitionId = req.RequisitionId,
+                    PartNumber = req.PartNumber,
+                    Description = req.Description,
+                    Quantity = req.Quantity,
+                    RequestDate = req.RequestDate,
+                    NeedDate = req.NeedDate,
+                    EtaDate = req.EtaDate,
+                    Requestor = req.Requestor,
+                    Notes = req.Notes
+                });
+            }
+            return PartialView("_ReqPayment1", result);
+        }
+
+        public ActionResult _ReqOrdered1(int status, int div)
+        {
+            var queryNew = from a in db.Requisitions
+                           where a.ReqStatusId == status && a.MlsDivisionId == div
+                           select a;
+            List<NewReqViewModel> result = new List<NewReqViewModel>();
+            foreach (var req in queryNew.ToList())
+            {
+                result.Add(new NewReqViewModel
+                {
+                    RequisitionId = req.RequisitionId,
+                    PartNumber = req.PartNumber,
+                    Description = req.Description,
+                    Quantity = req.Quantity,
+                    RequestDate = req.RequestDate,
+                    NeedDate = req.NeedDate,
+                    EtaDate = req.EtaDate,
+                    Requestor = req.Requestor,
+                    Notes = req.Notes
+                });
+            }
+            return PartialView("_ReqOrdered1", result);
+        }
+
+        public ActionResult _ReqComplete(int status, int div)
+        {
+            var queryNew = from a in db.Requisitions
+                           where a.ReqStatusId == status && a.MlsDivisionId == div
                            select a;
             List<NewReqViewModel> result = new List<NewReqViewModel>();
             foreach (var req in queryNew.ToList())
@@ -275,6 +375,31 @@ namespace mls.Controllers
         public ActionResult ReqStatus()
         {
             return View("ReqStatus");
+        }
+
+        public ActionResult ReqHyd()
+        {
+            return View("ReqHyd");
+        }
+
+        public ActionResult ReqDip()
+        {
+            return View("ReqDip");
+        }
+
+        public ActionResult ReqSpy()
+        {
+            return View("ReqSpy");
+        }
+
+        public ActionResult ReqDtt()
+        {
+            return View("ReqDtt");
+        }
+
+        public ActionResult ReqDop()
+        {
+            return View("ReqDop");
         }
 
         protected override void Dispose(bool disposing)

@@ -105,6 +105,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.WorkOrder.PartStockOutId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.WorkOrder.PartStockOutId, new SelectList(Model.PartStockOuts, "PartStockOutId", "PartStockOutName"), "Stock Out Status", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.WorkOrder.PartStockOutId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.WorkOrder.Sn, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.WorkOrder.Sn, new { htmlAttributes = new { @class = "form-control" } })
@@ -173,6 +181,22 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.WorkOrder.WoNotes, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.WorkOrder.WoNotes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WorkOrder.PartsNeeded, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WorkOrder.PartsNeeded, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WorkOrder.PartsNeeded, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WorkOrder.PartStockOutNotes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WorkOrder.PartStockOutNotes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WorkOrder.PartStockOutNotes, "", new { @class = "text-danger" })
             </div>
         </div>
 

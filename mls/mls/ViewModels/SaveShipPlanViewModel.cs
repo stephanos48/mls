@@ -16,6 +16,8 @@ namespace mls.ViewModels
 
         public IEnumerable<ShipPlanStatus> ShipPlanStatuses { get; set; }
 
+        public IEnumerable<CQStatus> CQStatuses { get; set; }
+
         public ShipPlan ShipPlan { get; set; }
 
     }

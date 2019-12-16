@@ -15,6 +15,10 @@
 @Html.Action("_Issues", "PoPlans", new { Status = 3 })
 <br />
 <br />
+<h4><u>POs Needing Confirmation</u></h4>
+@Html.Action("_Issues", "PoPlans", new { Status = 8 })
+<br />
+<br />
 <h4><u>POs To Cancel</u></h4>
 @Html.Action("_Cancel", "PoPlans", new { Status = 6 })
 <br />

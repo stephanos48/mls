@@ -1,0 +1,120 @@
+﻿@model IEnumerable<mls.Models.PoPlan>
+
+@{
+    ViewBag.Title = "Closed Pos";
+}
+
+<h2>Closed POs</h2>
+
+<p>
+    @Html.ActionLink("Wb Home", "NewHomeWb", "CustomerOrders", null, null)
+</p>
+<table id="poplan" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PoNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PoLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerOrderNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceivedQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PromiseDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiptDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContainerUh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BOL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Details", "RoDetails", new { id = item.PoPlanId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PoNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PoLine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerOrderNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReceivedQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PromiseDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReceiptDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContainerUh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BOL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#poplan").DataTable({
+                'iDisplayLength': 100 });
+        });
+
+    </script>
+}
+
+
+

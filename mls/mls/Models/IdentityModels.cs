@@ -204,6 +204,10 @@ namespace mls.Models
 
         public DbSet<CQStatus> CQStatuses { get; set; }
 
+        public DbSet<PartStockOut> PartStockOuts { get; set; }
+
+        public DbSet<CycleCount> CycleCounts { get; set; }
+
         public System.Data.Entity.DbSet<mls.Models.SafetyIncident> SafetyIncidents { get; set; }
     }
 }

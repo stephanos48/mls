@@ -20,7 +20,7 @@ namespace mls.Controllers
         public ActionResult Index()
         {
             var query = from a in db.CustomerComplaints
-                        orderby a.ComplaintDate ascending
+                        orderby a.ComplaintDate descending
                         select a;
             return View("Index", query);
         }

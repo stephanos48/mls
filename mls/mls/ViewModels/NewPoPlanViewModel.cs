@@ -81,6 +81,18 @@ namespace mls.ViewModels
         [Display(Name = "Status")]
         public byte PoOrderStatusId { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? PoSentDateTime { get; set; }
+
+        public string PoSentBy { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? PoConfirmedDateTime { get; set; }
+
+        public string PoConfirmedBy { get; set; }
+
         public string Notes { get; set; }
 
     }

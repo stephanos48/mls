@@ -11,6 +11,8 @@ namespace mls.ViewModels
 
         public IEnumerable<ReqStatus> ReqStatuses { get; set; }
 
+        public IEnumerable<MlsDivision> MlsDivisions { get; set; }
+
         public Requisition Requisition { get; set; }
 
     }

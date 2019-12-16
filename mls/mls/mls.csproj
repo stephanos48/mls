@@ -341,6 +341,7 @@
     <Compile Include="Controllers\CustomerComplaintsController.cs" />
     <Compile Include="Controllers\CustomerOrdersController.cs" />
     <Compile Include="Controllers\CustomerQuotesController.cs" />
+    <Compile Include="Controllers\CycleCountsController.cs" />
     <Compile Include="Controllers\DemandsController.cs" />
     <Compile Include="Controllers\DemandWksController.cs" />
     <Compile Include="Controllers\DownReportsController.cs" />
@@ -911,6 +912,30 @@
     <Compile Include="Migrations\201908090543302_addsafety20190809.Designer.cs">
       <DependentUpon>201908090543302_addsafety20190809.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909191040294_reqchanges20190919.cs" />
+    <Compile Include="Migrations\201909191040294_reqchanges20190919.Designer.cs">
+      <DependentUpon>201909191040294_reqchanges20190919.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910112325163_addstockouts20191011.cs" />
+    <Compile Include="Migrations\201910112325163_addstockouts20191011.Designer.cs">
+      <DependentUpon>201910112325163_addstockouts20191011.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910131440230_cyclecount20191013.cs" />
+    <Compile Include="Migrations\201910131440230_cyclecount20191013.Designer.cs">
+      <DependentUpon>201910131440230_cyclecount20191013.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910131526276_addshiphot20191013.cs" />
+    <Compile Include="Migrations\201910131526276_addshiphot20191013.Designer.cs">
+      <DependentUpon>201910131526276_addshiphot20191013.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910150910527_addwono20191015.cs" />
+    <Compile Include="Migrations\201910150910527_addwono20191015.Designer.cs">
+      <DependentUpon>201910150910527_addwono20191015.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910212208168_shipdateadd20191021.cs" />
+    <Compile Include="Migrations\201910212208168_shipdateadd20191021.Designer.cs">
+      <DependentUpon>201910212208168_shipdateadd20191021.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivePart.cs" />
@@ -936,6 +961,7 @@
     <Compile Include="Models\CustomerOrder.cs" />
     <Compile Include="Models\CustomerQoh.cs" />
     <Compile Include="Models\CustomerQuote.cs" />
+    <Compile Include="Models\CycleCount.cs" />
     <Compile Include="Models\Demand.cs" />
     <Compile Include="Models\DemandWk.cs" />
     <Compile Include="Models\Department.cs" />
@@ -967,6 +993,7 @@
     <Compile Include="Models\NewCommentEmail.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\OrderType.cs" />
+    <Compile Include="Models\PartStockOut.cs" />
     <Compile Include="Models\PartType.cs" />
     <Compile Include="Models\Pfep.cs" />
     <Compile Include="Models\PoOrderStatus.cs" />
@@ -2983,6 +3010,34 @@
     <Content Include="Views\ShipPlans\EsgRoShipped.cshtml" />
     <Content Include="Views\PoPlans\EsgRoTransit.cshtml" />
     <Content Include="Views\PoPlans\EsgRoClosed.cshtml" />
+    <Content Include="Views\Requisitions\ReqHyd.cshtml" />
+    <Content Include="Views\Requisitions\_ReqNew1.cshtml" />
+    <Content Include="Views\Requisitions\_ReqOrdered1.cshtml" />
+    <Content Include="Views\Requisitions\_ReqPayment1.cshtml" />
+    <Content Include="Views\Requisitions\_ReqSupplierSearch1.cshtml" />
+    <Content Include="Views\Requisitions\ReqDip.cshtml" />
+    <Content Include="Views\Requisitions\ReqDtt.cshtml" />
+    <Content Include="Views\Requisitions\ReqSpy.cshtml" />
+    <Content Include="Views\Requisitions\ReqDop.cshtml" />
+    <Content Include="Views\PoPlans\PoSent.cshtml" />
+    <Content Include="Views\CustomerOrders\NewHomeWb.cshtml" />
+    <Content Include="Views\ShipPlans\WbRoOpenWb.cshtml" />
+    <Content Include="Views\ShipPlans\WbRoShippedWb.cshtml" />
+    <Content Include="Views\PoPlans\WbRoClosedWb.cshtml" />
+    <Content Include="Views\PoPlans\WbRoTransitWb.cshtml" />
+    <Content Include="Views\WorkOrders\PartStockOuts.cshtml" />
+    <Content Include="Views\WorkOrders\_PartStockOutPartialView.cshtml" />
+    <Content Include="Views\CycleCounts\Create.cshtml" />
+    <Content Include="Views\CycleCounts\Delete.cshtml" />
+    <Content Include="Views\CycleCounts\Details.cshtml" />
+    <Content Include="Views\CycleCounts\Edit.cshtml" />
+    <Content Include="Views\CycleCounts\Index.cshtml" />
+    <Content Include="Views\ShipPlans\_ShipHot.cshtml" />
+    <Content Include="Views\ShipPlans\_ShipHotCustomer.cshtml" />
+    <Content Include="Views\WorkOrders\ScheduleAll.cshtml" />
+    <Content Include="Views\WorkOrders\ScheduleClosed.cshtml" />
+    <Content Include="Views\WorkOrders\ScheduleCanceled.cshtml" />
+    <Content Include="Views\Scrums\ScrumClosed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3396,6 +3451,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908090543302_addsafety20190809.resx">
       <DependentUpon>201908090543302_addsafety20190809.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909191040294_reqchanges20190919.resx">
+      <DependentUpon>201909191040294_reqchanges20190919.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910112325163_addstockouts20191011.resx">
+      <DependentUpon>201910112325163_addstockouts20191011.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910131440230_cyclecount20191013.resx">
+      <DependentUpon>201910131440230_cyclecount20191013.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910131526276_addshiphot20191013.resx">
+      <DependentUpon>201910131526276_addshiphot20191013.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910150910527_addwono20191015.resx">
+      <DependentUpon>201910150910527_addwono20191015.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910212208168_shipdateadd20191021.resx">
+      <DependentUpon>201910212208168_shipdateadd20191021.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

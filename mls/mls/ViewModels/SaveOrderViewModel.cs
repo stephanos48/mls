@@ -22,5 +22,6 @@ namespace mls.ViewModels
         public IEnumerable<COrderType> COrderTypes { get; set; }
 
         public CustomerOrder CustomerOrder { get; set; }
+
     }
 }

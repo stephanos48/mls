@@ -57,6 +57,16 @@ namespace mls.Controllers
             //return View(db.Requisitions.ToList());
         }
 
+        public ActionResult WbRoClosedWb()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 5 && a.CustomerId == 2
+                        orderby a.ReceiptDateTime descending
+                        select a;
+            return View("WbRoClosedWb", query);
+            //return View(db.Requisitions.ToList());
+        }
+
         public ActionResult PoPlanCanceled()
         {
             var query = from a in db.PoPlans
@@ -94,6 +104,17 @@ namespace mls.Controllers
                         orderby a.ContainerUh descending
                         select a;
             return View("EsgRoTransit", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+
+        public ActionResult WbRoTransitWb()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 2 && a.CustomerId == 2
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("WbRoTransitWb", query);
             //return View(db.Requisitions.ToList());
         }
 
@@ -310,7 +331,7 @@ namespace mls.Controllers
         public ActionResult _Issues(int status)
         {
             var queryNew = from a in db.PoPlans
-                           where a.PoOrderStatusId == 3
+                           where a.PoOrderStatusId == status
                            orderby a.ReceiptDateTime ascending
                            select a;
             List<NewPoPlanViewModel> result = new List<NewPoPlanViewModel>();
@@ -337,7 +358,7 @@ namespace mls.Controllers
         public ActionResult _Cancel(int status)
         {
             var queryNew = from a in db.PoPlans
-                           where a.PoOrderStatusId == 6
+                           where a.PoOrderStatusId == status
                            orderby a.ReceiptDateTime ascending
                            select a;
             List<NewPoPlanViewModel> result = new List<NewPoPlanViewModel>();

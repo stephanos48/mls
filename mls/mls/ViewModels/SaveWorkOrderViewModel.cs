@@ -21,6 +21,8 @@ namespace mls.ViewModels
 
         public IEnumerable<WoOrderStatus> WoOrderStatuses { get; set; }
 
+        public IEnumerable<PartStockOut> PartStockOuts { get; set; }
+
         public WorkOrder WorkOrder { get; set; }
 
     }

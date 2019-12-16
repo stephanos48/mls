@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "NewWbHome";
+}
+
+<h2>Wb Home</h2>
+
+<br />
+<p>
+    <h4><u>Wb Reports</u></h4>
+    <br />
+
+    @Html.ActionLink("Open Order Status", "WbRoOpenWb", "ShipPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Qoh TX", "WbQoh", "CustomerOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("In Transit", "WbRoTransitWb", "PoPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Receipt History", "WbRoClosedWb", "PoPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Ship History", "WbRoShippedWb", "ShipPlans", null, null)
+    <br />
+    <br />
+    @*-> @Html.ActionLink("PFEP Cylinders", "Ops")
+        <br />
+        <br />*@
+    <h4><u>Wb PFEP Plans</u></h4>
+    <br />
+    @*@Html.ActionLink("WB PFEP Cyl", "WB1Pfep", "Pfeps", null, null)
+        <br />
+        <br />*@
+
+
+</p>
+

@@ -44,16 +44,10 @@
                 </th>
                 <th></th>
                 <th>
-                    Parts
-                </th>
-                <th>
-                    Resources
-                </th>
-                <th>
-                    Equipment
-                </th>
-                <th>
                     Notes
+                </th>
+                <th>
+                    StockOutNotes
                 </th>
             </tr>
         </thead>
@@ -89,16 +83,10 @@
                     </td>
                     <td></td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Parts)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Resources)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Equipment)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.Notes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PartStockOutNotes)
                     </td>
                 </tr>
             }
