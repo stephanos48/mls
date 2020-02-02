@@ -7,7 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using mls.Models;
-using mls.ViewModels; 
+using mls.ViewModels;
+using System.Data.SqlClient;
 
 namespace mls.Controllers
 {
@@ -67,11 +68,45 @@ namespace mls.Controllers
             //return View(db.ShipPlans.ToList());
         }
 
+        public ActionResult ShipPlanPrintHyd()
+        {
+            var baselinedate = DateTime.Now.AddDays(-90);
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId == 5 && a.ShipDateTime >= baselinedate
+                        orderby a.ShipDateTime descending
+                        select a;
+            return View("WbRoPrintHyd", query);
+            //return View(db.Requisitions.ToList());
+        }
+
         public ActionResult ShipPlanClosed()
+        {
+            var baselinedate = DateTime.Now.AddDays(-90);
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId == 5 && a.ShipDateTime >= baselinedate
+                        orderby a.ShipDateTime descending
+                        select a;
+            return View("ShipPlanClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult ShipPlanClosed180less()
         {
             var baselinedate = DateTime.Now.AddDays(-180);
             var query = from a in db.ShipPlans
                         where a.ShipPlanStatusId == 5 && a.ShipDateTime >= baselinedate
+                        orderby a.ShipDateTime descending
+                        select a;
+            return View("ShipPlanClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult ShipPlanClosed90()
+        {
+            var startdate = DateTime.Now.AddDays(-90);
+            var enddate = DateTime.Now.AddDays(-180);
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId == 5 && a.ShipDateTime >= startdate && a.ShipDateTime <= enddate
                         orderby a.ShipDateTime descending
                         select a;
             return View("ShipPlanClosed", query);
@@ -84,6 +119,17 @@ namespace mls.Controllers
             var enddate = DateTime.Now.AddDays(-365);
             var query = from a in db.ShipPlans
                         where a.ShipPlanStatusId == 5 && a.ShipDateTime >= startdate && a.ShipDateTime <= enddate
+                        orderby a.ShipDateTime descending
+                        select a;
+            return View("ShipPlanClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult ShipPlanClosed365less()
+        {
+            var baselinedate = DateTime.Now.AddDays(-365);
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId == 5 && a.ShipDateTime >= baselinedate
                         orderby a.ShipDateTime descending
                         select a;
             return View("ShipPlanClosed", query);
@@ -124,10 +170,30 @@ namespace mls.Controllers
         public ActionResult LookUp()
         {
             var query = from a in db.ShipPlans
-                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 9
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 9 && a.ShipPlanStatusId != 8
                         orderby a.ShipDateTime ascending
                         select a;
             return View("LookUp", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult EsgLookUp()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 9 && a.ShipPlanStatusId != 8 && a.CustomerId == 1
+                        orderby a.ShipDateTime ascending
+                        select a;
+            return View("LookUp", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult EsgPcLookUp()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 9 && a.ShipPlanStatusId != 8 && a.CustomerId == 1 && a.CustomerDivisionId == 9
+                        orderby a.CustomerPn ascending
+                        select a;
+            return View("EsgLookUp", query);
             //return View(db.Requisitions.ToList());
         }
 
@@ -164,6 +230,7 @@ namespace mls.Controllers
         // GET: ShipPlans/Create
         public ActionResult Create()
         {
+            ViewBag.ReturnUrl = Request.UrlReferrer;
             var statuses = db.ShipPlanStatuses.ToList();
             var customers = db.Customers.ToList();
             var customerdivisions = db.CustomerDivisions.ToList();
@@ -188,13 +255,13 @@ namespace mls.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Include = "ShipPlanId,OrderDateTime,CustomerId,CustomerDivisionId,MlsDivisionId,CustomerOrderNo,CustomerOrderLine,SoNumber,CustomerPn,UhPn,PartDescription,OrderQty,ShipQty,RequestedDateTime,PromiseDateTime,ShipDateTime,OrderStatusId,Carrier,TrackingInfo,ShipToAddress,Notes")] ShipPlan shipPlan)
-        public ActionResult Create(ShipPlan shipPlan)
+        public ActionResult Create(ShipPlan shipPlan, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 db.ShipPlans.Add(shipPlan);
                 db.SaveChanges();
-                return RedirectToAction("ShipPlanStatus");
+                return Redirect(returnUrl);
             }
 
             //return View(shipPlan);
@@ -204,6 +271,7 @@ namespace mls.Controllers
         // GET: ShipPlans/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.ReturnUrl = Request.UrlReferrer;
             var shipplans = db.ShipPlans.SingleOrDefault(c => c.ShipPlanId == id);
 
             var statuses = db.ShipPlanStatuses.ToList();
@@ -241,13 +309,13 @@ namespace mls.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Edit([Bind(Include = "ShipPlanId,OrderDateTime,CustomerId,CustomerDivisionId,MlsDivisionId,CustomerOrderNo,CustomerOrderLine,SoNumber,CustomerPn,UhPn,PartDescription,OrderQty,ShipQty,RequestedDateTime,PromiseDateTime,ShipDateTime,OrderStatusId,Carrier,TrackingInfo,ShipToAddress,Notes")] ShipPlan shipPlan)
-        public ActionResult Edit(ShipPlan shipPlan)
+        public ActionResult Edit(ShipPlan shipPlan, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(shipPlan).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("ShipPlanStatus");
+                return Redirect(returnUrl);
             }
             return View();
             //return View(shipPlan);
@@ -358,6 +426,33 @@ namespace mls.Controllers
                 });
             }
             return PartialView("_ShipHot", result);
+        }
+
+        public ActionResult _ShipPcHotCustomer(int customer, int division)
+        {
+            var queryNew = from a in db.ShipPlans
+                           where a.CQStatusId == 1 && a.CustomerId == customer && a.CustomerDivisionId == 9
+                           orderby a.ShipDateTime ascending
+                           select a;
+            List<NewShipPlanViewModel> result = new List<NewShipPlanViewModel>();
+            foreach (var sp in queryNew.ToList())
+            {
+                result.Add(new NewShipPlanViewModel
+                {
+                    ShipPlanId = sp.ShipPlanId,
+                    CustomerPn = sp.CustomerPn,
+                    CustomerOrderNo = sp.CustomerOrderNo,
+                    CustomerOrderLine = sp.CustomerOrderLine,
+                    SoNumber = sp.SoNumber,
+                    OrderQty = sp.OrderQty,
+                    ShipQty = sp.ShipQty,
+                    RequestedDateTime = sp.RequestedDateTime,
+                    PromiseDateTime = sp.PromiseDateTime,
+                    ShipDateTime = sp.ShipDateTime,
+                    Notes = sp.Notes
+                });
+            }
+            return PartialView("_ShipHotCustomer", result);
         }
 
         public ActionResult _ShipHotCustomer(int customer)
@@ -495,6 +590,33 @@ namespace mls.Controllers
             return PartialView("_OrdersToCancel", result);
         }
 
+        public ActionResult _PcOrderIssuesCustomer(int status, int customer, int division)
+        {
+            var queryNew = from a in db.ShipPlans
+                           where a.ShipPlanStatusId == status && a.CustomerId == customer && a.CustomerDivisionId == division
+                           orderby a.ShipDateTime ascending
+                           select a;
+            List<NewShipPlanViewModel> result = new List<NewShipPlanViewModel>();
+            foreach (var sp in queryNew.ToList())
+            {
+                result.Add(new NewShipPlanViewModel
+                {
+                    ShipPlanId = sp.ShipPlanId,
+                    CustomerPn = sp.CustomerPn,
+                    CustomerOrderNo = sp.CustomerOrderNo,
+                    CustomerOrderLine = sp.CustomerOrderLine,
+                    SoNumber = sp.SoNumber,
+                    OrderQty = sp.OrderQty,
+                    ShipQty = sp.ShipQty,
+                    RequestedDateTime = sp.RequestedDateTime,
+                    PromiseDateTime = sp.PromiseDateTime,
+                    ShipDateTime = sp.ShipDateTime,
+                    Notes = sp.Notes
+                });
+            }
+            return PartialView("_OrdersToCancel", result);
+        }
+
         public ActionResult ShipPlanStatus()
         {
             return View("ShipPlanStatus");
@@ -535,6 +657,11 @@ namespace mls.Controllers
             return View("EsgStatus");
         }
 
+        public ActionResult EsgPcStatus()
+        {
+            return View("EsgPcStatus");
+        }
+
         public ActionResult JbtStatus()
         {
             return View("JbtStatus");
@@ -570,6 +697,16 @@ namespace mls.Controllers
             //return View(db.ShipPlans.ToList());
         }
 
+        public ActionResult EsgPcOpen()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId == 6 && a.CustomerId == 1 && a.CustomerDivisionId == 9
+                        orderby a.ShipDateTime ascending
+                        select a;
+            return View("EsgPcOpen", query);
+            //return View(db.ShipPlans.ToList());
+        }
+
         public ActionResult EsgRoOpen()
         {
             var query = from a in db.ShipPlans
@@ -590,23 +727,33 @@ namespace mls.Controllers
             //return View(db.Requisitions.ToList());
         }
 
-        public ActionResult EsgSlotted()
+        public ActionResult EsgPcCanceled()
         {
             var query = from a in db.ShipPlans
-                        where a.ShipPlanStatusId == 7 && a.CustomerId == 1
+                        where a.ShipPlanStatusId == 9 && a.CustomerId == 1 && a.CustomerDivisionId == 9
                         orderby a.ShipDateTime ascending
                         select a;
-            return View("EsgSlotted", query);
+            return View("EsgPcCanceled", query);
             //return View(db.Requisitions.ToList());
         }
 
-        public ActionResult EsgShipped()
+        public ActionResult EsgPcSlotted()
         {
             var query = from a in db.ShipPlans
-                        where a.ShipPlanStatusId == 5 && a.CustomerId == 1
+                        where a.ShipPlanStatusId == 7 && a.CustomerId == 1 && a.CustomerDivisionId == 9
+                        orderby a.ShipDateTime ascending
+                        select a;
+            return View("EsgPcSlotted", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult EsgPcShipped()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId == 5 && a.CustomerId == 1 && a.CustomerDivisionId == 9
                         orderby a.ShipDateTime descending
                         select a;
-            return View("EsgShipped", query);
+            return View("EsgPcShipped", query);
             //return View(db.Requisitions.ToList());
         }
 
@@ -627,6 +774,26 @@ namespace mls.Controllers
                         orderby a.ShipDateTime ascending
                         select a;
             return View("JbtOpen", query);
+            //return View(db.ShipPlans.ToList());
+        }
+
+        public ActionResult JbtOgdRoOpen()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 7 && a.CustomerId == 19 && a.CustomerDivisionId == 10
+                        orderby a.ShipDateTime ascending
+                        select a;
+            return View("JbtOgdRoOpen", query);
+            //return View(db.ShipPlans.ToList());
+        }
+
+        public ActionResult JbtOrlRoOpen()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 7 && a.CustomerId == 19 && a.CustomerDivisionId == 11
+                        orderby a.ShipDateTime ascending
+                        select a;
+            return View("JbtOrlRoOpen", query);
             //return View(db.ShipPlans.ToList());
         }
 
@@ -660,23 +827,83 @@ namespace mls.Controllers
             //return View(db.Requisitions.ToList());
         }
 
+        public ActionResult JbtOrlRoShipped()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId == 5 && a.CustomerId == 19 && a.CustomerDivisionId == 11
+                        orderby a.ShipDateTime descending
+                        select a;
+            return View("JbtOrlRoShipped", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult JbtOgdRoShipped()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId == 5 && a.CustomerId == 19 && a.CustomerDivisionId == 10
+                        orderby a.ShipDateTime descending
+                        select a;
+            return View("JbtOgdRoShipped", query);
+            //return View(db.Requisitions.ToList());
+        }
+
         public ActionResult WbOpen()
         {
             var query = from a in db.ShipPlans
-                        where a.ShipPlanStatusId == 6 && a.CustomerId == 2
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 8 && a.ShipPlanStatusId != 9 && a.CustomerId == 2 
                         orderby a.ShipDateTime ascending
                         select a;
             return View("WbOpen", query);
             //return View(db.ShipPlans.ToList());
         }
 
-        public ActionResult WbRoOpenWb()
+        public ActionResult WbOpenDip()
         {
             var query = from a in db.ShipPlans
-                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 9 && a.CustomerId == 2
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 8 && a.ShipPlanStatusId != 9 && a.CustomerId == 2 && a.MlsDivisionId == 4
                         orderby a.ShipDateTime ascending
                         select a;
-            return View("WbRoOpenWb", query);
+            return View("WbOpenDip", query);
+            //return View(db.ShipPlans.ToList());
+        }
+
+        public ActionResult WbOpenHyd()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 8 && a.ShipPlanStatusId != 9 && a.CustomerId == 2 && a.MlsDivisionId == 1
+                        orderby a.ShipDateTime ascending
+                        select a;
+            return View("WbOpenHyd", query);
+            //return View(db.ShipPlans.ToList());
+        }
+
+        public ActionResult WbRoOpenWbDip()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 8 && a.ShipPlanStatusId != 9 && a.CustomerId == 2 && a.MlsDivisionId == 4
+                        orderby a.ShipDateTime ascending
+                        select a;
+            return View("WbRoOpenWbDip", query);
+            //return View(db.ShipPlans.ToList());
+        }
+
+        public ActionResult WbRoOpenWbHyd()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 8 && a.ShipPlanStatusId != 9 && a.CustomerId == 2 && a.MlsDivisionId == 1
+                        orderby a.ShipDateTime ascending
+                        select a;
+            return View("WbRoOpenWbHyd", query);
+            //return View(db.ShipPlans.ToList());
+        }
+
+        public ActionResult WbRoOpenWbAll()
+        {
+            var query = from a in db.ShipPlans
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 8 && a.ShipPlanStatusId != 9 && a.CustomerId == 2
+                        orderby a.ShipDateTime ascending
+                        select a;
+            return View("WbRoOpenWbAll", query);
             //return View(db.ShipPlans.ToList());
         }
 

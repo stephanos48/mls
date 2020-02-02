@@ -208,6 +208,13 @@ namespace mls.Models
 
         public DbSet<CycleCount> CycleCounts { get; set; }
 
-        public System.Data.Entity.DbSet<mls.Models.SafetyIncident> SafetyIncidents { get; set; }
+        public DbSet<SafetyIncident> SafetyIncidents { get; set; }
+
+        public DbSet<VtCycleCount> VtCycleCounts { get; set; }
+
+        public DbSet<VtPfep> VtPfeps { get; set; }
+
+        public DbSet<VtShipPlan> VtShipPlans { get; set; }
+
     }
 }

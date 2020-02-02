@@ -1,0 +1,96 @@
+﻿@model mls.Models.VtPfep
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>VtPfep</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QohVt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QohVt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NcrQtyVt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NcrQtyVt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PfepEsg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PfepEsg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PfepVt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PfepVt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinVt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinVt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxVt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxVt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KbQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KbQty)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "VtQoh")
+        </div>
+    }
+</div>

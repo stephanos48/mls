@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "JbtHome";
+}
+
+<h2>Jbt Home</h2>
+<br />
+<p>
+    <h4><u>Jbt Ogden Reports</u></h4>
+    <br />
+
+    @Html.ActionLink("Open Order Status", "JbtOgdRoOpen", "ShipPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Qoh TX", "JbtOgdQoh", "CustomerOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("In Transit", "JbtOgdRoTransit", "PoPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Receipt History", "JbtOgdRoClosed", "PoPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Ship History", "JbtOgdRoShipped", "ShipPlans", null, null)
+    <br />
+    <br />
+
+    <h4><u>Jbt Orlando Reports</u></h4>
+    <br />
+
+    @Html.ActionLink("Open Order Status", "JbtOrlRoOpen", "ShipPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Qoh TX", "JbtOrlQoh", "CustomerOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("In Transit", "JbtOrlRoTransit", "PoPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Receipt History", "JbtOrlRoClosed", "PoPlans", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Ship History", "JbtOrlRoShipped", "ShipPlans", null, null)
+    <br />
+    <br />
+
+</p>

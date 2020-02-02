@@ -7,7 +7,7 @@
 <h2>In Transit</h2>
 
 <p>
-    @Html.ActionLink("Esg Home", "NewHomeWb", "CustomerOrders", null, null)
+    @Html.ActionLink("Wb Home", "NewHomeWb", "CustomerOrders", null, null) | <button id="btn" class="btn btn-success">Export to Excel</button>
 </p>
 <table id="poplan" class="table table-bordered table-hover">
     <thead>
@@ -110,9 +110,19 @@
     <script>
         $(document).ready(function () {
             $("#poplan").DataTable({
-                'iDisplayLength': 100 });
+                'iDisplayLength': 200 });
         });
 
+    </script>
+    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+    <script type="text/javascript">
+                $('#btn').click(function(){
+                    $('.table').table2excel({
+                        name: "download",
+                        filename: "download",
+                        fileext: ".xlsx"
+                    });
+                });
     </script>
 }
 

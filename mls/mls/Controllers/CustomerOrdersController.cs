@@ -93,6 +93,14 @@ namespace mls.Controllers
             {
                 return View("NewEsgHome");
             }
+            else if (User.IsInRole("Jbt"))
+            {
+                return View("NewJbtHome");
+            }
+            else if (User.IsInRole("VadTek"))
+            {
+                return RedirectToAction("Index", "VtPfeps");
+            }
             else
             {
                 return RedirectToAction("Index", "Home");
@@ -172,6 +180,15 @@ namespace mls.Controllers
             //               select a;
             // return View("Wastebuilt", query);
             return View("JBT_OrlandoHome");
+        }
+
+        public ActionResult NewJbtHome()
+        {
+            //var query = from a in db.CustomerOrders
+            //               orderby a.OrderDateTime descending
+            //               select a;
+            // return View("Wastebuilt", query);
+            return View("NewJbtHome");
         }
 
         // GET: CustomerOrders/Wastebuilt
@@ -409,7 +426,7 @@ namespace mls.Controllers
         {
             var query = from a in db.TxQohs
                         join mp in db.MasterPartLists on a.Pn equals mp.CustomerPn
-                        where mp.CustomerId == 19
+                        where mp.CustomerId == 19 && mp.CustomerDivisionId == 11
                         orderby a.Pn descending
                         select new
                         {
@@ -430,6 +447,35 @@ namespace mls.Controllers
             }
 
             return View("JbtOrlQoh", quantities);
+            //return View();
+        }
+
+        // GET: CustomerOrders/Wastebuilt
+        public ActionResult JbtOgdQoh()
+        {
+            var query = from a in db.TxQohs
+                        join mp in db.MasterPartLists on a.Pn equals mp.CustomerPn
+                        where mp.CustomerId == 19 && mp.CustomerDivisionId == 10
+                        orderby a.Pn descending
+                        select new
+                        {
+                            PN = a.Pn,
+                            QOH = a.Qoh
+                        };
+
+            List<QohViewModel> quantities = new List<QohViewModel>();
+            foreach (var qoh in query.ToList())
+            {
+                QohViewModel mymodel = new QohViewModel()
+                {
+                    Pn = qoh.PN,
+                    Qoh = qoh.QOH
+                };
+
+                quantities.Add(mymodel);
+            }
+
+            return View("JbtOgdQoh", quantities);
             //return View();
         }
 

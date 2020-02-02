@@ -853,3 +853,5 @@ C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.cyclecount
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.addshiphot20191013.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.addwono20191015.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.shipdateadd20191021.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.fixreqopen.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.vtadd2020122.resources

@@ -1,0 +1,112 @@
+﻿@model mls.Models.VtCycleCount
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>VtCycleCount</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CycleCountDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CycleCountDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PortalQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PortalQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActualQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActualQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LocationsCounted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LocationsCounted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuditedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuditedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountOff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountOff)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrectedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrectedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrectedDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrectedDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,90 @@
+﻿@model mls.Models.VtPfep
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>VtPfep</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QohVt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QohVt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NcrQtyVt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NcrQtyVt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PfepEsg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PfepEsg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PfepVt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PfepVt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinVt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinVt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxVt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxVt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KbQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KbQty)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VtPfepId }) |
+    @Html.ActionLink("Back to List", "VtQoh")
+</p>

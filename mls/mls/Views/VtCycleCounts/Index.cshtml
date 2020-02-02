@@ -1,0 +1,105 @@
+﻿@model IEnumerable<mls.Models.VtCycleCount>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "VtPfeps", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+<table id="txqoh" class="table table-bordered table-hover">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.CycleCountDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PortalQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActualQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationsCounted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AuditedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountOff)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrectedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrectedDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.VtCycleCountId })|
+                @Html.ActionLink("Details", "Details", new { id = item.VtCycleCountId })|
+                @Html.ActionLink("Delete", "Delete", new { id = item.VtCycleCountId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CycleCountDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerPn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PortalQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationsCounted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AuditedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountOff)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorrectedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorrectedDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#txqoh").DataTable({
+              'iDisplayLength': 100 });
+            });
+
+    </script>
+}

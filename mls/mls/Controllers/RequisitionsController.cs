@@ -19,7 +19,7 @@ namespace mls.Controllers
         public ActionResult Index()
         {
             var query = from a in db.Requisitions
-                        where a.ReqStatusId != 4
+                        where a.ReqStatusId != 5
                         orderby a.RequisitionId descending
                         select a;
             return View("Index", query);

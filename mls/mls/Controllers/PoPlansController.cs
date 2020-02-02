@@ -47,6 +47,26 @@ namespace mls.Controllers
             //return View(db.Requisitions.ToList());
         }
 
+        public ActionResult JbtOrlRoClosed()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 5 && a.CustomerId == 19 && a.CustomerDivisionId == 11
+                        orderby a.ReceiptDateTime descending
+                        select a;
+            return View("JbtOrlRoClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult JbtOgdRoClosed()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 5 && a.CustomerId == 19 && a.CustomerDivisionId == 10
+                        orderby a.ReceiptDateTime descending
+                        select a;
+            return View("JbtOgdRoClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
         public ActionResult EsgRoClosed()
         {
             var query = from a in db.PoPlans
@@ -54,6 +74,26 @@ namespace mls.Controllers
                         orderby a.ReceiptDateTime descending
                         select a;
             return View("EsgRoClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult VtRoClosed()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 5 && a.CustomerId == 1
+                        orderby a.ReceiptDateTime descending
+                        select a;
+            return View("VtRoClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult EsgPcClosed()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 5 && a.CustomerId == 1 && a.CustomerDivisionId == 9
+                        orderby a.ReceiptDateTime descending
+                        select a;
+            return View("EsgPcClosed", query);
             //return View(db.Requisitions.ToList());
         }
 
@@ -97,6 +137,26 @@ namespace mls.Controllers
             //return View(db.Requisitions.ToList());
         }
 
+        public ActionResult JbtOrlRoTransit()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 2 && a.CustomerId == 19 && a.CustomerDivisionId == 11
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("JbtOrlRoTransit", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult JbtOgdRoTransit()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 2 && a.CustomerId == 19 && a.CustomerDivisionId == 10
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("JbtOgdRoTransit", query);
+            //return View(db.Requisitions.ToList());
+        }
+
         public ActionResult EsgRoTransit()
         {
             var query = from a in db.PoPlans
@@ -107,6 +167,25 @@ namespace mls.Controllers
             //return View(db.Requisitions.ToList());
         }
 
+        public ActionResult VtRoTransit()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 2 && a.CustomerId == 1 
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("VtRoTransit", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult EsgPcTransit()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 2 && a.CustomerId == 1 && a.CustomerDivisionId == 9
+                        orderby a.ContainerUh descending
+                        select a;
+            return View("EsgPcTransit", query);
+            //return View(db.Requisitions.ToList());
+        }
 
         public ActionResult WbRoTransitWb()
         {
@@ -171,7 +250,7 @@ namespace mls.Controllers
         public ActionResult LookUp()
         {
             var query = from a in db.PoPlans
-                        where a.PoOrderStatusId != 5
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7
                         orderby a.ReceiptDateTime ascending
                         select a;
             return View("LookUp", query);

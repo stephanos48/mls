@@ -207,6 +207,10 @@
         {
             @Html.ActionLink("Back to List", "EsgRoOpen")
         }
+        else if (User.IsInRole("Jbt"))
+        {
+            @Html.ActionLink("Jbt Home", "NewJbtHome", "CustomerOrders", null, null)
+        }
         else
         {
             @Html.ActionLink("Back to List", "ShipPlanStatus")

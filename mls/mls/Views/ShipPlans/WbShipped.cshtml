@@ -5,9 +5,12 @@
 }
 
 <h2>Wb Shipped Out Orders</h2>
-
+<head>
+    <style>
+    </style>
+</head>
 <p>
-    @Html.ActionLink("Go Back", "WbStatus")
+    @Html.ActionLink("Go Back", "WbStatus") | <button id="btn" class="btn btn-success">Export to Excel</button>
 </p>
 <table id="shipplan" class="table table-bordered table-hover">
     <thead>
@@ -112,9 +115,20 @@
     <script>
         $(document).ready(function () {
             $("#shipplan").DataTable({
-                'iDisplayLength': 100
+                'iDisplayLength': 300
             });
         });
 
+    </script>
+
+    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+    <script type="text/javascript">
+                    $('#btn').click(function(){
+                        $('.table').table2excel({
+                            name: "download",
+                            filename: "download",
+                            fileext: ".xlsx"
+                        });
+                    });
     </script>
 }

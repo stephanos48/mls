@@ -378,6 +378,9 @@
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\TxQohs1Controller.cs" />
     <Compile Include="Controllers\TxQohsController.cs" />
+    <Compile Include="Controllers\VtCycleCountsController.cs" />
+    <Compile Include="Controllers\VtPfepsController.cs" />
+    <Compile Include="Controllers\VtShipPlansController.cs" />
     <Compile Include="Controllers\WoDetailsController.cs" />
     <Compile Include="Migrations\201706260010371_ptid.cs" />
     <Compile Include="Migrations\201706260010371_ptid.Designer.cs">
@@ -936,6 +939,14 @@
     <Compile Include="Migrations\201910212208168_shipdateadd20191021.Designer.cs">
       <DependentUpon>201910212208168_shipdateadd20191021.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001110229248_fixreqopen.cs" />
+    <Compile Include="Migrations\202001110229248_fixreqopen.Designer.cs">
+      <DependentUpon>202001110229248_fixreqopen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001230339267_vtadd2020122.cs" />
+    <Compile Include="Migrations\202001230339267_vtadd2020122.Designer.cs">
+      <DependentUpon>202001230339267_vtadd2020122.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivePart.cs" />
@@ -961,6 +972,8 @@
     <Compile Include="Models\CustomerOrder.cs" />
     <Compile Include="Models\CustomerQoh.cs" />
     <Compile Include="Models\CustomerQuote.cs" />
+    <Compile Include="Models\VtPfep.cs" />
+    <Compile Include="Models\VtCycleCount.cs" />
     <Compile Include="Models\CycleCount.cs" />
     <Compile Include="Models\Demand.cs" />
     <Compile Include="Models\DemandWk.cs" />
@@ -1026,6 +1039,7 @@
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\SupplierContact.cs" />
     <Compile Include="Models\TxQoh.cs" />
+    <Compile Include="Models\VtShipPlan.cs" />
     <Compile Include="Models\WkSchedule.cs" />
     <Compile Include="Models\WoDetail.cs" />
     <Compile Include="Models\WoOrderStatus.cs" />
@@ -1056,6 +1070,8 @@
     <Compile Include="ViewModels\OpenOrderViewModel.cs" />
     <Compile Include="ViewModels\ProductionIndexDataViewModel.cs" />
     <Compile Include="ViewModels\ProductionStockOutViewModel.cs" />
+    <Compile Include="ViewModels\SaveVtShipPlanViewModel.cs" />
+    <Compile Include="ViewModels\VtQohViewModel.cs" />
     <Compile Include="ViewModels\QohViewModel.cs" />
     <Compile Include="ViewModels\Save1PfepViewModel.cs" />
     <Compile Include="ViewModels\SaveBuildViewModel.cs" />
@@ -3021,7 +3037,7 @@
     <Content Include="Views\Requisitions\ReqDop.cshtml" />
     <Content Include="Views\PoPlans\PoSent.cshtml" />
     <Content Include="Views\CustomerOrders\NewHomeWb.cshtml" />
-    <Content Include="Views\ShipPlans\WbRoOpenWb.cshtml" />
+    <Content Include="Views\ShipPlans\WbRoOpenWbHyd.cshtml" />
     <Content Include="Views\ShipPlans\WbRoShippedWb.cshtml" />
     <Content Include="Views\PoPlans\WbRoClosedWb.cshtml" />
     <Content Include="Views\PoPlans\WbRoTransitWb.cshtml" />
@@ -3038,6 +3054,47 @@
     <Content Include="Views\WorkOrders\ScheduleClosed.cshtml" />
     <Content Include="Views\WorkOrders\ScheduleCanceled.cshtml" />
     <Content Include="Views\Scrums\ScrumClosed.cshtml" />
+    <Content Include="Views\WorkOrders\ScheduleMinusBayne.cshtml" />
+    <Content Include="Views\ShipPlans\WbOpenHyd.cshtml" />
+    <Content Include="Views\ShipPlans\WbOpenDip.cshtml" />
+    <Content Include="Views\ShipPlans\WbRoOpenWbDip.cshtml" />
+    <Content Include="Views\ShipPlans\WbRoOpenWbAll.cshtml" />
+    <Content Include="Views\ShipPlans\WbRoPrintHyd.cshtml" />
+    <Content Include="Views\CustomerOrders\NewJbtHome.cshtml" />
+    <Content Include="Views\ShipPlans\JbtOgdRoOpen.cshtml" />
+    <Content Include="Views\ShipPlans\JbtOrlRoOpen.cshtml" />
+    <Content Include="Views\ShipPlans\JbtOrlRoShipped.cshtml" />
+    <Content Include="Views\ShipPlans\JbtOgdRoShipped.cshtml" />
+    <Content Include="Views\CustomerOrders\JbtOgdQoh.cshtml" />
+    <Content Include="Views\PoPlans\JbtOrlRoTransit.cshtml" />
+    <Content Include="Views\PoPlans\JbtOgdRoTransit.cshtml" />
+    <Content Include="Views\PoPlans\JbtOgdRoClosed.cshtml" />
+    <Content Include="Views\PoPlans\JbtOrlRoClosed.cshtml" />
+    <Content Include="Views\VtCycleCounts\Create.cshtml" />
+    <Content Include="Views\VtCycleCounts\Delete.cshtml" />
+    <Content Include="Views\VtCycleCounts\Details.cshtml" />
+    <Content Include="Views\VtCycleCounts\Edit.cshtml" />
+    <Content Include="Views\VtCycleCounts\Index.cshtml" />
+    <Content Include="Views\VtPfeps\Create.cshtml" />
+    <Content Include="Views\VtPfeps\Delete.cshtml" />
+    <Content Include="Views\VtPfeps\Details.cshtml" />
+    <Content Include="Views\VtPfeps\Edit.cshtml" />
+    <Content Include="Views\VtPfeps\Index.cshtml" />
+    <Content Include="Views\VtShipPlans\Create.cshtml" />
+    <Content Include="Views\VtShipPlans\Delete.cshtml" />
+    <Content Include="Views\VtShipPlans\Details.cshtml" />
+    <Content Include="Views\VtShipPlans\Edit.cshtml" />
+    <Content Include="Views\VtShipPlans\Index.cshtml" />
+    <Content Include="Views\VtPfeps\VtQoh.cshtml" />
+    <Content Include="Views\PoPlans\VtRoTransit.cshtml" />
+    <Content Include="Views\PoPlans\VtRoClosed.cshtml" />
+    <Content Include="Views\ShipPlans\EsgPcOpen.cshtml" />
+    <Content Include="Views\ShipPlans\EsgPcShipped.cshtml" />
+    <Content Include="Views\ShipPlans\EsgPcStatus.cshtml" />
+    <Content Include="Views\ShipPlans\EsgPcSlotted.cshtml" />
+    <Content Include="Views\PoPlans\EsgPcTransit.cshtml" />
+    <Content Include="Views\PoPlans\EsgPcClosed.cshtml" />
+    <Content Include="Views\ShipPlans\EsgLookUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3469,6 +3526,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910212208168_shipdateadd20191021.resx">
       <DependentUpon>201910212208168_shipdateadd20191021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001110229248_fixreqopen.resx">
+      <DependentUpon>202001110229248_fixreqopen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001230339267_vtadd2020122.resx">
+      <DependentUpon>202001230339267_vtadd2020122.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

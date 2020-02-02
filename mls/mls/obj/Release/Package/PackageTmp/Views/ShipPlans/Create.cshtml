@@ -9,7 +9,8 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+    <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+
     <div class="form-horizontal">
         <h4>ShipPlan</h4>
         <hr />
@@ -201,3 +202,7 @@
 <div>
     @Html.ActionLink("Back to List", "ShipPlanStatus")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

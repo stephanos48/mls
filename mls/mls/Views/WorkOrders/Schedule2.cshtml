@@ -7,7 +7,7 @@
 <h2>Production Schedule - Bayne</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "Index", "WorkOrders", null, null) | @if (User.Identity.IsAuthenticated)
+    @Html.ActionLink("Go Back", "Index", "WorkOrders", null, null) | @Html.ActionLink("ScheduleAll", "ScheduleAll", "WorkOrders", null, null) | @Html.ActionLink("MinusBayne", "ScheduleMinusBayne", "WorkOrders", null, null) | @Html.ActionLink("Extreme", "ScheduleExtreme", "WorkOrders", null, null) | @Html.ActionLink("Closed", "ScheduleClosed", "WorkOrders", null, null) | @Html.ActionLink("Canceled", "ScheduleCanceled", "WorkOrders", null, null) | @if (User.Identity.IsAuthenticated)
     {
         if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
         {@Html.ActionLink("Create New", "Create")}
@@ -28,6 +28,9 @@
                     WoNo
                 </th>
                 <th>
+                    WoStatus
+                </th>
+                <th>
                     MlsSo
                 </th>
                 <th>
@@ -40,20 +43,17 @@
                     WoDetail
                 </th>
                 <th>
-                    ShipDate
+                    CompletionDate
                 </th>
                 <th></th>
                 <th>
-                    Parts
-                </th>
-                <th>
-                    Resources
-                </th>
-                <th>
-                    Equipment
-                </th>
-                <th>
                     Notes
+                </th>
+                <th>
+                    Parts Needed
+                </th>
+                <th>
+                    StockOutNotes
                 </th>
             </tr>
         </thead>
@@ -67,10 +67,13 @@
                             if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
                             {@Html.ActionLink("Edit", "Edit", new { id = item.WorkOrderId })}
                         }|
-                        @Html.ActionLink("Details", "Details", new { id = item.WorkOrderId })|
+                        @Html.ActionLink("Details", "Details", new { id = item.WorkOrderId })
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.WorkOrderId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WoOrderStatusId)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.MlsSo)
@@ -89,16 +92,13 @@
                     </td>
                     <td></td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Parts)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Resources)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Equipment)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.Notes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PartsNeeded)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PartStockOutNotes)
                     </td>
                 </tr>
             }
@@ -135,6 +135,3 @@
     });
     </script>
 }
-
-
-

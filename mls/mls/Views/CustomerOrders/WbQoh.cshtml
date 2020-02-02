@@ -7,7 +7,7 @@
 <h2>WB Qoh</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "NewHomeWb")
+    @Html.ActionLink("Go Back", "NewHomeWb") | <button id="btn" class="btn btn-success">Export to Excel</button>
 </p>
 
 
@@ -56,8 +56,19 @@
     <script>
         $(document).ready(function() {
             $("#qoh").DataTable({
-                'iDisplayLength': 100 });
+                'iDisplayLength': 1000 });
             });
 
+    </script>
+
+    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+    <script type="text/javascript">
+                    $('#btn').click(function(){
+                        $('.table').table2excel({
+                            name: "download",
+                            filename: "download",
+                            fileext: ".xlsx"
+                        });
+                    });
     </script>
 }

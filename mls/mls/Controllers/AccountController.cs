@@ -140,6 +140,14 @@ namespace mls.Controllers
                     {
                         return RedirectToAction("NewEsgHome", "CustomerOrders");
                     }
+                    else if (roles.Contains("Jbt"))
+                    {
+                        return RedirectToAction("NewJbtHome", "CustomerOrders");
+                    }
+                    else if (roles.Contains("VadTek"))
+                    {
+                        return RedirectToAction("Index", "VtPfeps");
+                    }
                     else
                     {
                         return RedirectToLocal(returnUrl);
@@ -222,8 +230,8 @@ namespace mls.Controllers
 
                     var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                     var roleManager = new RoleManager<IdentityRole>(roleStore);
-                    await roleManager.CreateAsync(new IdentityRole("Esg"));
-                    await UserManager.AddToRoleAsync(user.Id, "Esg");
+                    await roleManager.CreateAsync(new IdentityRole("VadTek"));
+                    await UserManager.AddToRoleAsync(user.Id, "VadTek");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     

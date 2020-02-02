@@ -66,7 +66,7 @@ namespace mls.Controllers
         public ActionResult Schedule1()
         {
             var query = from c in db.WorkOrders
-                        where c.PartStockOutId == 7 && c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6
+                        where c.PartStockOutId == 7 && c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -75,7 +75,16 @@ namespace mls.Controllers
         public ActionResult ScheduleAll()
         {
             var query = from c in db.WorkOrders
-                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3
+                        orderby c.ShipDate ascending
+                        select c;
+            return View(query.ToList());
+        }
+
+        public ActionResult ScheduleMinusBayne()
+        {
+            var query = from c in db.WorkOrders
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.CustomerDivisionId != 9
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -102,10 +111,19 @@ namespace mls.Controllers
         public ActionResult Schedule2()
         {
             var query = from c in db.WorkOrders
-                        where c.CustomerDivisionId == 9
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.CustomerDivisionId == 9
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
+        }
+
+        public ActionResult ScheduleExtreme()
+        {
+            var query = from c in db.WorkOrders
+                        where c.WoOrderStatusId == 7
+                        orderby c.ShipDate ascending
+                        select c;
+            return View("Schedule2", query.ToList());
         }
 
         public ActionResult Schedule3()
@@ -216,7 +234,7 @@ namespace mls.Controllers
         // GET: WorkOrders/Create
         public ActionResult Create()
         {
-
+            ViewBag.ReturnUrl = Request.UrlReferrer;
             var woparttypes = db.WoPartTypes.ToList();
             var mlsdivisions = db.MlsDivisions.ToList();
             var ordertypes = db.OrderTypes.ToList();
@@ -246,13 +264,13 @@ namespace mls.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Include = "WorId,MlsDivisionId,PartTypeId,CustomerPn,Qty,CreationDate,StartTime,FinishTime,OrderTypeId,Sn,CustomerPo,MlsSo,Notes")] WorkOrder workOrder)
-        public ActionResult Create (WorkOrder workOrder)
+        public ActionResult Create (WorkOrder workOrder, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 db.WorkOrders.Add(workOrder);
                 db.SaveChanges();
-                return RedirectToAction("Index", "WorkOrders");
+                return Redirect(returnUrl);
             }
 
             return View();
@@ -262,6 +280,7 @@ namespace mls.Controllers
         // GET: WorkOrders/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.ReturnUrl = Request.UrlReferrer;
             var workorders = db.WorkOrders.SingleOrDefault(c => c.WorkOrderId == id);
 
             var customers = db.Customers.ToList();
@@ -303,15 +322,15 @@ namespace mls.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Edit([Bind(Include = "WorId,MlsDivisionId,PartTypeId,CustomerPn,Qty,CreationDate,StartTime,FinishTime,OrderTypeId,Sn,CustomerPo,MlsSo,Notes")] WorkOrder workOrder)
-        public ActionResult Edit(WorkOrder workOrder)
+        public ActionResult Edit(WorkOrder workOrder, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(workOrder).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect(returnUrl);
             }
-            return View(workOrder);
+            return View();
         }
 
         // GET: WorkOrders/Delete/5

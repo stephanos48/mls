@@ -287,6 +287,14 @@
         {
             @Html.ActionLink("Back to List", "EsgRoTransit")
         }
+        else if (User.IsInRole("Jbt"))
+        {
+            @Html.ActionLink("Jbt Home", "NewJbtHome", "CustomerOrders", null, null)
+        }
+        else if (User.IsInRole("VadTek"))
+        {
+            @Html.ActionLink("Value Added Home", "Index", "VtPfeps", null, null)
+        }
         else
         {
             @Html.ActionLink("Back to List", "PoPlanStatus")
