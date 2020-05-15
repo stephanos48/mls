@@ -27,6 +27,46 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MlsDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivePartId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivePartId)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Qoh)
         </dt>
 
@@ -53,6 +93,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Txqohid }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Txqohid })|
+    @Html.ActionLink("Back to List", "Home")
 </p>

@@ -81,10 +81,28 @@ namespace mls.Controllers
             return View(query.ToList());
         }
 
+        public ActionResult ScheduleChassis()
+        {
+            var query = from c in db.WorkOrders
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.MlsDivisionId == 3
+                        orderby c.ShipDate ascending
+                        select c;
+            return View(query.ToList());
+        }
+
+        public ActionResult CylRework()
+        {
+            var query = from c in db.WorkOrders
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.WoPartTypeId == 4
+                        orderby c.ShipDate ascending
+                        select c;
+            return View(query.ToList());
+        }
+
         public ActionResult ScheduleMinusBayne()
         {
             var query = from c in db.WorkOrders
-                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.CustomerDivisionId != 9
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.CustomerDivisionId != 9 && c.MlsDivisionId != 3 && c.WoPartTypeId != 4
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -123,7 +141,7 @@ namespace mls.Controllers
                         where c.WoOrderStatusId == 7
                         orderby c.ShipDate ascending
                         select c;
-            return View("Schedule2", query.ToList());
+            return View("ScheduleExtreme", query.ToList());
         }
 
         public ActionResult Schedule3()

@@ -1,4 +1,4 @@
-﻿@model mls.Models.TxQoh
+﻿@model mls.ViewModels.SaveTxQohViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -9,48 +9,90 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+    <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+
     <div class="form-horizontal">
         <h4>TxQoh</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Pn, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TxQoh.CustomerId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Pn, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Pn, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.TxQoh.CustomerId, new SelectList(Model.Customers, "CustomerId", "CustomerName"), "Select Customer", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TxQoh.CustomerId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UhPn, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TxQoh.CustomerDivisionId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UhPn, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UhPn, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.TxQoh.CustomerDivisionId, new SelectList(Model.CustomerDivisions, "CustomerDivisionId", "CustomerDivisionName"), "Select Customer Division", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TxQoh.CustomerDivisionId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Qoh, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TxQoh.MlsDivisionId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Qoh, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Qoh, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.TxQoh.MlsDivisionId, new SelectList(Model.MlsDivisions, "MlsDivisionId", "MlsDivisionName"), "Select MLS Division", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TxQoh.MlsDivisionId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NcrQty, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TxQoh.ActivePartId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NcrQty, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NcrQty, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.TxQoh.ActivePartId, new SelectList(Model.ActiveParts, "ActivePartId", "ActivePartName"), "Active Part?", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TxQoh.ActivePartId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TxQoh.PartTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.TxQoh.PartTypeId, new SelectList(Model.PartTypes, "PartTypeId", "PartTypeName"), "Select Part Type", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TxQoh.PartTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>         
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.TxQoh.Pn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TxQoh.Pn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TxQoh.Pn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TxQoh.UhPn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TxQoh.UhPn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TxQoh.UhPn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TxQoh.Qoh, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TxQoh.Qoh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TxQoh.Qoh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TxQoh.NcrQty, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TxQoh.NcrQty, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TxQoh.NcrQty, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TxQoh.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TxQoh.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TxQoh.Notes, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -65,3 +107,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

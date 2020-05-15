@@ -7,7 +7,7 @@
 <h2>Tx Qoh DOP</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "Index", "WorkOrders", null, null) | @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Go Back", "Home", "TxQohs1", null, null) | @Html.ActionLink("Create New", "Create")
 </p>
 <br />
 <table id="txqoh" class="table table-bordered table-hover">
@@ -18,10 +18,24 @@
                 Id
             </th>
             <th>
+                Customer
+            </th>
+            <th>
                 PN
             </th>
             <th>
-                QOH
+                CurrentQoh
+            </th>
+            <th>
+            </th>
+            <th>
+                May11Qoh
+            </th>
+            <th>
+                May11Rec
+            </th>
+            <th>
+                May11Ship
             </th>
             <th>
                 NcrQty
@@ -37,18 +51,31 @@
         {
             <tr>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Txqohid })|
-                    @Html.ActionLink("Details", "Details", new { id = item.Txqohid })|
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Txqohid })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })|
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Txqohid)
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Pn)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Qoh)
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.May11Qoh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.May11Rec)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.May11Ship)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NcrQty)
@@ -71,4 +98,6 @@
 
     </script>
 }
+
+
 

@@ -855,3 +855,9 @@ C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.addwono2
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.shipdateadd20191021.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.fixreqopen.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.vtadd2020122.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.addshiplog20200422.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\bin\Microsoft.WindowsAzure.Configuration.xml
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\bin\Microsoft.WindowsAzure.StorageClient.dll
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.wobuild.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.txqohv2.resources

@@ -216,5 +216,10 @@ namespace mls.Models
 
         public DbSet<VtShipPlan> VtShipPlans { get; set; }
 
+        public DbSet<ShipPlanLog> ShipPlanLogs { get; set; }
+
+        public DbSet<WoBuild> WoBuilds { get; set; }
+
+        public System.Data.Entity.DbSet<mls.Models.Image> Images { get; set; }
     }
 }

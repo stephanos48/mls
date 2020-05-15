@@ -290,7 +290,7 @@ namespace mls.Controllers
         // GET: PoPlans/Create
         public ActionResult Create()
         {
-
+            ViewBag.ReturnUrl = Request.UrlReferrer;
             var statuses = db.PoOrderStatuses.ToList();
             var customers = db.Customers.ToList();
             var customerdivisions = db.CustomerDivisions.ToList();
@@ -315,13 +315,14 @@ namespace mls.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Include = "PoPlanId,PoNumber,PoLine,SupplierId,CustomerOrderNumber,SoNumber,OrderDateTime,CustomerId,CustomerDivisionId,MlsDivisionId,CustomerPn,UhPn,PartDescription,OrderQty,ReceivedQty,RequestedDateTime,PromiseDateTime,ReceiptDateTime,PoOrderStatusId,Notes")] PoPlan poPlan)
-        public ActionResult Create(PoPlan poPlan)
+        public ActionResult Create(PoPlan poPlan, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 db.PoPlans.Add(poPlan);
                 db.SaveChanges();
-                return RedirectToAction("PoPlanStatus");
+                return Redirect(returnUrl);
+                //return RedirectToAction("PoPlanStatus");
             }
 
             //return View(poPlan);
@@ -332,6 +333,7 @@ namespace mls.Controllers
         public ActionResult Edit(int? id)
         {
 
+            ViewBag.ReturnUrl = Request.UrlReferrer;
             var poplans = db.PoPlans.SingleOrDefault(c => c.PoPlanId == id);
 
             var statuses = db.PoOrderStatuses.ToList();
@@ -369,13 +371,14 @@ namespace mls.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Edit([Bind(Include = "PoPlanId,PoNumber,PoLine,SupplierId,CustomerOrderNumber,SoNumber,OrderDateTime,CustomerId,CustomerDivisionId,MlsDivisionId,CustomerPn,UhPn,PartDescription,OrderQty,ReceivedQty,RequestedDateTime,PromiseDateTime,ReceiptDateTime,PoOrderStatusId,Notes")] PoPlan poPlan)
-        public ActionResult Edit(PoPlan poPlan)
+        public ActionResult Edit(PoPlan poPlan, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(poPlan).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("PoPlanStatus");
+                return Redirect(returnUrl);
+                //return RedirectToAction("PoPlanStatus");
             }
             return View();
             //return View(poPlan);
@@ -384,6 +387,7 @@ namespace mls.Controllers
         // GET: PoPlans/Delete/5
         public ActionResult Delete(int? id)
         {
+            ViewBag.ReturnUrl = Request.UrlReferrer;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

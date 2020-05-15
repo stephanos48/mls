@@ -1,0 +1,58 @@
+﻿@model mls.Models.WoBuild
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WoBuild</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WoEnterDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WoEnterDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WoNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WoNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WoBuildId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

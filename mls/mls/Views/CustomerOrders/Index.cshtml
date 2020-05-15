@@ -13,16 +13,16 @@
     <h4><u>Company News / WebApp Updates</u></h4>
     <br />
     <h6>
-    Company News for Wk 51 <br />
-    - Merry Christmas and Happy New Year! <br />
-    - Ping pong tournament starts 12/18 <br />
-    - Christmas party will be Monday 12/23 at Noon <br />
-    - We will be off Christmas Eve and New Year's Eve! <br />
-    - Congratulate Adrian and Josh!  They are now certified inspectors! <br /> 
+    Company News for Wk 20, 2020 <br />
+    - Please remember to be careful with your activities outside of work! <br />
+    - Even though Texas is opening up again, that does not mean the danger is not there <br />
     <br />
-    WebApp Updates for Wk 51 <br />
-    - Updated Production Plan Views. Now when editing and creating the view returns you back to the page you started at <br />
-    - Added production plan views for Bayne only and Minus Bayne for improved planning! <br />
+
+    <br />
+    WebApp Updates for Wk 20, 2020 <br />
+    - Updated TxQoh Views. Now when editing and creating the view returns you back to the page you started at <br />
+    - Added CylRework section for work orders <br />
+    - Added Inventory Section (As of 5/1/20 Real Time Inventory Live)<br/>
     <br />
     </h6>
     <br />
@@ -39,6 +39,15 @@
     @Html.ActionLink("HR", "HRHome", "Employees", null, null)
     <br />
     <br />
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("InvPower") || User.IsInRole("OpsPower"))
+        {
+    @Html.ActionLink("Inventory", "Home", "TxQohs1", null, null)
+    <br />
+    <br />
+        }
+    }
     @Html.ActionLink("IT - Coming Soon", "HRHome", "Employees", null, null)
     <br />
     <br />

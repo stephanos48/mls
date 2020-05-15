@@ -1,57 +1,100 @@
-﻿@model IEnumerable<mls.Models.TxQoh>
+﻿@model List<mls.ViewModels.QohViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "TxQoh";
 }
 
-<h2>Index</h2>
+<h2>Tx Qoh All</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Go Back", "Home", "TxQohs1", null, null) | @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th></th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UhPn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Qoh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NcrQty)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>
-    </tr>
+<br />
+<table id="txqoh" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Id
+            </th>
+            <th>
+                Customer
+            </th>
+            <th>
+                PN
+            </th>
+            <th>
+                CurrentQoh
+            </th>
+            <th>
+            </th>
+            <th>
+                May11Qoh
+            </th>
+            <th>
+                May11Rec
+            </th>
+            <th>
+                May11Ship
+            </th>
+            <th>
+                NcrQty
+            </th>
+            <th>
+                Notes
+            </th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Txqohid })|
-            @Html.ActionLink("Details", "Details", new { id = item.Txqohid })|
-            @Html.ActionLink("Delete", "Delete", new { id = item.Txqohid })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UhPn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Qoh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NcrQty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Notes)
-        </td>
-    </tr>
-}
-
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })|
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qoh)
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.May11Qoh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.May11Rec)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.May11Ship)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NcrQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#txqoh").DataTable({
+              'iDisplayLength': 100 });
+            });
+
+    </script>
+}

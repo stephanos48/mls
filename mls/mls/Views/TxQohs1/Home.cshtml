@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Inv Home";
+}
+
+<h2>Inventory Home</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "CustomerOrders", null, null)
+</p>
+
+<br />
+
+<p>
+    <h4><u>Inventory Views</u></h4>
+    
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("InvPower") || User.IsInRole("OpsPower"))
+        {
+        <p>
+            <br />
+            @Html.ActionLink("UH Tx Qoh", "TxQohUH", "TxQohs1", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("DIP Tx Qoh", "TxQohDIP", "TxQohs1", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("DTT Tx Qoh", "TxQohDTT", "TxQohs1", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("CL Tx Qoh", "TxQohCL", "TxQohs1", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("DOP Tx Qoh", "TxQohDOP", "TxQohs1", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("All Tx Qoh", "Index", "TxQohs1", null, null)
+            <br />
+            <br />
+        </p>
+        }
+    }
+
+    <h4><u>Work Order Adjustments</u></h4>
+@if (User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("Admin") || User.IsInRole("InvPower") || User.IsInRole("OpsPower"))
+    {
+        <p>
+            <br />
+            @Html.ActionLink("WO Adjustments", "Index", "WoBuilds", null, null)
+            <br />
+            <br />
+        </p>
+    }
+}
+
+    <h4><u>Cycle Counts</u></h4>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("InvPower") || User.IsInRole("OpsPower"))
+        {
+            <p>
+                <br />
+                @Html.ActionLink("Cycle Counts", "Index", "CycleCounts", null, null)
+                <br />
+                <br />
+            </p>
+        }
+    }
+
+

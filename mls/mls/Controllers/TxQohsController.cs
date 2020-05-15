@@ -40,7 +40,7 @@ namespace mls.Controllers
             {
                 QohViewModel mymodel = new QohViewModel()
                 {
-                    Txqohid = qoh.Txqohid,
+                    Id = qoh.Txqohid,
                     Pn = qoh.Pn,
                     Qoh = qoh.Qoh
                 };
@@ -69,7 +69,7 @@ namespace mls.Controllers
             {
                 QohViewModel mymodel = new QohViewModel()
                 {
-                    Txqohid = qoh.Txqohid,
+                    Id = qoh.Txqohid,
                     Pn = qoh.Pn,
                     Qoh = qoh.Qoh
                 };
@@ -98,7 +98,7 @@ namespace mls.Controllers
             {
                 QohViewModel mymodel = new QohViewModel()
                 {
-                    Txqohid = qoh.Txqohid,
+                    Id = qoh.Txqohid,
                     Pn = qoh.Pn,
                     Qoh = qoh.Qoh
                 };
@@ -127,7 +127,7 @@ namespace mls.Controllers
             {
                 QohViewModel mymodel = new QohViewModel()
                 {
-                    Txqohid = qoh.Txqohid,
+                    Id = qoh.Txqohid,
                     Pn = qoh.Pn,
                     Qoh = qoh.Qoh
                 };
@@ -156,7 +156,7 @@ namespace mls.Controllers
             {
                 QohViewModel mymodel = new QohViewModel()
                 {
-                    Txqohid = qoh.Txqohid,
+                    Id = qoh.Txqohid,
                     Pn = qoh.Pn,
                     Qoh = qoh.Qoh
                 };

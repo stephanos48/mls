@@ -177,8 +177,16 @@
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Storage, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\WindowsAzure.Storage.9.0.0\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=9.3.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.9.3.3\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\UnofficialAzure.StorageClient.1.0.0\lib\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MimeKit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
@@ -327,6 +335,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ConnectionString.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomerOrdersController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
@@ -350,6 +359,7 @@
     <Compile Include="Controllers\ExpFreightDetailsController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\IncomingDetailsController.cs" />
     <Compile Include="Controllers\IncomingLogsController.cs" />
     <Compile Include="Controllers\IncomingTopLevelsController.cs" />
@@ -378,9 +388,11 @@
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\TxQohs1Controller.cs" />
     <Compile Include="Controllers\TxQohsController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\VtCycleCountsController.cs" />
     <Compile Include="Controllers\VtPfepsController.cs" />
     <Compile Include="Controllers\VtShipPlansController.cs" />
+    <Compile Include="Controllers\WoBuildsController.cs" />
     <Compile Include="Controllers\WoDetailsController.cs" />
     <Compile Include="Migrations\201706260010371_ptid.cs" />
     <Compile Include="Migrations\201706260010371_ptid.Designer.cs">
@@ -947,9 +959,22 @@
     <Compile Include="Migrations\202001230339267_vtadd2020122.Designer.cs">
       <DependentUpon>202001230339267_vtadd2020122.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004230317360_addshiplog20200422.cs" />
+    <Compile Include="Migrations\202004230317360_addshiplog20200422.Designer.cs">
+      <DependentUpon>202004230317360_addshiplog20200422.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005110205569_wobuild.cs" />
+    <Compile Include="Migrations\202005110205569_wobuild.Designer.cs">
+      <DependentUpon>202005110205569_wobuild.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005111817552_txqohv2.cs" />
+    <Compile Include="Migrations\202005111817552_txqohv2.Designer.cs">
+      <DependentUpon>202005111817552_txqohv2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivePart.cs" />
+    <Compile Include="Models\ActivePartEnum.cs" />
     <Compile Include="Models\BomLevel1.cs" />
     <Compile Include="Models\BuildHistory.cs" />
     <Compile Include="Models\CalendarWk.cs" />
@@ -969,9 +994,15 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerComplaint.cs" />
     <Compile Include="Models\CustomerDivision.cs" />
+    <Compile Include="Models\CustomerDivisionType.cs" />
     <Compile Include="Models\CustomerOrder.cs" />
     <Compile Include="Models\CustomerQoh.cs" />
     <Compile Include="Models\CustomerQuote.cs" />
+    <Compile Include="Models\CustomerType.cs" />
+    <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\MlsDivisionEnum.cs" />
+    <Compile Include="Models\PartTypeEnum.cs" />
+    <Compile Include="Models\ShipPlanLog.cs" />
     <Compile Include="Models\VtPfep.cs" />
     <Compile Include="Models\VtCycleCount.cs" />
     <Compile Include="Models\CycleCount.cs" />
@@ -1041,6 +1072,7 @@
     <Compile Include="Models\TxQoh.cs" />
     <Compile Include="Models\VtShipPlan.cs" />
     <Compile Include="Models\WkSchedule.cs" />
+    <Compile Include="Models\WoBuild.cs" />
     <Compile Include="Models\WoDetail.cs" />
     <Compile Include="Models\WoOrderStatus.cs" />
     <Compile Include="Models\WoPartType.cs" />
@@ -1048,6 +1080,7 @@
     <Compile Include="Models\WorkOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="UploadService.cs" />
     <Compile Include="ViewModels\BomViewModel.cs" />
     <Compile Include="ViewModels\DemandViewModel.cs" />
     <Compile Include="ViewModels\ExpeditedFreightDataViewModel.cs" />
@@ -1070,6 +1103,7 @@
     <Compile Include="ViewModels\OpenOrderViewModel.cs" />
     <Compile Include="ViewModels\ProductionIndexDataViewModel.cs" />
     <Compile Include="ViewModels\ProductionStockOutViewModel.cs" />
+    <Compile Include="ViewModels\SaveTxQohViewModel.cs" />
     <Compile Include="ViewModels\SaveVtShipPlanViewModel.cs" />
     <Compile Include="ViewModels\VtQohViewModel.cs" />
     <Compile Include="ViewModels\QohViewModel.cs" />
@@ -3096,6 +3130,23 @@
     <Content Include="Views\PoPlans\EsgPcClosed.cshtml" />
     <Content Include="Views\ShipPlans\EsgLookUp.cshtml" />
     <Content Include="Views\Home\Sent.cshtml" />
+    <Content Include="Views\WorkOrders\ScheduleChassis.cshtml" />
+    <Content Include="Views\WorkOrders\ScheduleExtreme.cshtml" />
+    <Content Include="Views\WorkOrders\CylRework.cshtml" />
+    <Content Include="Views\Upload\Upload.cshtml" />
+    <Content Include="Views\Upload\LatestImage.cshtml" />
+    <Content Include="Views\WoBuilds\Create.cshtml" />
+    <Content Include="Views\WoBuilds\Delete.cshtml" />
+    <Content Include="Views\WoBuilds\Details.cshtml" />
+    <Content Include="Views\WoBuilds\Edit.cshtml" />
+    <Content Include="Views\WoBuilds\Index.cshtml" />
+    <Content Include="Views\TxQohs1\Home.cshtml" />
+    <Content Include="Views\Images\Create.cshtml" />
+    <Content Include="Views\Images\Delete.cshtml" />
+    <Content Include="Views\Images\Details.cshtml" />
+    <Content Include="Views\Images\Edit.cshtml" />
+    <Content Include="Views\Images\Index.cshtml" />
+    <Content Include="Views\Images\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3533,6 +3584,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001230339267_vtadd2020122.resx">
       <DependentUpon>202001230339267_vtadd2020122.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004230317360_addshiplog20200422.resx">
+      <DependentUpon>202004230317360_addshiplog20200422.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005110205569_wobuild.resx">
+      <DependentUpon>202005110205569_wobuild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005111817552_txqohv2.resx">
+      <DependentUpon>202005111817552_txqohv2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

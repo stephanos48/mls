@@ -10,6 +10,26 @@ namespace mls.Models
 
         public int Txqohid { get; set; }
 
+        public Customer Customer { get; set; }
+
+        public byte CustomerId { get; set; }
+
+        public CustomerDivision CustomerDivision { get; set; }
+
+        public byte CustomerDivisionId { get; set; }
+
+        public MlsDivision MlsDivision { get; set; }
+
+        public byte MlsDivisionId { get; set; }
+
+        public ActivePart ActivePart { get; set; }
+
+        public byte ActivePartId { get; set; }
+
+        public PartType PartType { get; set; }
+
+        public byte PartTypeId { get; set; }
+
         public string Pn { get; set; }
 
         public string UhPn { get; set; }
