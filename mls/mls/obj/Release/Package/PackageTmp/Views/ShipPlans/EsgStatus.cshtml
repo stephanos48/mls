@@ -3,7 +3,7 @@
     ViewBag.Title = "EsgStatus";
 }
 
-<h2>Esg Status</h2>
+<h2>Heil Status</h2>
 
 <p>
     @Html.ActionLink("Go Back", "Sales", "ShipPlans", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("OO LookUp", "EsgLookUp") | @Html.ActionLink("Slot Schedule", "EsgSlotted") | @Html.ActionLink("Esg Open", "EsgOpen") | @Html.ActionLink("Shipped Orders", "EsgShipped") | @Html.ActionLink("Canceled Orders", "EsgCanceled")
@@ -12,12 +12,12 @@
 <br />
 
 <h4><u>SO Issues Needing Review</u></h4>
-@Html.Action("_OrderIssuesCustomer", "ShipPlans", new { status = 2, customer = 1 })
+@Html.Action("_PcOrderIssuesCustomer", "ShipPlans", new { status = 2, customer = 1, division = 1 })
 <br />
 <br />
 <h4><u>SO To Cancel</u></h4>
-@Html.Action("_OrderIssuesCustomer", "ShipPlans", new { status = 8, customer = 1 })
+@Html.Action("_PcOrderIssuesCustomer", "ShipPlans", new { status = 8, customer = 1, division = 1 })
 <br />
 <br />
 <h4><u>HOT Orders</u></h4>
-@Html.Action("_ShipHotCustomer", "ShipPlans", new { Customer = 1 })
+@Html.Action("_ShipPcHotCustomer", "ShipPlans", new { Customer = 1, division = 1 })

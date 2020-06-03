@@ -28,6 +28,12 @@ namespace mls.Models
         [Display(Name = "ActualQty")]
         public int ActualQty { get; set; }
 
+        [Display(Name = "SageAdjQty")]
+        public int SageAdjQty { get; set; }
+
+        [Display(Name = "PortalAdjQty")]
+        public int PortalAdjQty { get; set; }
+
         [Display(Name = "Locations")]
         public string LocationsCounted { get; set; }
 

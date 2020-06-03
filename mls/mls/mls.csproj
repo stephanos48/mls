@@ -357,9 +357,9 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\ExpeditedFreightsController.cs" />
     <Compile Include="Controllers\ExpFreightDetailsController.cs" />
+    <Compile Include="Controllers\Files2Controller.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\IncomingDetailsController.cs" />
     <Compile Include="Controllers\IncomingLogsController.cs" />
     <Compile Include="Controllers\IncomingTopLevelsController.cs" />
@@ -386,6 +386,7 @@
     <Compile Include="Controllers\ShipPlansController.cs" />
     <Compile Include="Controllers\SupplierContactsController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
+    <Compile Include="Controllers\SupportController.cs" />
     <Compile Include="Controllers\TxQohs1Controller.cs" />
     <Compile Include="Controllers\TxQohsController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
@@ -971,10 +972,33 @@
     <Compile Include="Migrations\202005111817552_txqohv2.Designer.cs">
       <DependentUpon>202005111817552_txqohv2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005162303483_addpfeppartdescription.cs" />
+    <Compile Include="Migrations\202005162303483_addpfeppartdescription.Designer.cs">
+      <DependentUpon>202005162303483_addpfeppartdescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005170334393_invadjqty.cs" />
+    <Compile Include="Migrations\202005170334393_invadjqty.Designer.cs">
+      <DependentUpon>202005170334393_invadjqty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005260126311_shipandloginlogadd.cs" />
+    <Compile Include="Migrations\202005260126311_shipandloginlogadd.Designer.cs">
+      <DependentUpon>202005260126311_shipandloginlogadd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005260311211_addpoplanlog.cs" />
+    <Compile Include="Migrations\202005260311211_addpoplanlog.Designer.cs">
+      <DependentUpon>202005260311211_addpoplanlog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005260526008_multiplefileupload.cs" />
+    <Compile Include="Migrations\202005260526008_multiplefileupload.Designer.cs">
+      <DependentUpon>202005260526008_multiplefileupload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005271055174_notsure.cs" />
+    <Compile Include="Migrations\202005271055174_notsure.Designer.cs">
+      <DependentUpon>202005271055174_notsure.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivePart.cs" />
-    <Compile Include="Models\ActivePartEnum.cs" />
     <Compile Include="Models\BomLevel1.cs" />
     <Compile Include="Models\BuildHistory.cs" />
     <Compile Include="Models\CalendarWk.cs" />
@@ -994,15 +1018,16 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerComplaint.cs" />
     <Compile Include="Models\CustomerDivision.cs" />
-    <Compile Include="Models\CustomerDivisionType.cs" />
     <Compile Include="Models\CustomerOrder.cs" />
     <Compile Include="Models\CustomerQoh.cs" />
     <Compile Include="Models\CustomerQuote.cs" />
-    <Compile Include="Models\CustomerType.cs" />
-    <Compile Include="Models\Image.cs" />
-    <Compile Include="Models\MlsDivisionEnum.cs" />
-    <Compile Include="Models\PartTypeEnum.cs" />
+    <Compile Include="Models\FileDetail.cs" />
+    <Compile Include="Models\FileUpload.cs" />
+    <Compile Include="Models\LoginLog.cs" />
+    <Compile Include="Models\PoPlanLog.cs" />
     <Compile Include="Models\ShipPlanLog.cs" />
+    <Compile Include="Models\Support.cs" />
+    <Compile Include="Models\TxQohLog.cs" />
     <Compile Include="Models\VtPfep.cs" />
     <Compile Include="Models\VtCycleCount.cs" />
     <Compile Include="Models\CycleCount.cs" />
@@ -3141,12 +3166,25 @@
     <Content Include="Views\WoBuilds\Edit.cshtml" />
     <Content Include="Views\WoBuilds\Index.cshtml" />
     <Content Include="Views\TxQohs1\Home.cshtml" />
-    <Content Include="Views\Images\Create.cshtml" />
-    <Content Include="Views\Images\Delete.cshtml" />
-    <Content Include="Views\Images\Details.cshtml" />
-    <Content Include="Views\Images\Edit.cshtml" />
-    <Content Include="Views\Images\Index.cshtml" />
-    <Content Include="Views\Images\Add.cshtml" />
+    <Content Include="Views\Practices\Upload2.cshtml" />
+    <Content Include="Views\ShipPlans\EsgPcCanceled.cshtml" />
+    <Content Include="Views\ShipPlans\JbtOgdenShipped.cshtml" />
+    <Content Include="Views\ShipPlans\JbtOgdenSlotted.cshtml" />
+    <Content Include="Views\ShipPlans\JbtOgdenStatus.cshtml" />
+    <Content Include="Views\ShipPlans\JbtOgdenOpen.cshtml" />
+    <Content Include="Views\ShipPlans\JbtOgdenCanceled.cshtml" />
+    <Content Include="Views\WorkOrders\ClosedNeedSageUpdate.cshtml" />
+    <Content Include="Views\ShipPlans\EsgPcLookUp.cshtml" />
+    <Content Include="Views\ShipPlans\MCanceled.cshtml" />
+    <Content Include="Views\ShipPlans\MLookUp.cshtml" />
+    <Content Include="Views\ShipPlans\MOpen.cshtml" />
+    <Content Include="Views\ShipPlans\MShipped.cshtml" />
+    <Content Include="Views\ShipPlans\MSlotted.cshtml" />
+    <Content Include="Views\ShipPlans\MStatus.cshtml" />
+    <Content Include="Views\Files2\Index.cshtml" />
+    <Content Include="Views\Support\Create.cshtml" />
+    <Content Include="Views\Support\Edit.cshtml" />
+    <Content Include="Views\Support\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3156,6 +3194,7 @@
     <Folder Include="Scripts\Common\" />
     <Folder Include="Scripts\Directives\" />
     <Folder Include="Scripts\Plugins\" />
+    <Folder Include="UploadImage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -3593,6 +3632,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005111817552_txqohv2.resx">
       <DependentUpon>202005111817552_txqohv2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005162303483_addpfeppartdescription.resx">
+      <DependentUpon>202005162303483_addpfeppartdescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005170334393_invadjqty.resx">
+      <DependentUpon>202005170334393_invadjqty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005260126311_shipandloginlogadd.resx">
+      <DependentUpon>202005260126311_shipandloginlogadd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005260311211_addpoplanlog.resx">
+      <DependentUpon>202005260311211_addpoplanlog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005260526008_multiplefileupload.resx">
+      <DependentUpon>202005260526008_multiplefileupload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005271055174_notsure.resx">
+      <DependentUpon>202005271055174_notsure.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

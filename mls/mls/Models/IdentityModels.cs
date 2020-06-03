@@ -220,6 +220,17 @@ namespace mls.Models
 
         public DbSet<WoBuild> WoBuilds { get; set; }
 
-        public System.Data.Entity.DbSet<mls.Models.Image> Images { get; set; }
+        public DbSet<LoginLog> LoginLogs { get; set; }
+
+        public DbSet<TxQohLog> TxQohLogs { get; set; }
+
+        public DbSet<PoPlanLog> PoPlanLogs { get; set; }
+
+        public DbSet<FileUpload> FileUploads { get; set; }
+
+        public DbSet<Support> Supports { get; set; }
+
+        public DbSet<FileDetail> FileDetails { get; set; }
+
     }
 }

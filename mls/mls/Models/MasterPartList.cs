@@ -52,5 +52,7 @@ namespace mls.Models
 
         public string HtsCode { get; set; }
 
+        //public virtual ICollection<FileDetail> FileDetails { get; set; }
+
     }
 }

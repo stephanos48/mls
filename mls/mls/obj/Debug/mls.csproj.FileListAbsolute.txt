@@ -861,3 +861,9 @@ C:\Users\Helena\Documents\GitHub\mls\mls\mls\bin\Microsoft.WindowsAzure.Configur
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\bin\Microsoft.WindowsAzure.StorageClient.dll
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.wobuild.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.txqohv2.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.addpfeppartdescription.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.invadjqty.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.shipandloginlogadd.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.addpoplanlog.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.multiplefileupload.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Debug\mls.Migrations.notsure.resources

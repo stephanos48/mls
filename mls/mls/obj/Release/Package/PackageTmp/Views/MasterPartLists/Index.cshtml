@@ -17,6 +17,7 @@
     <thead>
         <tr>
             <th></th>
+            @*<th>Total Files</th>*@
             <th>
                 @Html.DisplayNameFor(model => model.CustomerPn)
             </th>
@@ -56,6 +57,16 @@
                     @Html.ActionLink("Details", "Details", new { id = item.PartId })|
                     @Html.ActionLink("Delete", "Delete", new { id = item.PartId })
                 </td>
+                @*<td>
+                    @if (item.FileDetails.Count() == 0)
+                    {
+                        <span>No File</span>
+                    }
+                    else
+                    {
+                        <span>@item.FileDetails.Count() File(s)</span>
+                    }
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.CustomerPn)
                 </td>
@@ -97,5 +108,29 @@
                 'iDisplayLength': 100 });
         });
 
+    </script>
+
+    <script>
+        $('.deleteItem').click(function (e) {
+                   e.preventDefault();
+                   var $ctrl = $(this);
+                   if (confirm('Do you really want to delete this item?')) {
+                       $.ajax({
+                           url: '@Url.Action("Delete")',
+                        type: 'POST',
+                        data: { id: $(this).data('id') }
+                        }).done(function (data) {
+                        if (data.Result == "OK") {
+                        $ctrl.closest('tr').remove();
+                        }
+                        else if (data.Result.Message) {
+                        alert(data.Result.Message);
+                        }
+                        }).fail(function () {
+                        alert("There is something wrong. Please try again.");
+                        })
+
+                        }
+                        });
     </script>
 }

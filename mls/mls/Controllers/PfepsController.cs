@@ -293,101 +293,34 @@ namespace mls.Controllers
         [HttpGet]
         public ActionResult _StockOut(int parttype, int customer, int division)
         {
-
-            var queryNew = from mp in db.MasterPartLists
-                join co in db.CustomerOrders.Where(o => o.OrderStatusId != 7) on mp.CustomerPn equals co.CustomerPn into
-                ordergroup
-                join pfep in db.Pfeps on mp.CustomerPn equals pfep.CustomerPn
-                join ship in db.ShipIns.Where(r => r.ShipInStatusId != 3) on mp.CustomerPn equals ship.Pn into shipgroup
-                join tx in db.TxQohs on mp.CustomerPn equals tx.Pn
-                join po in db.PurchaseOrders.Where(r => r.PoOrderStatusId != 5) on mp.CustomerPn equals po.CustomerPn into pogroup
-                where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && tx.Qoh == 0
-                orderby mp.CustomerPn
+            var startDate = DateTime.Parse("5/11/2020");
+            var queryNew = from mp in db.TxQohs
+                join co in db.ShipPlans.Where(o => o.ShipPlanStatusId != 5) on mp.Pn equals co.CustomerPn into ordergroup
+                join pfep in db.Pfeps on mp.Pn equals pfep.CustomerPn
+                join ship in db.PoPlans.Where(r => r.PoOrderStatusId != 5) on mp.Pn equals ship.CustomerPn into pogroup
+                join ocean in db.PoPlans.Where(r => r.PoOrderStatusId == 2) on mp.Pn equals ocean.CustomerPn into oceangroup
+                join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on mp.Pn equals r.CustomerPn into g
+                join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
+                join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on mp.Pn equals j.CustomerPn into sr
+                where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && (mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum()) == 0
+                orderby mp.Pn
                 select new
                 {
-                    mp.CustomerPn,
-                    mp.PartDescription,
+                    mp.Pn,
                     pfep.PfepTx,
                     pfep.KbQty,
-                    tx.Qoh,
+                    Qoh = mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
                     PO = (int?)pogroup.Sum(c => c.OrderQty) - (int?)pogroup.Sum(c => c.ReceivedQty),
                     OO = (int?)ordergroup.Sum(c => c.OrderQty),
-                    Ocean = (int?)shipgroup.Sum(s => s.Qty)
+                    Ocean = (int?)oceangroup.Sum(s => s.ReceivedQty)
                 };
-
-            /*var queryNew = from cp in db.MasterPartLists
-                join tx in db.TxQohs on new { PartNumber = cp.CustomerPn } equals new {PartNumber = tx.Pn} into q1
-                from tx in q1.DefaultIfEmpty()
-                join c in db.ShipIns on new {PartNumber = cp.CustomerPn} equals new {PartNumber = c.Pn} into q2
-                from c in q2.DefaultIfEmpty()
-                           where c.ShipInStatusId != 3
-                join d in db.Pfeps on new {PartNumber = cp.CustomerPn} equals new {PartNumber = d.CustomerPn} into q3
-                from d in q3.DefaultIfEmpty()
-                where cp.PartTypeId == parttype && cp.CustomerDivisionId == division && cp.ActivePartId == 1 && tx.Qoh == 0
-                group new {cp, tx, c, d} by new
-                {
-                    cp.CustomerPn,
-                    tx.Qoh,
-                    cp.PartDescription,
-                    d.PfepTx,
-                    d.KbQty
-                }
-                into g
-                orderby
-                g.Key.CustomerPn ascending
-                select new
-                {
-                    g.Key.CustomerPn,
-                    g.Key.PartDescription,
-                    PFEPTx = (int?) g.Key.PfepTx,
-                    KBQty = (int?) g.Key.KbQty,
-                    QOH = (int?) g.Key.Qoh,
-                    Ocean = (int?) g.Sum(p => p.c.Qty)
-
-                };*/
-
-            /*var queryNew = (from cp in db.MasterPartLists
-                join tx in db.TxQohs on cp.CustomerPn equals tx.Pn into jTxQoh
-                from tx in jTxQoh.DefaultIfEmpty()
-                join c in db.ShipIns.Where(r => r.ShipInStatusId != 3) on cp.CustomerPn equals c.Pn into jShipIns
-                from c in jShipIns.DefaultIfEmpty()
-                join d in db.Pfeps on cp.CustomerPn equals d.CustomerPn into jPfeps
-                from d in jPfeps.DefaultIfEmpty()
-                where d.PartTypeId == parttype && cp.CustomerId == customer && cp.CustomerDivisionId == division && cp.ActivePartId == 1 && tx.Qoh == 0
-                group new {cp, d, tx, c} by new {cp.CustomerPn, tx.Qoh, cp.PartDescription, d.PfepTx, d.KbQty}
-                into gcp
-                orderby gcp.Key.CustomerPn
-                select new
-                {
-                    gcp.Key.CustomerPn,
-                    gcp.Key.PartDescription,
-                    gcp.Key.PfepTx,
-                    gcp.Key.KbQty,
-                    gcp.Key.Qoh,
-                    Ocean = (int?)gcp.Sum(r => r.c.Qty)
-                }); */
-
-           /* string queryNew = "SELECT cp.CustomerPn, cp.PartDescription, Pfeps.PFEPTx, Pfeps.KBQty, TxQohs.Qoh, SUM(ShipIns.Qty) AS 'Ocean' "
-                              + "FROM MasterPartLists as cp "
-                              + "LEFT JOIN TxQohs "
-                              + "ON cp.CustomerPn = TxQohs.Pn AND TxQohs.Qoh = '0' "
-                              + "LEFT JOIN ShipIns "
-                              + "ON cp.CustomerPn = ShipIns.Pn AND ShipIns.ShipStatusId <> '3' "
-                              + "LEFT JOIN Pfep "
-                              + "ON cp.CustomerPn = Pfeps.CustomerPn "
-                              + "WHERE cp.PartTypeId = parttype AND cp.CustomerDivisionId = division AND cp.ActivePartId = '1' "
-                              + "Group By cp.CustomerPn, TxQohs.Qoh, cp.PartDescription, Pfeps.PfepTx, Pfeps.KbQty "
-                              + "Order By cp.CustomerPn ASC "; 
-            /*var result1 = db.Database.SqlQuery<dynamic>("Select * from MasterPartLists").ToArray(); */
-           /*IEnumerable<StockOutGroup> data = db.Database.SqlQuery<StockOutGroup>(queryNew); */
 
             List<SavePfepViewModel> result = new List<SavePfepViewModel>();
             foreach (var pfep in queryNew.ToList())
             {
                 result.Add(new SavePfepViewModel
                 {
-                    CustomerPn = pfep.CustomerPn,
-                    PartDescription = pfep.PartDescription,
+                    CustomerPn = pfep.Pn,
                     PfepTx = pfep.PfepTx,
                     KbQty = pfep.KbQty,
                     Qoh = pfep.Qoh,
@@ -518,73 +451,35 @@ namespace mls.Controllers
         public ActionResult _LowStock(int parttype, int customer, int division)
         {
 
-            var queryNew = from mp in db.MasterPartLists
-                join co in db.CustomerOrders.Where(o => o.OrderStatusId != 7) on mp.CustomerPn equals co.CustomerPn into
-                ordergroup
-                join pfep in db.Pfeps on mp.CustomerPn equals pfep.CustomerPn
-                join ship in db.ShipIns.Where(r => r.ShipInStatusId != 3) on mp.CustomerPn equals ship.Pn into shipgroup
-                join tx in db.TxQohs on mp.CustomerPn equals tx.Pn
-                join po in db.PurchaseOrders.Where(r => r.PoOrderStatusId != 5) on mp.CustomerPn equals po.CustomerPn into pogroup
-                where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && tx.Qoh <= pfep.Min.Value && tx.Qoh != 0
-                orderby mp.CustomerPn
-                select new
-                {
-                    mp.CustomerPn,
-                    mp.PartDescription,
-                    pfep.PfepTx,
-                    pfep.KbQty,
-                    tx.Qoh,
-                    PO = (int?)pogroup.Sum(c => c.OrderQty) - (int?)pogroup.Sum(c => c.ReceivedQty),
-                    OO = (int?) ordergroup.Sum(c => c.OrderQty),
-                    Ocean = (int?) shipgroup.Sum(s => s.Qty)
-                };
-
-            /*var queryNew = (from cp in db.MasterPartLists
-                           join tx in db.TxQohs on cp.CustomerPn equals tx.Pn into jTxQoh
-                           from tx in jTxQoh.DefaultIfEmpty()
-                           join c in db.ShipIns.Where(r => r.ShipInStatusId != 3) on cp.CustomerPn equals c.Pn into jShipIns
-                           from c in jShipIns.DefaultIfEmpty()
-                           join d in db.Pfeps on cp.CustomerPn equals d.CustomerPn into jPfeps
-                           from d in jPfeps.DefaultIfEmpty()
-                           join e in db.CustomerOrders.Where(t => t.OrderStatusId != 7) on cp.CustomerPn equals e.CustomerPn into jCustomerOrders
-                           from e in jCustomerOrders.DefaultIfEmpty()
-                           where d.PartTypeId == parttype && cp.CustomerId == customer && cp.CustomerDivisionId == division && cp.ActivePartId == 1 && tx.Qoh <= d.Min.Value && tx.Qoh != 0 
-                           group new { cp, d, tx, c, e } by new { cp.CustomerPn, tx.Qoh, cp.PartDescription, d.PfepTx, d.KbQty }
-                           into gcp
-                           orderby gcp.Key.CustomerPn
-                           select
-                           new
+            var startDate = DateTime.Parse("5/11/2020");
+            var queryNew = from mp in db.TxQohs
+                           join co in db.ShipPlans.Where(o => o.ShipPlanStatusId != 5) on mp.Pn equals co.CustomerPn into ordergroup
+                           join pfep in db.Pfeps on mp.Pn equals pfep.CustomerPn
+                           join ship in db.PoPlans.Where(r => r.PoOrderStatusId != 5) on mp.Pn equals ship.CustomerPn into pogroup
+                           join ocean in db.PoPlans.Where(r => r.PoOrderStatusId == 2) on mp.Pn equals ocean.CustomerPn into oceangroup
+                           join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on mp.Pn equals r.CustomerPn into g
+                           join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
+                           join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on mp.Pn equals j.CustomerPn into sr
+                           where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && ((mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum()) < pfep.Min.Value) && (mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum()) != 0
+                           orderby mp.Pn
+                           select new
                            {
-                               gcp.Key.CustomerPn,
-                               gcp.Key.PartDescription,
-                               gcp.Key.PfepTx,
-                               gcp.Key.KbQty,
-                               gcp.Key.Qoh,
-                               OO = (int?)gcp.Sum(t => t.e.OrderQty),
-                               Ocean = (int?)gcp.Sum(r => r.c.Qty)
-                           });*/
-
-            /*string queryNew = "SELECT cp.CustomerPn, cp.PartDescription, Pfeps.PFEPTx, Pfeps.KBQty, TxQohs.Qoh, SUM(ShipIns.Qty) AS 'Ocean' "
-                              + "FROM MasterPartLists as cp "
-                              + "LEFT JOIN TxQohs "
-                              + "ON cp.CustomerPn = TxQohs.Pn AND TxQohs.Qoh <= '5' "
-                              + "LEFT JOIN ShipIns "
-                              + "ON cp.CustomerPn = ShipIns.Pn AND ShipIns.ShipInStatusId <> '3' "
-                              + "LEFT JOIN Pfeps "
-                              + "ON cp.CustomerPn = Pfeps.CustomerPn "
-                              + "WHERE Pfeps.PartTypeId = partType AND cp.CustomerDivisionId = division AND cp.ActivePartId = '1' "
-                              + "Group By cp.CustomerPn, TxQohs.Qoh, cp.PartDescription, Pfeps.PfepTx, Pfeps.KbQty "
-                              + "Order By cp.CustomerPn ASC ";
-           var data = db.Database.SqlQuery<SavePfepViewModel>(queryNew).ToList(); */
-
-            /*List<SavePfepViewModel> result = new List<SavePfepViewModel>();*/
+                               mp.Pn,
+                               mp.PartDescription,
+                               pfep.PfepTx,
+                               pfep.KbQty,
+                               Qoh = mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
+                               PO = (int?)pogroup.Sum(c => c.OrderQty) - (int?)pogroup.Sum(c => c.ReceivedQty),
+                               OO = (int?)ordergroup.Sum(c => c.OrderQty),
+                               Ocean = (int?)oceangroup.Sum(s => s.ReceivedQty)
+                           };
 
             List<SavePfepViewModel> result = new List<SavePfepViewModel>();
             foreach (var pfep in queryNew.ToList())
             {
                 result.Add(new SavePfepViewModel
                 {
-                    CustomerPn = pfep.CustomerPn,
+                    CustomerPn = pfep.Pn,
                     PartDescription = pfep.PartDescription,
                     PfepTx = pfep.PfepTx,
                     KbQty = pfep.KbQty,
@@ -595,7 +490,6 @@ namespace mls.Controllers
                 });
             }
 
-            //return PartialView("_StockOut", result);
             return View("_LowStockPartialView", result); 
         }
 
@@ -690,70 +584,35 @@ namespace mls.Controllers
         public ActionResult _NeedToOrder(int parttype, int customer, int division)
         {
 
-            var queryNew = from mp in db.MasterPartLists
-                           join co in db.CustomerOrders.Where(o => o.OrderStatusId != 7) on mp.CustomerPn equals co.CustomerPn into
-                           ordergroup
-                           join pfep in db.Pfeps on mp.CustomerPn equals pfep.CustomerPn
-                           join ship in db.ShipIns.Where(r => r.ShipInStatusId != 3) on mp.CustomerPn equals ship.Pn into shipgroup
-                           join tx in db.TxQohs on mp.CustomerPn equals tx.Pn
-                           join po in db.PurchaseOrders.Where(r => r.PoOrderStatusId != 5) on mp.CustomerPn equals po.CustomerPn into pogroup
-                           where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && tx.Qoh <= pfep.PfepTx
-                           orderby mp.CustomerPn
+            var startDate = DateTime.Parse("5/11/2020");
+            var queryNew = from mp in db.TxQohs
+                           join co in db.ShipPlans.Where(o => o.ShipPlanStatusId != 5) on mp.Pn equals co.CustomerPn into ordergroup
+                           join pfep in db.Pfeps on mp.Pn equals pfep.CustomerPn
+                           join ship in db.PoPlans.Where(r => r.PoOrderStatusId != 5) on mp.Pn equals ship.CustomerPn into pogroup
+                           join ocean in db.PoPlans.Where(r => r.PoOrderStatusId == 2) on mp.Pn equals ocean.CustomerPn into oceangroup
+                           join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on mp.Pn equals r.CustomerPn into g
+                           join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
+                           join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on mp.Pn equals j.CustomerPn into sr
+                           where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && mp.Qoh <= pfep.Min.Value 
+                           orderby mp.Pn
                            select new
                            {
-                               mp.CustomerPn,
+                               mp.Pn,
                                mp.PartDescription,
                                pfep.PfepTx,
                                pfep.KbQty,
-                               tx.Qoh,
+                               Qoh = mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
                                PO = (int?)pogroup.Sum(c => c.OrderQty) - (int?)pogroup.Sum(c => c.ReceivedQty),
                                OO = (int?)ordergroup.Sum(c => c.OrderQty),
-                               Ocean = (int?)shipgroup.Sum(s => s.Qty)
+                               Ocean = (int?)oceangroup.Sum(s => s.ReceivedQty)
                            };
-
-            /*var queryNew = (from cp in db.MasterPartLists
-                            join tx in db.TxQohs on cp.CustomerPn equals tx.Pn into jTxQoh
-                            from tx in jTxQoh.DefaultIfEmpty()
-                            join c in db.ShipIns.Where(r => r.ShipInStatusId != 3) on cp.CustomerPn equals c.Pn into jShipIns
-                            from c in jShipIns.DefaultIfEmpty()
-                            join d in db.Pfeps on cp.CustomerPn equals d.CustomerPn into jPfeps
-                            from d in jPfeps.DefaultIfEmpty()
-                            where d.PartTypeId == parttype && cp.CustomerId == customer && cp.CustomerDivisionId == division && cp.ActivePartId == 1 && tx.Qoh <= d.PfepTx
-                            group new { cp, d, tx, c } by new { cp.CustomerPn, tx.Qoh, cp.PartDescription, d.PfepTx, d.KbQty }
-                           into gcp
-                            orderby gcp.Key.CustomerPn
-                            select
-                            new
-                            {
-                                gcp.Key.CustomerPn,
-                                gcp.Key.PartDescription,
-                                gcp.Key.PfepTx,
-                                gcp.Key.KbQty,
-                                gcp.Key.Qoh,
-                                Ocean = (int?)gcp.Sum(r => r.c.Qty)
-                            });*/
-
-            /*string queryNew = "SELECT cp.CustomerPn, cp.PartDescription, Pfeps.PFEPTx, Pfeps.KBQty, TxQohs.Qoh, SUM(ShipIns.Qty) AS 'Ocean' "
-                              + "FROM MasterPartLists as cp "
-                              + "LEFT JOIN TxQohs "
-                              + "ON cp.CustomerPn = TxQohs.Pn AND TxQohs.Qoh <= '5' "
-                              + "LEFT JOIN ShipIns "
-                              + "ON cp.CustomerPn = ShipIns.Pn AND ShipIns.ShipInStatusId <> '3' "
-                              + "LEFT JOIN Pfeps "
-                              + "ON cp.CustomerPn = Pfeps.CustomerPn "
-                              + "WHERE Pfeps.PartTypeId = partType AND cp.CustomerDivisionId = division AND cp.ActivePartId = '1' "
-                              + "Group By cp.CustomerPn, TxQohs.Qoh, cp.PartDescription, Pfeps.PfepTx, Pfeps.KbQty "
-                              + "Order By cp.CustomerPn ASC ";
-           var data = db.Database.SqlQuery<SavePfepViewModel>(queryNew).ToList(); */
-
-            /*List<SavePfepViewModel> result = new List<SavePfepViewModel>();*/
 
             List<SavePfepViewModel> result = new List<SavePfepViewModel>();
             foreach (var pfep in queryNew.ToList())
             {
                 result.Add(new SavePfepViewModel
                 {
-                    CustomerPn = pfep.CustomerPn,
+                    CustomerPn = pfep.Pn,
                     PartDescription = pfep.PartDescription,
                     PfepTx = pfep.PfepTx,
                     KbQty = pfep.KbQty,
@@ -856,71 +715,35 @@ namespace mls.Controllers
         public ActionResult _AllParts(int parttype, int customer, int division)
         {
 
-            var queryNew = from mp in db.MasterPartLists
-                           join co in db.CustomerOrders.Where(o => o.OrderStatusId != 7) on mp.CustomerPn equals co.CustomerPn into
-                           ordergroup
-                           join pfep in db.Pfeps on mp.CustomerPn equals pfep.CustomerPn
-                           join ship in db.ShipIns.Where(r => r.ShipInStatusId != 3) on mp.CustomerPn equals ship.Pn into shipgroup
-                           join tx in db.TxQohs on mp.CustomerPn equals tx.Pn
-                           join po in db.PurchaseOrders.Where(r => r.PoOrderStatusId != 5) on mp.CustomerPn equals po.CustomerPn into pogroup
-                           where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1
-                           orderby mp.CustomerPn 
+            var startDate = DateTime.Parse("5/11/2020");
+            var queryNew = from mp in db.TxQohs
+                           join co in db.ShipPlans.Where(o => o.ShipPlanStatusId != 5) on mp.Pn equals co.CustomerPn into ordergroup
+                           join pfep in db.Pfeps on mp.Pn equals pfep.CustomerPn
+                           join ship in db.PoPlans.Where(r => r.PoOrderStatusId != 5) on mp.Pn equals ship.CustomerPn into pogroup
+                           join ocean in db.PoPlans.Where(r => r.PoOrderStatusId == 2) on mp.Pn equals ocean.CustomerPn into oceangroup
+                           join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on mp.Pn equals r.CustomerPn into g
+                           join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
+                           join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on mp.Pn equals j.CustomerPn into sr
+                           where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 
+                           orderby mp.Pn
                            select new
                            {
-                               mp.CustomerPn,
+                               mp.Pn,
                                mp.PartDescription,
                                pfep.PfepTx,
                                pfep.KbQty,
-                               tx.Qoh,
+                               Qoh = mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
                                PO = (int?)pogroup.Sum(c => c.OrderQty) - (int?)pogroup.Sum(c => c.ReceivedQty),
                                OO = (int?)ordergroup.Sum(c => c.OrderQty),
-                               Ocean = (int?)shipgroup.Sum(s => s.Qty)
+                               Ocean = (int?)oceangroup.Sum(s => s.ReceivedQty)
                            };
 
-            /*var queryNew = from cp in db.MasterPartLists
-                           join tx in db.TxQohs on cp.CustomerPn equals tx.Pn into jTxQoh
-                           from tx in jTxQoh.DefaultIfEmpty()
-                           join c in db.ShipIns.Where(r => r.ShipInStatusId != 3) on cp.CustomerPn equals c.Pn into jShipIns
-                           from c in jShipIns.DefaultIfEmpty()
-                           join e in db.CustomerOrders.Where(t => t.OrderStatusId != 7) on cp.CustomerPn equals e.CustomerPn into jCustomerOrders
-                           from e in jCustomerOrders.DefaultIfEmpty()
-                           join d in db.Pfeps on cp.CustomerPn equals d.CustomerPn into jPfeps
-                           from d in jPfeps.DefaultIfEmpty()
-                           where d.PartTypeId == parttype && cp.CustomerId == customer && cp.CustomerDivisionId == division && cp.ActivePartId == 1
-                           group new { cp, tx, c, d, e } by new { cp.CustomerPn, tx.Qoh, cp.PartDescription, d.PfepTx, d.KbQty }
-                           into gcp
-                           orderby gcp.Key.CustomerPn
-                           select
-                           new
-                           {
-                               gcp.Key.CustomerPn,
-                               gcp.Key.PartDescription,
-                               gcp.Key.PfepTx,
-                               gcp.Key.KbQty,
-                               gcp.Key.Qoh,
-                               OO = ((int?)gcp.Sum(t => t.e.OrderQty)-(int?)gcp.Sum(t => t.e.ShipQty)),
-                               Ocean = (int?)gcp.Sum(r => r.c.Qty)
-                           };*/
-
-            /*string queryNew = "SELECT cp.CustomerPn, cp.PartDescription, Pfep.PFEPTx, Pfep.KBQty, TxQoh.QOH, SUM(ShipIn.Qty) AS 'Ocean'"
-                              + "FROM MasterPartLists as cp"
-                              + "LEFT JOIN TxQoh"
-                              + "ON cp.CustomerPn = TxQoh.PN"
-                              + "LEFT JOIN ShipIn"
-                              + "ON cp.CustomerPn = ShipIn.Pn AND ShipIn.Status <> 'Received'"
-                              + "LEFT JOIN Pfep"
-                              + "ON cp.CustomerPn = Pfep.CustomerPn"
-                              + "WHERE cp.PartTypeId = parttype AND cp.CustomerDivisionId = division AND cp.ActivePartId = 1 AND TX_QOH.QOH = '0'"
-                              + "Group By cp.CustomerPn, TxQoh.QOH, cp.PartDescription, Pfep.PfepTx, Pfep.KbQty"
-                              + "Order By cp.CustomerPn ASC";
-           IEnumerable<StockOutGroup> data = db.Database.SqlQuery<StockOutGroup>(queryNew); */
-           
             List<SavePfepViewModel> result = new List<SavePfepViewModel>();
             foreach (var pfep in queryNew.ToList())
             {
                 result.Add(new SavePfepViewModel
                 {
-                    CustomerPn = pfep.CustomerPn,
+                    CustomerPn = pfep.Pn,
                     PartDescription = pfep.PartDescription,
                     PfepTx = pfep.PfepTx,
                     KbQty = pfep.KbQty,

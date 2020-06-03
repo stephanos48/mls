@@ -66,7 +66,7 @@ namespace mls.Controllers
         public ActionResult Schedule1()
         {
             var query = from c in db.WorkOrders
-                        where c.PartStockOutId == 7 && c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3
+                        where c.PartStockOutId == 7 && c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.WoOrderStatusId != 8
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -75,7 +75,7 @@ namespace mls.Controllers
         public ActionResult ScheduleAll()
         {
             var query = from c in db.WorkOrders
-                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.WoOrderStatusId != 8
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -84,7 +84,7 @@ namespace mls.Controllers
         public ActionResult ScheduleChassis()
         {
             var query = from c in db.WorkOrders
-                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.MlsDivisionId == 3
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.MlsDivisionId == 3 && c.WoOrderStatusId != 8
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -93,7 +93,7 @@ namespace mls.Controllers
         public ActionResult CylRework()
         {
             var query = from c in db.WorkOrders
-                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.WoPartTypeId == 4
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.WoPartTypeId == 4 && c.WoOrderStatusId != 8
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -102,7 +102,7 @@ namespace mls.Controllers
         public ActionResult ScheduleMinusBayne()
         {
             var query = from c in db.WorkOrders
-                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.CustomerDivisionId != 9 && c.MlsDivisionId != 3 && c.WoPartTypeId != 4
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.CustomerDivisionId != 9 && c.MlsDivisionId != 3 && c.WoPartTypeId != 4 && c.WoOrderStatusId != 8
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -112,6 +112,15 @@ namespace mls.Controllers
         {
             var query = from c in db.WorkOrders
                         where c.WoOrderStatusId == 5
+                        orderby c.ShipDate ascending
+                        select c;
+            return View(query.ToList());
+        }
+
+        public ActionResult ClosedNeedSageUpdate()
+        {
+            var query = from c in db.WorkOrders
+                        where c.WoOrderStatusId == 8
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -129,7 +138,7 @@ namespace mls.Controllers
         public ActionResult Schedule2()
         {
             var query = from c in db.WorkOrders
-                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.CustomerDivisionId == 9
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.CustomerDivisionId == 9 && c.WoOrderStatusId != 8
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -138,7 +147,7 @@ namespace mls.Controllers
         public ActionResult ScheduleExtreme()
         {
             var query = from c in db.WorkOrders
-                        where c.WoOrderStatusId == 7
+                        where c.WoOrderStatusId == 7 && c.WoOrderStatusId != 8
                         orderby c.ShipDate ascending
                         select c;
             return View("ScheduleExtreme", query.ToList());

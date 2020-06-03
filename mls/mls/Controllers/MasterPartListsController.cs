@@ -10,6 +10,7 @@ using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using mls.Models;
 using mls.ViewModels;
 using System.Dynamic;
+using System.IO;
 
 namespace mls.Controllers
 {
@@ -168,6 +169,27 @@ namespace mls.Controllers
         {
             if (ModelState.IsValid)
             {
+                /*List<FileDetail> fileDetails = new List<FileDetail>();
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    var file = Request.Files[i];
+
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        FileDetail fileDetail = new FileDetail()
+                        {
+                            FileName = fileName,
+                            Extension = Path.GetExtension(fileName),
+                            Id = Guid.NewGuid()
+                        };
+                        fileDetails.Add(fileDetail);
+
+                        var path = Path.Combine(Server.MapPath("~/images/"), fileDetail.Id + fileDetail.Extension);
+                        file.SaveAs(path);
+                    }
+                }
+                masterPartList.FileDetails = fileDetails;*/
                 db.MasterPartLists.Add(masterPartList);
                 db.SaveChanges();
                 return Redirect(returnUrl);
@@ -203,6 +225,8 @@ namespace mls.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //Support support = db.Supports.Include(s => s.FileDetails).SingleOrDefault(x => x.SupportId == id);
+            //MasterPartList masterPartList = db.MasterPartLists.Include(s => s.FileDetails).SingleOrDefault(x => x.PartId == id); 
             MasterPartList masterPartList = db.MasterPartLists.Find(id);
             if (masterPartList == null)
             {
@@ -222,12 +246,76 @@ namespace mls.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                //New Files
+                /*for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    var file = Request.Files[i];
+
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        FileDetail fileDetail = new FileDetail()
+                        {
+                            FileName = fileName,
+                            Extension = Path.GetExtension(fileName),
+                            Id = Guid.NewGuid(),
+                            PartId = masterPartList.PartId
+                        };
+                        var path = Path.Combine(Server.MapPath("~/images/"), fileDetail.Id + fileDetail.Extension);
+                        file.SaveAs(path);
+
+                        db.Entry(fileDetail).State = EntityState.Added;
+                    }
+                }*/
+
                 db.Entry(masterPartList).State = EntityState.Modified;
                 db.SaveChanges();
                 return Redirect(returnUrl);
             }
             return View();
             //return View(masterPartList);
+        }
+
+        public FileResult Download(String p, String d)
+        {
+            return File(Path.Combine(Server.MapPath("~/images/"), p), System.Net.Mime.MediaTypeNames.Application.Octet, d);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteFile(string id)
+        {
+            if (String.IsNullOrEmpty(id))
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(new { Result = "Error" });
+            }
+            try
+            {
+                Guid guid = new Guid(id);
+                FileDetail fileDetail = db.FileDetails.Find(guid);
+                if (fileDetail == null)
+                {
+                    Response.StatusCode = (int)HttpStatusCode.NotFound;
+                    return Json(new { Result = "Error" });
+                }
+
+                //Remove from database
+                db.FileDetails.Remove(fileDetail);
+                db.SaveChanges();
+
+                //Delete file from the file system
+                var path = Path.Combine(Server.MapPath("~/images/"), fileDetail.Id + fileDetail.Extension);
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+                return Json(new { Result = "OK" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
         }
 
         // GET: MasterPartLists/Delete/5
@@ -252,6 +340,18 @@ namespace mls.Controllers
         public ActionResult DeleteConfirmed(int id, string returnUrl)
         {
             MasterPartList masterPartList = db.MasterPartLists.Find(id);
+
+            //delete files from the file system
+            /*
+            foreach (var item in masterPartList.FileDetails)
+            {
+                String path = Path.Combine(Server.MapPath("~/images/"), item.Id + item.Extension);
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+            }
+            */
             db.MasterPartLists.Remove(masterPartList);
             db.SaveChanges();
             return Redirect(returnUrl);

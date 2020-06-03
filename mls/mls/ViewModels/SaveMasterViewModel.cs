@@ -19,5 +19,7 @@ namespace mls.ViewModels
         public IEnumerable<ActivePart> ActiveParts { get; set; }
 
         public MasterPartList MasterPartList { get; set; }
+
+        public IEnumerable<FileDetail> FileDetails { get; set; }
     }
 }

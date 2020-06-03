@@ -16,6 +16,9 @@ namespace mls.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -50,6 +53,24 @@ namespace mls.Controllers
             return View();
         }
 
+        public ActionResult LoginLogActivity(LoginViewModel model)
+        {
+            var currentUser = User.Identity.GetUserName();
+            var logDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+            var eventType = "LogIn";
+
+            LoginLog loginLog = new LoginLog();
+
+            loginLog.User = model.Email;
+            loginLog.EventDateTime = logDateTime;
+            loginLog.EventType = eventType;
+
+            db.LoginLogs.Add(loginLog);
+            db.SaveChanges();
+            return null;
+        }
+
+
         //
         // POST: /Account/Login
         [HttpPost]
@@ -61,7 +82,8 @@ namespace mls.Controllers
             {
                 return View(model);
             }
-        
+
+            LoginLogActivity(model);
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -463,12 +485,30 @@ namespace mls.Controllers
             return View(model);
         }
 
-        //
+        public ActionResult LogoffLogActivity()
+        {
+            var currentUser = User.Identity.GetUserName();
+            var logDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+            var eventType = "LogOff";
+
+            LoginLog loginLog = new LoginLog();
+
+            loginLog.User = currentUser;
+            loginLog.EventDateTime = logDateTime;
+            loginLog.EventType = eventType;
+
+            db.LoginLogs.Add(loginLog);
+            db.SaveChanges();
+            return null;
+        }
+
+
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            LogoffLogActivity();
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }

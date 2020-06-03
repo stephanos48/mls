@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using mls.Models;
 using mls.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace mls.Controllers
 {
@@ -321,12 +322,65 @@ namespace mls.Controllers
             {
                 db.PoPlans.Add(poPlan);
                 db.SaveChanges();
+                LogCreatePoPlanActivity(poPlan);
                 return Redirect(returnUrl);
                 //return RedirectToAction("PoPlanStatus");
             }
 
             //return View(poPlan);
             return View();
+        }
+
+        public ActionResult LogCreatePoPlanActivity(PoPlan poPlan)
+        {
+            var currentUser = User.Identity.GetUserName();
+            var logDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+            var eventType = "Create";
+
+            PoPlanLog poPlanLog = new PoPlanLog();
+
+            poPlanLog.User = currentUser;
+            poPlanLog.EventDateTime = logDateTime;
+            poPlanLog.EventType = eventType;
+            poPlanLog.PoPlanId = poPlan.PoPlanId;
+            poPlanLog.PoNumber = poPlan.PoNumber;
+            poPlanLog.PoLine = poPlan.PoLine;
+            poPlanLog.CustomerId = poPlan.CustomerId;
+            poPlanLog.CustomerDivisionId = poPlan.CustomerDivisionId;
+            poPlanLog.MlsDivisionId = poPlan.MlsDivisionId;
+            poPlanLog.CustomerPn = poPlan.CustomerPn;
+            poPlanLog.UhPn = poPlan.UhPn;
+            poPlanLog.SupplierId = poPlan.SupplierId;
+            poPlanLog.CustomerOrderNumber = poPlan.CustomerOrderNumber;
+            poPlanLog.SoNumber = poPlan.SoNumber;
+            poPlanLog.OrderQty = poPlan.OrderQty;
+            poPlanLog.ReceivedQty = poPlan.ReceivedQty;
+            poPlanLog.ContainerId = poPlan.ContainerId;
+            poPlanLog.OrderDateTime = poPlan.OrderDateTime;
+            poPlanLog.ContainerUh = poPlan.ContainerUh;
+            poPlanLog.AMS = poPlan.AMS;
+            poPlanLog.ArrivalWk = poPlan.ArrivalWk;
+            poPlanLog.BOL = poPlan.BOL;
+            poPlanLog.Destination = poPlan.Destination;
+            poPlanLog.Etadate = poPlan.Etadate;
+            poPlanLog.FreightFowarder = poPlan.FreightFowarder;
+            poPlanLog.Invoice = poPlan.Invoice;
+            poPlanLog.Pallet = poPlan.Pallet;
+            poPlanLog.PartDescription = poPlan.PartDescription;
+            poPlanLog.PoConfirmedBy = poPlan.PoConfirmedBy;
+            poPlanLog.RequestedDateTime = poPlan.RequestedDateTime;
+            poPlanLog.ReceiptDateTime = poPlan.ReceiptDateTime;
+            poPlanLog.Shipdate = poPlan.Shipdate;
+            poPlanLog.PromiseDateTime = poPlan.PromiseDateTime;
+            poPlanLog.PoSentDateTime = poPlan.PoSentDateTime;
+            poPlanLog.PoSentBy = poPlan.PoSentBy;
+            poPlanLog.PoOrderStatusId = poPlan.PoOrderStatusId;
+            poPlanLog.PoConfirmedDateTime = poPlan.PoConfirmedDateTime;
+            poPlanLog.Notes = poPlan.Notes;
+
+            db.PoPlanLogs.Add(poPlanLog);
+            db.SaveChanges();
+            return null;
         }
 
         // GET: PoPlans/Edit/5
@@ -377,11 +431,64 @@ namespace mls.Controllers
             {
                 db.Entry(poPlan).State = EntityState.Modified;
                 db.SaveChanges();
+                LogEditPoPlanActivity(poPlan);
                 return Redirect(returnUrl);
                 //return RedirectToAction("PoPlanStatus");
             }
             return View();
             //return View(poPlan);
+        }
+
+        public ActionResult LogEditPoPlanActivity(PoPlan poPlan)
+        {
+            var currentUser = User.Identity.GetUserName();
+            var logDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+            var eventType = "Edit";
+
+            PoPlanLog poPlanLog = new PoPlanLog();
+
+            poPlanLog.User = currentUser;
+            poPlanLog.EventDateTime = logDateTime;
+            poPlanLog.EventType = eventType;
+            poPlanLog.PoPlanId = poPlan.PoPlanId;
+            poPlanLog.PoNumber = poPlan.PoNumber;
+            poPlanLog.PoLine = poPlan.PoLine;
+            poPlanLog.CustomerId = poPlan.CustomerId;
+            poPlanLog.CustomerDivisionId = poPlan.CustomerDivisionId;
+            poPlanLog.MlsDivisionId = poPlan.MlsDivisionId;
+            poPlanLog.CustomerPn = poPlan.CustomerPn;
+            poPlanLog.UhPn = poPlan.UhPn;
+            poPlanLog.SupplierId = poPlan.SupplierId;
+            poPlanLog.CustomerOrderNumber = poPlan.CustomerOrderNumber;
+            poPlanLog.SoNumber = poPlan.SoNumber;
+            poPlanLog.OrderQty = poPlan.OrderQty;
+            poPlanLog.ReceivedQty = poPlan.ReceivedQty;
+            poPlanLog.ContainerId = poPlan.ContainerId;
+            poPlanLog.OrderDateTime = poPlan.OrderDateTime;
+            poPlanLog.ContainerUh = poPlan.ContainerUh;
+            poPlanLog.AMS = poPlan.AMS;
+            poPlanLog.ArrivalWk = poPlan.ArrivalWk;
+            poPlanLog.BOL = poPlan.BOL;
+            poPlanLog.Destination = poPlan.Destination;
+            poPlanLog.Etadate = poPlan.Etadate;
+            poPlanLog.FreightFowarder = poPlan.FreightFowarder;
+            poPlanLog.Invoice = poPlan.Invoice;
+            poPlanLog.Pallet = poPlan.Pallet;
+            poPlanLog.PartDescription = poPlan.PartDescription;
+            poPlanLog.PoConfirmedBy = poPlan.PoConfirmedBy;
+            poPlanLog.RequestedDateTime = poPlan.RequestedDateTime;
+            poPlanLog.ReceiptDateTime = poPlan.ReceiptDateTime;
+            poPlanLog.Shipdate = poPlan.Shipdate;
+            poPlanLog.PromiseDateTime = poPlan.PromiseDateTime;
+            poPlanLog.PoSentDateTime = poPlan.PoSentDateTime;
+            poPlanLog.PoSentBy = poPlan.PoSentBy;
+            poPlanLog.PoOrderStatusId = poPlan.PoOrderStatusId;
+            poPlanLog.PoConfirmedDateTime = poPlan.PoConfirmedDateTime;
+            poPlanLog.Notes = poPlan.Notes;
+
+            db.PoPlanLogs.Add(poPlanLog);
+            db.SaveChanges();
+            return null;
         }
 
         // GET: PoPlans/Delete/5
@@ -403,12 +510,65 @@ namespace mls.Controllers
         // POST: PoPlans/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, string returnUrl)
         {
             PoPlan poPlan = db.PoPlans.Find(id);
             db.PoPlans.Remove(poPlan);
             db.SaveChanges();
-            return RedirectToAction("PoPlanStatus");
+            LogDeletePoPlanActivity(poPlan);
+            return Redirect(returnUrl);
+        }
+
+        public ActionResult LogDeletePoPlanActivity(PoPlan poPlan)
+        {
+            var currentUser = User.Identity.GetUserName();
+            var logDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+            var eventType = "Delete";
+
+            PoPlanLog poPlanLog = new PoPlanLog();
+
+            poPlanLog.User = currentUser;
+            poPlanLog.EventDateTime = logDateTime;
+            poPlanLog.EventType = eventType;
+            poPlanLog.PoPlanId = poPlan.PoPlanId;
+            poPlanLog.PoNumber = poPlan.PoNumber;
+            poPlanLog.PoLine = poPlan.PoLine;
+            poPlanLog.CustomerId = poPlan.CustomerId;
+            poPlanLog.CustomerDivisionId = poPlan.CustomerDivisionId;
+            poPlanLog.MlsDivisionId = poPlan.MlsDivisionId;
+            poPlanLog.CustomerPn = poPlan.CustomerPn;
+            poPlanLog.UhPn = poPlan.UhPn;
+            poPlanLog.SupplierId = poPlan.SupplierId;
+            poPlanLog.CustomerOrderNumber = poPlan.CustomerOrderNumber;
+            poPlanLog.SoNumber = poPlan.SoNumber;
+            poPlanLog.OrderQty = poPlan.OrderQty;
+            poPlanLog.ReceivedQty = poPlan.ReceivedQty;
+            poPlanLog.ContainerId = poPlan.ContainerId;
+            poPlanLog.OrderDateTime = poPlan.OrderDateTime;
+            poPlanLog.ContainerUh = poPlan.ContainerUh;
+            poPlanLog.AMS = poPlan.AMS;
+            poPlanLog.ArrivalWk = poPlan.ArrivalWk;
+            poPlanLog.BOL = poPlan.BOL;
+            poPlanLog.Destination = poPlan.Destination;
+            poPlanLog.Etadate = poPlan.Etadate;
+            poPlanLog.FreightFowarder = poPlan.FreightFowarder;
+            poPlanLog.Invoice = poPlan.Invoice;
+            poPlanLog.Pallet = poPlan.Pallet;
+            poPlanLog.PartDescription = poPlan.PartDescription;
+            poPlanLog.PoConfirmedBy = poPlan.PoConfirmedBy;
+            poPlanLog.RequestedDateTime = poPlan.RequestedDateTime;
+            poPlanLog.ReceiptDateTime = poPlan.ReceiptDateTime;
+            poPlanLog.Shipdate = poPlan.Shipdate;
+            poPlanLog.PromiseDateTime = poPlan.PromiseDateTime;
+            poPlanLog.PoSentDateTime = poPlan.PoSentDateTime;
+            poPlanLog.PoSentBy = poPlan.PoSentBy;
+            poPlanLog.PoOrderStatusId = poPlan.PoOrderStatusId;
+            poPlanLog.PoConfirmedDateTime = poPlan.PoConfirmedDateTime;
+            poPlanLog.Notes = poPlan.Notes;
+
+            db.PoPlanLogs.Add(poPlanLog);
+            db.SaveChanges();
+            return null;
         }
 
         public ActionResult _Issues(int status)

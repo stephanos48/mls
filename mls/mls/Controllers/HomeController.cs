@@ -52,7 +52,7 @@ namespace mls.Controllers
                 var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
                 var message = new MailMessage();
                 message.To.Add(new MailAddress("stephen.english@unitedhyd.com"));  // replace with valid value 
-                message.From = new MailAddress("stephanos.englisch@hotmail.com");  // replace with valid value
+                message.From = new MailAddress("stephanos.english@gmail.com");  // replace with valid value
                 message.Subject = "Your email subject";
                 message.Body = string.Format(body, model.FromName, model.FromEmail, model.Message);
                 message.IsBodyHtml = true;
@@ -61,13 +61,15 @@ namespace mls.Controllers
                 {
                     var credential = new NetworkCredential
                     {
-                        UserName = "stephanos.englisch@hotmail.com",  // replace with valid value
+                        UserName = "stephanos.english@gmail.com",  // replace with valid value
                         Password = "Rea1madrid"  // replace with valid value
                     };
                     smtp.Credentials = credential;
-                    smtp.Host = "smtp-mail.outlook.com";
+                    smtp.Host = "smtp.gmail.com";
                     smtp.Port = 587;
                     smtp.EnableSsl = true;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                     await smtp.SendMailAsync(message);
                     return RedirectToAction("Sent");
                 }

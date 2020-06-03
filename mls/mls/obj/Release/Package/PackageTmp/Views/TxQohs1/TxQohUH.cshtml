@@ -15,12 +15,6 @@
         <tr>
             <th></th>
             <th>
-                Id
-            </th>
-            <th>
-                Customer
-            </th>
-            <th>
                 PN
             </th>
             <th>
@@ -40,7 +34,10 @@
                 May11Wo
             </th>
             <th>
-                NcrQty
+                May11Cc
+            </th>
+            <th>
+                May11Nc
             </th>
             <th>
                 Notes
@@ -56,12 +53,6 @@
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id })|
                     @Html.ActionLink("Details", "Details", new { id = item.Id })|
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Pn)
@@ -84,7 +75,10 @@
                     @Html.DisplayFor(modelItem => item.May11Wo)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NcrQty)
+                    @Html.DisplayFor(modelItem => item.May11Cc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.May11Nc)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Notes)

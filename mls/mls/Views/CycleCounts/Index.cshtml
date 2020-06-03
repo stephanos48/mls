@@ -4,7 +4,7 @@
     ViewBag.Title = "CycleCount";
 }
 
-<h2>Cycle Counts</h2>
+<h2>Cycle Counts / Inventory Adjustments</h2>
 
 <p>
     @Html.ActionLink("Go Back", "Home", "TxQohs1", null, null) | @Html.ActionLink("Create New", "Create")
@@ -30,6 +30,12 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CountOff)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SageAdjQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PortalAdjQty)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Notes)
@@ -62,6 +68,12 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CountOff)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SageAdjQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PortalAdjQty)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Notes)

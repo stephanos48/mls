@@ -34,6 +34,8 @@ namespace mls.Models
 
         public string UhPn { get; set; }
 
+        public string PartDescription { get; set; }
+
         public int Qoh { get; set; }
 
         public int NcrQty { get; set; }

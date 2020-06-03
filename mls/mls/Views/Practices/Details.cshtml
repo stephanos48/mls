@@ -31,12 +31,13 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PicUrl)
+            <img src="@Url.Content("~/images/" + Model.PicUrl)" />
+            @*<img src="~/images/PicUrl" height="300" width="250" />*@
         </dd>
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.PracticeId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Download")
 </p>

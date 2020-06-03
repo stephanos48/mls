@@ -44,5 +44,7 @@ namespace mls.Models
 
         public ICollection<Checklist> Checklist { get; set; }
 
+        //public virtual ICollection<FileDetail> FileDetails { get; set; }
+
     }
 }

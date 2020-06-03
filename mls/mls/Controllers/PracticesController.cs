@@ -27,6 +27,45 @@ namespace mls.Controllers
             return View(db.Practices.ToList());
         }
 
+        public ActionResult UploadPic()
+        {
+            return View("Upload2");
+        }
+
+        public ActionResult Upload2(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Practice practice = db.Practices.Find(id);
+            if (practice == null)
+            {
+                return HttpNotFound();
+            }
+            return View("SaveData", practice);
+        }
+
+        [HttpPost]
+        public ActionResult Upload2(Practice item)
+        {
+
+            var currentUrl = item.PicUrl;
+            
+            if (item.Name != null && item.UploadImage != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(item.UploadImage.FileName);
+                string extension = Path.GetExtension(item.UploadImage.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssff") + extension;
+                item.PicUrl = fileName;
+                item.UploadImage.SaveAs(Path.Combine(Server.MapPath("~/images/currentUrl"), fileName));
+                db.Practices.Add(item);
+                db.SaveChanges();
+            }
+            var result = "Successfully Added";
+            return View("Download", Json(result, JsonRequestBehavior.AllowGet));
+        }
+
         public ActionResult Upload()
         {
             foreach (string upload in Request.Files)
@@ -71,7 +110,7 @@ namespace mls.Controllers
             var result = "Successfully Added";
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-    
+
         // GET: Practices/Details/5
         public ActionResult Details(int? id)
         {
@@ -104,7 +143,7 @@ namespace mls.Controllers
             {
                 db.Practices.Add(practice);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Download");
             }
 
             return View(practice);
@@ -136,7 +175,7 @@ namespace mls.Controllers
             {
                 db.Entry(practice).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Downlaod");
             }
             return View(practice);
         }
@@ -164,7 +203,7 @@ namespace mls.Controllers
             Practice practice = db.Practices.Find(id);
             db.Practices.Remove(practice);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Download");
         }
 
         protected override void Dispose(bool disposing)

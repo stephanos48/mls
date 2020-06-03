@@ -34,6 +34,10 @@ namespace mls.ViewModels
 
         public int? May11Wo { get; set; }
 
+        public int? May11Cc { get; set; }
+
+        public int? May11Nc { get; set; }
+
         public int? Qoh { get; set; }
 
         public int NcrQty { get; set; }

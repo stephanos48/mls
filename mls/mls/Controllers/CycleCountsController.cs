@@ -46,7 +46,7 @@ namespace mls.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CycleCountId,CycleCountDateTime,CustomerPn,SageQty,PortalQty,ActualQty,LocationsCounted,CountedBy,AuditedBy,CountOff,CorrectedBy,CorrectedDateTime,Notes")] CycleCount cycleCount)
+        public ActionResult Create([Bind(Include = "CycleCountId,CycleCountDateTime,CustomerPn,SageQty,PortalQty,ActualQty,LocationsCounted,CountedBy,AuditedBy,CountOff,CorrectedBy,SageAdjQty,PortalAdjQty,CorrectedDateTime,Notes")] CycleCount cycleCount)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace mls.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CycleCountId,CycleCountDateTime,CustomerPn,SageQty,PortalQty,ActualQty,LocationsCounted,CountedBy,AuditedBy,CountOff,CorrectedBy,CorrectedDateTime,Notes")] CycleCount cycleCount)
+        public ActionResult Edit([Bind(Include = "CycleCountId,CycleCountDateTime,CustomerPn,SageQty,PortalQty,ActualQty,LocationsCounted,CountedBy,AuditedBy,CountOff,CorrectedBy,,SageAdjQty,PortalAdjQty,CorrectedDateTime,Notes")] CycleCount cycleCount)
         {
             if (ModelState.IsValid)
             {

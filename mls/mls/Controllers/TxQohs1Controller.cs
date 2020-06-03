@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using mls.Models;
 using mls.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace mls.Controllers
 {
@@ -23,6 +24,8 @@ namespace mls.Controllers
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
                         join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
                         join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
+                        join c in db.CycleCounts.Where(u=>u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
+                        join n in db.NCRs.Where(u=>u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
                         orderby tx.Pn
                         select new
                         {
@@ -35,8 +38,9 @@ namespace mls.Controllers
                             May11Rec = (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum(),
                             May11Ship = (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum(),
                             May11Wo = (int?)sr.Select(x=>x.Qty).DefaultIfEmpty(0).Sum(),
-                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
-                            NcrQty = tx.NcrQty,
+                            May11Cc = (int?)cr.Select(x=>x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
+                            May11Nc = (int?)nr.Select(x=>x.Quantity).DefaultIfEmpty(0).Sum(),
+                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum() + (int ?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
                             Notes = tx.Notes
                         };
 
@@ -54,8 +58,9 @@ namespace mls.Controllers
                     May11Rec = qoh.May11Rec,
                     May11Ship = qoh.May11Ship,
                     May11Wo = qoh.May11Wo,
+                    May11Cc = qoh.May11Cc,
+                    May11Nc = qoh.May11Nc,
                     Qoh = qoh.Qoh,
-                    NcrQty = qoh.NcrQty,
                     Notes = qoh.Notes
                 });
             }
@@ -73,21 +78,26 @@ namespace mls.Controllers
         {
             var startDate = DateTime.Parse("5/11/2020");
             var query = from tx in db.TxQohs.Where(q=>q.MlsDivisionId == 1)
-                        join r in db.PoPlans.Where(a=>a.ReceiptDateTime >= startDate).Where(y=>y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
-                        join s in db.ShipPlans.Where(u=>u.ShipDateTime >= startDate).Where(z=>z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
+                        join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
+                        join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
                         join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
+                        join c in db.CycleCounts.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
+                        join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
                         orderby tx.Pn
                         select new
                         {
                             Id = tx.Txqohid,
                             Pn = tx.Pn,
                             Customer = tx.CustomerId,
+                            CustomerDivision = tx.CustomerDivisionId,
+                            MlsDivision = tx.MlsDivisionId,
                             May11Qoh = tx.Qoh,
-                            May11Rec = (int?)g.Select(x=>x.ReceivedQty).DefaultIfEmpty(0).Sum(),
-                            May11Ship = (int?)gr.Select(x=>x.ShipQty).DefaultIfEmpty(0).Sum(),
+                            May11Rec = (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum(),
+                            May11Ship = (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum(),
                             May11Wo = (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
-                            Qoh = tx.Qoh+(int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum()-(int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
-                            NcrQty = tx.NcrQty,
+                            May11Cc = (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
+                            May11Nc = (int?)nr.Select(x => x.Quantity).DefaultIfEmpty(0).Sum(),
+                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum() + (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
                             Notes = tx.Notes
                         };
 
@@ -99,12 +109,15 @@ namespace mls.Controllers
                     Id = qoh.Id,
                     Pn = qoh.Pn,
                     CustomerId = qoh.Customer,
+                    CustomerDivisionId = qoh.CustomerDivision,
+                    MlsDivisionId = qoh.MlsDivision,
                     May11Qoh = qoh.May11Qoh,
                     May11Rec = qoh.May11Rec,
                     May11Ship = qoh.May11Ship,
                     May11Wo = qoh.May11Wo,
+                    May11Cc = qoh.May11Cc,
+                    May11Nc = qoh.May11Nc,
                     Qoh = qoh.Qoh,
-                    NcrQty = qoh.NcrQty,
                     Notes = qoh.Notes
                 });
             }
@@ -116,7 +129,7 @@ namespace mls.Controllers
         public ActionResult TxQohDIP()
         {
             var startDate = DateTime.Parse("5/11/2020");
-            var query = from tx in db.TxQohs
+            var query = from tx in db.TxQohs.Where(q => q.MlsDivisionId == 4)
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
                         join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
                         join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
@@ -164,7 +177,7 @@ namespace mls.Controllers
         public ActionResult TxQohCL()
         {
             var startDate = DateTime.Parse("5/11/2020");
-            var query = from tx in db.TxQohs
+            var query = from tx in db.TxQohs.Where(q => q.MlsDivisionId == 3)
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
                         join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
                         join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
@@ -212,7 +225,7 @@ namespace mls.Controllers
         public ActionResult TxQohDTT()
         {
             var startDate = DateTime.Parse("5/11/2020");
-            var query = from tx in db.TxQohs
+            var query = from tx in db.TxQohs.Where(q => q.MlsDivisionId == 2)
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
                         join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
                         join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
@@ -260,7 +273,7 @@ namespace mls.Controllers
         public ActionResult TxQohDOP()
         {
             var startDate = DateTime.Parse("5/11/2020");
-            var query = from tx in db.TxQohs
+            var query = from tx in db.TxQohs.Where(q => q.MlsDivisionId == 5)
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
                         join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
                         join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
@@ -356,12 +369,41 @@ namespace mls.Controllers
             {
                 db.TxQohs.Add(txQoh);
                 db.SaveChanges();
+                LogCreateTxQohActivity(txQoh);
                 return Redirect(returnUrl);
                 //return RedirectToAction("Index", "WorkOrders");
             }
 
             //return View(txQoh);
             return View();
+        }
+
+        public ActionResult LogCreateTxQohActivity(TxQoh txQoh)
+        {
+            var currentUser = User.Identity.GetUserName();
+            var logDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+            var eventType = "Create";
+
+            TxQohLog txQohLog = new TxQohLog();
+
+            txQohLog.User = currentUser;
+            txQohLog.EventDateTime = logDateTime;
+            txQohLog.EventType = eventType;
+            txQohLog.CustomerId = txQoh.CustomerId;
+            txQohLog.CustomerDivisionId = txQoh.CustomerDivisionId;
+            txQohLog.MlsDivisionId = txQoh.MlsDivisionId;
+            txQohLog.ActivePartId = txQoh.ActivePartId;
+            txQohLog.PartTypeId = txQoh.PartTypeId;
+            txQohLog.Pn = txQoh.Pn;
+            txQohLog.UhPn = txQoh.UhPn;
+            txQohLog.PartDescription = txQoh.PartDescription;
+            txQohLog.Qoh = txQoh.Qoh;
+            txQohLog.Qoh = txQoh.NcrQty;
+            txQohLog.Notes = txQoh.Notes;
+
+            db.TxQohLogs.Add(txQohLog);
+            db.SaveChanges();
+            return null;
         }
 
         // GET: TxQohs1/Edit/5
@@ -411,11 +453,40 @@ namespace mls.Controllers
             {
                 db.Entry(txQoh).State = EntityState.Modified;
                 db.SaveChanges();
+                LogEditTxQohActivity(txQoh);
                 return Redirect(returnUrl);
                 //return RedirectToAction("Index", "WorkOrders");
             }
             return View();
             //return View(txQoh);
+        }
+
+        public ActionResult LogEditTxQohActivity(TxQoh txQoh)
+        {
+            var currentUser = User.Identity.GetUserName();
+            var logDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+            var eventType = "Edit";
+
+            TxQohLog txQohLog = new TxQohLog();
+
+            txQohLog.User = currentUser;
+            txQohLog.EventDateTime = logDateTime;
+            txQohLog.EventType = eventType;
+            txQohLog.CustomerId = txQoh.CustomerId;
+            txQohLog.CustomerDivisionId = txQoh.CustomerDivisionId;
+            txQohLog.MlsDivisionId = txQoh.MlsDivisionId;
+            txQohLog.ActivePartId = txQoh.ActivePartId;
+            txQohLog.PartTypeId = txQoh.PartTypeId;
+            txQohLog.Pn = txQoh.Pn;
+            txQohLog.UhPn = txQoh.UhPn;
+            txQohLog.PartDescription = txQoh.PartDescription;
+            txQohLog.Qoh = txQoh.Qoh;
+            txQohLog.Qoh = txQoh.NcrQty;
+            txQohLog.Notes = txQoh.Notes;
+
+            db.TxQohLogs.Add(txQohLog);
+            db.SaveChanges();
+            return null;
         }
 
         // GET: TxQohs1/Delete/5
@@ -437,12 +508,41 @@ namespace mls.Controllers
         // POST: TxQohs1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, string returnUrl)
         {
             TxQoh txQoh = db.TxQohs.Find(id);
             db.TxQohs.Remove(txQoh);
             db.SaveChanges();
-            return RedirectToAction("Index", "WorkOrders");
+            LogDeleteTxQohActivity(txQoh);
+            return Redirect(returnUrl);
+        }
+
+        public ActionResult LogDeleteTxQohActivity(TxQoh txQoh)
+        {
+            var currentUser = User.Identity.GetUserName();
+            var logDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+            var eventType = "Delete";
+
+            TxQohLog txQohLog = new TxQohLog();
+
+            txQohLog.User = currentUser;
+            txQohLog.EventDateTime = logDateTime;
+            txQohLog.EventType = eventType;
+            txQohLog.CustomerId = txQoh.CustomerId;
+            txQohLog.CustomerDivisionId = txQoh.CustomerDivisionId;
+            txQohLog.MlsDivisionId = txQoh.MlsDivisionId;
+            txQohLog.ActivePartId = txQoh.ActivePartId;
+            txQohLog.PartTypeId = txQoh.PartTypeId;
+            txQohLog.Pn = txQoh.Pn;
+            txQohLog.UhPn = txQoh.UhPn;
+            txQohLog.PartDescription = txQoh.PartDescription;
+            txQohLog.Qoh = txQoh.Qoh;
+            txQohLog.Qoh = txQoh.NcrQty;
+            txQohLog.Notes = txQoh.Notes;
+
+            db.TxQohLogs.Add(txQohLog);
+            db.SaveChanges();
+            return null;
         }
 
         protected override void Dispose(bool disposing)

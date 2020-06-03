@@ -6,6 +6,10 @@
 
 <h2>Download</h2>
 
+<p>
+    @Html.ActionLink("Create", "UploadPic")
+</p>
+
 <table id="ii" class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -19,6 +23,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
+            <th>Thumbnail</th>
             <th>
                 @Html.DisplayNameFor(model => model.PicUrl)
             </th>
@@ -33,6 +38,7 @@
                     @Html.ActionLink("Details", "Details", new { id = item.PracticeId })|
                     @Html.ActionLink("Delete", "Delete", new { id = item.PracticeId })|
                     @Html.ActionLink("Download", "Download1", new { id = item.PracticeId })|
+                    @*@Html.ActionLink("Upload", "Upload2", new { id = item.PracticeId })|*@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PracticeId)
@@ -43,6 +49,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
+                <td class="img-responsive center">
+                    <img src="~/images/@item.PicUrl" height="48" width="48" />
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PicUrl)
                 </td>
@@ -50,3 +59,13 @@
         }
     </tbody>
 </table>
+
+@section scripts
+{
+    <script>
+            $(document).ready(function() {
+                $("#ii").DataTable({
+                    'iDisplayLength': 100 });
+                });
+    </script>
+}
