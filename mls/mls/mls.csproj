@@ -357,13 +357,20 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\ExpeditedFreightsController.cs" />
     <Compile Include="Controllers\ExpFreightDetailsController.cs" />
+    <Compile Include="Controllers\ExtQohsController.cs" />
     <Compile Include="Controllers\Files2Controller.cs" />
     <Compile Include="Controllers\FilesController.cs" />
+    <Compile Include="Controllers\HeilPoesController.cs" />
+    <Compile Include="Controllers\HeilShipsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IncomingDetailsController.cs" />
     <Compile Include="Controllers\IncomingLogsController.cs" />
     <Compile Include="Controllers\IncomingTopLevelsController.cs" />
+    <Compile Include="Controllers\InventoryTransfersController.cs" />
+    <Compile Include="Controllers\InvTransferLogsController.cs" />
+    <Compile Include="Controllers\InvTransfersController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MasterDocsController.cs" />
     <Compile Include="Controllers\MasterPartListsController.cs" />
     <Compile Include="Controllers\MvcMasterDetailsController.cs" />
     <Compile Include="Controllers\NcrChinasController.cs" />
@@ -383,6 +390,7 @@
     <Compile Include="Controllers\ShipInsController.cs" />
     <Compile Include="Controllers\ShipOut2Controller.cs" />
     <Compile Include="Controllers\ShipOutsController.cs" />
+    <Compile Include="Controllers\ShipPlanFsController.cs" />
     <Compile Include="Controllers\ShipPlansController.cs" />
     <Compile Include="Controllers\SupplierContactsController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
@@ -392,9 +400,12 @@
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\VtCycleCountsController.cs" />
     <Compile Include="Controllers\VtPfepsController.cs" />
+    <Compile Include="Controllers\VtQohsController.cs" />
     <Compile Include="Controllers\VtShipPlansController.cs" />
     <Compile Include="Controllers\WoBuildsController.cs" />
     <Compile Include="Controllers\WoDetailsController.cs" />
+    <Compile Include="Controllers\WoFDetailsController.cs" />
+    <Compile Include="Controllers\WorkOrderFsController.cs" />
     <Compile Include="Migrations\201706260010371_ptid.cs" />
     <Compile Include="Migrations\201706260010371_ptid.Designer.cs">
       <DependentUpon>201706260010371_ptid.cs</DependentUpon>
@@ -996,6 +1007,54 @@
     <Compile Include="Migrations\202005271055174_notsure.Designer.cs">
       <DependentUpon>202005271055174_notsure.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006142230584_masterdoc20200614.cs" />
+    <Compile Include="Migrations\202006142230584_masterdoc20200614.Designer.cs">
+      <DependentUpon>202006142230584_masterdoc20200614.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006200702477_addwarehouses.cs" />
+    <Compile Include="Migrations\202006200702477_addwarehouses.Designer.cs">
+      <DependentUpon>202006200702477_addwarehouses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006220407376_heilupdate.cs" />
+    <Compile Include="Migrations\202006220407376_heilupdate.Designer.cs">
+      <DependentUpon>202006220407376_heilupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008151515058_InvTransfer.cs" />
+    <Compile Include="Migrations\202008151515058_InvTransfer.Designer.cs">
+      <DependentUpon>202008151515058_InvTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008151942234_shipplanfile.cs" />
+    <Compile Include="Migrations\202008151942234_shipplanfile.Designer.cs">
+      <DependentUpon>202008151942234_shipplanfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008170143109_inventorytransfer20200816.cs" />
+    <Compile Include="Migrations\202008170143109_inventorytransfer20200816.Designer.cs">
+      <DependentUpon>202008170143109_inventorytransfer20200816.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008171158203_truncateqoh.cs" />
+    <Compile Include="Migrations\202008171158203_truncateqoh.Designer.cs">
+      <DependentUpon>202008171158203_truncateqoh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008190126588_updateinvtransfer20200818.cs" />
+    <Compile Include="Migrations\202008190126588_updateinvtransfer20200818.Designer.cs">
+      <DependentUpon>202008190126588_updateinvtransfer20200818.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008310402279_addcontractor.cs" />
+    <Compile Include="Migrations\202008310402279_addcontractor.Designer.cs">
+      <DependentUpon>202008310402279_addcontractor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008310539113_snupdatecyl.cs" />
+    <Compile Include="Migrations\202008310539113_snupdatecyl.Designer.cs">
+      <DependentUpon>202008310539113_snupdatecyl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008310719391_woupdate20200831.cs" />
+    <Compile Include="Migrations\202008310719391_woupdate20200831.Designer.cs">
+      <DependentUpon>202008310719391_woupdate20200831.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009200147514_wofileadd.cs" />
+    <Compile Include="Migrations\202009200147514_wofileadd.Designer.cs">
+      <DependentUpon>202009200147514_wofileadd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivePart.cs" />
@@ -1013,6 +1072,7 @@
     <Compile Include="Models\ComplaintSeverity.cs" />
     <Compile Include="Models\ComplaintType.cs" />
     <Compile Include="Models\ContainerPoTracker.cs" />
+    <Compile Include="Models\Contractor.cs" />
     <Compile Include="Models\COrderType.cs" />
     <Compile Include="Models\CQStatus.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -1021,10 +1081,26 @@
     <Compile Include="Models\CustomerOrder.cs" />
     <Compile Include="Models\CustomerQoh.cs" />
     <Compile Include="Models\CustomerQuote.cs" />
+    <Compile Include="Models\DocStatus.cs" />
+    <Compile Include="Models\ExtQoh.cs" />
+    <Compile Include="Models\FileInvDetail.cs" />
+    <Compile Include="Models\FileWoDetail.cs" />
+    <Compile Include="Models\InventoryTransfer.cs" />
+    <Compile Include="Models\InvTransferLog.cs" />
+    <Compile Include="Models\ShipFileDetail.cs" />
+    <Compile Include="Models\FileDocDetail.cs" />
     <Compile Include="Models\FileDetail.cs" />
     <Compile Include="Models\FileUpload.cs" />
+    <Compile Include="Models\FinishInvLocation.cs" />
+    <Compile Include="Models\HeilPo.cs" />
+    <Compile Include="Models\HeilQoh.cs" />
+    <Compile Include="Models\HeilShip.cs" />
+    <Compile Include="Models\InvLocation.cs" />
+    <Compile Include="Models\InvTransfer.cs" />
     <Compile Include="Models\LoginLog.cs" />
+    <Compile Include="Models\MasterDoc.cs" />
     <Compile Include="Models\PoPlanLog.cs" />
+    <Compile Include="Models\ShipPlanF.cs" />
     <Compile Include="Models\ShipPlanLog.cs" />
     <Compile Include="Models\Support.cs" />
     <Compile Include="Models\TxQohLog.cs" />
@@ -1095,24 +1171,32 @@
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\SupplierContact.cs" />
     <Compile Include="Models\TxQoh.cs" />
+    <Compile Include="Models\VtQoh.cs" />
     <Compile Include="Models\VtShipPlan.cs" />
     <Compile Include="Models\WkSchedule.cs" />
     <Compile Include="Models\WoBuild.cs" />
     <Compile Include="Models\WoDetail.cs" />
+    <Compile Include="Models\WoFDetail.cs" />
     <Compile Include="Models\WoOrderStatus.cs" />
     <Compile Include="Models\WoPartType.cs" />
     <Compile Include="Models\WoResponsible.cs" />
     <Compile Include="Models\WorkOrder.cs" />
+    <Compile Include="Models\WorkOrderF.cs" />
+    <Compile Include="Models\WorkOrderLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="UploadService.cs" />
     <Compile Include="ViewModels\BomViewModel.cs" />
     <Compile Include="ViewModels\DemandViewModel.cs" />
     <Compile Include="ViewModels\ExpeditedFreightDataViewModel.cs" />
+    <Compile Include="ViewModels\ExtQohViewModel.cs" />
     <Compile Include="ViewModels\ForecastViewModel.cs" />
     <Compile Include="ViewModels\GraphNcrViewModel.cs" />
     <Compile Include="ViewModels\IncomingIndexDataViewModel.cs" />
+    <Compile Include="ViewModels\InventoryTransferViewModel.cs" />
+    <Compile Include="ViewModels\InvTransferLogViewModel.cs" />
     <Compile Include="ViewModels\LocationViewModel1.cs" />
+    <Compile Include="ViewModels\MasterDocViewModel.cs" />
     <Compile Include="ViewModels\MvcMasterDetails.cs" />
     <Compile Include="ViewModels\NcrViewModel.cs" />
     <Compile Include="ViewModels\NewChecklistViewModel.cs" />
@@ -1122,14 +1206,20 @@
     <Compile Include="ViewModels\NewPurchaseOrderViewModel.cs" />
     <Compile Include="ViewModels\NewReqViewModel.cs" />
     <Compile Include="ViewModels\NewScrumViewModel.cs" />
+    <Compile Include="ViewModels\NewShipPlanFViewModel.cs" />
     <Compile Include="ViewModels\NewShipPlanViewModel.cs" />
+    <Compile Include="ViewModels\NewWorkOrderFViewModel.cs" />
     <Compile Include="ViewModels\NewWorkOrderViewModel.cs" />
     <Compile Include="ViewModels\OpenDownViewModel.cs" />
     <Compile Include="ViewModels\OpenOrderViewModel.cs" />
+    <Compile Include="ViewModels\ProductionIndexDataFViewModel.cs" />
     <Compile Include="ViewModels\ProductionIndexDataViewModel.cs" />
+    <Compile Include="ViewModels\ProductionStockOutFViewModel.cs" />
     <Compile Include="ViewModels\ProductionStockOutViewModel.cs" />
+    <Compile Include="ViewModels\SaveShipPlanFViewModel.cs" />
     <Compile Include="ViewModels\SaveTxQohViewModel.cs" />
     <Compile Include="ViewModels\SaveVtShipPlanViewModel.cs" />
+    <Compile Include="ViewModels\SaveWorkOrderFViewModel.cs" />
     <Compile Include="ViewModels\VtQohViewModel.cs" />
     <Compile Include="ViewModels\QohViewModel.cs" />
     <Compile Include="ViewModels\Save1PfepViewModel.cs" />
@@ -1160,6 +1250,7 @@
     <Compile Include="ViewModels\ScrumIndexDataViewModel.cs" />
     <Compile Include="ViewModels\SupplierIndexDataViewModel.cs" />
     <Compile Include="ViewModels\WbOrderViewModel.cs" />
+    <Compile Include="ViewModels\WoBuildViewModel.cs" />
     <Compile Include="WebService1.asmx.cs">
       <DependentUpon>WebService1.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -3185,6 +3276,203 @@
     <Content Include="Views\Support\Create.cshtml" />
     <Content Include="Views\Support\Edit.cshtml" />
     <Content Include="Views\Support\Index.cshtml" />
+    <Content Include="Views\WorkOrders\ScheduleOnHold.cshtml" />
+    <Content Include="Views\MasterDocs\Create.cshtml" />
+    <Content Include="Views\MasterDocs\Delete.cshtml" />
+    <Content Include="Views\MasterDocs\Details.cshtml" />
+    <Content Include="Views\MasterDocs\Edit.cshtml" />
+    <Content Include="Views\MasterDocs\Index.cshtml" />
+    <Content Include="Views\ExtQohs\Create.cshtml" />
+    <Content Include="Views\ExtQohs\Delete.cshtml" />
+    <Content Include="Views\ExtQohs\Details.cshtml" />
+    <Content Include="Views\ExtQohs\Edit.cshtml" />
+    <Content Include="Views\ExtQohs\Index.cshtml" />
+    <Content Include="Views\VtQohs\Create.cshtml" />
+    <Content Include="Views\VtQohs\Delete.cshtml" />
+    <Content Include="Views\VtQohs\Details.cshtml" />
+    <Content Include="Views\VtQohs\Edit.cshtml" />
+    <Content Include="Views\VtQohs\Index.cshtml" />
+    <Content Include="Views\HeilPoes\Create.cshtml" />
+    <Content Include="Views\HeilPoes\Delete.cshtml" />
+    <Content Include="Views\HeilPoes\Details.cshtml" />
+    <Content Include="Views\HeilPoes\Edit.cshtml" />
+    <Content Include="Views\HeilPoes\Index.cshtml" />
+    <Content Include="Views\HeilShips\Create.cshtml" />
+    <Content Include="Views\HeilShips\Delete.cshtml" />
+    <Content Include="Views\HeilShips\Details.cshtml" />
+    <Content Include="Views\HeilShips\Edit.cshtml" />
+    <Content Include="Views\HeilShips\Index.cshtml" />
+    <Content Include="Views\HeilPoes\HeilTransit.cshtml" />
+    <Content Include="Views\HeilShips\RoHeilShip.cshtml" />
+    <Content Include="Views\WorkOrders\CylTest.cshtml" />
+    <Content Include="Views\NCRs\Open.cshtml" />
+    <Content Include="Views\NCRs\ROOpen.cshtml" />
+    <Content Include="Views\InvTransfers\Create.cshtml" />
+    <Content Include="Views\InvTransfers\Delete.cshtml" />
+    <Content Include="Views\InvTransfers\Details.cshtml" />
+    <Content Include="Views\InvTransfers\Edit.cshtml" />
+    <Content Include="Views\InvTransfers\Index.cshtml" />
+    <Content Include="Views\ShipPlanFs\Create.cshtml" />
+    <Content Include="Views\ShipPlanFs\Delete.cshtml" />
+    <Content Include="Views\ShipPlanFs\Details.cshtml" />
+    <Content Include="Views\ShipPlanFs\Edit.cshtml" />
+    <Content Include="Views\ShipPlanFs\Index.cshtml" />
+    <Content Include="Views\ShipPlanFs\_OrdersToCancel.cshtml" />
+    <Content Include="Views\ShipPlanFs\_ShipCarrierPickUp.cshtml" />
+    <Content Include="Views\ShipPlanFs\_ShipHot.cshtml" />
+    <Content Include="Views\ShipPlanFs\_ShipHotCustomer.cshtml" />
+    <Content Include="Views\ShipPlanFs\_ShipIssue.cshtml" />
+    <Content Include="Views\ShipPlanFs\_ShipNew.cshtml" />
+    <Content Include="Views\ShipPlanFs\_ShipPrep.cshtml" />
+    <Content Include="Views\ShipPlanFs\CanceledOrders.cshtml" />
+    <Content Include="Views\ShipPlanFs\ChCanceled.cshtml" />
+    <Content Include="Views\ShipPlanFs\ChOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\ChShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\ChSlotted.cshtml" />
+    <Content Include="Views\ShipPlanFs\ChStatus.cshtml" />
+    <Content Include="Views\ShipPlanFs\CLOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\DipOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\DipSales.cshtml" />
+    <Content Include="Views\ShipPlanFs\DopOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\DttOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\EsgCanceled.cshtml" />
+    <Content Include="Views\ShipPlanFs\EsgLookUp.cshtml" />
+    <Content Include="Views\ShipPlanFs\EsgOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\EsgPcCanceled.cshtml" />
+    <Content Include="Views\ShipPlanFs\EsgPcLookUp.cshtml" />
+    <Content Include="Views\ShipPlanFs\EsgPcOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\EsgPcShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\EsgPcSlotted.cshtml" />
+    <Content Include="Views\ShipPlanFs\EsgPcStatus.cshtml" />
+    <Content Include="Views\ShipPlanFs\EsgRoOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\EsgRoShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\EsgShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\EsgSlotted.cshtml" />
+    <Content Include="Views\ShipPlanFs\EsgStatus.cshtml" />
+    <Content Include="Views\ShipPlanFs\HunterCanceled.cshtml" />
+    <Content Include="Views\ShipPlanFs\HunterOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\HunterShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\HunterSlotted.cshtml" />
+    <Content Include="Views\ShipPlanFs\HunterStatus.cshtml" />
+    <Content Include="Views\ShipPlanFs\HydOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\HydSales.cshtml" />
+    <Content Include="Views\ShipPlanFs\JbtCanceled.cshtml" />
+    <Content Include="Views\ShipPlanFs\JbtOgdenCanceled.cshtml" />
+    <Content Include="Views\ShipPlanFs\JbtOgdenOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\JbtOgdenShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\JbtOgdenSlotted.cshtml" />
+    <Content Include="Views\ShipPlanFs\JbtOgdenStatus.cshtml" />
+    <Content Include="Views\ShipPlanFs\JbtOgdRoOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\JbtOgdRoShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\JbtOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\JbtOrlRoOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\JbtOrlRoShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\JbtShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\JbtSlotted.cshtml" />
+    <Content Include="Views\ShipPlanFs\JbtStatus.cshtml" />
+    <Content Include="Views\ShipPlanFs\LookUp.cshtml" />
+    <Content Include="Views\ShipPlanFs\MCanceled.cshtml" />
+    <Content Include="Views\ShipPlanFs\MLookUp.cshtml" />
+    <Content Include="Views\ShipPlanFs\MOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\MShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\MSlotted.cshtml" />
+    <Content Include="Views\ShipPlanFs\MStatus.cshtml" />
+    <Content Include="Views\ShipPlanFs\RoDetails.cshtml" />
+    <Content Include="Views\ShipPlanFs\Sales.cshtml" />
+    <Content Include="Views\ShipPlanFs\ShipPlanClosed.cshtml" />
+    <Content Include="Views\ShipPlanFs\ShipPlanStatus.cshtml" />
+    <Content Include="Views\ShipPlanFs\Slotted.cshtml" />
+    <Content Include="Views\ShipPlanFs\ThiCanceled.cshtml" />
+    <Content Include="Views\ShipPlanFs\ThiOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\ThiRoOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\ThiRoShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\ThiShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\ThiSlotted.cshtml" />
+    <Content Include="Views\ShipPlanFs\ThiStatus.cshtml" />
+    <Content Include="Views\ShipPlanFs\WbCanceled.cshtml" />
+    <Content Include="Views\ShipPlanFs\WbOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\WbOpenDip.cshtml" />
+    <Content Include="Views\ShipPlanFs\WbOpenHyd.cshtml" />
+    <Content Include="Views\ShipPlanFs\WbRoOpenWbAll.cshtml" />
+    <Content Include="Views\ShipPlanFs\WbRoOpenWbDip.cshtml" />
+    <Content Include="Views\ShipPlanFs\WbRoOpenWbHyd.cshtml" />
+    <Content Include="Views\ShipPlanFs\WbRoPrintHyd.cshtml" />
+    <Content Include="Views\ShipPlanFs\WbRoShippedWb.cshtml" />
+    <Content Include="Views\ShipPlanFs\WbShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\WbSlotted.cshtml" />
+    <Content Include="Views\ShipPlanFs\WbStatus.cshtml" />
+    <Content Include="Views\InventoryTransfers\Create.cshtml" />
+    <Content Include="Views\InventoryTransfers\Delete.cshtml" />
+    <Content Include="Views\InventoryTransfers\Details.cshtml" />
+    <Content Include="Views\InventoryTransfers\Edit.cshtml" />
+    <Content Include="Views\InventoryTransfers\Index.cshtml" />
+    <Content Include="Views\InvTransferLogs\Create.cshtml" />
+    <Content Include="Views\InvTransferLogs\Delete.cshtml" />
+    <Content Include="Views\InvTransferLogs\Details.cshtml" />
+    <Content Include="Views\InvTransferLogs\Edit.cshtml" />
+    <Content Include="Views\InvTransferLogs\Index.cshtml" />
+    <Content Include="Views\InventoryTransfers\VtIncTransfers.cshtml" />
+    <Content Include="Views\InventoryTransfers\VtOutTransfers.cshtml" />
+    <Content Include="Views\VtQohs\VtQoh1s.cshtml" />
+    <Content Include="Views\ExtQohs\ExtQoh1s.cshtml" />
+    <Content Include="Views\IncomingLogs\Closed.cshtml" />
+    <Content Include="Views\IncomingLogs\Print.cshtml" />
+    <Content Include="Views\WoBuilds\WoProcess.cshtml" />
+    <Content Include="Views\WorkOrderFs\Create.cshtml" />
+    <Content Include="Views\WorkOrderFs\Delete.cshtml" />
+    <Content Include="Views\WorkOrderFs\Details.cshtml" />
+    <Content Include="Views\WorkOrderFs\Edit.cshtml" />
+    <Content Include="Views\WorkOrderFs\Index.cshtml" />
+    <Content Include="Views\WorkOrderFs\_PartStockOutPartialView.cshtml" />
+    <Content Include="Views\WorkOrderFs\_PpNewWorkOrderPartialView.cshtml" />
+    <Content Include="Views\WorkOrderFs\_WOClosedPartialView.cshtml" />
+    <Content Include="Views\WorkOrderFs\_WOHoldPartialView.cshtml" />
+    <Content Include="Views\WorkOrderFs\_WONewPartialView.cshtml" />
+    <Content Include="Views\WorkOrderFs\_WOProductionPartialView.cshtml" />
+    <Content Include="Views\WorkOrderFs\_WOSchedulingPartialView.cshtml" />
+    <Content Include="Views\WorkOrderFs\BayneActuators.cshtml" />
+    <Content Include="Views\WorkOrderFs\BayneLifters.cshtml" />
+    <Content Include="Views\WorkOrderFs\ChassisLiner.cshtml" />
+    <Content Include="Views\WorkOrderFs\ClosedNeedSageUpdate.cshtml" />
+    <Content Include="Views\WorkOrderFs\CylinderAssembly.cshtml" />
+    <Content Include="Views\WorkOrderFs\CylRework.cshtml" />
+    <Content Include="Views\WorkOrderFs\CylTest.cshtml" />
+    <Content Include="Views\WorkOrderFs\DOP.cshtml" />
+    <Content Include="Views\WorkOrderFs\DTT.cshtml" />
+    <Content Include="Views\WorkOrderFs\PartStockOuts.cshtml" />
+    <Content Include="Views\WorkOrderFs\PcSchedule.cshtml" />
+    <Content Include="Views\WorkOrderFs\ProductionPlan.cshtml" />
+    <Content Include="Views\WorkOrderFs\ProductionPlan1.cshtml" />
+    <Content Include="Views\WorkOrderFs\ProductionPlan2.cshtml" />
+    <Content Include="Views\WorkOrderFs\Schedule.cshtml" />
+    <Content Include="Views\WorkOrderFs\Schedule1.cshtml" />
+    <Content Include="Views\WorkOrderFs\Schedule2.cshtml" />
+    <Content Include="Views\WorkOrderFs\Schedule3.cshtml" />
+    <Content Include="Views\WorkOrderFs\ScheduleAll.cshtml" />
+    <Content Include="Views\WorkOrderFs\ScheduleCanceled.cshtml" />
+    <Content Include="Views\WorkOrderFs\ScheduleChassis.cshtml" />
+    <Content Include="Views\WorkOrderFs\ScheduleClosed.cshtml" />
+    <Content Include="Views\WorkOrderFs\ScheduleExtreme.cshtml" />
+    <Content Include="Views\WorkOrderFs\ScheduleMinusBayne.cshtml" />
+    <Content Include="Views\WorkOrderFs\ScheduleOnHold.cshtml" />
+    <Content Include="Views\WorkOrderFs\ScheduleUpdate.cshtml" />
+    <Content Include="Views\WorkOrderFs\WDIP.cshtml" />
+    <Content Include="Views\WorkOrderFs\WODivision.cshtml" />
+    <Content Include="Views\WorkOrderFs\WOUH.cshtml" />
+    <Content Include="Views\WoFDetails\Create.cshtml" />
+    <Content Include="Views\WoFDetails\Delete.cshtml" />
+    <Content Include="Views\WoFDetails\Details.cshtml" />
+    <Content Include="Views\WoFDetails\Edit.cshtml" />
+    <Content Include="Views\WoFDetails\Index.cshtml" />
+    <Content Include="Views\WorkOrderFs\ExtremeClosed.cshtml" />
+    <Content Include="Views\WorkOrderFs\FinalReview.cshtml" />
+    <Content Include="Views\ShipPlanFs\ManitowocCanceled.cshtml" />
+    <Content Include="Views\ShipPlanFs\ManitowocLookUp.cshtml" />
+    <Content Include="Views\ShipPlanFs\ManitowocOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\ManitowocShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\ManitowocSlotted.cshtml" />
+    <Content Include="Views\ShipPlanFs\ManitowocStatus.cshtml" />
+    <Content Include="Views\VtQohs\VtQohs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3650,6 +3938,42 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005271055174_notsure.resx">
       <DependentUpon>202005271055174_notsure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006142230584_masterdoc20200614.resx">
+      <DependentUpon>202006142230584_masterdoc20200614.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006200702477_addwarehouses.resx">
+      <DependentUpon>202006200702477_addwarehouses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006220407376_heilupdate.resx">
+      <DependentUpon>202006220407376_heilupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008151515058_InvTransfer.resx">
+      <DependentUpon>202008151515058_InvTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008151942234_shipplanfile.resx">
+      <DependentUpon>202008151942234_shipplanfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008170143109_inventorytransfer20200816.resx">
+      <DependentUpon>202008170143109_inventorytransfer20200816.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008171158203_truncateqoh.resx">
+      <DependentUpon>202008171158203_truncateqoh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008190126588_updateinvtransfer20200818.resx">
+      <DependentUpon>202008190126588_updateinvtransfer20200818.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008310402279_addcontractor.resx">
+      <DependentUpon>202008310402279_addcontractor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008310539113_snupdatecyl.resx">
+      <DependentUpon>202008310539113_snupdatecyl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008310719391_woupdate20200831.resx">
+      <DependentUpon>202008310719391_woupdate20200831.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009200147514_wofileadd.resx">
+      <DependentUpon>202009200147514_wofileadd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

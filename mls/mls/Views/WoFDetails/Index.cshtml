@@ -1,0 +1,109 @@
+﻿@model IEnumerable<mls.Models.WoFDetail>
+
+@{
+    ViewBag.Title = "Plan Detail";
+}
+
+<h2>Production Plan Detail</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "WorkOrderFs", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+<table id="wodetail" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkOrderFs.WorkOrderFId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WoResponsible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Objective)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinishTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Risk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RiskAction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Productive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.WoFDetailId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.WoFDetailId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.WoFDetailId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkOrderFs.WorkOrderFId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WoResponsible)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Objective)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinishTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Risk)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RiskAction)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Productive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#wodetail").DataTable({
+                'iDisplayLength': 100 });
+            });
+
+    </script>
+}

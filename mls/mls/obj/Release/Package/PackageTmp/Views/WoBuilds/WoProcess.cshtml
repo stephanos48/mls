@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "WoProcess";
+}
+
+<h2>Process Work Order</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Home", "TxQohs1", null, null) 
+</p>
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        @ViewBag.Message
+        <br />
+        <h4><u>Enter Work Order Details</u></h4>
+        <form>
+
+            <div>
+                <label for="item-display">Build Qty</label>
+                <input type="text" class="form-control" id="buildqty" placeholder="" required />
+            </div>
+            <div>
+                <label for="item-display">Part Number</label>
+                <input type="text" class="form-control" id="Pn" placeholder="" required/>
+            </div>
+            <div>
+                <label for="item-display">Work Order No</label>
+                <input type="text" class="form-control" id="WoNo" placeholder="" required/>
+            </div>
+            <div>
+                <label for="item-display">Contractor Id</label>
+                <input type="text" class="form-control" id="contractor" placeholder="" required/>
+            </div>
+
+            <br />
+
+            <div>
+                <button type="button" id="ProcessBuild" class="btn btn-default">Build WO</button>
+            </div>
+
+        </form>
+       
+    </body>
+</html>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#ProcessBuild").click(function () {
+
+                //var buildqty = $("#buildqty").val();
+                //var Pn = $("#Pn").val();
+                //var WoNo = $("#WoNo").val();
+                //var contractor = $("#contractor").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/WoBuilds/ProcessBuild",
+                    dataType: "text",
+                    data: {
+                        buildqty: $("#buildqty").val(),
+                        Pn: $("#Pn").val(),
+                        WoNo: $("#WoNo").val(),
+                        contractor: $("#contractor").val()
+                    },
+                    success: function (data) {
+                        alert("Wo Processed Successfully!");
+                    },
+                    error: function () {
+                        alert("There was an EPIC failure!");
+                    }
+                });
+
+            });
+        });
+
+    </script>
+}

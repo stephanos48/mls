@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class TxQohs1Controller : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -22,7 +23,7 @@ namespace mls.Controllers
             var startDate = DateTime.Parse("5/11/2020");
             var query = from tx in db.TxQohs
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
-                        join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
+                        join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
                         join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
                         join c in db.CycleCounts.Where(u=>u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
                         join n in db.NCRs.Where(u=>u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
@@ -79,7 +80,7 @@ namespace mls.Controllers
             var startDate = DateTime.Parse("5/11/2020");
             var query = from tx in db.TxQohs.Where(q=>q.MlsDivisionId == 1)
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
-                        join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
+                        join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
                         join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
                         join c in db.CycleCounts.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
                         join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
@@ -131,8 +132,10 @@ namespace mls.Controllers
             var startDate = DateTime.Parse("5/11/2020");
             var query = from tx in db.TxQohs.Where(q => q.MlsDivisionId == 4)
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
-                        join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
+                        join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
                         join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
+                        join c in db.CycleCounts.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
+                        join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
                         orderby tx.Pn
                         select new
                         {
@@ -145,8 +148,9 @@ namespace mls.Controllers
                             May11Rec = (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum(),
                             May11Ship = (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum(),
                             May11Wo = (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
-                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
-                            NcrQty = tx.NcrQty,
+                            May11Cc = (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
+                            May11Nc = (int?)nr.Select(x => x.Quantity).DefaultIfEmpty(0).Sum(),
+                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum() + (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
                             Notes = tx.Notes
                         };
 
@@ -164,8 +168,9 @@ namespace mls.Controllers
                     May11Rec = qoh.May11Rec,
                     May11Ship = qoh.May11Ship,
                     May11Wo = qoh.May11Wo,
+                    May11Cc = qoh.May11Cc,
+                    May11Nc = qoh.May11Nc,
                     Qoh = qoh.Qoh,
-                    NcrQty = qoh.NcrQty,
                     Notes = qoh.Notes
                 });
             }
@@ -179,8 +184,10 @@ namespace mls.Controllers
             var startDate = DateTime.Parse("5/11/2020");
             var query = from tx in db.TxQohs.Where(q => q.MlsDivisionId == 3)
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
-                        join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
+                        join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
                         join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
+                        join c in db.CycleCounts.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
+                        join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
                         orderby tx.Pn
                         select new
                         {
@@ -193,8 +200,9 @@ namespace mls.Controllers
                             May11Rec = (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum(),
                             May11Ship = (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum(),
                             May11Wo = (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
-                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
-                            NcrQty = tx.NcrQty,
+                            May11Cc = (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
+                            May11Nc = (int?)nr.Select(x => x.Quantity).DefaultIfEmpty(0).Sum(),
+                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum() + (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
                             Notes = tx.Notes
                         };
 
@@ -212,8 +220,9 @@ namespace mls.Controllers
                     May11Rec = qoh.May11Rec,
                     May11Ship = qoh.May11Ship,
                     May11Wo = qoh.May11Wo,
+                    May11Cc = qoh.May11Cc,
+                    May11Nc = qoh.May11Nc,
                     Qoh = qoh.Qoh,
-                    NcrQty = qoh.NcrQty,
                     Notes = qoh.Notes
                 });
             }
@@ -227,8 +236,10 @@ namespace mls.Controllers
             var startDate = DateTime.Parse("5/11/2020");
             var query = from tx in db.TxQohs.Where(q => q.MlsDivisionId == 2)
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
-                        join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
+                        join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
                         join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
+                        join c in db.CycleCounts.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
+                        join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
                         orderby tx.Pn
                         select new
                         {
@@ -241,8 +252,9 @@ namespace mls.Controllers
                             May11Rec = (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum(),
                             May11Ship = (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum(),
                             May11Wo = (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
-                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
-                            NcrQty = tx.NcrQty,
+                            May11Cc = (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
+                            May11Nc = (int?)nr.Select(x => x.Quantity).DefaultIfEmpty(0).Sum(),
+                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum() + (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
                             Notes = tx.Notes
                         };
 
@@ -260,8 +272,9 @@ namespace mls.Controllers
                     May11Rec = qoh.May11Rec,
                     May11Ship = qoh.May11Ship,
                     May11Wo = qoh.May11Wo,
+                    May11Cc = qoh.May11Cc,
+                    May11Nc = qoh.May11Nc,
                     Qoh = qoh.Qoh,
-                    NcrQty = qoh.NcrQty,
                     Notes = qoh.Notes
                 });
             }
@@ -275,8 +288,10 @@ namespace mls.Controllers
             var startDate = DateTime.Parse("5/11/2020");
             var query = from tx in db.TxQohs.Where(q => q.MlsDivisionId == 5)
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
-                        join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
+                        join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
                         join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
+                        join c in db.CycleCounts.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
+                        join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
                         orderby tx.Pn
                         select new
                         {
@@ -289,8 +304,9 @@ namespace mls.Controllers
                             May11Rec = (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum(),
                             May11Ship = (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum(),
                             May11Wo = (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
-                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
-                            NcrQty = tx.NcrQty,
+                            May11Cc = (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
+                            May11Nc = (int?)nr.Select(x => x.Quantity).DefaultIfEmpty(0).Sum(),
+                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum() + (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
                             Notes = tx.Notes
                         };
 
@@ -308,8 +324,9 @@ namespace mls.Controllers
                     May11Rec = qoh.May11Rec,
                     May11Ship = qoh.May11Ship,
                     May11Wo = qoh.May11Wo,
+                    May11Cc = qoh.May11Cc,
+                    May11Nc = qoh.May11Nc,
                     Qoh = qoh.Qoh,
-                    NcrQty = qoh.NcrQty,
                     Notes = qoh.Notes
                 });
             }
@@ -398,7 +415,7 @@ namespace mls.Controllers
             txQohLog.UhPn = txQoh.UhPn;
             txQohLog.PartDescription = txQoh.PartDescription;
             txQohLog.Qoh = txQoh.Qoh;
-            txQohLog.Qoh = txQoh.NcrQty;
+            txQohLog.Location = txQoh.Location;
             txQohLog.Notes = txQoh.Notes;
 
             db.TxQohLogs.Add(txQohLog);
@@ -481,7 +498,7 @@ namespace mls.Controllers
             txQohLog.UhPn = txQoh.UhPn;
             txQohLog.PartDescription = txQoh.PartDescription;
             txQohLog.Qoh = txQoh.Qoh;
-            txQohLog.Qoh = txQoh.NcrQty;
+            txQohLog.Location = txQoh.Location;
             txQohLog.Notes = txQoh.Notes;
 
             db.TxQohLogs.Add(txQohLog);
@@ -537,7 +554,7 @@ namespace mls.Controllers
             txQohLog.UhPn = txQoh.UhPn;
             txQohLog.PartDescription = txQoh.PartDescription;
             txQohLog.Qoh = txQoh.Qoh;
-            txQohLog.Qoh = txQoh.NcrQty;
+            txQohLog.Location = txQoh.Location;
             txQohLog.Notes = txQoh.Notes;
 
             db.TxQohLogs.Add(txQohLog);

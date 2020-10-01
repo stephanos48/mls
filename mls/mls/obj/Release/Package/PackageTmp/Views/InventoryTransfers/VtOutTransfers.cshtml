@@ -1,0 +1,132 @@
+﻿@model IEnumerable<mls.Models.InventoryTransfer>
+
+@{
+    ViewBag.Title = "Inventory Transfers";
+}
+
+<h2>Outgoing Inventory Transfers</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "VtPfeps", null, null) | @Html.ActionLink("Create New", "Create", "InventoryTransfers", null, null)
+</p>
+<table id="master" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventoryTransferId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransferDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvLocationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinishInvLocationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransferFromQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransferToQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carrier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrackingInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipToAddress)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.InventoryTransferId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.InventoryTransferId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.InventoryTransferId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InventoryTransferId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransferDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvLocationId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinishInvLocationId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransferFromQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransferToQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carrier)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrackingInfo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipToAddress)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts {
+    <script>
+                $(document).ready(function() {
+                    $("#master").DataTable({
+                      'iDisplayLength': 100 });
+                    });
+    </script>
+
+    <script>
+    $('.deleteItem').click(function (e) {
+               e.preventDefault();
+               var $ctrl = $(this);
+               if (confirm('Do you really want to delete this item?')) {
+                   $.ajax({
+                       url: '@Url.Action("Delete")',
+                    type: 'POST',
+                    data: { id: $(this).data('id') }
+                    }).done(function (data) {
+                    if (data.Result == "OK") {
+                    $ctrl.closest('tr').remove();
+                    }
+                    else if (data.Result.Message) {
+                    alert(data.Result.Message);
+                    }
+                    }).fail(function () {
+                    alert("There is something wrong. Please try again.");
+                    })
+
+                    }
+               });
+    </script>
+}

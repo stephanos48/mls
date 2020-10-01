@@ -1,0 +1,93 @@
+﻿@model IEnumerable<mls.Models.InvTransfer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TransferDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvLocationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinishInvLocationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransferFromQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransferToQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Carrier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrackingInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipToAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransferDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvLocationId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinishInvLocationId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerPn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransferFromQty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransferToQty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Carrier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackingInfo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipToAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.InvTransferId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.InvTransferId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.InvTransferId })
+        </td>
+    </tr>
+}
+
+</table>

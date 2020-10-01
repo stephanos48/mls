@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "MStatus";
+}
+
+<h2>Marathon Status</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Sales", "ShipPlanFs", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("OO LookUp", "MLookup") | @Html.ActionLink("Slot Schedule", "MSlotted") | @Html.ActionLink("Marathon Open", "MOpen") | @Html.ActionLink("Shipped Orders", "MShipped") | @Html.ActionLink("Canceled Orders", "MCanceled")
+</p>
+
+<br />
+
+<h4><u>SO Issues Needing Review</u></h4>
+@Html.Action("_PcOrderIssuesCustomer", "ShipPlanFs", new { status = 2, customer = 1, division = 2 })
+<br />
+<br />
+<h4><u>SO To Cancel</u></h4>
+@Html.Action("_PcOrderIssuesCustomer", "ShipPlanFs", new { status = 8, customer = 1, division = 2 })
+<br />
+<br />
+<h4><u>HOT Orders</u></h4>
+@Html.Action("_ShipPcHotCustomer", "ShipPlanFs", new { Customer = 1, division = 2 })

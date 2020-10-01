@@ -12,6 +12,7 @@ using mls.ViewModels;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class CheckRequestsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

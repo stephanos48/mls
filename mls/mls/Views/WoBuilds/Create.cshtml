@@ -1,4 +1,4 @@
-﻿@model mls.Models.WoBuild
+﻿@model mls.ViewModels.WoBuildViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -16,42 +16,50 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.WoEnterDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WoBuild.WoEnterDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.WoEnterDateTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.WoEnterDateTime, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.WoBuild.WoEnterDateTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WoBuild.WoEnterDateTime, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.WoNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WoBuild.ContractorId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.WoNo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.WoNo, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.WoBuild.ContractorId, new SelectList(Model.Contractors, "ContractorId", "ContractorName"), "Select Contractor", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.WoBuild.ContractorId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CustomerPn, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WoBuild.WoNo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CustomerPn, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CustomerPn, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.WoBuild.WoNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WoBuild.WoNo, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Qty, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WoBuild.CustomerPn, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Qty, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Qty, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.WoBuild.CustomerPn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WoBuild.CustomerPn, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WoBuild.Qty, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.WoBuild.Qty, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WoBuild.Qty, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WoBuild.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WoBuild.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WoBuild.Notes, "", new { @class = "text-danger" })
             </div>
         </div>
 

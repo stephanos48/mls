@@ -1,0 +1,290 @@
+﻿@model mls.Models.HeilPo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HeilPo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PoNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PoLine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoLine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerOrderNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerOrderNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MlsDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UhPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UhPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceivedQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceivedQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContainerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContainerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContainerUh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContainerUh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FreightFowarder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FreightFowarder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AMS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AMS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BOL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BOL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pallet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pallet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Invoice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArrivalWk)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArrivalWk)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestedDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestedDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PromiseDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PromiseDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Shipdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shipdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Etadate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Etadate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceiptDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceiptDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PoOrderStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoOrderStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PoSentDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoSentDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PoSentBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoSentBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PoConfirmedDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoConfirmedDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PoConfirmedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoConfirmedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HeilPoId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

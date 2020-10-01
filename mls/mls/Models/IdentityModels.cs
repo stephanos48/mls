@@ -232,5 +232,47 @@ namespace mls.Models
 
         public DbSet<FileDetail> FileDetails { get; set; }
 
+        public DbSet<MasterDoc> MasterDocs { get; set; }
+
+        public DbSet<FileDocDetail> FileDocDetails { get; set; }
+
+        public DbSet<DocStatus> DocStatuses { get; set; }
+
+        public DbSet<ExtQoh> ExtQohs { get; set; }
+
+        public DbSet<VtQoh> VtQohs { get; set; }
+
+        public DbSet<HeilQoh> HeilQohs { get; set; }
+
+        public DbSet<HeilShip> HeilShips { get; set; }
+
+        public DbSet<HeilPo> HeilPos { get; set; }
+
+        public DbSet<InvTransfer> InvTransfers { get; set; }
+
+        public DbSet<InvLocation> InvLocation { get; set; }
+
+        public DbSet<FinishInvLocation> FinishInvLocation { get; set; }
+
+        public DbSet<ShipPlanF> ShipPlanFs { get; set; }
+
+        public DbSet<ShipFileDetail> ShipFileDetails { get; set; }
+
+        public DbSet<InventoryTransfer> InventoryTransfers { get; set; }
+
+        public DbSet<FileInvDetail> FileInvDetails { get; set; }
+
+        public DbSet<InvTransferLog> InvTransferLogs { get; set; } 
+
+        public DbSet<Contractor> Contractors { get; set; }
+
+        public DbSet<WorkOrderLog> WorkOrderLogs { get; set; }
+
+        public DbSet<WorkOrderF> WorkOrderFs { get; set; }
+
+        public DbSet<FileWoDetail> FileWoDetails { get; set; } 
+
+        public DbSet<WoFDetail> WoFDetails { get; set; }
+
     }
 }

@@ -16,13 +16,13 @@ namespace mls.ViewModels
 
         public string Description { get; set; }
 
-        public int Qoh { get; set; }
+        public int? Qoh { get; set; }
 
         public int QtyPer { get; set; }
 
-        public int BuildAbility { get; set; }
+        public int? BuildAbility { get; set; }
 
-        public int NcrQty { get; set; }
+        public int? NcrQty { get; set; }
 
     }
 }

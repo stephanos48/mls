@@ -86,15 +86,23 @@ namespace mls.Controllers
         public ActionResult Locations()
         {
             //LocationViewModel1 mymodel = new LocationsViewModel1();
+
+            var startDate = DateTime.Parse("5/11/2020");
             var query = from a in db.MasterPartLists
                         join tx in db.TxQohs on a.CustomerPn equals tx.Pn
+                        //join tx in db.TxQohs on a.CustomerPn equals tx.Pn
+                        join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
+                        join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
+                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
+                        join c in db.CycleCounts.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
+                        join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
                         orderby a.CustomerPn descending
                         select new
                         {
                             a.CustomerPn,
                             a.PartDescription,
                             a.Location,
-                            tx.Qoh
+                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum() + (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
                         };
             //new LocationViewModel1
             //{

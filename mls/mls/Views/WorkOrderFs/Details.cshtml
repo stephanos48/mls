@@ -1,0 +1,167 @@
+﻿@model mls.Models.WorkOrderF
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<img src="~/images/mls.png" width="125" height="50" alt="MLS">
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>Work Order</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.WorkOrderFId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.WorkOrderFId)
+            </dd>
+
+            <dt>
+                WoNo - (This # is to be used to reference paperwork printed off before 9/21/2020)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.WorkOrderNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MlsDivisionId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MlsDivisionId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ContractorId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ContractorId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CustomerId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CustomerDivisionId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CustomerDivisionId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CustomerPn)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CustomerPn)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.WoNotes)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.WoNotes)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Qty)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Qty)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreationDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PromiseDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PromiseDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Sn)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sn)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CustomerPo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CustomerPo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MlsSo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MlsSo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Notes)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Notes)
+            </dd>
+
+        </dl>
+
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.WorkOrderFId })|
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+
+    <div class="col-md-6">
+        <br />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Task</th>
+                    <th>Time Start</th>
+                    <th>Time End</th>
+                    <th>Responsible</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr height="30"><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr height="30"><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr height="30"><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr height="30"><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr height="30"><td></td><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+        </table>
+    </div>
+        <footer class="page-footer font-small blue">
+            <h6>W.F.12 - MLS Work Order Rev 1 (Last Updated 10/24/2018)</h6>
+        </footer>
+</div>

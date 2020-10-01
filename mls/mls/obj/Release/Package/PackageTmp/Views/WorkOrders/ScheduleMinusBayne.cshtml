@@ -7,7 +7,7 @@
 <h2>Production Schedule - All Minus Bayne</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "Index", "WorkOrders", null, null) | @Html.ActionLink("ScheduleAll", "ScheduleAll", "WorkOrders", null, null) | @Html.ActionLink("Bayne", "Schedule2", "WorkOrders", null, null) | @Html.ActionLink("MinusBayne", "ScheduleMinusBayne", "WorkOrders", null, null) | @Html.ActionLink("Extreme", "ScheduleExtreme", "WorkOrders", null, null) | @Html.ActionLink("Chassis", "ScheduleChassis", "WorkOrders", null, null) | @Html.ActionLink("CylRework", "CylRework", "WorkOrders", null, null) | @Html.ActionLink("Complete-SageUpdate", "ClosedNeedSageUpdate", "WorkOrders", null, null) | @Html.ActionLink("Closed", "ScheduleClosed", "WorkOrders", null, null) | @Html.ActionLink("Canceled", "ScheduleCanceled", "WorkOrders", null, null) | @if (User.Identity.IsAuthenticated)
+    @Html.ActionLink("Go Back", "Index", "WorkOrders", null, null) | @Html.ActionLink("All", "ScheduleAll", "WorkOrders", null, null) | @Html.ActionLink("Bayne", "Schedule2", "WorkOrders", null, null) | @Html.ActionLink("Main", "ScheduleMinusBayne", "WorkOrders", null, null) | @Html.ActionLink("Extreme", "ScheduleExtreme", "WorkOrders", null, null) | @Html.ActionLink("Chassis", "ScheduleChassis", "WorkOrders", null, null) | @Html.ActionLink("CylRework", "CylRework", "WorkOrders", null, null) | @Html.ActionLink("CylTest", "CylTest", "WorkOrders", null, null) | @Html.ActionLink("NeedSageUpdate", "ClosedNeedSageUpdate", "WorkOrders", null, null) | @Html.ActionLink("Hold", "ScheduleOnHold", "WorkOrders", null, null) | @Html.ActionLink("Closed", "ScheduleClosed", "WorkOrders", null, null) | @Html.ActionLink("Canceled", "ScheduleCanceled", "WorkOrders", null, null) | @if (User.Identity.IsAuthenticated)
     {
         if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
         {@Html.ActionLink("Create New", "Create")}
@@ -26,9 +26,6 @@
                 </th>
                 <th>
                     WoNo
-                </th>
-                <th>
-                    WoStatus
                 </th>
                 <th>
                     MlsSo
@@ -71,9 +68,6 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.WorkOrderId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.WoOrderStatusId)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.MlsSo)

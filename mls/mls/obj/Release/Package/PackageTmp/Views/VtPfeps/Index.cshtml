@@ -2,19 +2,29 @@
     ViewBag.Title = "VtHome";
 }
 
-<h2>Value Added Home</h2>
+<h2>VadTek Home</h2>
 <br />
 <p>
-    <h4><u>Value Added Reports</u></h4>
+    <h4><u>VadTek Reports</u></h4>
     <br />
 
-    @Html.ActionLink("Qoh/Pfep Value Added", "VtQoh", "VtPfeps", null, null)
+    @Html.ActionLink("Qoh", "VtQoh1s", "VtQohs", null, null)
     <br />
     <br />
+    @Html.ActionLink("Incoming Inv Transfers", "IncomingTransfers", "InventoryTransfers", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Outgoing Inv Transfers", "OutgoingTransfers", "InventoryTransfers", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("VadTek Cycle Counts", "Index", "VtCycleCounts", null, null)
+    <br />
+    <br />
+
+    <h4><u>Heil Reports</u></h4>
+    <br />
+
     @Html.ActionLink("In Transit", "VtRoTransit", "PoPlans", null, null)
-    <br />
-    <br />
-    @Html.ActionLink("Cycle Counts", "Index", "VtCycleCounts", null, null)
     <br />
     <br />
     @Html.ActionLink("Receipt History", "VtRoClosed", "PoPlans", null, null)

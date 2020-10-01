@@ -26,6 +26,11 @@ namespace mls.Models
         [Display(Name = "MLS Division")]
         public byte MlsDivisionId { get; set; }
 
+        public Contractor Contractor { get; set; }
+
+        [Display(Name = "Contractor")]
+        public byte ContractorId { get; set; }
+
         public WoPartType WoPartType { get; set; }
 
         [Display(Name = "Part Type")]
@@ -71,8 +76,11 @@ namespace mls.Models
         [Display(Name = "Order Type")]
         public byte OrderTypeId { get; set; }
 
-        [Display(Name = "Serial Number")]
+        [Display(Name = "Original SN")]
         public string Sn { get; set; }
+
+        [Display(Name = "New SN")]
+        public string NewSn { get; set; }
 
         [Display(Name = "Customer PO")]
         public string CustomerPo { get; set; }

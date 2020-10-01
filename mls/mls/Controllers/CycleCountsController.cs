@@ -10,6 +10,7 @@ using mls.Models;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class CycleCountsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -17,7 +18,7 @@ namespace mls.Controllers
         // GET: CycleCounts
         public ActionResult Index()
         {
-            return View(db.CycleCounts.ToList());
+            return View(db.CycleCounts.ToList().OrderByDescending(s => s.CorrectedDateTime));
         }
 
         // GET: CycleCounts/Details/5

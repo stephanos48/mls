@@ -1,0 +1,219 @@
+﻿@model mls.Models.ShipPlanF
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ShipPlan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MlsDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerOrderNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerOrderNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerOrderLine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerOrderLine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UhPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UhPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestedDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestedDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PromiseDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PromiseDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipPlanStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipPlanStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Carrier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carrier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackingInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackingInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipToAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipToAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Wastebuilt"))
+        {
+            @Html.ActionLink("Back to List", "WbRoOpenWb")
+        }
+        else if (User.IsInRole("Heil"))
+        {
+            @Html.ActionLink("Back to List", "HeilRoOpen")
+        }
+        else if (User.IsInRole("Nov"))
+        {
+            @Html.ActionLink("Back to List", "NovRoOpen")
+        }
+        else if (User.IsInRole("Columbus"))
+        {
+            @Html.ActionLink("Back to List", "ChRoOpen")
+        }
+        else if (User.IsInRole("Thi"))
+        {
+            @Html.ActionLink("Back to List", "ThiRoOpen")
+        }
+        else if (User.IsInRole("JbtOrlando"))
+        {
+            @Html.ActionLink("Back to List", "JbtOrlandoRoOpen")
+        }
+        else if (User.IsInRole("Pc"))
+        {
+            @Html.ActionLink("Back to List", "PcRoOpen")
+        }
+        else if (User.IsInRole("Esg"))
+        {
+            @Html.ActionLink("Back to List", "EsgRoOpen")
+        }
+        else if (User.IsInRole("Jbt"))
+        {
+            @Html.ActionLink("Jbt Home", "NewJbtHome", "CustomerOrders", null, null)
+        }
+        else
+        {
+            @Html.ActionLink("Back to List", "ShipPlanStatus")
+        }
+    }
+</p>

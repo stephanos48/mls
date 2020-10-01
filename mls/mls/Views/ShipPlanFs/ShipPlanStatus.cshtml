@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "ShipPlanStatus";
+}
+
+<h2>Ship Plan Status</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Sales", "ShipPlanFs", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Order LookUp", "LookUp") | @Html.ActionLink("Slot Schedule", "Slotted") | @Html.ActionLink("Hyd Open", "HydOpen") | @Html.ActionLink("Dip Open", "DipOpen") | @Html.ActionLink("Dtt Open", "DttOpen") | @Html.ActionLink("Dop Open", "DopOpen") | @Html.ActionLink("CL Open", "CLOpen") | @Html.ActionLink("Shipped Orders", "ShipPlanClosed") | @Html.ActionLink("Canceled Orders", "CanceledOrders")
+</p>
+
+<br />
+
+<h4><u>SO Issues Needing Review</u></h4>
+@Html.Action("_ShipIssue", "ShipPlanFs", new { Status = 2 })
+<br />
+<br />
+<h4><u>SO To Cancel</u></h4>
+@Html.Action("_OrdersToCancel", "ShipPlanFs", new { Status = 8 })
+<br />
+<br />
+<h4><u>HOT Orders</u></h4>
+@Html.Action("_ShipHot", "ShipPlanFs", new { Status = 1 })

@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "ChassisLiner";
+}
+
+<h2>Chassis Liner</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "WODivision") | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br />
+
+<h4><u>New Orders</u></h4>
+@Html.Action("_WoNewWorkOrders", "WorkOrderFs", new { WoPartType = 3 })
+<br />
+<br />
+<h4><u>Scheduling</u></h4>
+@Html.Action("_WOScheduling", "WorkOrderFs", new { WoPartType = 3 })
+<br />
+<br />
+<h4><u>On Hold</u></h4>
+@Html.Action("_WOHold", "WorkOrderFs", new { WoPartType = 3 })
+<br />
+<br />
+<h4><u>Production</u></h4>
+@Html.Action("_WOProduction", "WorkOrderFs", new { WoPartType = 3 })
+<br />
+<br />
+<h4><u>Closed</u></h4>
+@Html.Action("_WOClosed", "WorkOrderFs", new { WoPartType = 3 })
+

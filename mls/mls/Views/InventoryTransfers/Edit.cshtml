@@ -1,0 +1,163 @@
+﻿@model mls.ViewModels.InventoryTransferViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "InventoryTransfers", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    //<input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+
+    <div class="form-horizontal">
+        <h4>InventoryTransfer</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.InventoryTransfer.InventoryTransferId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InventoryTransfer.TransferDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InventoryTransfer.TransferDateTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InventoryTransfer.TransferDateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InventoryTransfer.InvLocationId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.InventoryTransfer.InvLocationId, new SelectList(Model.InvLocations, "InvLocationId", "Name"), "Select Origin", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.InventoryTransfer.InvLocationId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InventoryTransfer.FinishInvLocationId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.InventoryTransfer.FinishInvLocationId, new SelectList(Model.FinishInvLocations, "FinishInvLocationId", "Name"), "Select Destination", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.InventoryTransfer.FinishInvLocationId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InventoryTransfer.CustomerPn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InventoryTransfer.CustomerPn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InventoryTransfer.CustomerPn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InventoryTransfer.PartDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InventoryTransfer.PartDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InventoryTransfer.PartDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InventoryTransfer.TransferFromQty, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InventoryTransfer.TransferFromQty, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InventoryTransfer.TransferFromQty, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InventoryTransfer.TransferToQty, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InventoryTransfer.TransferToQty, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InventoryTransfer.TransferToQty, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InventoryTransfer.Carrier, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InventoryTransfer.Carrier, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InventoryTransfer.Carrier, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InventoryTransfer.TrackingInfo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InventoryTransfer.TrackingInfo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InventoryTransfer.TrackingInfo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InventoryTransfer.ShipToAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InventoryTransfer.ShipToAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InventoryTransfer.ShipToAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InventoryTransfer.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InventoryTransfer.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InventoryTransfer.Notes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="editor-label">
+            <label>Files:</label>
+        </div>
+        <div class="editor-field">
+            <input type="file" name="file" multiple="multiple" />
+
+            <ul class="attachment">
+                @foreach (var item in Model.InventoryTransfer.FileInvDetails)
+                {
+                    <li>
+                        <a class="title" href="/Support/Download/?p=@(item.Id + item.Extension)&d=@item.FileName">@item.FileName</a>
+                        <a href="javascript:void(0);" data-id="@item.Id" class="deleteItem">X</a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+            $('.deleteItem').click(function (e) {
+                       e.preventDefault();
+                       var $ctrl = $(this);
+                       if (confirm('Do you really want to delete this file?')) {
+                           $.ajax({
+                               url: '@Url.Action("DeleteFile")',
+                            type: 'POST',
+                            data: { id: $(this).data('id') }
+                            }).done(function (data) {
+                            if (data.Result == "OK") {
+                            $ctrl.closest('li').remove();
+                            }
+                            else if (data.Result.Message) {
+                            alert(data.Result.Message);
+                            }
+                            }).fail(function () {
+                            alert("There is something wrong. Please try again.");
+                            })
+
+                            }
+            });
+    </script>
+}

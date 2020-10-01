@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Operations Home";
+}
+
+<h2>Ops Home</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "CustomerOrders", null, null)
+</p>
+
+<br />
+
+<p>
+
+    <h4><u>Operational Apps</u></h4>
+    <br />
+    @Html.ActionLink("Production Schedule - All", "ScheduleAll", "WorkOrderFs", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Production Schedule - Bayne", "Schedule2", "WorkOrderFs", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Production Schedule - DIP", "Schedule3", "WorkOrderFs", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Production Plan Update", "ProductionPlan1")
+    <br />
+    <br />
+    @Html.ActionLink("Production Detail View", "WoFDetails", "WoFDetails", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Production Actions", "ProductionMeeting", "Scrums", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Build Ability", "Index", "BomLevel1", null, null)
+    <br />
+    <br />
+
+    <h4><u>Archive Views</u></h4>
+    <br />
+    @Html.ActionLink("Production Schedule - Parts OH", "Schedule1", "WorkOrderFs", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Stock Out Report", "DownAlt", "DownReports", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Build History", "Index", "BuildHistories", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Work Orders", "WODivision")
+    <br />
+    <br />
+    @Html.ActionLink("WO Details", "WoFDetails", "WoFDetails", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("All Pick Orders", "PickSchedule", "CustomerOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Bayne Pick Orders", "PcPickSchedule", "CustomerOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Assembly Orders", "AssemblySchedule", "CustomerOrders", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Production Plan", "ProductionPlan")
+    <br />
+    <br />
+
+    @*-> @Html.ActionLink("Supply Chain", "SC")
+        <br />
+        <br />
+        -> @Html.ActionLink("Logistics", "Index", "ShipIns", null, null)
+        <br />
+        <br />
+        -> @Html.ActionLink("Quality", "QualityHome", "NCRs", null, null)
+        <br />
+        <br />*@
+
+    @*
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (User.IsInRole("Admin") || User.IsInRole("InvPower") || User.IsInRole("OpsPower"))
+            {
+            <p>
+                <h4><u>Tx Qoh</u></h4>
+                <br />
+                @Html.ActionLink("UH Tx Qoh", "TxQohUH", "TxQohs1", null, null)
+                <br />
+                <br />
+                @Html.ActionLink("DIP Tx Qoh", "TxQohDIP", "TxQohs1", null, null)
+                <br />
+                <br />
+                @Html.ActionLink("DDT Tx Qoh", "TxQohDTT", "TxQohs1", null, null)
+                <br />
+                <br />
+                @Html.ActionLink("CL Tx Qoh", "TxQohCL", "TxQohs1", null, null)
+                <br />
+                <br />
+                @Html.ActionLink("DOP Tx Qoh", "TxQohDOP", "TxQohs1", null, null)
+                <br />
+                <br />
+                @Html.ActionLink("All Tx Qoh", "Index", "TxQohs1", null, null)
+                <br />
+                <br />
+            </p>
+            }
+        }*@
+
+    <h4><u>Operational Inputs</u></h4>
+    <br />
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
+        {
+            @Html.ActionLink("Create New", "Create")
+        }
+    }
+    <br />
+    <br />
+    @Html.ActionLink("Create New Stock Out", "Create", "DownReports", null, null)
+    <br />
+    <br />
+

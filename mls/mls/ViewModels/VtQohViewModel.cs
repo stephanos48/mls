@@ -29,5 +29,15 @@ namespace mls.ViewModels
 
         public int? KbQty { get; set; }
 
+        public int? Qoh731 { get; set; }
+
+        public int? InvIn { get; set; }
+
+        public int? InvOut { get; set; }
+
+        public string Notes { get; set; }
+
+        public string Location { get; set; }
+
     }
 }

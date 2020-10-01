@@ -1,0 +1,231 @@
+﻿@model IEnumerable<mls.Models.HeilPo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PoNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PoLine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupplierId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerOrderNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UhPn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceivedQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContainerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContainerUh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FreightFowarder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Destination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AMS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BOL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pallet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Invoice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArrivalWk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestedDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PromiseDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shipdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Etadate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceiptDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PoOrderStatusId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PoSentDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PoSentBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PoConfirmedDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PoConfirmedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PoNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PoLine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerOrderNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerDivisionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MlsDivisionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerPn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UhPn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderQty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceivedQty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContainerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContainerUh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FreightFowarder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Destination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AMS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BOL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pallet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Invoice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArrivalWk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequestedDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PromiseDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Shipdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etadate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceiptDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PoOrderStatusId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PoSentDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PoSentBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PoConfirmedDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PoConfirmedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.HeilPoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.HeilPoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.HeilPoId })
+        </td>
+    </tr>
+}
+
+</table>

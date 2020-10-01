@@ -1,0 +1,85 @@
+﻿@model IEnumerable<mls.Models.InvTransferLog>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Inv Transfer Log</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Home", "TxQohs1", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+<table id="master" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransferDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventoryTransferId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvLocationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransferQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.InvTransferLogId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.InvTransferLogId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.InvTransferLogId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransferDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InventoryTransferId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvLocationId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransferQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts {
+    <script>
+                $(document).ready(function() {
+                    $("#master").DataTable({
+                      'iDisplayLength': 100 });
+                    });
+    </script>
+
+}

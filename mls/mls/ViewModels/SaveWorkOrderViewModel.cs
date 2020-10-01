@@ -23,6 +23,8 @@ namespace mls.ViewModels
 
         public IEnumerable<PartStockOut> PartStockOuts { get; set; }
 
+        public IEnumerable<Contractor> Contractors { get; set; }
+
         public WorkOrder WorkOrder { get; set; }
 
     }

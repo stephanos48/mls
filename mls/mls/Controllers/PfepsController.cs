@@ -295,12 +295,12 @@ namespace mls.Controllers
         {
             var startDate = DateTime.Parse("5/11/2020");
             var queryNew = from mp in db.TxQohs
-                join co in db.ShipPlans.Where(o => o.ShipPlanStatusId != 5) on mp.Pn equals co.CustomerPn into ordergroup
+                join co in db.ShipPlanFs.Where(o => o.ShipPlanStatusId != 5 && o.ShipPlanStatusId != 8 && o.ShipPlanStatusId != 9) on mp.Pn equals co.CustomerPn into ordergroup
                 join pfep in db.Pfeps on mp.Pn equals pfep.CustomerPn
-                join ship in db.PoPlans.Where(r => r.PoOrderStatusId != 5) on mp.Pn equals ship.CustomerPn into pogroup
+                join ship in db.PoPlans.Where(r => r.PoOrderStatusId != 5 && r.PoOrderStatusId != 6 && r.PoOrderStatusId != 7) on mp.Pn equals ship.CustomerPn into pogroup
                 join ocean in db.PoPlans.Where(r => r.PoOrderStatusId == 2) on mp.Pn equals ocean.CustomerPn into oceangroup
                 join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on mp.Pn equals r.CustomerPn into g
-                join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
+                join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
                 join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on mp.Pn equals j.CustomerPn into sr
                 where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && (mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum()) == 0
                 orderby mp.Pn
@@ -340,8 +340,7 @@ namespace mls.Controllers
         {
 
             var queryNew = from mp in db.MasterPartLists
-                           join co in db.CustomerOrders.Where(o => o.OrderStatusId != 7) on mp.CustomerPn equals co.CustomerPn into
-                           ordergroup
+                           join co in db.CustomerOrders.Where(o => o.OrderStatusId != 7) on mp.CustomerPn equals co.CustomerPn into ordergroup
                            join pfep in db.Pfeps on mp.CustomerPn equals pfep.CustomerPn
                            join ship in db.ShipIns.Where(r => r.ShipInStatusId != 3) on mp.CustomerPn equals ship.Pn into shipgroup
                            join tx in db.TxQohs on mp.CustomerPn equals tx.Pn
@@ -453,12 +452,12 @@ namespace mls.Controllers
 
             var startDate = DateTime.Parse("5/11/2020");
             var queryNew = from mp in db.TxQohs
-                           join co in db.ShipPlans.Where(o => o.ShipPlanStatusId != 5) on mp.Pn equals co.CustomerPn into ordergroup
+                           join co in db.ShipPlanFs.Where(o => o.ShipPlanStatusId != 5 && o.ShipPlanStatusId != 8 && o.ShipPlanStatusId != 9) on mp.Pn equals co.CustomerPn into ordergroup
                            join pfep in db.Pfeps on mp.Pn equals pfep.CustomerPn
-                           join ship in db.PoPlans.Where(r => r.PoOrderStatusId != 5) on mp.Pn equals ship.CustomerPn into pogroup
+                           join ship in db.PoPlans.Where(r => r.PoOrderStatusId != 5 && r.PoOrderStatusId != 6 && r.PoOrderStatusId != 7) on mp.Pn equals ship.CustomerPn into pogroup
                            join ocean in db.PoPlans.Where(r => r.PoOrderStatusId == 2) on mp.Pn equals ocean.CustomerPn into oceangroup
                            join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on mp.Pn equals r.CustomerPn into g
-                           join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
+                           join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
                            join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on mp.Pn equals j.CustomerPn into sr
                            where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && ((mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum()) < pfep.Min.Value) && (mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum()) != 0
                            orderby mp.Pn
@@ -586,12 +585,12 @@ namespace mls.Controllers
 
             var startDate = DateTime.Parse("5/11/2020");
             var queryNew = from mp in db.TxQohs
-                           join co in db.ShipPlans.Where(o => o.ShipPlanStatusId != 5) on mp.Pn equals co.CustomerPn into ordergroup
+                           join co in db.ShipPlanFs.Where(o => o.ShipPlanStatusId != 5 && o.ShipPlanStatusId != 8 && o.ShipPlanStatusId != 9) on mp.Pn equals co.CustomerPn into ordergroup
                            join pfep in db.Pfeps on mp.Pn equals pfep.CustomerPn
-                           join ship in db.PoPlans.Where(r => r.PoOrderStatusId != 5) on mp.Pn equals ship.CustomerPn into pogroup
+                           join ship in db.PoPlans.Where(r => r.PoOrderStatusId != 5 && r.PoOrderStatusId != 6 && r.PoOrderStatusId != 7) on mp.Pn equals ship.CustomerPn into pogroup
                            join ocean in db.PoPlans.Where(r => r.PoOrderStatusId == 2) on mp.Pn equals ocean.CustomerPn into oceangroup
                            join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on mp.Pn equals r.CustomerPn into g
-                           join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
+                           join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
                            join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on mp.Pn equals j.CustomerPn into sr
                            where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && mp.Qoh <= pfep.Min.Value 
                            orderby mp.Pn
@@ -717,12 +716,12 @@ namespace mls.Controllers
 
             var startDate = DateTime.Parse("5/11/2020");
             var queryNew = from mp in db.TxQohs
-                           join co in db.ShipPlans.Where(o => o.ShipPlanStatusId != 5) on mp.Pn equals co.CustomerPn into ordergroup
+                           join co in db.ShipPlanFs.Where(o => o.ShipPlanStatusId != 5 && o.ShipPlanStatusId != 8 && o.ShipPlanStatusId != 9) on mp.Pn equals co.CustomerPn into ordergroup
                            join pfep in db.Pfeps on mp.Pn equals pfep.CustomerPn
-                           join ship in db.PoPlans.Where(r => r.PoOrderStatusId != 5) on mp.Pn equals ship.CustomerPn into pogroup
+                           join ship in db.PoPlans.Where(r => r.PoOrderStatusId != 5 && r.PoOrderStatusId != 6 && r.PoOrderStatusId != 7) on mp.Pn equals ship.CustomerPn into pogroup
                            join ocean in db.PoPlans.Where(r => r.PoOrderStatusId == 2) on mp.Pn equals ocean.CustomerPn into oceangroup
                            join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on mp.Pn equals r.CustomerPn into g
-                           join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
+                           join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
                            join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on mp.Pn equals j.CustomerPn into sr
                            where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 
                            orderby mp.Pn

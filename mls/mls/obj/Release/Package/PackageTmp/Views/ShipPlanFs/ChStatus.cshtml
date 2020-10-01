@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Status";
+}
+
+<h2>Ch Status</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Sales", "ShipPlanFs", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Slot Schedule", "ChSlotted") | @Html.ActionLink("Open", "ChOpen") | @Html.ActionLink("Shipped Orders", "ChShipped") | @Html.ActionLink("Canceled Orders", "ChCanceled")
+</p>
+
+<br />
+
+<h4><u>SO Issues Needing Review</u></h4>
+@Html.Action("_OrderIssuesCustomer", "ShipPlanFs", new { status = 2, customer = 21 })
+<br />
+<br />
+<h4><u>SO To Cancel</u></h4>
+@Html.Action("_OrderIssuesCustomer", "ShipPlanFs", new { status = 8, customer = 21 })
+<br />
+<br />
+<h4><u>HOT Orders</u></h4>
+@Html.Action("_ShipHotCustomer", "ShipPlanFs", new { Customer = 21 })

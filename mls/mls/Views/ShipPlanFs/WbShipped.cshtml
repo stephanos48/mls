@@ -1,0 +1,134 @@
+﻿@model IEnumerable<mls.Models.ShipPlanF>
+
+@{
+    ViewBag.Title = "Closed";
+}
+
+<h2>Wb Shipped Out Orders</h2>
+<head>
+    <style>
+    </style>
+</head>
+<p>
+    @Html.ActionLink("Go Back", "WbStatus") | <button id="btn" class="btn btn-success">Export to Excel</button>
+</p>
+<table id="shipplan" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerOrderNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerOrderLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PromiseDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carrier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrackingInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipToAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ShipPlanFId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.ShipPlanFId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ShipPlanFId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerOrderNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerOrderLine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PromiseDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carrier)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrackingInfo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipToAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#shipplan").DataTable({
+                'iDisplayLength': 300
+            });
+        });
+
+    </script>
+
+    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+    <script type="text/javascript">
+                    $('#btn').click(function(){
+                        $('.table').table2excel({
+                            name: "download",
+                            filename: "download",
+                            fileext: ".xlsx"
+                        });
+                    });
+    </script>
+}

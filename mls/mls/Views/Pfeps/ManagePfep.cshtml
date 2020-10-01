@@ -71,9 +71,10 @@
 @section scripts
 {
     <script>
-        $(document).ready(function() {
-               $("#pfep").DataTable();
-            });
+            $(document).ready(function() {
+                $("#pfep").DataTable({
+                  'iDisplayLength': 100 });
+                });
 
     </script>
 }

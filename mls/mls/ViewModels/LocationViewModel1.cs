@@ -13,7 +13,7 @@ namespace mls.ViewModels
 
         public string Location { get; set; }
 
-        public int Qoh { get; set; }
+        public int? Qoh { get; set; }
 
     }
 }

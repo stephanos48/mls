@@ -1,0 +1,90 @@
+﻿@model IEnumerable<mls.ViewModels.NewWorkOrderFViewModel>
+
+<table class="table table-bordered table-hover">
+    <tr>
+
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkOrderFId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MlsSo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerPo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NeedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PromiseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
+                    {@Html.ActionLink("Edit", "Edit", new { id = item.WorkOrderFId })}
+                }|
+                @Html.ActionLink("Details", "Details", new { id = item.WorkOrderFId })|
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
+                    {@Html.ActionLink("Delete", "Delete", new { id = item.WorkOrderFId })}
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkOrderFId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MlsDivisionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MlsSo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerPo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerPn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NeedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PromiseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+
+        </tr>
+    }
+
+</table>

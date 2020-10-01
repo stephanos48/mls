@@ -1,0 +1,106 @@
+﻿@model mls.Models.InvTransfer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>InvTransfer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TransferDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransferDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvLocationId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvLocationId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinishInvLocationId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinishInvLocationId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransferFromQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransferFromQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransferToQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransferToQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Carrier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carrier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackingInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackingInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipToAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipToAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InvTransferId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

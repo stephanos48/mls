@@ -11,7 +11,6 @@
 
 <br />
 
-<p>
     <h4><u>Inventory Views</u></h4>
     
     @if (User.Identity.IsAuthenticated)
@@ -42,19 +41,55 @@
         }
     }
 
-    <h4><u>Work Order Adjustments</u></h4>
-@if (User.Identity.IsAuthenticated)
-{
-    if (User.IsInRole("Admin") || User.IsInRole("InvPower") || User.IsInRole("OpsPower"))
+    <h4><u>Off-Site Inventory</u></h4>
+
+    @if (User.Identity.IsAuthenticated)
     {
+        if (User.IsInRole("Admin") || User.IsInRole("InvPower") || User.IsInRole("OpsPower"))
+        {
         <p>
             <br />
-            @Html.ActionLink("WO Adjustments", "Index", "WoBuilds", null, null)
+            @Html.ActionLink("VadTek Parts", "VtQohs", "VtQohs", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("Extreme Parts", "ExtQoh1s", "ExtQohs", null, null)
             <br />
             <br />
         </p>
+        }
     }
-}
+
+    <h4><u>Inventory Transfers</u></h4>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("InvPower") || User.IsInRole("OpsPower"))
+        {
+            <p>
+                <br />
+                @Html.ActionLink("Inv Transfer History", "Index", "InventoryTransfers", null, null)
+                <br />
+                <br />
+            </p>
+        }
+    }
+
+    <h4><u>Work Order Adjustments</u></h4>
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("InvPower") || User.IsInRole("OpsPower"))
+        {
+            <p>
+                <br />
+                @Html.ActionLink("WO Adjustments", "Index", "WoBuilds", null, null)
+                <br />
+                <br />
+                @Html.ActionLink("Process Work Order", "WoProcess", "WoBuilds", null, null)
+                <br />
+                <br />
+            </p>
+        }
+    }
 
     <h4><u>Cycle Counts / Inv Adjustments</u></h4>
 

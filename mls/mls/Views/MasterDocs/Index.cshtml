@@ -1,0 +1,102 @@
+﻿@model IEnumerable<mls.Models.MasterDoc>
+
+@{
+    ViewBag.Title = "MasterDoc";
+
+}
+
+<h2>Master Document Log</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "IsoHome", "NCRs", null, null) | @Html.ActionLink("Active", "ActiveDocs") | @Html.ActionLink("Pending", "PendingDocs") | @Html.ActionLink("Archive", "ArchivedDocs") | @Html.ActionLink("Create New", "Create")
+</p>
+
+<table id="master" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RevLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th>
+                Total Files
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MasterDocId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.MasterDocId })|
+                    <a href="javascript:void(0);" data-id="@item.MasterDocId" class="deleteItem">Delete</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RevLevel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+                <td>
+                    @if (item.FileDocDetails.Count() == 0)
+                    {
+                        <span>No File</span>
+                    }
+                    else
+                    {
+                        <span>@item.FileDocDetails.Count() File(s)</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+                $(document).ready(function() {
+                    $("#master").DataTable({
+                      'iDisplayLength': 100 });
+                    });
+    </script>
+
+    <script>
+    $('.deleteItem').click(function (e) {
+               e.preventDefault();
+               var $ctrl = $(this);
+               if (confirm('Do you really want to delete this item?')) {
+                   $.ajax({
+                       url: '@Url.Action("Delete")',
+                    type: 'POST',
+                    data: { id: $(this).data('id') }
+                    }).done(function (data) {
+                    if (data.Result == "OK") {
+                    $ctrl.closest('tr').remove();
+                    }
+                    else if (data.Result.Message) {
+                    alert(data.Result.Message);
+                    }
+                    }).fail(function () {
+                    alert("There is something wrong. Please try again.");
+                    })
+
+                    }
+               });
+    </script>
+}

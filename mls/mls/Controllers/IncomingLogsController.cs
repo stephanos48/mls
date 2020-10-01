@@ -18,7 +18,29 @@ namespace mls.Controllers
         // GET: IncomingLogs
         public ActionResult Index()
         {
-            return View(db.IncomingLogs.ToList());
+            var query = from a in db.IncomingLogs
+                        where a.InspectionStatusId == 1
+                        orderby a.IncomingStartDate descending
+                        select a;
+            return View("Index", query);
+        }
+
+        public ActionResult Print()
+        {
+            var query = from a in db.IncomingLogs
+                        where a.InspectionStatusId == 1
+                        orderby a.IncomingStartDate descending
+                        select a;
+            return View("Print", query);
+        }
+
+        public ActionResult Closed()
+        {
+            var query = from a in db.IncomingLogs
+                        where a.InspectionStatusId == 2
+                        orderby a.IncomingStartDate descending
+                        select a;
+            return View("Closed", query);
         }
 
         // GET: IncomingLogs/Details/5

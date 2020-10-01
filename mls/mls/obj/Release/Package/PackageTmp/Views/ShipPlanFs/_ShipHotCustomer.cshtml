@@ -1,0 +1,76 @@
+﻿@model IEnumerable<mls.ViewModels.NewShipPlanFViewModel>
+
+<table id="shipplan" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerOrderNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerOrderLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestedDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PromiseDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ShipPlanFId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.ShipPlanFId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ShipPlanFId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerOrderNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerOrderLine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestedDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PromiseDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

@@ -56,7 +56,29 @@ namespace mls.Controllers
         {
             //LocationViewModel1 mymodel = new LocationsViewModel1();
 
+            var startDate = DateTime.Parse("5/11/2020");
             var query = from a in db.BomLevel1s
+                        join tx in db.TxQohs on a.DetailPn equals tx.Pn
+                        join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
+                        join s in db.ShipPlans.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
+                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
+                        join c in db.CycleCounts.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
+                        join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
+                        orderby tx.Pn
+                        orderby a.BomNo ascending
+                        select new
+                        {
+                            a.BomNo,
+                            a.UnitNo,
+                            a.DetailPn,
+                            a.Description,
+                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum() + (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
+                            a.QtyPer,
+                            NcrQty = (int?)nr.Select(x => x.Quantity).DefaultIfEmpty(0).Sum(),
+                        };
+
+
+            /*var query = from a in db.BomLevel1s
                         join tx in db.TxQohs on a.DetailPn equals tx.Pn
                         orderby a.BomNo ascending
                         select new
@@ -68,7 +90,8 @@ namespace mls.Controllers
                             tx.Qoh,
                             a.QtyPer,
                             tx.NcrQty
-                        };
+                        };*/
+
             //new LocationViewModel1
             //{
             //    a.CustomerPn, a.PartDescription, a.Location, tx.Qoh
@@ -87,7 +110,6 @@ namespace mls.Controllers
                     QtyPer = bom.QtyPer,
                     NcrQty = bom.NcrQty,
                     BuildAbility = (bom.Qoh / bom.QtyPer)
-
                 };
 
 
@@ -130,7 +152,8 @@ namespace mls.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(bomLevel1);
+            return View("Search", bomLevel1);
+            //return View(bomLevel1);
         }
 
         // GET: BomLevel1/Edit/5

@@ -1,0 +1,157 @@
+﻿@model IEnumerable<mls.Models.ShipPlanF>
+
+@{
+    ViewBag.Title = "ShipPlanClosed";
+}
+
+<h2>Shipped Out Orders</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "ShipPlanStatus") | @Html.ActionLink("Shipped < 6 mo", "ShipPlanClosed180less") | @Html.ActionLink("Shipped > 6 mo", "ShipPlanClosed180") | @Html.ActionLink("Shipped < 1 yr", "ShipPlanClosed365less") | @Html.ActionLink("Shipped > 1 yr", "ShipPlanClosed365") 
+</p>
+<table id="shipplan" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            @*<th>
+                Total Files
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerOrderNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerOrderLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PromiseDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carrier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrackingInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipToAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ShipPlanFId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.ShipPlanFId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ShipPlanFId })
+                </td>
+                @*<td>
+                    @if (item.ShipFileDetails.Count() == 0)
+                    {
+                        <span>No File</span>
+                    }
+                    else
+                    {
+                        <span>@item.ShipFileDetails.Count() File(s)</span>
+                    }
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerOrderNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerOrderLine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PromiseDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carrier)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrackingInfo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipToAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#shipplan").DataTable({
+                'iDisplayLength': 100
+            });
+        });
+
+    </script>
+
+    <script>
+        $('.deleteItem').click(function (e) {
+                   e.preventDefault();
+                   var $ctrl = $(this);
+                   if (confirm('Do you really want to delete this item?')) {
+                       $.ajax({
+                           url: '@Url.Action("Delete")',
+                        type: 'POST',
+                        data: { id: $(this).data('id') }
+                        }).done(function (data) {
+                        if (data.Result == "OK") {
+                        $ctrl.closest('tr').remove();
+                        }
+                        else if (data.Result.Message) {
+                        alert(data.Result.Message);
+                        }
+                        }).fail(function () {
+                        alert("There is something wrong. Please try again.");
+                        })
+
+                        }
+                   });
+    </script>
+}

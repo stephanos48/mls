@@ -16,6 +16,11 @@ namespace mls.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? WoEnterDateTime { get; set; }
 
+        public Contractor Contractor { get; set; }
+
+        [Display(Name = "Contractor")]
+        public byte ContractorId { get; set; }
+
         public string WoNo { get; set; }
 
         public string CustomerPn { get; set; }

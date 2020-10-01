@@ -1,0 +1,106 @@
+﻿@model mls.Models.WoFDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WoFDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkOrderFs.WorkOrderNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkOrderFs.WorkOrderNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WoResponsible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WoResponsible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Objective)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Objective)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinishTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinishTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Risk)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Risk)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RiskAction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RiskAction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Productive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Productive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WoFDetailId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -310,6 +310,32 @@ namespace mls.Controllers
             //return View();
         }
 
+        /// GET: NCR/Open
+        public ActionResult Open()
+        {
+            var queryOpen = from a in db.NCRs
+                              where a.StatusId == 1
+                              orderby a.NcrId descending
+                              select a;
+            if (User.IsInRole("Admin") || User.IsInRole("QualityAdmin"))
+                return View("Open", queryOpen.ToList());
+            else
+                return View("ROOpen", queryOpen.ToList());
+        }
+
+        /// GET: NCR/Open
+        public ActionResult ROOpen()
+        {
+            var queryOpen = from a in db.NCRs
+                            where a.StatusId == 1
+                            orderby a.NcrId descending
+                            select a;
+            if (User.IsInRole("Admin") || User.IsInRole("QualityAdmin"))
+                return View("Open", queryOpen.ToList());
+            else
+                return View("ROOpen", queryOpen.ToList());
+        }
+
         /// GET: NCR/Closed
         public ActionResult Closed()
         {

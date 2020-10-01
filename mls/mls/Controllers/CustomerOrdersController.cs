@@ -490,7 +490,6 @@ namespace mls.Controllers
                 {
                     PN = a.Pn,
                     QOH = a.Qoh,
-                    Ncr = a.NcrQty,
                     Notes = a.Notes
                 };
 
@@ -501,7 +500,6 @@ namespace mls.Controllers
                 {
                     Pn = qoh.PN,
                     Qoh = qoh.QOH,
-                    NcrQty = qoh.Ncr,
                     Notes = qoh.Notes
                 };
                 
@@ -598,12 +596,10 @@ namespace mls.Controllers
             //return View();
         }
 
-        // GET: CustomerOrders/Wastebuilt
+        // GET: CustomerOrders/Heil
         public ActionResult HeilQoh()
         {
-            var query = from a in db.TxQohs
-                        join mp in db.MasterPartLists on a.Pn equals mp.CustomerPn
-                        where mp.CustomerId == 1 && mp.CustomerDivisionId == 1
+            var query = from a in db.HeilQohs
                         orderby a.Pn descending
                         select new
                         {

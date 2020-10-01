@@ -1,0 +1,162 @@
+﻿@model mls.Models.MasterDoc
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MasterDoc</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DocStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocOwner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocOwner)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RevLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RevLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecuredLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecuredLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProtectionMethod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProtectionMethod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RetentionPeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RetentionPeriod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastReviewed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastReviewed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReviewedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReviewedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NextReview)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NextReview)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ControlledBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ControlledBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ElecDistribution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ElecDistribution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DistributionMethod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DistributionMethod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecordStorageLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecordStorageLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecordDistributionMethod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecordDistributionMethod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssociatedDocs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssociatedDocs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MasterDocId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

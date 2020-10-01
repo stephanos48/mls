@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using mls.Models;
 using mls.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace mls.Controllers
 {
@@ -93,7 +94,16 @@ namespace mls.Controllers
         public ActionResult CylRework()
         {
             var query = from c in db.WorkOrders
-                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.WoPartTypeId == 4 && c.WoOrderStatusId != 8
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.WoPartTypeId == 13 && c.WoOrderStatusId != 8
+                        orderby c.ShipDate ascending
+                        select c;
+            return View(query.ToList());
+        }
+
+        public ActionResult CylTest()
+        {
+            var query = from c in db.WorkOrders
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.WoPartTypeId == 11 && c.WoOrderStatusId != 8
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -102,7 +112,16 @@ namespace mls.Controllers
         public ActionResult ScheduleMinusBayne()
         {
             var query = from c in db.WorkOrders
-                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.CustomerDivisionId != 9 && c.MlsDivisionId != 3 && c.WoPartTypeId != 4 && c.WoOrderStatusId != 8
+                        where c.WoOrderStatusId != 3 && c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 7 && c.WoOrderStatusId != 8 && c.CustomerDivisionId != 9 && c.MlsDivisionId != 3 && c.WoPartTypeId != 11 && c.WoPartTypeId != 13 
+                        orderby c.ShipDate ascending
+                        select c;
+            return View(query.ToList());
+        }
+
+        public ActionResult ScheduleOnHold()
+        {
+            var query = from c in db.WorkOrders
+                        where c.WoOrderStatusId == 3
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -112,7 +131,7 @@ namespace mls.Controllers
         {
             var query = from c in db.WorkOrders
                         where c.WoOrderStatusId == 5
-                        orderby c.ShipDate ascending
+                        orderby c.ShipDate descending
                         select c;
             return View(query.ToList());
         }
@@ -138,7 +157,7 @@ namespace mls.Controllers
         public ActionResult Schedule2()
         {
             var query = from c in db.WorkOrders
-                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.CustomerDivisionId == 9 && c.WoOrderStatusId != 8
+                        where c.WoOrderStatusId == 4 && (c.WoPartTypeId == 1 || c.WoPartTypeId == 2 || c.WoPartTypeId == 10)
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -269,6 +288,7 @@ namespace mls.Controllers
             var customerdivisions = db.CustomerDivisions.ToList();
             var woorderstatuses = db.WoOrderStatuses.ToList();
             var partstockouts = db.PartStockOuts.ToList();
+            var contractors = db.Contractors.ToList();
             
             var viewModel = new SaveWorkOrderViewModel()
             {
@@ -279,7 +299,8 @@ namespace mls.Controllers
                 WoPartTypes = woparttypes,
                 MlsDivisions = mlsdivisions,
                 WoOrderStatuses = woorderstatuses,
-                PartStockOuts = partstockouts
+                PartStockOuts = partstockouts,
+                Contractors = contractors
             };
 
             return View("Create", viewModel);
@@ -317,6 +338,7 @@ namespace mls.Controllers
             var woparttypes = db.WoPartTypes.ToList();
             var woorderstatuses = db.WoOrderStatuses.ToList();
             var partstockouts = db.PartStockOuts.ToList();
+            var contractors = db.Contractors.ToList();
 
             var viewModel = new SaveWorkOrderViewModel()
             {
@@ -327,7 +349,8 @@ namespace mls.Controllers
                 WoPartTypes = woparttypes,
                 OrderTypes = ordertypes,
                 WoOrderStatuses =woorderstatuses,
-                PartStockOuts = partstockouts
+                PartStockOuts = partstockouts,
+                Contractors = contractors
             };
 
 

@@ -10,6 +10,7 @@ using System.Net;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class MvcMasterDetailsController : Controller
     {
 

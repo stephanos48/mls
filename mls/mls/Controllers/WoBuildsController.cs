@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using mls.Models;
+using mls.ViewModels;
 
 namespace mls.Controllers
 {
@@ -17,7 +18,7 @@ namespace mls.Controllers
         // GET: WoBuilds
         public ActionResult Index()
         {
-            return View(db.WoBuilds.ToList());
+            return View(db.WoBuilds.ToList().OrderByDescending(s => s.WoEnterDateTime));
         }
 
         // GET: WoBuilds/Details/5
@@ -39,7 +40,16 @@ namespace mls.Controllers
         public ActionResult Create()
         {
             ViewBag.ReturnUrl = Request.UrlReferrer;
-            return View();
+            var contractors = db.Contractors.ToList();
+
+            var viewModel = new WoBuildViewModel()
+            {
+                Contractors = contractors
+            };
+
+            return View("Create", viewModel);
+
+            //return View();
         }
 
         // POST: WoBuilds/Create
@@ -65,6 +75,17 @@ namespace mls.Controllers
         public ActionResult Edit(int? id)
         {
             ViewBag.ReturnUrl = Request.UrlReferrer;
+
+            var wobuilds = db.WoBuilds.SingleOrDefault(c => c.WoBuildId == id);
+
+            var contractors = db.Contractors.ToList();
+
+            var viewModel = new WoBuildViewModel()
+            {
+                WoBuild = wobuilds,
+                Contractors = contractors
+            };
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -74,7 +95,8 @@ namespace mls.Controllers
             {
                 return HttpNotFound();
             }
-            return View(woBuild);
+            return View("Edit", viewModel);
+            //return View(woBuild);
         }
 
         // POST: WoBuilds/Edit/5
@@ -94,6 +116,111 @@ namespace mls.Controllers
             }
             //return View(woBuild);
             return View();
+        }
+
+        public ActionResult WoProcess()
+        {
+            return View();
+        }
+
+        public ActionResult ProcessBuild(int buildqty, string Pn, string WoNo, byte contractor)
+        {
+
+            List<BomLevel1> boms = new List<BomLevel1>();
+
+            boms = db.BomLevel1s.ToList();
+
+            WoBuild build = new WoBuild();
+
+            WoBuild takeout = new WoBuild();
+
+            WoBuild takeout1 = new WoBuild();
+
+            BomLevel1 dpn = new BomLevel1();
+
+            List<BomLevel1> selectboms = new List<BomLevel1>();
+
+            if (boms.Any(i => i.UnitNo == Pn))
+            {
+
+                //add the built part to be assembled
+                build.WoEnterDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+                build.ContractorId = contractor;
+                build.WoNo = WoNo;
+                build.CustomerPn = Pn;
+                build.Qty = buildqty;
+                build.Notes = null;
+
+                db.WoBuilds.Add(build);
+                db.SaveChanges();
+
+                //create a list of parts in bom
+                foreach (BomLevel1 a in boms)
+                {
+
+                    if (a.UnitNo == Pn)
+                    {
+                        dpn.BomNo = a.BomNo;
+                        dpn.UnitNo = a.UnitNo;
+                        dpn.DetailPn = a.DetailPn;
+                        dpn.Description = a.Description;
+                        dpn.PurchaseMake = a.PurchaseMake;
+                        dpn.PartType = a.PartType;
+                        dpn.PartTypeDetail = a.PartTypeDetail;
+                        dpn.QtyPer = a.QtyPer;
+
+                        selectboms.Add(dpn);
+                    }
+
+                }
+
+                //take out parts that were used to build assembly
+                foreach (BomLevel1 b in boms)
+                {
+                    if (b.UnitNo == Pn)
+                    {
+                        takeout.WoEnterDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+                        takeout.ContractorId = contractor;
+                        takeout.WoNo = WoNo;
+                        takeout.CustomerPn = b.DetailPn;
+                        takeout.Qty = (b.QtyPer * -buildqty);
+                        takeout.Notes = null;
+
+                        db.WoBuilds.Add(takeout);
+                        db.SaveChanges();
+                    }
+                }
+                 
+                //take out sub part numbers
+                foreach (BomLevel1 c in boms)
+                {
+
+                    foreach (BomLevel1 d in selectboms)
+                    {
+
+                        if (c.UnitNo == d.DetailPn)
+                        {
+                            takeout1.WoEnterDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+                            takeout1.ContractorId = contractor;
+                            takeout1.WoNo = WoNo;
+                            takeout1.CustomerPn = c.DetailPn;
+                            takeout1.Qty = (c.QtyPer * -buildqty);
+                            takeout1.Notes = null;
+
+                            db.WoBuilds.Add(takeout1);
+                            db.SaveChanges();
+                        }
+
+                    }
+                }
+                return null;
+            }
+            else
+            {
+                ViewBag.Message = "BOM does not exist.  Please create.";
+                return null;
+            }
+
         }
 
         // GET: WoBuilds/Delete/5

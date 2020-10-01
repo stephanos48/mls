@@ -21,6 +21,26 @@ namespace mls.Controllers
             return View(db.VtPfeps.ToList());
         }
 
+        public ActionResult IncomingTransfers()
+        {
+            var query = from inv in db.InventoryTransfers
+                        where inv.FinishInvLocationId == 6 
+                        select inv;
+
+            return View("~/Views/InventoryTransfers/VtIncTransfers.cshtml", query);
+
+        }
+
+        public ActionResult OutgoingTransfers()
+        {
+            var query = from inv in db.InventoryTransfers
+                        where inv.InvLocationId == 6 
+                        select inv;
+
+            return View("~/Views/InventoryTransfers/VtOutTransfers.cshtml", query);
+
+        }
+
         public ActionResult VtQoh()
         {
             var query = from tx in db.VtPfeps
@@ -46,6 +66,34 @@ namespace mls.Controllers
             }
 
             return View("~/Views/VtPfeps/VtQoh.cshtml", result);
+        }
+
+        public ActionResult VtQoh1()
+        {
+            var query = from tx in db.VtQohs
+                        join it in db.InventoryTransfers.Where(a => a.FinishInvLocationId == 6) on tx.Pn equals it.CustomerPn into fit
+                        join it in db.InventoryTransfers.Where(b => b.InvLocationId == 6) on tx.Pn equals it.CustomerPn into it
+                        select new
+                        {
+                            Id = tx.VtQohId,
+                            Pn = tx.Pn,
+                            Qoh = tx.Qoh + (int?)fit.Select(x => x.TransferToQty).DefaultIfEmpty(0).Sum() - (int?)it.Select(x => x.TransferFromQty).DefaultIfEmpty(0).Sum(),
+                            Notes = tx.Notes
+                        };
+
+            List <VtQohViewModel> result = new List<VtQohViewModel>();
+            foreach (var qoh in query.ToList())
+            {
+                result.Add(new VtQohViewModel
+                {
+                    Vtqohid = qoh.Id,
+                    Pn = qoh.Pn,
+                    Qoh = qoh.Qoh,
+                    Notes = qoh.Notes
+                });
+            }
+
+            return View("~/Views/VtQohs/Index.cshtml", result);
         }
 
         // GET: VtPfeps/Details/5

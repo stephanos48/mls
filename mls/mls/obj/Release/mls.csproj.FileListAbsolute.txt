@@ -867,3 +867,15 @@ C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.shipandl
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.addpoplanlog.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.multiplefileupload.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.notsure.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.masterdoc20200614.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.addwarehouses.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.heilupdate.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.InvTransfer.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.shipplanfile.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.inventorytransfer20200816.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.truncateqoh.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.updateinvtransfer20200818.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.addcontractor.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.snupdatecyl.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.woupdate20200831.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.wofileadd.resources

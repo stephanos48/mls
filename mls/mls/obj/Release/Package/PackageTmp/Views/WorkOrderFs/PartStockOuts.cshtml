@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "PartStockOuts";
+}
+
+<h2>Production Stock Outs</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "Pfeps", null, null)
+</p>
+
+<h4><u>Newly Reported Stock Outs</u></h4>
+@Html.Action("_PartStockOut", "WorkOrderFs", new { stockOutName = 1 })
+<br />
+<br />
+<h4><u>Working w/ Supplier</u></h4>
+@Html.Action("_PartStockOut", "WorkOrderFs", new { stockOutName = 2 })
+<br />
+<br />
+<h4><u>Ordered</u></h4>
+@Html.Action("_PartStockOut", "WorkOrderFs", new { stockOutName = 3 })
+<br />
+<br />
+<h4><u>Payment Needed</u></h4>
+@Html.Action("_PartStockOut", "WorkOrderFs", new { stockOutName = 4 })
+<br />
+<br />
+<h4><u>Paid (En Route)</u></h4>
+@Html.Action("_PartStockOut", "WorkOrderFs", new { stockOutName = 5 })
+<br />
+<br />
