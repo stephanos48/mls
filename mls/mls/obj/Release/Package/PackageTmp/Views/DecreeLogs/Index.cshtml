@@ -1,0 +1,74 @@
+﻿@model IEnumerable<mls.Models.DecreeLog>
+
+@{
+    ViewBag.Title = "Decrees";
+}
+
+<h2>Royal Decrees</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "Scrums", null, null) | @Html.ActionLink("Create New", "Create")
+</p>
+<table id="cyclecount" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.DecreeLogId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DecreeDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Decree)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EffectiveDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DecreeLogId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.DecreeLogId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DecreeLogId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DecreeLogId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DecreeDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Decree)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EffectiveDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#cyclecount").DataTable({
+              'iDisplayLength': 100 });
+            });
+
+    </script>
+}

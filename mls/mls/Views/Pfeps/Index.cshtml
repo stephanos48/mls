@@ -12,81 +12,82 @@
 <br />
 
 <p>
+    <div>
+        <div class="col-md-6">
+            <h4><u>Supply Chain Apps</u></h4>
+            <br />
 
-    <h4><u>Supply Chain Apps</u></h4>
-    <br />
-
-    @Html.ActionLink("Po Plan", "PoPlanStatus", "PoPlans", null, null)
-    <br />
-    <br />
-    @Html.ActionLink("Production Stock Outs", "PartStockOuts", "WorkOrders", null, null)
-    <br />
-    <br />
-    @Html.ActionLink("Pfep Plans", "Pfep")
-    <br />
-    <br />
-    @*@Html.ActionLink("Cycle Counts", "Index", "CycleCounts", null, null)
-    <br />
-    <br />*@
-    @Html.ActionLink("Supplier DB", "Index", "Suppliers", null, null)
-    <br />
-    <br />
-    @Html.ActionLink("Requisitions", "ReqStatus", "Requisitions", null, null)
-    <br />
-    <br />
-    @Html.ActionLink("Check Requests", "Index", "CheckRequests", null, null)
-    <br />
-    <br />
-    @Html.ActionLink("Purchase Orders", "PoHome", "PurchaseOrders", null, null)
-    <br />
-    <br />
-    @Html.ActionLink("Forecasts", "ForecastHome", "Demands", null, null)
-    <br />
-    <br />
-    @Html.ActionLink("Supplier Quotes", "Index", "Quotes", null, null)
-    <br />
-    <br />
-    @Html.ActionLink("ImgePractice", "Download", "Practices", null, null)
-    <br />
-    <br />
-
-    @*-> @Html.ActionLink("Quality", "QualityHome", "NCRs", null, null)
-        <br />
-        <br />*@
-
+            @Html.ActionLink("Po Plan", "PoPlanStatus", "PoPlans", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("Pos By Customer", "OpenPoWqHyd", "PoPlans", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("Pos By Supplier", "OpenPoHualin", "PoPlans", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("Stock Out Report", "StockOutReportAll", "WorkOrderFs", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("Pfep Plans", "Pfep")
+            <br />
+            <br />
+            @*@Html.ActionLink("Cycle Counts", "Index", "CycleCounts", null, null)
+                <br />
+                <br />*@
+            @Html.ActionLink("Supplier Database", "Index", "Suppliers", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("Requisitions", "ReqStatus", "Requisitions", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("Check Requests", "Index", "CheckRequests", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("Forecasts", "ForecastHome", "Demands", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("Supplier Quotes", "Index", "Quotes", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("ImgePractice", "Download", "Practices", null, null)
+            <br />
+            <br />
+        </div>
+        <div class="col-md-6">
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Admin") || User.IsInRole("InvPower"))
+                {
+                    <h4><u>Supply Chain Inputs</u></h4>
+                    <br />
+                    @Html.ActionLink("Manage Pfep Plans", "ManagePfep")
+                    <br />
+                    <br />
+                    @Html.ActionLink("Master Part List - All", "Index", "MasterPartLists", null, null)
+                    <br />
+                    <br />
+                    @Html.ActionLink("Master Part List - UH", "UHMasterPartList", "MasterPartLists", null, null)
+                    <br />
+                    <br />
+                    @Html.ActionLink("Master Part List - DIP", "DipMasterPartList", "MasterPartLists", null, null)
+                    <br />
+                    <br />
+                    @Html.ActionLink("Master Part List - DOP", "DopMasterPartList", "MasterPartLists", null, null)
+                    <br />
+                    <br />
+                    @Html.ActionLink("Master Part List - CL", "CLMasterPartList", "MasterPartLists", null, null)
+                    <br />
+                    <br />
+                    @Html.ActionLink("Master Part List - DTT", "DttMasterPartList", "MasterPartLists", null, null)
+                    <br />
+                    <br />
+                }
+            }
+        </div>
+    </div>
 </p>
 
-    @if (User.Identity.IsAuthenticated)
-    {
-        if (User.IsInRole("Admin") || User.IsInRole("InvPower"))
-        {
-            <p>
-                <h4><u>Supply Chain Inputs</u></h4>
-                <br />
-                @Html.ActionLink("Manage Pfep Plans", "ManagePfep")
-                <br />
-                <br />
-                @Html.ActionLink("Master Part List - All", "Index", "MasterPartLists", null, null)
-                <br />
-                <br />
-                @Html.ActionLink("Master Part List - UH", "UHMasterPartList", "MasterPartLists", null, null)
-                <br />
-                <br />
-                @Html.ActionLink("Master Part List - DIP", "DipMasterPartList", "MasterPartLists", null, null)
-                <br />
-                <br />
-                @Html.ActionLink("Master Part List - DOP", "DopMasterPartList", "MasterPartLists", null, null)
-                <br />
-                <br />
-                @Html.ActionLink("Master Part List - CL", "CLMasterPartList", "MasterPartLists", null, null)
-                <br />
-                <br />
-                @Html.ActionLink("Master Part List - DTT", "DttMasterPartList", "MasterPartLists", null, null)
-                <br />
-                <br />
-            </p>
-        }
-    }
 
 @*
 <p>

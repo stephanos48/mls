@@ -88,6 +88,9 @@ namespace mls.Models
         [Display(Name = "Customer PO")]
         public string CustomerPo { get; set; }
 
+        [Display(Name = "CPOLine")]
+        public string CustomerPoLine { get; set; }
+
         [Display(Name = "MLS SO")]
         public string MlsSo { get; set; }
 

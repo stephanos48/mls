@@ -1,0 +1,483 @@
+﻿@model mls.ViewModels.SaveNcrFViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<div class="container">
+@using (Html.BeginForm("Edit", "NcrFs", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+    //<input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+    <div class="col-md-6">
+
+            <div class="form-horizontal">
+                <h4>NcrF</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.NcrF.NcrFId)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.NcrNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.NcrNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.NcrNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.IssueDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.IssueDateTime, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.IssueDateTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.NcrTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.NcrF.NcrTypeId, new SelectList(Model.NcrTypes, "NcrTypeId", "NcrTypeName"), "Select Reject Type", new { @class = "form-control" })
+                        @*@Html.DropDownList("Customer", new List<SelectListItem>
+                        {
+                            new SelectListItem {Text = "ESG", Value = "1" },
+                            new SelectListItem {Text = "FLODRAULICS", Value = "2" },
+                            new SelectListItem {Text = "FORUM", Value = "3" },
+                            new SelectListItem {Text = "HUNTER", Value = "4" }
+                        }, "Select Customer")*@
+                        @Html.ValidationMessageFor(model => model.NcrF.NcrTypeId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.CustomerId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.NcrF.CustomerId, new SelectList(Model.Customers, "CustomerId", "CustomerName"), "Select Customer", new { @class = "form-control" })
+                        @*@Html.DropDownList("Customer", new List<SelectListItem>
+                        {
+                            new SelectListItem {Text = "ESG", Value = "1" },
+                            new SelectListItem {Text = "FLODRAULICS", Value = "2" },
+                            new SelectListItem {Text = "FORUM", Value = "3" },
+                            new SelectListItem {Text = "HUNTER", Value = "4" }
+                        }, "Select Customer")*@
+                        @Html.ValidationMessageFor(model => model.NcrF.CustomerId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.CustomerDivisionId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.NcrF.CustomerDivisionId, new SelectList(Model.CustomerDivisions, "CustomerDivisionId", "CustomerDivisionName"), "Select Customer Division", new { @class = "form-control" })
+                        @*@Html.DropDownList("CustomerDivision", new List<SelectListItem>
+                        {
+                            new SelectListItem {Text = "HEIL", Value = "1" },
+                            new SelectListItem {Text = "MARATHON", Value = "2" },
+                            new SelectListItem {Text = "PC", Value = "3" },
+                            new SelectListItem {Text = "BAYNE", Value = "4" }
+                        }, "Select Customer Division", new { @class = "text-danger"})*@
+                        @Html.ValidationMessageFor(model => model.NcrF.CustomerDivisionId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.PartSupplier, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.PartSupplier, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.PartSupplier, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.PartNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.PartNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.PartNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.PartDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.PartDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.PartDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.SerialNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.SerialNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.SerialNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.PartCost, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.PartCost, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.PartCost, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.Quantity, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.DefectDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.DefectDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.DefectDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.DefectCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.DefectCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.DefectCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.MlsDivisionId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.NcrF.MlsDivisionId, new SelectList(Model.MlsDivisions, "MlsDivisionId", "MlsDivisionName"), "Select MLS Division", new { @class = "form-control" })
+                        @*@Html.DropDownList("MlsDivision", new List<SelectListItem>
+                        {
+                            new SelectListItem {Text = "UH", Value = "1" },
+                            new SelectListItem {Text = "CL", Value = "2" },
+                            new SelectListItem {Text = "DIP", Value = "3" },
+                            new SelectListItem {Text = "DTT", Value = "4" }
+                        }, "Select Mls Division")*@
+                        @Html.ValidationMessageFor(model => model.NcrF.MlsDivisionId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.DispositionId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.NcrF.DispositionId, new SelectList(Model.Dispositions, "DispositionId", "DispositionType"), "Select Disposition", new { @class = "form-control" })
+                        @*@Html.DropDownList("Disposition", new List<SelectListItem>
+                        {
+                            new SelectListItem {Text = "Rework", Value = "1" },
+                            new SelectListItem {Text = "RTV", Value = "2" },
+                            new SelectListItem {Text = "Scrap", Value = "3" },
+                            new SelectListItem {Text = "Use As Is", Value = "4" }
+                        }, "Select Disposition")*@
+                        @Html.ValidationMessageFor(model => model.NcrF.DispositionId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.DispositionDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.DispositionDateTime, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.DispositionDateTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.DispositionedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.DispositionedBy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.DispositionedBy, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.StatusId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.NcrF.StatusId, new SelectList(Model.Statuses, "StatusId", "StatusName"), "Select Status", new { @class = "form-control" })
+                        @*@Html.DropDownList("Status", new List<SelectListItem>
+                        {
+                            new SelectListItem {Text = "OPEN", Value = "1" },
+                            new SelectListItem {Text = "CLOSED", Value = "2" },
+                        }, "OPEN")*@
+                        @Html.ValidationMessageFor(model => model.NcrF.StatusId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ReworkNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ReworkNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ReworkNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ReworkCompletedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ReworkCompletedBy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ReworkCompletedBy, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ReworkHrs, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ReworkHrs, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ReworkHrs, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ReworkPartsUsed, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ReworkPartsUsed, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ReworkPartsUsed, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ReworkPartsScrapped, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ReworkPartsScrapped, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ReworkPartsScrapped, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ReworkQty, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ReworkQty, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ReworkQty, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ReworkStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ReworkStatus, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ReworkStatus, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ReworkNotes, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ReworkNotes, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ReworkNotes, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ScrapNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ScrapNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ScrapNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ScrapQty, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ScrapQty, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ScrapQty, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ScrapApprovedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ScrapApprovedBy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ScrapApprovedBy, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ScrapApprovalDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ScrapApprovalDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ScrapApprovalDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ScrappedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ScrappedBy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ScrappedBy, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ScrapDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ScrapDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ScrapDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ScrapNotes, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ScrapNotes, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ScrapNotes, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ScrapStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ScrapStatus, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ScrapStatus, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.RtvNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.RtvNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.RtvNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ShipperNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ShipperNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ShipperNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.RgNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.RgNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.RgNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ShipDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ShipDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ShipDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.Carrier, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.Carrier, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.Carrier, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.TrackingInfo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.TrackingInfo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.TrackingInfo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ShipTo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ShipTo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ShipTo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.RtvNotes, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.RtvNotes, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.RtvNotes, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.RtvStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.RtvStatus, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.RtvStatus, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ReworkCost, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ReworkCost, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ReworkCost, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NcrF.ScrapCost, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NcrF.ScrapCost, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NcrF.ScrapCost, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+    </div>
+    <div class="col-md-6">
+        <div class="editor-label">
+            <label>Files:</label>
+        </div>
+        <div class="editor-field">
+            <input type="file" name="file" multiple="multiple" />
+
+            <ul class="attachment">
+                @foreach (var item in Model.NcrF.FileNcrFDetails)
+                {
+                    <li>
+                        <a class="title" href="/Support/Download/?p=@(item.Id + item.Extension)&d=@item.FileName">@item.FileName</a>
+                        <a href="javascript:void(0);" data-id="@item.Id" class="deleteItem">X</a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+            $('.deleteItem').click(function (e) {
+                       e.preventDefault();
+                       var $ctrl = $(this);
+                       if (confirm('Do you really want to delete this file?')) {
+                           $.ajax({
+                               url: '@Url.Action("DeleteFile")',
+                            type: 'POST',
+                            data: { id: $(this).data('id') }
+                            }).done(function (data) {
+                            if (data.Result == "OK") {
+                            $ctrl.closest('li').remove();
+                            }
+                            else if (data.Result.Message) {
+                            alert(data.Result.Message);
+                            }
+                            }).fail(function () {
+                            alert("There is something wrong. Please try again.");
+                            })
+
+                            }
+            });
+    </script>
+}

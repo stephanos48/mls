@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Quality";
+}
+
+<h2>Quality</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "IndexPrint") | @Html.ActionLink("Create New", "Create")
+</p>
+
+<br />
+
+<h4><u>Daily Checklist</u></h4>
+@Html.Action("_PrintChecklistDaily", "Checklists", new { Department = 12 })
+<br />
+<br />
+<h4><u>Weekly Checklist</u></h4>
+@Html.Action("_PrintChecklistWeekly", "Checklists", new { Department = 12 })
+<br />
+<br />
+<h4><u>Bi-Weekly Checklist</u></h4>
+@Html.Action("_PrintChecklistBiWeekly", "Checklists", new { Department = 12 })
+<br />
+<br />
+<h4><u>Monthly Checklist</u></h4>
+@Html.Action("_PrintChecklistMonthly", "Checklists", new { Department = 12 })
+<br />
+<br />
+<h4><u>Quarterly Checklist</u></h4>
+@Html.Action("_PrintChecklistQuarterly", "Checklists", new { Department = 12 })
+<br />
+<br />
+<h4><u>Semi-Annual Checklist</u></h4>
+@Html.Action("_PrintChecklistSemiAnnually", "Checklists", new { Department = 12 })
+<br />
+<br />
+<h4><u>Annual Checklist</u></h4>
+@Html.Action("_PrintChecklistAnnually", "Checklists", new { Department = 12 })
+<br />
+<br />

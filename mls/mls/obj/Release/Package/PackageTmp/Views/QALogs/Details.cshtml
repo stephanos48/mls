@@ -1,0 +1,194 @@
+﻿@model mls.Models.QALog
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QALog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QACreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QACreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QANo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QANo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QATypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QATypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MlsDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProblemFoundId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProblemFoundId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProblemDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProblemDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContainmentChina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContainmentChina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CleanPointChina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CleanPointChina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContainmentUSA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContainmentUSA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CleanPointUsa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CleanPointUsa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NCRNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NCRNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CQStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CARNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CARNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerCARNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerCARNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MLSChampion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MLSChampion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierChampion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierChampion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.QALogId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

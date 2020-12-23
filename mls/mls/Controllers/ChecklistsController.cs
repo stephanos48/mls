@@ -25,6 +25,13 @@ namespace mls.Controllers
             return View("Index", query);
         }
 
+        public ActionResult IndexPrint()
+        {
+            var query = from a in db.Checklists
+                        select a;
+            return View("IndexPrint", query);
+        }
+        
         // GET: Checklists/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -170,6 +177,25 @@ namespace mls.Controllers
             return PartialView("_ChecklistDaily", result);
         }
 
+        public ActionResult _PrintChecklistDaily(int department)
+        {
+            var queryNew = from a in db.Checklists
+                           where a.ChecklistTypeId == 1 && a.DepartmentId == department
+                           select a;
+            List<NewChecklistViewModel> result = new List<NewChecklistViewModel>();
+            foreach (var check in queryNew.ToList())
+            {
+                result.Add(new NewChecklistViewModel
+                {
+                    ChecklistId = check.ChecklistId,
+                    Employee = check.EmployeeId,
+                    ChecklistAction = check.ChecklistAction,
+                    Notes = check.Notes
+                });
+            }
+            return PartialView("_PrintChecklistDaily", result);
+        }
+
         public ActionResult _ChecklistWeekly(int department)
         {
             var queryNew = from a in db.Checklists
@@ -187,6 +213,25 @@ namespace mls.Controllers
                 });
             }
             return PartialView("_ChecklistWeekly", result);
+        }
+
+        public ActionResult _PrintChecklistWeekly(int department)
+        {
+            var queryNew = from a in db.Checklists
+                           where a.ChecklistTypeId == 2 && a.DepartmentId == department
+                           select a;
+            List<NewChecklistViewModel> result = new List<NewChecklistViewModel>();
+            foreach (var check in queryNew.ToList())
+            {
+                result.Add(new NewChecklistViewModel
+                {
+                    ChecklistId = check.ChecklistId,
+                    Employee = check.EmployeeId,
+                    ChecklistAction = check.ChecklistAction,
+                    Notes = check.Notes
+                });
+            }
+            return PartialView("_PrintChecklistWeekly", result);
         }
 
         public ActionResult _ChecklistBiWeekly(int department)
@@ -208,6 +253,25 @@ namespace mls.Controllers
             return PartialView("_ChecklistBiWeekly", result);
         }
 
+        public ActionResult _PrintChecklistBiWeekly(int department)
+        {
+            var queryNew = from a in db.Checklists
+                           where a.ChecklistTypeId == 3 && a.DepartmentId == department
+                           select a;
+            List<NewChecklistViewModel> result = new List<NewChecklistViewModel>();
+            foreach (var check in queryNew.ToList())
+            {
+                result.Add(new NewChecklistViewModel
+                {
+                    ChecklistId = check.ChecklistId,
+                    Employee = check.EmployeeId,
+                    ChecklistAction = check.ChecklistAction,
+                    Notes = check.Notes
+                });
+            }
+            return PartialView("_PrintChecklistBiWeekly", result);
+        }
+
         public ActionResult _ChecklistMonthly(int department)
         {
             var queryNew = from a in db.Checklists
@@ -225,6 +289,25 @@ namespace mls.Controllers
                 });
             }
             return PartialView("_ChecklistMonthly", result);
+        }
+
+        public ActionResult _PrintChecklistMonthly(int department)
+        {
+            var queryNew = from a in db.Checklists
+                           where a.ChecklistTypeId == 4 && a.DepartmentId == department
+                           select a;
+            List<NewChecklistViewModel> result = new List<NewChecklistViewModel>();
+            foreach (var check in queryNew.ToList())
+            {
+                result.Add(new NewChecklistViewModel
+                {
+                    ChecklistId = check.ChecklistId,
+                    Employee = check.EmployeeId,
+                    ChecklistAction = check.ChecklistAction,
+                    Notes = check.Notes
+                });
+            }
+            return PartialView("_PrintChecklistMonthly", result);
         }
 
         public ActionResult _ChecklistQuarterly(int department)
@@ -246,6 +329,25 @@ namespace mls.Controllers
             return PartialView("_ChecklistQuarterly", result);
         }
 
+        public ActionResult _PrintChecklistQuarterly(int department)
+        {
+            var queryNew = from a in db.Checklists
+                           where a.ChecklistTypeId == 5 && a.DepartmentId == department
+                           select a;
+            List<NewChecklistViewModel> result = new List<NewChecklistViewModel>();
+            foreach (var check in queryNew.ToList())
+            {
+                result.Add(new NewChecklistViewModel
+                {
+                    ChecklistId = check.ChecklistId,
+                    Employee = check.EmployeeId,
+                    ChecklistAction = check.ChecklistAction,
+                    Notes = check.Notes
+                });
+            }
+            return PartialView("_PrintChecklistQuarterly", result);
+        }
+
         public ActionResult _ChecklistSemiAnnually(int department)
         {
             var queryNew = from a in db.Checklists
@@ -265,6 +367,25 @@ namespace mls.Controllers
             return PartialView("_ChecklistSemiAnnually", result);
         }
 
+        public ActionResult _PrintChecklistSemiAnnually(int department)
+        {
+            var queryNew = from a in db.Checklists
+                           where a.ChecklistTypeId == 6 && a.DepartmentId == department
+                           select a;
+            List<NewChecklistViewModel> result = new List<NewChecklistViewModel>();
+            foreach (var check in queryNew.ToList())
+            {
+                result.Add(new NewChecklistViewModel
+                {
+                    ChecklistId = check.ChecklistId,
+                    Employee = check.EmployeeId,
+                    ChecklistAction = check.ChecklistAction,
+                    Notes = check.Notes
+                });
+            }
+            return PartialView("_PrintChecklistSemiAnnually", result);
+        }
+
         public ActionResult _ChecklistAnnually(int department)
         {
             var queryNew = from a in db.Checklists
@@ -282,6 +403,25 @@ namespace mls.Controllers
                 });
             }
             return PartialView("_ChecklistAnnually", result);
+        }
+
+        public ActionResult _PrintChecklistAnnually(int department)
+        {
+            var queryNew = from a in db.Checklists
+                           where a.ChecklistTypeId == 7 && a.DepartmentId == department
+                           select a;
+            List<NewChecklistViewModel> result = new List<NewChecklistViewModel>();
+            foreach (var check in queryNew.ToList())
+            {
+                result.Add(new NewChecklistViewModel
+                {
+                    ChecklistId = check.ChecklistId,
+                    Employee = check.EmployeeId,
+                    ChecklistAction = check.ChecklistAction,
+                    Notes = check.Notes
+                });
+            }
+            return PartialView("_PrintChecklistAnnually", result);
         }
 
         public ActionResult Ops()
@@ -322,6 +462,46 @@ namespace mls.Controllers
         public ActionResult HR()
         {
             return View("HR");
+        }
+
+        public ActionResult OpsPrint()
+        {
+            return View("OpsPrint");
+        }
+
+        public ActionResult ExecPrint()
+        {
+            return View("ExecPrint");
+        }
+
+        public ActionResult QualityPrint()
+        {
+            return View("QualityPrint");
+        }
+
+        public ActionResult SupplyChainPrint()
+        {
+            return View("SupplyChainPrint");
+        }
+
+        public ActionResult LogisticsPrint()
+        {
+            return View("LogisticsPrint");
+        }
+
+        public ActionResult EngPrint()
+        {
+            return View("EngPrint");
+        }
+
+        public ActionResult SalesPrint()
+        {
+            return View("SalesPrint");
+        }
+
+        public ActionResult HRPrint()
+        {
+            return View("HRPrint");
         }
 
         protected override void Dispose(bool disposing)

@@ -55,7 +55,7 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.PartId })|
                     @Html.ActionLink("Details", "Details", new { id = item.PartId })|
-                    @Html.ActionLink("Delete", "Delete", new { id = item.PartId })
+                    <a href="javascript:void(0);" data-id="@item.PartId" class="deleteItem">Delete</a>
                 </td>
                 @*<td>
                     @if (item.FileDetails.Count() == 0)

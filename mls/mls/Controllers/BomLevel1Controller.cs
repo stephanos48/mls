@@ -56,7 +56,7 @@ namespace mls.Controllers
         {
             //LocationViewModel1 mymodel = new LocationsViewModel1();
 
-            var startDate = DateTime.Parse("5/11/2020");
+            var startDate = DateTime.Parse("12/16/2020");
             var query = from a in db.BomLevel1s
                         join tx in db.TxQohs on a.DetailPn equals tx.Pn
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
@@ -149,7 +149,7 @@ namespace mls.Controllers
             {
                 db.BomLevel1s.Add(bomLevel1);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Search");
             }
 
             return View("Search", bomLevel1);
@@ -182,7 +182,7 @@ namespace mls.Controllers
             {
                 db.Entry(bomLevel1).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Search");
             }
             return View(bomLevel1);
         }
@@ -210,7 +210,7 @@ namespace mls.Controllers
             BomLevel1 bomLevel1 = db.BomLevel1s.Find(id);
             db.BomLevel1s.Remove(bomLevel1);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Search");
         }
 
         protected override void Dispose(bool disposing)

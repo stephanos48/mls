@@ -89,5 +89,7 @@ namespace mls.ViewModels
 
         public string Notes { get; set; }
 
+        public string InvNo { get; set; }
+
     }
 }

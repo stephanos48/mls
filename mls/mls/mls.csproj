@@ -342,6 +342,7 @@
     <Compile Include="Controllers\Api\IncomingTopLevelAPIController.cs" />
     <Compile Include="Controllers\Api\ShipOutsController.cs" />
     <Compile Include="Controllers\BomLevel1Controller.cs" />
+    <Compile Include="Controllers\BomTrackersController.cs" />
     <Compile Include="Controllers\BuildHistoriesController.cs" />
     <Compile Include="Controllers\ChecklistsController.cs" />
     <Compile Include="Controllers\CheckRequestsController.cs" />
@@ -350,7 +351,9 @@
     <Compile Include="Controllers\CustomerComplaintsController.cs" />
     <Compile Include="Controllers\CustomerOrdersController.cs" />
     <Compile Include="Controllers\CustomerQuotesController.cs" />
+    <Compile Include="Controllers\CycleCountFsController.cs" />
     <Compile Include="Controllers\CycleCountsController.cs" />
+    <Compile Include="Controllers\DecreeLogsController.cs" />
     <Compile Include="Controllers\DemandsController.cs" />
     <Compile Include="Controllers\DemandWksController.cs" />
     <Compile Include="Controllers\DownReportsController.cs" />
@@ -371,16 +374,20 @@
     <Compile Include="Controllers\InvTransfersController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MasterDocsController.cs" />
+    <Compile Include="Controllers\MasterPartFsController.cs" />
     <Compile Include="Controllers\MasterPartListsController.cs" />
     <Compile Include="Controllers\MvcMasterDetailsController.cs" />
     <Compile Include="Controllers\NcrChinasController.cs" />
+    <Compile Include="Controllers\NcrFsController.cs" />
     <Compile Include="Controllers\NCRsController.cs" />
     <Compile Include="Controllers\PfepsController.cs" />
     <Compile Include="Controllers\PoPlansController.cs" />
     <Compile Include="Controllers\PracticesController.cs" />
     <Compile Include="Controllers\ProcessMatricesController.cs" />
+    <Compile Include="Controllers\ProdDevelopmentsController.cs" />
     <Compile Include="Controllers\ProductionPlansController.cs" />
     <Compile Include="Controllers\PurchaseOrdersController.cs" />
+    <Compile Include="Controllers\QALogsController.cs" />
     <Compile Include="Controllers\QuotesController.cs" />
     <Compile Include="Controllers\RequisitionsController.cs" />
     <Compile Include="Controllers\SafetyIncidentsController.cs" />
@@ -1055,10 +1062,52 @@
     <Compile Include="Migrations\202009200147514_wofileadd.Designer.cs">
       <DependentUpon>202009200147514_wofileadd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012130200327_proddevelop20201212.cs" />
+    <Compile Include="Migrations\202012130200327_proddevelop20201212.Designer.cs">
+      <DependentUpon>202012130200327_proddevelop20201212.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012160713055_droptable20201215.cs" />
+    <Compile Include="Migrations\202012160713055_droptable20201215.Designer.cs">
+      <DependentUpon>202012160713055_droptable20201215.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012190553587_partprice20201218.cs" />
+    <Compile Include="Migrations\202012190553587_partprice20201218.Designer.cs">
+      <DependentUpon>202012190553587_partprice20201218.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012191714568_bomtracker20201219.cs" />
+    <Compile Include="Migrations\202012191714568_bomtracker20201219.Designer.cs">
+      <DependentUpon>202012191714568_bomtracker20201219.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012201259247_addncrf20201220.cs" />
+    <Compile Include="Migrations\202012201259247_addncrf20201220.Designer.cs">
+      <DependentUpon>202012201259247_addncrf20201220.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012201708335_addinvno20201220.cs" />
+    <Compile Include="Migrations\202012201708335_addinvno20201220.Designer.cs">
+      <DependentUpon>202012201708335_addinvno20201220.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012210544010_masterpartfadd20201220.cs" />
+    <Compile Include="Migrations\202012210544010_masterpartfadd20201220.Designer.cs">
+      <DependentUpon>202012210544010_masterpartfadd20201220.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012220522065_fileuploadIA20201221.cs" />
+    <Compile Include="Migrations\202012220522065_fileuploadIA20201221.Designer.cs">
+      <DependentUpon>202012220522065_fileuploadIA20201221.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012220707539_adddecree20201221.cs" />
+    <Compile Include="Migrations\202012220707539_adddecree20201221.Designer.cs">
+      <DependentUpon>202012220707539_adddecree20201221.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012230420155_qalog20201222.cs" />
+    <Compile Include="Migrations\202012230420155_qalog20201222.Designer.cs">
+      <DependentUpon>202012230420155_qalog20201222.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivePart.cs" />
     <Compile Include="Models\BomLevel1.cs" />
+    <Compile Include="Models\BomStatus.cs" />
+    <Compile Include="Models\BomTracker.cs" />
     <Compile Include="Models\BuildHistory.cs" />
     <Compile Include="Models\CalendarWk.cs" />
     <Compile Include="Models\CalWk.cs" />
@@ -1081,12 +1130,28 @@
     <Compile Include="Models\CustomerOrder.cs" />
     <Compile Include="Models\CustomerQoh.cs" />
     <Compile Include="Models\CustomerQuote.cs" />
+    <Compile Include="Models\CycleCountF.cs" />
+    <Compile Include="Models\DecreeLog.cs" />
     <Compile Include="Models\DocStatus.cs" />
+    <Compile Include="Models\DropTable.cs" />
     <Compile Include="Models\ExtQoh.cs" />
+    <Compile Include="Models\FileBomDetail.cs" />
+    <Compile Include="Models\FileCycleCount.cs" />
     <Compile Include="Models\FileInvDetail.cs" />
+    <Compile Include="Models\FileMasterPartF.cs" />
+    <Compile Include="Models\FileNcrFDetail.cs" />
+    <Compile Include="Models\FileQALog.cs" />
     <Compile Include="Models\FileWoDetail.cs" />
+    <Compile Include="Models\MasterPartF.cs" />
+    <Compile Include="Models\NcrF.cs" />
+    <Compile Include="Models\ProblemFound.cs" />
+    <Compile Include="Models\ProdDevelopStatus.cs" />
     <Compile Include="Models\InventoryTransfer.cs" />
     <Compile Include="Models\InvTransferLog.cs" />
+    <Compile Include="Models\ProdDevelopment.cs" />
+    <Compile Include="Models\FileProdDevelop.cs" />
+    <Compile Include="Models\QALog.cs" />
+    <Compile Include="Models\QAType.cs" />
     <Compile Include="Models\ShipFileDetail.cs" />
     <Compile Include="Models\FileDocDetail.cs" />
     <Compile Include="Models\FileDetail.cs" />
@@ -1216,6 +1281,11 @@
     <Compile Include="ViewModels\ProductionIndexDataViewModel.cs" />
     <Compile Include="ViewModels\ProductionStockOutFViewModel.cs" />
     <Compile Include="ViewModels\ProductionStockOutViewModel.cs" />
+    <Compile Include="ViewModels\SaveBomTrackerViewModel.cs" />
+    <Compile Include="ViewModels\SaveMasterPartFViewModel.cs" />
+    <Compile Include="ViewModels\SaveNcrFViewModel.cs" />
+    <Compile Include="ViewModels\SaveProdDevelopmentViewModel.cs" />
+    <Compile Include="ViewModels\SaveQALogViewModel.cs" />
     <Compile Include="ViewModels\SaveShipPlanFViewModel.cs" />
     <Compile Include="ViewModels\SaveTxQohViewModel.cs" />
     <Compile Include="ViewModels\SaveVtShipPlanViewModel.cs" />
@@ -3473,6 +3543,101 @@
     <Content Include="Views\ShipPlanFs\ManitowocSlotted.cshtml" />
     <Content Include="Views\ShipPlanFs\ManitowocStatus.cshtml" />
     <Content Include="Views\VtQohs\VtQohs.cshtml" />
+    <Content Include="Views\WorkOrderFs\ScheduleRework.cshtml" />
+    <Content Include="Views\ShipPlanFs\WqShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\WqSlotted.cshtml" />
+    <Content Include="Views\ShipPlanFs\WqStatus.cshtml" />
+    <Content Include="Views\ShipPlanFs\WqOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\WqOpenDip.cshtml" />
+    <Content Include="Views\ShipPlanFs\WqOpenHyd.cshtml" />
+    <Content Include="Views\ShipPlanFs\WqCanceled.cshtml" />
+    <Content Include="Views\ProdDevelopments\Create.cshtml" />
+    <Content Include="Views\ProdDevelopments\Delete.cshtml" />
+    <Content Include="Views\ProdDevelopments\Details.cshtml" />
+    <Content Include="Views\ProdDevelopments\Edit.cshtml" />
+    <Content Include="Views\ProdDevelopments\Index.cshtml" />
+    <Content Include="Views\PoPlans\PoCustomerView.cshtml" />
+    <Content Include="Views\PoPlans\PoSupplierView.cshtml" />
+    <Content Include="Views\Checklists\_PrintChecklistAnnually.cshtml" />
+    <Content Include="Views\Checklists\_PrintChecklistBiWeekly.cshtml" />
+    <Content Include="Views\Checklists\_PrintChecklistDaily.cshtml" />
+    <Content Include="Views\Checklists\_PrintChecklistMonthly.cshtml" />
+    <Content Include="Views\Checklists\_PrintChecklistQuarterly.cshtml" />
+    <Content Include="Views\Checklists\_PrintChecklistSemiAnnually.cshtml" />
+    <Content Include="Views\Checklists\_PrintChecklistWeekly.cshtml" />
+    <Content Include="Views\Checklists\IndexPrint.cshtml" />
+    <Content Include="Views\Checklists\EngPrint.cshtml" />
+    <Content Include="Views\Checklists\ExecPrint.cshtml" />
+    <Content Include="Views\Checklists\HRPrint.cshtml" />
+    <Content Include="Views\Checklists\LogisticsPrint.cshtml" />
+    <Content Include="Views\Checklists\OpsPrint.cshtml" />
+    <Content Include="Views\Checklists\QualityPrint.cshtml" />
+    <Content Include="Views\Checklists\SalesPrint.cshtml" />
+    <Content Include="Views\Checklists\SupplyChainPrint.cshtml" />
+    <Content Include="Views\WorkOrderFs\SupplyOutageUpdate.cshtml" />
+    <Content Include="Views\ShipPlanFs\BayneCanceled.cshtml" />
+    <Content Include="Views\ShipPlanFs\BayneLookUp.cshtml" />
+    <Content Include="Views\ShipPlanFs\BayneOpen.cshtml" />
+    <Content Include="Views\ShipPlanFs\BayneShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\BayneSlotted.cshtml" />
+    <Content Include="Views\ShipPlanFs\BayneStatus.cshtml" />
+    <Content Include="Views\BomTrackers\Create.cshtml" />
+    <Content Include="Views\BomTrackers\Delete.cshtml" />
+    <Content Include="Views\BomTrackers\Details.cshtml" />
+    <Content Include="Views\BomTrackers\Edit.cshtml" />
+    <Content Include="Views\BomTrackers\Index.cshtml" />
+    <Content Include="Views\NcrFs\Create.cshtml" />
+    <Content Include="Views\NcrFs\Delete.cshtml" />
+    <Content Include="Views\NcrFs\Details.cshtml" />
+    <Content Include="Views\NcrFs\Edit.cshtml" />
+    <Content Include="Views\NcrFs\Index.cshtml" />
+    <Content Include="Views\NcrFs\Closed.cshtml" />
+    <Content Include="Views\NcrFs\Scrap.cshtml" />
+    <Content Include="Views\NcrFs\RTV.cshtml" />
+    <Content Include="Views\NcrFs\ROScrap.cshtml" />
+    <Content Include="Views\NcrFs\RORTV.cshtml" />
+    <Content Include="Views\NcrFs\RORework.cshtml" />
+    <Content Include="Views\NcrFs\ROOpen.cshtml" />
+    <Content Include="Views\NcrFs\RODisposition.cshtml" />
+    <Content Include="Views\NcrFs\ROClosed.cshtml" />
+    <Content Include="Views\NcrFs\Rework.cshtml" />
+    <Content Include="Views\NcrFs\ReadOnlyList.cshtml" />
+    <Content Include="Views\NcrFs\QualityHome.cshtml" />
+    <Content Include="Views\NcrFs\Open.cshtml" />
+    <Content Include="Views\NcrFs\NCRsTimeGraph.cshtml" />
+    <Content Include="Views\NcrFs\List.cshtml" />
+    <Content Include="Views\NcrFs\IsoProcesses.cshtml" />
+    <Content Include="Views\NcrFs\IsoHome.cshtml" />
+    <Content Include="Views\NcrFs\IncomingHome.cshtml" />
+    <Content Include="Views\NcrFs\IsoForms.cshtml" />
+    <Content Include="Views\NcrFs\graphpie.cshtml" />
+    <Content Include="Views\NcrFs\Graph2.cshtml" />
+    <Content Include="Views\NcrFs\Graph.cshtml" />
+    <Content Include="Views\NcrFs\Export.cshtml" />
+    <Content Include="Views\NcrFs\DotNetGraph.cshtml" />
+    <Content Include="Views\NcrFs\Disposition.cshtml" />
+    <Content Include="Views\NcrFs\Dashboard.cshtml" />
+    <Content Include="Views\MasterPartFs\Create.cshtml" />
+    <Content Include="Views\MasterPartFs\Delete.cshtml" />
+    <Content Include="Views\MasterPartFs\Details.cshtml" />
+    <Content Include="Views\MasterPartFs\Edit.cshtml" />
+    <Content Include="Views\MasterPartFs\Index.cshtml" />
+    <Content Include="Views\CycleCountFs\Create.cshtml" />
+    <Content Include="Views\CycleCountFs\Delete.cshtml" />
+    <Content Include="Views\CycleCountFs\Details.cshtml" />
+    <Content Include="Views\CycleCountFs\Edit.cshtml" />
+    <Content Include="Views\CycleCountFs\Index.cshtml" />
+    <Content Include="Views\ExtQohs\ExtPortal.cshtml" />
+    <Content Include="Views\DecreeLogs\Create.cshtml" />
+    <Content Include="Views\DecreeLogs\Delete.cshtml" />
+    <Content Include="Views\DecreeLogs\Details.cshtml" />
+    <Content Include="Views\DecreeLogs\Edit.cshtml" />
+    <Content Include="Views\DecreeLogs\Index.cshtml" />
+    <Content Include="Views\QALogs\Create.cshtml" />
+    <Content Include="Views\QALogs\Delete.cshtml" />
+    <Content Include="Views\QALogs\Details.cshtml" />
+    <Content Include="Views\QALogs\Edit.cshtml" />
+    <Content Include="Views\QALogs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3974,6 +4139,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009200147514_wofileadd.resx">
       <DependentUpon>202009200147514_wofileadd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012130200327_proddevelop20201212.resx">
+      <DependentUpon>202012130200327_proddevelop20201212.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012160713055_droptable20201215.resx">
+      <DependentUpon>202012160713055_droptable20201215.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012190553587_partprice20201218.resx">
+      <DependentUpon>202012190553587_partprice20201218.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012191714568_bomtracker20201219.resx">
+      <DependentUpon>202012191714568_bomtracker20201219.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012201259247_addncrf20201220.resx">
+      <DependentUpon>202012201259247_addncrf20201220.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012201708335_addinvno20201220.resx">
+      <DependentUpon>202012201708335_addinvno20201220.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012210544010_masterpartfadd20201220.resx">
+      <DependentUpon>202012210544010_masterpartfadd20201220.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012220522065_fileuploadIA20201221.resx">
+      <DependentUpon>202012220522065_fileuploadIA20201221.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012220707539_adddecree20201221.resx">
+      <DependentUpon>202012220707539_adddecree20201221.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012230420155_qalog20201222.resx">
+      <DependentUpon>202012230420155_qalog20201222.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

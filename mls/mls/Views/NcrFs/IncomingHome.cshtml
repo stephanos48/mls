@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "IncomingHome";
+}
+
+<h2>Quality Applications</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "QualityHome", "NcrFs", null, null)
+</p>
+
+<br />
+
+<p>
+
+    <h4><u>Incoming Inspections - TX</u></h4>
+    <br />
+
+    @Html.ActionLink("Incoming Inspection List", "Index", "IncomingLogs", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Input Incoming Inspection", "IncomingInsp", "IncomingTopLevels", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Manage Incoming Inspection", "Index", "IncomingTopLevels", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Manage Incoming Inspection Details", "Index", "IncomingDetails", null, null)
+
+</p>

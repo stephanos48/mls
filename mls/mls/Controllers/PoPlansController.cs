@@ -28,16 +28,6 @@ namespace mls.Controllers
             return View("PoPlanStatus");
         }
 
-        public ActionResult PoPlanClosed()
-        {
-            var query = from a in db.PoPlans
-                        where a.PoOrderStatusId == 5
-                        orderby a.ReceiptDateTime descending
-                        select a;
-            return View("PoPlanClosed", query);
-            //return View(db.Requisitions.ToList());
-        }
-
         public ActionResult ThiRoClosed()
         {
             var query = from a in db.PoPlans
@@ -255,6 +245,264 @@ namespace mls.Controllers
                         orderby a.ReceiptDateTime ascending
                         select a;
             return View("LookUp", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoWqHyd()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.CustomerId == 26 && a.MlsDivisionId == 1
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoCustomerView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoWbHyd()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.CustomerId == 2 && a.MlsDivisionId == 1
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoCustomerView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoWbDip()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.CustomerId == 2 && a.MlsDivisionId == 4
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoCustomerView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoHeil()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.CustomerDivisionId == 1 && a.MlsDivisionId == 1
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoCustomerView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoPc()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.CustomerDivisionId == 9 && a.MlsDivisionId == 1
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoCustomerView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoBayne()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.CustomerDivisionId == 4 && a.MlsDivisionId == 1
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoCustomerView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoJbtOgden()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.CustomerDivisionId == 10 && a.MlsDivisionId == 4
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoCustomerView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoJbtOrl()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.CustomerDivisionId == 11 && a.MlsDivisionId == 4
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoCustomerView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoMarathon()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.CustomerDivisionId == 2 && a.MlsDivisionId == 1
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoCustomerView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoHualin()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.SupplierId == 9
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoSupplierView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoLishen()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.SupplierId == 10
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoSupplierView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoVonberg()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.SupplierId == 13
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoSupplierView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoHD()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.SupplierId == 21
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoSupplierView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoFrontier()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.SupplierId == 26
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoSupplierView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoThi()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.SupplierId == 16
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoSupplierView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoSuper()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.SupplierId == 30
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoSupplierView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoCoremark()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.SupplierId == 79
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoSupplierView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoScot()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.SupplierId == 97
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoSupplierView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult OpenPoExtreme()
+        {
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId != 5 && a.PoOrderStatusId != 6 && a.PoOrderStatusId != 7 && a.SupplierId == 81
+                        orderby a.OrderDateTime descending
+                        select a;
+            return View("PoSupplierView", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult PoPlanClosed()
+        {
+            var baselinedate = DateTime.Now.AddDays(-90);
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 5 && a.ReceiptDateTime >= baselinedate
+                        orderby a.ReceiptDateTime descending
+                        select a;
+            return View("PoPlanClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult PoPlanClosed180less()
+        {
+            var baselinedate = DateTime.Now.AddDays(-180);
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 5 && a.ReceiptDateTime >= baselinedate
+                        orderby a.ReceiptDateTime descending
+                        select a;
+            return View("PoPlanClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult PoPlanClosed90()
+        {
+            var baselinedate = DateTime.Now.AddDays(-90);
+            var enddate = DateTime.Now.AddDays(-180);
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 5 && a.ReceiptDateTime >= baselinedate && a.ReceiptDateTime <= enddate
+                        orderby a.ReceiptDateTime descending
+                        select a;
+            return View("PoPlanClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult PoPlanClosed180()
+        {
+            var startdate = DateTime.Now.AddDays(-180);
+            var enddate = DateTime.Now.AddDays(-365);
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 5 && a.ReceiptDateTime <= startdate
+                        orderby a.ReceiptDateTime descending
+                        select a;
+            return View("PoPlanClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult PoPlanClosed365less()
+        {
+            var baselinedate = DateTime.Now.AddDays(-365);
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 5 && a.ReceiptDateTime >= baselinedate
+                        orderby a.ReceiptDateTime descending
+                        select a;
+            return View("PoPlanClosed", query);
+            //return View(db.Requisitions.ToList());
+        }
+
+        public ActionResult PoPlanClosed365()
+        {
+            var baselinedate = DateTime.Now.AddDays(-365);
+            var query = from a in db.PoPlans
+                        where a.PoOrderStatusId == 5 && a.ReceiptDateTime <= baselinedate
+                        orderby a.ReceiptDateTime descending
+                        select a;
+            return View("PoPlanClosed", query);
             //return View(db.Requisitions.ToList());
         }
 

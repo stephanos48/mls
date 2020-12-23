@@ -4,13 +4,13 @@
     ViewBag.Title = "Schedule";
 
 }
-<h2>Production Schedule - All Minus Bayne</h2>
+<h2>Production Schedule - Main</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "Index", "WorkOrderFs", null, null) | @Html.ActionLink("ScheduleAll", "ScheduleAll", "WorkOrderFs", null, null) | @Html.ActionLink("Bayne", "Schedule2", "WorkOrderFs", null, null) | @Html.ActionLink("MinusBayne", "ScheduleMinusBayne", "WorkOrderFs", null, null) | @Html.ActionLink("Extreme", "ScheduleExtreme", "WorkOrderFs", null, null) | @Html.ActionLink("Chassis", "ScheduleChassis", "WorkOrderFs", null, null) | @Html.ActionLink("CylRework", "CylRework", "WorkOrderFs", null, null) | @Html.ActionLink("CylTest", "CylTest", "WorkOrderFs", null, null) | @Html.ActionLink("NeedSageUpdate", "ClosedNeedSageUpdate", "WorkOrderFs", null, null) | @Html.ActionLink("FinalReview", "FinalReview", "WorkOrderFs", null, null) | @Html.ActionLink("Hold", "ScheduleOnHold", "WorkOrderFs", null, null) | @Html.ActionLink("Closed", "ScheduleClosed", "WorkOrderFs", null, null) | @Html.ActionLink("Canceled", "ScheduleCanceled", "WorkOrderFs", null, null) | @if (User.Identity.IsAuthenticated)
+    @Html.ActionLink("Go Back", "Index", "WorkOrderFs", null, null) | @Html.ActionLink("All", "ScheduleAll", "WorkOrderFs", null, null) | @Html.ActionLink("Bayne", "Schedule2", "WorkOrderFs", null, null) | @Html.ActionLink("NcrRework", "ScheduleRework", "WorkOrderFs", null, null) | @Html.ActionLink("Extreme", "ScheduleExtreme", "WorkOrderFs", null, null) | @Html.ActionLink("Chassis", "ScheduleChassis", "WorkOrderFs", null, null) | @Html.ActionLink("CylRework", "CylRework", "WorkOrderFs", null, null) | @Html.ActionLink("CylTest", "CylTest", "WorkOrderFs", null, null) | @Html.ActionLink("FinalReview", "FinalReview", "WorkOrderFs", null, null) | @Html.ActionLink("SageUpdate", "ClosedNeedSageUpdate", "WorkOrderFs", null, null) | @Html.ActionLink("Hold", "ScheduleOnHold", "WorkOrderFs", null, null) | @Html.ActionLink("Closed", "ScheduleClosed", "WorkOrderFs", null, null) | @Html.ActionLink("Canceled", "ScheduleCanceled", "WorkOrderFs", null, null) | @if (User.Identity.IsAuthenticated)
     {
         if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
-        {@Html.ActionLink("Create New", "Create")}
+        { @Html.ActionLink("Create New", "Create") }
     }
 </p>
 <br />

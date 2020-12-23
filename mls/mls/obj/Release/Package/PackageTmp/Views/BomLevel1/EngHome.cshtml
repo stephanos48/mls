@@ -10,14 +10,58 @@
 </p>
 <br />
 
-<h4><u>Bill of Materials</u></h4>
-<br />
+<container>
+    <div class="col-md-6">
+        <h4><u>Bill of Materials</u></h4>
+        <br />
 
-<p>
-    @Html.ActionLink("Bill of Materials", "Search", "BomLevel1", null, null)
-    <br />
-    <br />
-    @Html.ActionLink("Build Ability", "Index", "BomLevel1", null, null)
-    <br />
-    <br />
-</p>
+        <p>
+            @Html.ActionLink("BOM Tracker", "Index", "BomTrackers", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("Bill of Materials", "Search", "BomLevel1", null, null)
+            <br />
+            <br />
+            @Html.ActionLink("Build Ability", "Index", "BomLevel1", null, null)
+            <br />
+            <br />
+        </p>
+
+        <h4><u>Product Development</u></h4>
+        <br />
+
+        <p>
+            @Html.ActionLink("Product Development", "Index", "ProdDevelopments", null, null)
+            <br />
+            <br />
+        </p>
+    </div>
+    <div class="col-md-6">
+        @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Admin") || User.IsInRole("InvPower") || User.IsInRole("EngPower"))
+                {
+                <h4><u>Engineering Part / Drawing Management</u></h4>
+                <br />
+                    @Html.ActionLink("Master Part List - All", "Index", "MasterPartFs", null, null)
+                    <br />
+                    <br />
+                    @Html.ActionLink("Master Part List - UH", "UHMasterPartF", "MasterPartFs", null, null)
+                    <br />
+                    <br />
+                    @Html.ActionLink("Master Part List - DIP", "DipMasterPartF", "MasterPartFs", null, null)
+                    <br />
+                    <br />
+                    @Html.ActionLink("Master Part List - DOP", "DopMasterPartF", "MasterPartFs", null, null)
+                    <br />
+                    <br />
+                    @Html.ActionLink("Master Part List - CL", "CLMasterPartF", "MasterPartFs", null, null)
+                    <br />
+                    <br />
+                    @Html.ActionLink("Master Part List - DTT", "DttMasterPartF", "MasterPartFs", null, null)
+                    <br />
+                    <br />
+            }
+        }
+    </div>
+</container>

@@ -24,11 +24,13 @@ namespace mls.Controllers
 
         public ActionResult ExtQoh1s()
         {
-            var startDate = DateTime.Parse("8/1/2020");
+            var startDate = DateTime.Parse("12/16/2020");
             var query = from tx in db.ExtQohs
-                        join it in db.InventoryTransfers.Where(a => a.FinishInvLocationId == 5) on tx.Pn equals it.CustomerPn into fit
-                        join it in db.InventoryTransfers.Where(b => b.InvLocationId == 5) on tx.Pn equals it.CustomerPn into it
+                        join it in db.InventoryTransfers.Where(c => c.TransferDateTime >= startDate).Where(a => a.FinishInvLocationId == 5) on tx.Pn equals it.CustomerPn into fit
+                        join it in db.InventoryTransfers.Where(c => c.TransferDateTime >= startDate).Where(b => b.InvLocationId == 5) on tx.Pn equals it.CustomerPn into it
                         join wo in db.WoBuilds.Where(c => c.WoEnterDateTime >= startDate).Where(d => d.ContractorId == 2) on tx.Pn equals wo.CustomerPn into w
+                        //join wo in db.WoBuilds.Where(d => d.ContractorId == 2) on tx.Pn equals wo.CustomerPn into w
+                        orderby tx.Pn ascending
                         select new
                         {
                             Id = tx.ExtQohId,

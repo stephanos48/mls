@@ -1,0 +1,117 @@
+﻿@model IEnumerable<mls.Models.NcrF>
+
+@{
+    ViewBag.Title = "All NCRs";
+}
+
+<h2>All NCR Records</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "QualityHome") | @Html.ActionLink("Disposition", "Disposition") | @Html.ActionLink("Rework", "RORework") | @Html.ActionLink("RTV", "RTV") | @Html.ActionLink("Scrap", "Scrap") | @Html.ActionLink("Closed", "Closed")
+
+</p>
+<table id="ncr1" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.NcrFId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NcrNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IssueDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DefectDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DispositionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DispositionDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DispositionedBy)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.NcrFId })|
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NcrFId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NcrNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IssueDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerDivisionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MlsDivisionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DefectDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DispositionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DispositionDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DispositionedBy)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+               $("#ncr1").DataTable();
+            });
+
+    </script>
+}

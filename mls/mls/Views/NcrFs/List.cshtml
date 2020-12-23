@@ -1,0 +1,103 @@
+﻿@using System.Data.Entity
+@model IEnumerable<mls.Models.NcrF>
+
+@{
+    ViewBag.Title = "All NCRs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>All NCR Records</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "QualityHome") | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("All", "Index") | @Html.ActionLink("Open", "Open") |@Html.ActionLink("Disposition", "Disposition") | @Html.ActionLink("Rework", "Rework") | @Html.ActionLink("RTV", "RTV") | @Html.ActionLink("Scrap", "Scrap") | @Html.ActionLink("Closed", "Closed")
+</p>
+
+<table id="ncr" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.NcrFId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NcrNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IssueDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NcrTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DefectDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DispositionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DispositionDateTime)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.NcrFId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.NcrFId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NcrFId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NcrFId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NcrNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IssueDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NcrTypeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DefectDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DispositionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DispositionDateTime)
+                </td>
+
+            </tr>
+
+        }
+    </tbody>
+
+</table>
+
+@Html.ActionLink("Export Data", "Export")
+
+@section scripts
+{
+    <script>
+            $(document).ready(function() {
+                $("#ncr").DataTable({
+                    'iDisplayLength': 100 });
+                });
+    </script>
+}
+

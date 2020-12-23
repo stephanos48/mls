@@ -1,0 +1,112 @@
+﻿@model IEnumerable<mls.Models.QALog>
+
+@{
+    ViewBag.Title = "QALog";
+}
+
+<h2>Quality Alert Log</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "QualityHome", "NcrFs", null, null) | @Html.ActionLink("All QAs", "Index") | @Html.ActionLink("Internal QAs", "Internal") | @Html.ActionLink("Supplier QAs", "Supplier") | @Html.ActionLink("Create New", "Create")
+</p>
+<table id="master" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Created
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QANo)
+            </th>
+            <th>
+                WhereFound
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProblemDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CleanPointChina)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CleanPointUsa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.QALogId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.QALogId })|
+                    <a href="javascript:void(0);" data-id="@item.QALogId" class="deleteItem">Delete</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QACreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QANo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProblemFoundId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProblemDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CleanPointChina)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CleanPointUsa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+                $(document).ready(function() {
+                    $("#master").DataTable({
+                      'iDisplayLength': 100 });
+                    });
+    </script>
+
+    <script>
+    $('.deleteItem').click(function (e) {
+               e.preventDefault();
+               var $ctrl = $(this);
+               if (confirm('Do you really want to delete this item?')) {
+                   $.ajax({
+                       url: '@Url.Action("Delete")',
+                    type: 'POST',
+                    data: { id: $(this).data('id') }
+                    }).done(function (data) {
+                    if (data.Result == "OK") {
+                    $ctrl.closest('tr').remove();
+                    }
+                    else if (data.Result.Message) {
+                    alert(data.Result.Message);
+                    }
+                    }).fail(function () {
+                    alert("There is something wrong. Please try again.");
+                    })
+
+                    }
+               });
+    </script>
+}

@@ -20,10 +20,10 @@
                 @Html.DisplayNameFor(model => model.TransferDateTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.InvLocationId)
+                From
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FinishInvLocationId)
+                To
             </th>
             <th>
                 CustomerPn
@@ -53,7 +53,7 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.InventoryTransferId })|
                     @Html.ActionLink("Details", "Details", new { id = item.InventoryTransferId })|
-                    @Html.ActionLink("Delete", "Delete", new { id = item.InventoryTransferId })
+                    <a href="javascript:void(0);" data-id="@item.InventoryTransferId" class="deleteItem">Delete</a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.InventoryTransferId)

@@ -262,7 +262,7 @@ namespace mls.Models
 
         public DbSet<FileInvDetail> FileInvDetails { get; set; }
 
-        public DbSet<InvTransferLog> InvTransferLogs { get; set; } 
+        public DbSet<InvTransferLog> InvTransferLogs { get; set; }
 
         public DbSet<Contractor> Contractors { get; set; }
 
@@ -270,9 +270,44 @@ namespace mls.Models
 
         public DbSet<WorkOrderF> WorkOrderFs { get; set; }
 
-        public DbSet<FileWoDetail> FileWoDetails { get; set; } 
+        public DbSet<FileWoDetail> FileWoDetails { get; set; }
 
         public DbSet<WoFDetail> WoFDetails { get; set; }
 
+        public DbSet<ProdDevelopment> ProdDevelopments { get; set; }
+
+        public DbSet<ProdDevelopStatus> ProdDevelopStatuses { get; set; }
+
+        public DbSet<FileProdDevelop> FileProdDevelops { get; set; }
+
+        public DbSet<DropTable> DropTables { get; set; }
+
+        public DbSet<BomTracker> BomTrackers { get; set; }
+
+        public DbSet<FileBomDetail> FileBomDetails { get; set; }
+
+        public DbSet<BomStatus> BomStatuses { get; set; }
+
+        public DbSet<NcrF> NcrFs { get; set; }
+
+        public DbSet<FileNcrFDetail> FileNcrFDetails { get; set; }
+
+        public DbSet<MasterPartF> MasterPartFs { get; set; }
+
+        public DbSet<FileMasterPartF> FileMasterPartFs { get; set; }
+
+        public DbSet<CycleCountF> CycleCountFs { get; set; }
+
+        public DbSet<FileCycleCount> FileCycleCounts { get; set; }
+
+        public DbSet<DecreeLog> DecreeLogs { get; set; }
+
+        public DbSet<QALog> QALogs { get; set; }
+
+        public DbSet<ProblemFound> ProblemFounds { get; set; }
+
+        public DbSet<QAType> QATypes { get; set; }
+
+        public DbSet<FileQALog> FileQALogs { get; set; }
     }
 }

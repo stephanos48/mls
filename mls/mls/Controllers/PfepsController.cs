@@ -293,7 +293,7 @@ namespace mls.Controllers
         [HttpGet]
         public ActionResult _StockOut(int parttype, int customer, int division)
         {
-            var startDate = DateTime.Parse("5/11/2020");
+            var startDate = DateTime.Parse("12/16/2020");
             var queryNew = from mp in db.TxQohs
                 join co in db.ShipPlanFs.Where(o => o.ShipPlanStatusId != 5 && o.ShipPlanStatusId != 8 && o.ShipPlanStatusId != 9) on mp.Pn equals co.CustomerPn into ordergroup
                 join pfep in db.Pfeps on mp.Pn equals pfep.CustomerPn
@@ -302,6 +302,7 @@ namespace mls.Controllers
                 join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on mp.Pn equals r.CustomerPn into g
                 join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
                 join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on mp.Pn equals j.CustomerPn into sr
+                join k in db.CycleCountFs.Where(u => u.CycleCountDateTime >= startDate) on mp.Pn equals k.CustomerPn into kr
                 where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && (mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum()) == 0
                 orderby mp.Pn
                 select new
@@ -309,7 +310,7 @@ namespace mls.Controllers
                     mp.Pn,
                     pfep.PfepTx,
                     pfep.KbQty,
-                    Qoh = mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
+                    Qoh = mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum() + (int?)kr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
                     PO = (int?)pogroup.Sum(c => c.OrderQty) - (int?)pogroup.Sum(c => c.ReceivedQty),
                     OO = (int?)ordergroup.Sum(c => c.OrderQty),
                     Ocean = (int?)oceangroup.Sum(s => s.ReceivedQty)
@@ -450,7 +451,7 @@ namespace mls.Controllers
         public ActionResult _LowStock(int parttype, int customer, int division)
         {
 
-            var startDate = DateTime.Parse("5/11/2020");
+            var startDate = DateTime.Parse("12/16/2020");
             var queryNew = from mp in db.TxQohs
                            join co in db.ShipPlanFs.Where(o => o.ShipPlanStatusId != 5 && o.ShipPlanStatusId != 8 && o.ShipPlanStatusId != 9) on mp.Pn equals co.CustomerPn into ordergroup
                            join pfep in db.Pfeps on mp.Pn equals pfep.CustomerPn
@@ -459,6 +460,7 @@ namespace mls.Controllers
                            join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on mp.Pn equals r.CustomerPn into g
                            join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
                            join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on mp.Pn equals j.CustomerPn into sr
+                           join k in db.CycleCountFs.Where(u => u.CycleCountDateTime >= startDate) on mp.Pn equals k.CustomerPn into kr
                            where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && ((mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum()) < pfep.Min.Value) && (mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum()) != 0
                            orderby mp.Pn
                            select new
@@ -467,7 +469,7 @@ namespace mls.Controllers
                                mp.PartDescription,
                                pfep.PfepTx,
                                pfep.KbQty,
-                               Qoh = mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
+                               Qoh = mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum() + (int?)kr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
                                PO = (int?)pogroup.Sum(c => c.OrderQty) - (int?)pogroup.Sum(c => c.ReceivedQty),
                                OO = (int?)ordergroup.Sum(c => c.OrderQty),
                                Ocean = (int?)oceangroup.Sum(s => s.ReceivedQty)
@@ -583,7 +585,7 @@ namespace mls.Controllers
         public ActionResult _NeedToOrder(int parttype, int customer, int division)
         {
 
-            var startDate = DateTime.Parse("5/11/2020");
+            var startDate = DateTime.Parse("12/16/2020");
             var queryNew = from mp in db.TxQohs
                            join co in db.ShipPlanFs.Where(o => o.ShipPlanStatusId != 5 && o.ShipPlanStatusId != 8 && o.ShipPlanStatusId != 9) on mp.Pn equals co.CustomerPn into ordergroup
                            join pfep in db.Pfeps on mp.Pn equals pfep.CustomerPn
@@ -592,6 +594,7 @@ namespace mls.Controllers
                            join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on mp.Pn equals r.CustomerPn into g
                            join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
                            join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on mp.Pn equals j.CustomerPn into sr
+                           join k in db.CycleCountFs.Where(u => u.CycleCountDateTime >= startDate) on mp.Pn equals k.CustomerPn into kr
                            where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 && mp.Qoh <= pfep.Min.Value 
                            orderby mp.Pn
                            select new
@@ -600,7 +603,7 @@ namespace mls.Controllers
                                mp.PartDescription,
                                pfep.PfepTx,
                                pfep.KbQty,
-                               Qoh = mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
+                               Qoh = mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum() + (int?)kr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
                                PO = (int?)pogroup.Sum(c => c.OrderQty) - (int?)pogroup.Sum(c => c.ReceivedQty),
                                OO = (int?)ordergroup.Sum(c => c.OrderQty),
                                Ocean = (int?)oceangroup.Sum(s => s.ReceivedQty)
@@ -714,7 +717,7 @@ namespace mls.Controllers
         public ActionResult _AllParts(int parttype, int customer, int division)
         {
 
-            var startDate = DateTime.Parse("5/11/2020");
+            var startDate = DateTime.Parse("12/16/2020");
             var queryNew = from mp in db.TxQohs
                            join co in db.ShipPlanFs.Where(o => o.ShipPlanStatusId != 5 && o.ShipPlanStatusId != 8 && o.ShipPlanStatusId != 9) on mp.Pn equals co.CustomerPn into ordergroup
                            join pfep in db.Pfeps on mp.Pn equals pfep.CustomerPn
@@ -723,6 +726,7 @@ namespace mls.Controllers
                            join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on mp.Pn equals r.CustomerPn into g
                            join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on mp.Pn equals s.CustomerPn into gr
                            join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on mp.Pn equals j.CustomerPn into sr
+                           join k in db.CycleCountFs.Where(u => u.CycleCountDateTime >= startDate) on mp.Pn equals k.CustomerPn into kr
                            where pfep.PartTypeId == parttype && mp.CustomerId == customer && mp.CustomerDivisionId == division && mp.ActivePartId == 1 
                            orderby mp.Pn
                            select new
@@ -731,7 +735,7 @@ namespace mls.Controllers
                                mp.PartDescription,
                                pfep.PfepTx,
                                pfep.KbQty,
-                               Qoh = mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
+                               Qoh = mp.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum() + (int?)kr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
                                PO = (int?)pogroup.Sum(c => c.OrderQty) - (int?)pogroup.Sum(c => c.ReceivedQty),
                                OO = (int?)ordergroup.Sum(c => c.OrderQty),
                                Ocean = (int?)oceangroup.Sum(s => s.ReceivedQty)

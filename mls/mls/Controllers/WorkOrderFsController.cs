@@ -111,6 +111,15 @@ namespace mls.Controllers
             return View(query.ToList());
         }
 
+        public ActionResult ScheduleRework()
+        {
+            var query = from c in db.WorkOrderFs
+                        where c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 3 && c.WoOrderStatusId != 8 && c.WoOrderStatusId != 7 && c.OrderTypeId == 4
+                        orderby c.ShipDate ascending
+                        select c;
+            return View("ScheduleRework", query.ToList());
+        }
+
         public ActionResult CylRework()
         {
             var query = from c in db.WorkOrderFs
@@ -132,7 +141,7 @@ namespace mls.Controllers
         public ActionResult ScheduleMinusBayne()
         {
             var query = from c in db.WorkOrderFs
-                        where c.WoOrderStatusId != 3 && c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 7 && c.WoOrderStatusId != 8 && c.CustomerDivisionId != 9 && c.MlsDivisionId != 3 && c.WoPartTypeId != 11 && c.WoPartTypeId != 13
+                        where c.WoOrderStatusId != 3 && c.WoOrderStatusId != 5 && c.WoOrderStatusId != 6 && c.WoOrderStatusId != 7 && c.WoOrderStatusId != 8 && c.CustomerDivisionId != 9 && c.MlsDivisionId != 3 && c.WoPartTypeId != 11 && c.WoPartTypeId != 13 && c.OrderTypeId != 4
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
@@ -217,6 +226,69 @@ namespace mls.Controllers
                         orderby c.ShipDate ascending
                         select c;
             return View(query.ToList());
+        }
+
+        public ActionResult StockOutReportAll()
+        {
+            var query = from c in db.WorkOrderFs
+                        where c.WoOrderStatusId != 5 && c.PartStockOutId != 6
+                        orderby c.ShipDate ascending
+                        select c;
+            return View("SupplyOutageUpdate", query.ToList());
+        }
+
+        public ActionResult StockOutReportNew()
+        {
+            var query = from c in db.WorkOrderFs
+                        where c.WoOrderStatusId != 5 && c.PartStockOutId == 1
+                        orderby c.ShipDate ascending
+                        select c;
+            return View("SupplyOutageUpdate", query.ToList());
+        }
+
+        public ActionResult StockOutReportWorkingSupplier()
+        {
+            var query = from c in db.WorkOrderFs
+                        where c.WoOrderStatusId != 5 && c.PartStockOutId == 2
+                        orderby c.ShipDate ascending
+                        select c;
+            return View("SupplyOutageUpdate", query.ToList());
+        }
+
+        public ActionResult StockOutReportOrdered()
+        {
+            var query = from c in db.WorkOrderFs
+                        where c.WoOrderStatusId != 5 && c.PartStockOutId == 3
+                        orderby c.ShipDate ascending
+                        select c;
+            return View("SupplyOutageUpdate", query.ToList());
+        }
+
+        public ActionResult StockOutReportPaymentNeeded()
+        {
+            var query = from c in db.WorkOrderFs
+                        where c.WoOrderStatusId != 5 && c.PartStockOutId == 4
+                        orderby c.ShipDate ascending
+                        select c;
+            return View("SupplyOutageUpdate", query.ToList());
+        }
+
+        public ActionResult StockOutReportPaidEnRoute()
+        {
+            var query = from c in db.WorkOrderFs
+                        where c.WoOrderStatusId != 5 && c.PartStockOutId == 5
+                        orderby c.ShipDate ascending
+                        select c;
+            return View("SupplyOutageUpdate", query.ToList());
+        }
+
+        public ActionResult StockOutReportAllPartsOH()
+        {
+            var query = from c in db.WorkOrderFs
+                        where c.WoOrderStatusId != 5 && c.PartStockOutId == 6
+                        orderby c.ShipDate ascending
+                        select c;
+            return View("SupplyOutageUpdate", query.ToList());
         }
 
         public ActionResult ProductionPlan1(int? id)

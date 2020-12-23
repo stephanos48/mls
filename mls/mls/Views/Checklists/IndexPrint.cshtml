@@ -1,0 +1,70 @@
+﻿@model IEnumerable<mls.Models.Checklist>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Checklist Home</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "Scrums", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Ops", "OpsPrint") | @Html.ActionLink("SC", "SupplyChainPrint") | @Html.ActionLink("Eng", "EngPrint") | @Html.ActionLink("Quality", "QualityPrint") | @Html.ActionLink("Logistics", "LogisticsPrint") | @Html.ActionLink("Sales", "SalesPrint") | @Html.ActionLink("Exec", "ExecPrint") | @Html.ActionLink("HR", "HRPrint")
+</p>
+<table id="checklist" class="table table-bordered table-hover"> 
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChecklistId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChecklistAction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChecklistTypeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChecklistAction)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#checklist").DataTable({
+              'iDisplayLength': 100 });
+            });
+
+    </script>
+}

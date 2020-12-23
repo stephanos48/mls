@@ -1,0 +1,128 @@
+﻿@model mls.Models.BomTracker
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BomTracker</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BomStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BomStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BomPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BomPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RevLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RevLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BomCreatorExcel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BomCreatorExcel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreatedExcel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreatedExcel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BomCreatorSage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BomCreatorSage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreatedSage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreatedSage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BomCreatorPortal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BomCreatorPortal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreatedPortal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreatedPortal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApprovedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApprovedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateApproved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateApproved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

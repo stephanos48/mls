@@ -879,3 +879,13 @@ C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.addcontr
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.snupdatecyl.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.woupdate20200831.resources
 C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.wofileadd.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.proddevelop20201212.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.droptable20201215.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.partprice20201218.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.bomtracker20201219.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.addncrf20201220.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.addinvno20201220.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.masterpartfadd20201220.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.fileuploadIA20201221.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.adddecree20201221.resources
+C:\Users\Helena\Documents\GitHub\mls\mls\mls\obj\Release\mls.Migrations.qalog20201222.resources

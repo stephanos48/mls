@@ -1,0 +1,122 @@
+﻿@model mls.Models.BomTracker
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BomTracker</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BomStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BomStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BomPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BomPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RevLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RevLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BomCreatorExcel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BomCreatorExcel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreatedExcel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreatedExcel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BomCreatorSage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BomCreatorSage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreatedSage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreatedSage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BomCreatorPortal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BomCreatorPortal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreatedPortal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreatedPortal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApprovedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApprovedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateApproved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateApproved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BomTrackerId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

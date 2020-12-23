@@ -265,7 +265,7 @@ namespace mls.Controllers
             }
         }
 
-        
+        /*
         // GET: InventoryTransfers/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -291,7 +291,7 @@ namespace mls.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+        */
 
         protected override void Dispose(bool disposing)
         {

@@ -9,7 +9,8 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+    <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+
     <div class="form-horizontal">
         <h4>VtQoh</h4>
         <hr />

@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "WbStatus";
+}
+
+<h2>Wq Status</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Sales", "ShipPlanFs", null, null) | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Slot Schedule", "WqSlotted") | @Html.ActionLink("Wq Open All", "WqOpen") | @Html.ActionLink("Wq Open Hyd", "WqOpenHyd") | @Html.ActionLink("Wq Open Dip", "WqOpenDip") | @Html.ActionLink("Shipped Orders", "WqShipped") | @Html.ActionLink("Canceled Orders", "WqCanceled")
+</p>
+
+<br />
+
+<h4><u>SO Issues Needing Review</u></h4>
+@Html.Action("_OrderIssuesCustomer", "ShipPlanFs", new { status = 2, customer = 26 })
+<br />
+<br />
+<h4><u>SO To Cancel</u></h4>
+@Html.Action("_OrderIssuesCustomer", "ShipPlanFs", new { status = 8, customer = 26 })
+<br />
+<br />
+<h4><u>HOT Orders</u></h4>
+@Html.Action("_ShipHotCustomer", "ShipPlanFs", new { Customer = 26 })

@@ -1,0 +1,109 @@
+﻿@model IEnumerable<mls.Models.ProdDevelopment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Prod Development</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "EngHome", "BomLevel1", null, null) | @Html.ActionLink("All", "Index") | @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Queue", "Queue") | @Html.ActionLink("Received", "Received") | @Html.ActionLink("RDesign", "RDesign") | @Html.ActionLink("Quote", "Quote") | @Html.ActionLink("PO", "PO") | @Html.ActionLink("FDesign", "FDesign") | @Html.ActionLink("SignOff", "SignOff") | @Html.ActionLink("Proto", "Proto") | @Html.ActionLink("LTest", "LTest") | @Html.ActionLink("CTest", "CTest") | @Html.ActionLink("FTrial", "FTrial") | @Html.ActionLink("Approved", "Approved") 
+</p>
+<table id="prod" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProdDevelopStatusId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReverseLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiptDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UhPn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProdDevelopmentId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.ProdDevelopmentId })|
+                    <a href="javascript:void(0);" data-id="@item.ProdDevelopmentId" class="deleteItem">Delete</a>
+                </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.ProdDevelopStatusId)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReverseLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReceiptDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UhPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#prod").DataTable({
+              'iDisplayLength': 100 });
+            });
+
+    </script>
+
+    <script>
+        $('.deleteItem').click(function (e) {
+                   e.preventDefault();
+                   var $ctrl = $(this);
+                   if (confirm('Do you really want to delete this item?')) {
+                       $.ajax({
+                           url: '@Url.Action("Delete")',
+                        type: 'POST',
+                        data: { id: $(this).data('id') }
+                        }).done(function (data) {
+                        if (data.Result == "OK") {
+                        $ctrl.closest('tr').remove();
+                        }
+                        else if (data.Result.Message) {
+                        alert(data.Result.Message);
+                        }
+                        }).fail(function () {
+                        alert("There is something wrong. Please try again.");
+                        })
+
+                        }
+                   });
+    </script>
+}

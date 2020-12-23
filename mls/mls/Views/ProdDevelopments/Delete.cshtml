@@ -1,0 +1,232 @@
+﻿@model mls.Models.ProdDevelopment
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ProdDevelopment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReverseLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReverseLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceiptDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceiptDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IncCarrier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IncCarrier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IncTrackingInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IncTrackingInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UhPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UhPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SerialNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceiptQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceiptQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdDevelopStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProdDevelopStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipCarrier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipCarrier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipTrackingInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipTrackingInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipToLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipToLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoughDesignBomCompletionDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoughDesignBomCompletionDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuoteCompletionDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuoteCompletionDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPoDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPoDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinalDesignCompletionDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinalDesignCompletionDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerSignOffDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerSignOffDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrototypeCompletionDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrototypeCompletionDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LabTestCompletionDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LabTestCompletionDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerTestCompletionDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerTestCompletionDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FieldTrialCompletionDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FieldTrialCompletionDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApprovedForProductionDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApprovedForProductionDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

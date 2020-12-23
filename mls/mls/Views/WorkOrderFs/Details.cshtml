@@ -101,6 +101,14 @@
             </dd>
 
             <dt>
+                @Html.DisplayNameFor(model => model.ShipDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ShipDate)
+            </dd>
+
+            <dt>
                 @Html.DisplayNameFor(model => model.Sn)
             </dt>
 
@@ -114,6 +122,14 @@
 
             <dd>
                 @Html.DisplayFor(model => model.CustomerPo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CustomerPoLine)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CustomerPoLine)
             </dd>
 
             <dt>
@@ -141,14 +157,19 @@
     </div>
 
     <div class="col-md-6">
-        <br />
+        <div>
+            <h5><b>BUILD  |  DO NOT BUILD  |  TEAR DOWN</b></h5>
+            <br />
+            <br />
+        </div>
         <table class="table table-bordered">
+            <h5><b>WO DETAIL</b></h5>
             <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Task</th>
-                    <th>Time Start</th>
-                    <th>Time End</th>
+                    <th>WorkOrderDetailTask</th>
+                    <th>TimeStart</th>
+                    <th>TimeEnd</th>
                     <th>Responsible</th>
                 </tr>
             </thead>
@@ -160,8 +181,21 @@
                 <tr height="30"><td></td><td></td><td></td><td></td><td></td></tr>
             </tbody>
         </table>
+        <div>
+            <h5><b>Parts Used to Rework (Also fill out Inv Adj)</b></h5>
+            <br />
+            <br />
+            <br />
+            <br />
+            <h5><b>Parts Rejected (Also fill out NCR)</b></h5>
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
     </div>
+
         <footer class="page-footer font-small blue">
-            <h6>W.F.12 - MLS Work Order Rev 1 (Last Updated 10/24/2018)</h6>
+            <h6>W.F.12 - MLS Work Order Rev 2 (Last Updated 12/09/2020)</h6>
         </footer>
 </div>

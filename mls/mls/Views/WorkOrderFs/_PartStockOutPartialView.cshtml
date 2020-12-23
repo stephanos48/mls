@@ -38,7 +38,7 @@
     {
         <tr>
             <td>
-                @if (User.Identity.IsAuthenticated)
+                @*@if (User.Identity.IsAuthenticated)
                 {
                     if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
                     {@Html.ActionLink("Edit", "Edit", new { id = item.WorkOrderFId })}
@@ -48,7 +48,7 @@
                 {
                     if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
                     {@Html.ActionLink("Delete", "Delete", new { id = item.WorkOrderFId })}
-                }
+                }*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.WorkOrderFId)

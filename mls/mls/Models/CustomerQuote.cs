@@ -52,6 +52,8 @@ namespace mls.Models
         [Display(Name = "Freight Cost")]
         public string FreightCost { get; set; }
 
+        public string PartPrice { get; set; }
+
         [Display(Name = "Total Price")]
         public decimal? TotalPrice { get; set; }
 

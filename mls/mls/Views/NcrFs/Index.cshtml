@@ -1,0 +1,297 @@
+﻿@model IEnumerable<mls.Models.NcrF>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NcrNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IssueDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NcrTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartSupplier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DefectDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DefectCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DispositionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DispositionDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DispositionedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReworkNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReworkCompletedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReworkHrs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReworkPartsUsed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReworkPartsScrapped)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReworkQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReworkStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReworkNotes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScrapNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScrapQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScrapApprovedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScrapApprovalDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScrappedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScrapDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScrapNotes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScrapStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RtvNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipperNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RgNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Carrier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrackingInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RtvNotes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RtvStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReworkCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScrapCost)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NcrNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IssueDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NcrTypeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerDivisionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartSupplier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SerialNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DefectDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DefectCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MlsDivisionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DispositionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DispositionDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DispositionedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReworkNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReworkCompletedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReworkHrs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReworkPartsUsed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReworkPartsScrapped)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReworkQty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReworkStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReworkNotes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScrapNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScrapQty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScrapApprovedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScrapApprovalDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScrappedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScrapDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScrapNotes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScrapStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RtvNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipperNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RgNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Carrier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackingInfo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipTo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RtvNotes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RtvStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReworkCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScrapCost)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.NcrFId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NcrFId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.NcrFId })
+        </td>
+    </tr>
+}
+
+</table>

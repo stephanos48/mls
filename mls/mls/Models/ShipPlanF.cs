@@ -87,6 +87,8 @@ namespace mls.Models
 
         public string Notes { get; set; }
 
+        public string InvNo { get; set; }
+
         public virtual ICollection<ShipFileDetail> ShipFileDetails { get; set; }
 
     }

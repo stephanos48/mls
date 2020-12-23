@@ -1,0 +1,179 @@
+﻿@model mls.ViewModels.SaveBomTrackerViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "BomTrackers", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    //<input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+
+    <div class="form-horizontal">
+        <h4>BomTracker</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.BomTracker.BomTrackerId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BomTracker.BomStatusId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.BomTracker.BomStatusId, new SelectList(Model.BomStatuses, "BomStatusId", "BomStatusName"), "Select Status", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BomTracker.BomStatusId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BomTracker.BomPn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BomTracker.BomPn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BomTracker.BomPn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BomTracker.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BomTracker.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BomTracker.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BomTracker.RevLevel, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BomTracker.RevLevel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BomTracker.RevLevel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BomTracker.BomCreatorExcel, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BomTracker.BomCreatorExcel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BomTracker.BomCreatorExcel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BomTracker.DateCreatedExcel, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BomTracker.DateCreatedExcel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BomTracker.DateCreatedExcel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BomTracker.BomCreatorSage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BomTracker.BomCreatorSage, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BomTracker.BomCreatorSage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BomTracker.DateCreatedSage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BomTracker.DateCreatedSage, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BomTracker.DateCreatedSage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BomTracker.BomCreatorPortal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BomTracker.BomCreatorPortal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BomTracker.BomCreatorPortal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BomTracker.DateCreatedPortal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BomTracker.DateCreatedPortal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BomTracker.DateCreatedPortal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BomTracker.ApprovedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BomTracker.ApprovedBy, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BomTracker.ApprovedBy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BomTracker.DateApproved, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BomTracker.DateApproved, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BomTracker.DateApproved, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BomTracker.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BomTracker.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BomTracker.Notes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="editor-label">
+            <label>Files:</label>
+        </div>
+        <div class="editor-field">
+            <input type="file" name="file" multiple="multiple" />
+
+            <ul class="attachment">
+                @foreach (var item in Model.BomTracker.FileBomDetails)
+                {
+                    <li>
+                        <a class="title" href="/Support/Download/?p=@(item.Id + item.Extension)&d=@item.FileName">@item.FileName</a>
+                        <a href="javascript:void(0);" data-id="@item.Id" class="deleteItem">X</a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+            $('.deleteItem').click(function (e) {
+                       e.preventDefault();
+                       var $ctrl = $(this);
+                       if (confirm('Do you really want to delete this file?')) {
+                           $.ajax({
+                               url: '@Url.Action("DeleteFile")',
+                            type: 'POST',
+                            data: { id: $(this).data('id') }
+                            }).done(function (data) {
+                            if (data.Result == "OK") {
+                            $ctrl.closest('li').remove();
+                            }
+                            else if (data.Result.Message) {
+                            alert(data.Result.Message);
+                            }
+                            }).fail(function () {
+                            alert("There is something wrong. Please try again.");
+                            })
+
+                            }
+            });
+    </script>
+}

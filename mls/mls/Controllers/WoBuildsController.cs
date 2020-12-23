@@ -123,7 +123,7 @@ namespace mls.Controllers
             return View();
         }
 
-        public ActionResult ProcessBuild(int buildqty, string Pn, string WoNo, byte contractor)
+        public ActionResult ProcessBuild(DateTime builddate, int buildqty, string Pn, string WoNo, byte contractor)
         {
 
             List<BomLevel1> boms = new List<BomLevel1>();
@@ -144,7 +144,8 @@ namespace mls.Controllers
             {
 
                 //add the built part to be assembled
-                build.WoEnterDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+                //build.WoEnterDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+                build.WoEnterDateTime = builddate;
                 build.ContractorId = contractor;
                 build.WoNo = WoNo;
                 build.CustomerPn = Pn;
@@ -179,7 +180,8 @@ namespace mls.Controllers
                 {
                     if (b.UnitNo == Pn)
                     {
-                        takeout.WoEnterDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+                        //takeout.WoEnterDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+                        takeout.WoEnterDateTime = builddate;
                         takeout.ContractorId = contractor;
                         takeout.WoNo = WoNo;
                         takeout.CustomerPn = b.DetailPn;
@@ -200,7 +202,8 @@ namespace mls.Controllers
 
                         if (c.UnitNo == d.DetailPn)
                         {
-                            takeout1.WoEnterDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+                            //takeout1.WoEnterDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
+                            takeout1.WoEnterDateTime = builddate;
                             takeout1.ContractorId = contractor;
                             takeout1.WoNo = WoNo;
                             takeout1.CustomerPn = c.DetailPn;

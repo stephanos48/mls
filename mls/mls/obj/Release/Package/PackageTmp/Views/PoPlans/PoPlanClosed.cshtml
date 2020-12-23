@@ -7,7 +7,8 @@
 <h2>Closed POs</h2>
 
 <p>
-    @Html.ActionLink("Go Back", "PoPlanStatus")
+    <button id="btn" class="btn btn-success">Export to Excel</button><br /><br />
+    @Html.ActionLink("Go Back", "PoPlanStatus") | @Html.ActionLink("Received < 6 mo", "PoPlanClosed180less") | @Html.ActionLink("Received > 6 mo", "PoPlanClosed180") | @Html.ActionLink("Received < 1 yr", "PoPlanClosed365less") | @Html.ActionLink("Received > 1 yr", "PoPlanClosed365")
 </p>
 <table id="poplan" class="table table-bordered table-hover">
     <thead>
@@ -115,5 +116,16 @@
                 'iDisplayLength': 100 });
         });
 
+    </script>
+
+    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+    <script type="text/javascript">
+                        $('#btn').click(function(){
+                            $('.table').table2excel({
+                                name: "download",
+                                filename: "download",
+                                fileext: ".xlsx"
+                            });
+                        });
     </script>
 }

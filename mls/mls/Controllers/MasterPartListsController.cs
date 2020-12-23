@@ -87,7 +87,7 @@ namespace mls.Controllers
         {
             //LocationViewModel1 mymodel = new LocationsViewModel1();
 
-            var startDate = DateTime.Parse("5/11/2020");
+            var startDate = DateTime.Parse("12/16/2020");
             var query = from a in db.MasterPartLists
                         join tx in db.TxQohs on a.CustomerPn equals tx.Pn
                         //join tx in db.TxQohs on a.CustomerPn equals tx.Pn

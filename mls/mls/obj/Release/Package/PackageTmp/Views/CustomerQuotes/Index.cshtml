@@ -26,13 +26,16 @@
                 @Html.DisplayNameFor(model => model.UsaBom)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.PartPrice)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.FreightCost)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TotalPrice)
+                @Html.DisplayNameFor(model => model.Tariff)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tariff)
+                @Html.DisplayNameFor(model => model.TotalPrice)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Notes)
@@ -61,13 +64,16 @@
                     @Html.DisplayFor(modelItem => item.UsaBom)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.PartPrice)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.FreightCost)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                    @Html.DisplayFor(modelItem => item.Tariff)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Tariff)
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Notes)

@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "NCRsTimeGraph";
+}
+
+<script src="~/Scripts/chart/exporting.js"></script>
+<script src="~/Scripts/chart/highcharts.js"></script>
+
+<h2>Quality Metrics</h2>
+
+<br />
+<p>
+    @Html.ActionLink("Go Back", "QualityHome", "NcrFs", null, null)
+</p>
+<br />
+<div class="row">
+    <div id="container1" class="border col-4 col-md-4" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+    <div id="container" class="border col-4 col-md-4" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+    <div class="border-primary col-4 col-md-4"></div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $.getJSON("/NcrFs/getgraphdata", function (data) {
+            Highcharts.chart('container', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'NCRs by Type'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'NCRs',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Internal',
+                        y: data.internalncr
+                    }, {
+                        name: 'Customer',
+                        y: data.customer
+                    }, {
+                        name: 'Warranty',
+                        y: data.warranty
+                    }, {
+                        name: 'Supplier',
+                        y: data.supplier
+                    }, {
+                        name: 'Other',
+                        y: data.other
+                    }]
+                }]
+            });
+            });
+        });
+
+
+
+
+
+</script>

@@ -1,0 +1,200 @@
+﻿@model mls.Models.QALog
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>QALog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QACreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QACreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QANo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QANo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QATypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QATypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MlsDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProblemFoundId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProblemFoundId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProblemDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProblemDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContainmentChina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContainmentChina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CleanPointChina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CleanPointChina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContainmentUSA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContainmentUSA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CleanPointUsa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CleanPointUsa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NCRNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NCRNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CQStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CARNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CARNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerCARNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerCARNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MLSChampion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MLSChampion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierChampion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierChampion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,73 @@
+﻿@using mls.Controllers
+
+@{
+    ViewBag.Title = "Quality";
+}
+
+<h2>Quality Home</h2>
+<p>
+    @Html.ActionLink("Go Back", "Index", "CustomerOrders", null, null)
+</p>
+<br />
+<p>
+
+    <h4><u>Quality Applications - TX</u></h4>
+    <br />
+    
+    @Html.ActionLink("Quality Metrics", "GraphPie", "NcrFs", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("ISO", "IsoHome", "NcrFs", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("NCR Log", "Index", "NcrFs", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Quality Alert Log", "Index", "QALogs", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Incoming Inspection", "IncomingHome", "NcrFs", null, null)
+    <br />
+    <br />  
+
+    <h4><u>Quality Applications - Hualin</u></h4>
+    <br />
+    
+    @Html.ActionLink("Oil Cleanliness Records", "Index", "ChOils", null, null)
+    <br />
+    <br />
+    @Html.ActionLink("Hualin NCR Database", "Index", "NcrChinas", null, null)
+    <br />
+    <br />
+    <a href="@Url.Content("~/Files/#")">Coming Soon - Incoming Inspection Rod</a>
+    <br />
+    <br />
+    <a href="@Url.Content("~/Files/#")">Coming Soon - Incoming Inspection Tube</a>
+    <br />
+    <br />
+
+
+    <h4><u>Quality Applications - Lishen</u></h4>
+    <br />
+    
+    <a href="@Url.Content("~/Files/#")">Coming Soon - NCRs</a>
+    <br />
+    <br />
+    <a href="@Url.Content("~/Files/#")">Coming Soon - Incoming Inspection</a>
+    <br />
+    <br />
+
+    @*-> @Html.ActionLink("Operations", "Ops")
+        <br />
+        <br />
+        -> @Html.ActionLink("Supply Chain", "SC")
+        <br />
+        <br />
+        -> @Html.ActionLink("Logistics", "Index", "ShipIns", null, null)
+        <br />
+        <br />
+        -> @Html.ActionLink("Quality", "Quality")
+        <br />
+        <br />
+    *@
+</p>

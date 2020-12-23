@@ -1,0 +1,101 @@
+﻿@model IEnumerable<mls.Models.BomTracker>
+
+@{
+    ViewBag.Title = "Bom Tracker";
+}
+
+<h2>Bom Tracker</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "EngHome", "BomLevel1", null, null) | @Html.ActionLink("All", "Index") | @Html.ActionLink("ApprovedBoms", "Approved") | @Html.ActionLink("New", "New") | @Html.ActionLink("PendingExcel", "PendingExcel") | @Html.ActionLink("PendingSage", "PendingSage") | @Html.ActionLink("PendingPortal", "PendingPortal") | @Html.ActionLink("Archive", "Archived") | @Html.ActionLink("Create New", "Create")
+</p>
+
+<table id="master" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.BomPn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RevLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th>
+                Total Files
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BomTrackerId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.BomTrackerId })|
+                    <a href="javascript:void(0);" data-id="@item.BomTrackerId" class="deleteItem">Delete</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BomPn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RevLevel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+                <td>
+                    @if (item.FileBomDetails.Count() == 0)
+                    {
+                        <span>No File</span>
+                    }
+                    else
+                    {
+                        <span>@item.FileBomDetails.Count() File(s)</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+                $(document).ready(function() {
+                    $("#master").DataTable({
+                      'iDisplayLength': 100 });
+                    });
+    </script>
+
+    <script>
+    $('.deleteItem').click(function (e) {
+               e.preventDefault();
+               var $ctrl = $(this);
+               if (confirm('Do you really want to delete this item?')) {
+                   $.ajax({
+                       url: '@Url.Action("Delete")',
+                    type: 'POST',
+                    data: { id: $(this).data('id') }
+                    }).done(function (data) {
+                    if (data.Result == "OK") {
+                    $ctrl.closest('tr').remove();
+                    }
+                    else if (data.Result.Message) {
+                    alert(data.Result.Message);
+                    }
+                    }).fail(function () {
+                    alert("There is something wrong. Please try again.");
+                    })
+
+                    }
+               });
+    </script>
+}

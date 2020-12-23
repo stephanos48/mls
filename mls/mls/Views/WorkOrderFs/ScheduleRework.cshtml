@@ -1,0 +1,137 @@
+﻿@model List<mls.Models.WorkOrderF>
+
+@{
+    ViewBag.Title = "Schedule";
+
+}
+<h2>Production Schedule - Rework</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "WorkOrderFs", null, null) | @Html.ActionLink("All", "ScheduleAll", "WorkOrderFs", null, null) | @Html.ActionLink("Bayne", "Schedule2", "WorkOrderFs", null, null) | @Html.ActionLink("Main", "ScheduleMinusBayne", "WorkOrderFs", null, null) | @Html.ActionLink("Extreme", "ScheduleExtreme", "WorkOrderFs", null, null) | @Html.ActionLink("Chassis", "ScheduleChassis", "WorkOrderFs", null, null) | @Html.ActionLink("CylRework", "CylRework", "WorkOrderFs", null, null) | @Html.ActionLink("CylTest", "CylTest", "WorkOrderFs", null, null) | @Html.ActionLink("FinalReview", "FinalReview", "WorkOrderFs", null, null) | @Html.ActionLink("SageUpdate", "ClosedNeedSageUpdate", "WorkOrderFs", null, null) | @Html.ActionLink("Hold", "ScheduleOnHold", "WorkOrderFs", null, null) | @Html.ActionLink("Closed", "ScheduleClosed", "WorkOrderFs", null, null) | @Html.ActionLink("Canceled", "ScheduleCanceled", "WorkOrderFs", null, null) | @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
+        {@Html.ActionLink("Create New", "Create")}
+    }
+</p>
+<br />
+<br />
+<br />
+<div class="nopadding">
+
+    <br />
+    <table id="schedule" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                </th>
+                <th>
+                    WoId
+                </th>
+                <th>
+                    WoNo
+                </th>
+                <th>
+                    MlsSo
+                </th>
+                <th>
+                    CustomerPn
+                </th>
+                <th>
+                    Qty
+                </th>
+                <th>
+                    WoDetail
+                </th>
+                <th>
+                    CompletionDate
+                </th>
+                <th></th>
+                <th>
+                    Notes
+                </th>
+                <th>
+                    Parts Needed
+                </th>
+                <th>
+                    StockOutNotes
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Admin") || User.IsInRole("OpsPower"))
+                            {@Html.ActionLink("Edit", "Edit", new { id = item.WorkOrderFId })}
+                        }|
+                        @Html.ActionLink("Details", "Details", new { id = item.WorkOrderFId })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WorkOrderFId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WorkOrderNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MlsSo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerPn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Qty)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WoNotes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShipDate)
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Notes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PartsNeeded)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PartStockOutNotes)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br />
+<br />
+
+@section scripts
+{
+    <script>
+            $(document).ready(function() {
+                $("#schedule").DataTable({
+                    'iDisplayLength': 100 });
+                });
+
+    </script>
+
+    <script>
+    $(document).ready(function() {
+
+    $('td').each(function() {
+
+        var cellvalue = $.trim($(this).text());
+        if ( cellvalue == "feng") {
+            $(this).css('backgroundColor', 'red');
+        }
+        else if ( cellvalue == "hao" ) {
+            $(this).css('backgroundColor', 'green');
+        }
+    });
+
+    });
+    </script>
+}

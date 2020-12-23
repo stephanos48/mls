@@ -1,0 +1,37 @@
+﻿@model IEnumerable<mls.ViewModels.NewChecklistViewModel>
+
+<table id="checklist" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChecklistAction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChecklistAction)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

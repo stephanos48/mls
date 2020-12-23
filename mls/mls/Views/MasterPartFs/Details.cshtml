@@ -1,0 +1,114 @@
+﻿@model mls.Models.MasterPartF
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MasterPartF</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MlsDivisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MlsDivisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivePartId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivePartId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MlsPn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MlsPn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HtsCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HtsCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MasterPartFId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
