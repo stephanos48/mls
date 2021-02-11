@@ -28,6 +28,208 @@ namespace mls.Controllers
             //return View(db.ShipPlans.ToList());
         }
 
+        public ActionResult OHNotShipped()
+        {
+          
+            var startDate = DateTime.Parse("12/16/2020");
+            var query = from tx in db.TxQohs
+                        join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
+                        join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
+                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate).Where(z => z.ContractorId == 1) on tx.Pn equals j.CustomerPn into sr
+                        join c in db.CycleCountFs.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
+                        join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
+                        orderby tx.Pn
+                        select new
+                        {
+                            Id = tx.Txqohid,
+                            Pn = tx.Pn,
+                            Customer = tx.CustomerId,
+                            CustomerDivision = tx.CustomerDivisionId,
+                            MlsDivision = tx.MlsDivisionId,
+                            May11Qoh = tx.Qoh,
+                            May11Rec = (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum(),
+                            May11Ship = (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum(),
+                            May11Wo = (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
+                            May11Cc = (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
+                            May11Nc = (int?)nr.Select(x => x.Quantity).DefaultIfEmpty(0).Sum(),
+                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum() + (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
+                            Location = tx.Location,
+                            Notes = tx.Notes
+                        };
+
+            List<NewShipPlanFViewModel> pnoh = new List<NewShipPlanFViewModel>();
+
+            //add all pns with qoh to pnoh list
+            foreach (var item in query)
+            {
+                if (item.Qoh > 0)
+                {
+                    NewShipPlanFViewModel onhand = new NewShipPlanFViewModel()
+                    {
+                        ShipPlanFId = item.Id,
+                        CustomerPn = item.Pn,
+                        Qoh = item.Qoh.ToString(),
+                        Notes = item.Notes
+
+                    };
+                    pnoh.Add(onhand);
+                }
+            }
+
+            //use linq to return open orders from ShipPlanFs
+            var queryopenorder = (from a in db.ShipPlanFs
+                        where a.ShipPlanStatusId != 2 && a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 8 && a.ShipPlanStatusId != 9
+                        orderby a.ShipDateTime ascending
+                        select new
+                        {
+                            a.CustomerPn
+                        }).Distinct();
+
+
+            //transfer open orders to list
+            List<NewShipPlanFViewModel> openorders = new List<NewShipPlanFViewModel>();
+            foreach(var item in queryopenorder)
+            {
+
+                NewShipPlanFViewModel orderonhand = new NewShipPlanFViewModel()
+                {
+
+                    CustomerPn = item.CustomerPn,
+
+                };
+
+                openorders.Add(orderonhand);
+
+            }
+
+            List<NewShipPlanFViewModel> openorderswqoh = new List<NewShipPlanFViewModel>();
+
+            foreach (var part in openorders)
+            {
+                foreach (var s in pnoh)
+                {
+                    if (part.CustomerPn == s.CustomerPn)
+                    {
+
+                        NewShipPlanFViewModel mymodel = new NewShipPlanFViewModel()
+                        {
+                            ShipPlanFId = s.ShipPlanFId,
+                            CustomerPn = part.CustomerPn,
+                            Qoh = s.Qoh,
+                            Notes = s.Notes
+                        };
+
+                        openorderswqoh.Add(mymodel);
+
+                    }
+                }
+
+            }
+
+            return View("~/Views/ShipPlanFs/OHNotShipped.cshtml", openorderswqoh);
+        }
+
+        public ActionResult OHNotShippedEdit()
+        {
+
+            var startDate = DateTime.Parse("12/16/2020");
+            var query = from tx in db.TxQohs
+                        join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
+                        join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
+                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate).Where(z => z.ContractorId == 1) on tx.Pn equals j.CustomerPn into sr
+                        join c in db.CycleCountFs.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
+                        join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
+                        orderby tx.Pn
+                        select new
+                        {
+                            Id = tx.Txqohid,
+                            Pn = tx.Pn,
+                            Customer = tx.CustomerId,
+                            CustomerDivision = tx.CustomerDivisionId,
+                            MlsDivision = tx.MlsDivisionId,
+                            May11Qoh = tx.Qoh,
+                            May11Rec = (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum(),
+                            May11Ship = (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum(),
+                            May11Wo = (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum(),
+                            May11Cc = (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
+                            May11Nc = (int?)nr.Select(x => x.Quantity).DefaultIfEmpty(0).Sum(),
+                            Qoh = tx.Qoh + (int?)g.Select(x => x.ReceivedQty).DefaultIfEmpty(0).Sum() - (int?)gr.Select(x => x.ShipQty).DefaultIfEmpty(0).Sum() + (int?)sr.Select(x => x.Qty).DefaultIfEmpty(0).Sum() + (int?)cr.Select(x => x.PortalAdjQty).DefaultIfEmpty(0).Sum(),
+                            Location = tx.Location,
+                            Notes = tx.Notes
+                        };
+
+            List<NewShipPlanFViewModel> pnoh = new List<NewShipPlanFViewModel>();
+
+            //add all pns with qoh to pnoh list
+            foreach (var item in query)
+            {
+                if (item.Qoh > 0)
+                {
+                    NewShipPlanFViewModel onhand = new NewShipPlanFViewModel()
+                    {
+                        ShipPlanFId = item.Id,
+                        CustomerPn = item.Pn,
+                        Qoh = item.Qoh.ToString(),
+                        Notes = item.Notes
+
+                    };
+                    pnoh.Add(onhand);
+                }
+            }
+
+            //use linq to return open orders from ShipPlanFs
+            var queryopenorder = (from a in db.ShipPlanFs
+                                  where a.ShipPlanStatusId != 2 && a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 8 && a.ShipPlanStatusId != 9
+                                  orderby a.ShipDateTime ascending
+                                  select new
+                                  {
+                                      a.CustomerPn
+                                  }).Distinct();
+
+
+            //transfer open orders to list
+            List<NewShipPlanFViewModel> openorders = new List<NewShipPlanFViewModel>();
+            foreach (var item in queryopenorder)
+            {
+
+                NewShipPlanFViewModel orderonhand = new NewShipPlanFViewModel()
+                {
+
+                    CustomerPn = item.CustomerPn,
+
+                };
+
+                openorders.Add(orderonhand);
+
+            }
+
+            List<NewShipPlanFViewModel> openorderswqoh = new List<NewShipPlanFViewModel>();
+
+            foreach (var part in openorders)
+            {
+                foreach (var s in pnoh)
+                {
+                    if (part.CustomerPn == s.CustomerPn)
+                    {
+
+                        NewShipPlanFViewModel mymodel = new NewShipPlanFViewModel()
+                        {
+                            ShipPlanFId = s.ShipPlanFId,
+                            CustomerPn = part.CustomerPn,
+                            Qoh = s.Qoh,
+                            Notes = s.Notes
+                        };
+
+                        openorderswqoh.Add(mymodel);
+
+                    }
+                }
+
+            }
+
+            return View("~/Views/ShipPlanFs/OHNotShippedEdit.cshtml", openorderswqoh);
+        }
+
         public ActionResult DipOpen()
         {
             var query = from a in db.ShipPlanFs
@@ -1036,7 +1238,7 @@ namespace mls.Controllers
         public ActionResult MLookUp()
         {
             var query = from a in db.ShipPlanFs
-                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 9 && a.ShipPlanStatusId != 8 && a.CustomerId == 1 && a.CustomerDivisionId != 9 && a.CustomerDivisionId != 1
+                        where a.ShipPlanStatusId != 5 && a.ShipPlanStatusId != 9 && a.ShipPlanStatusId != 8 && a.ShipPlanStatusId != 2 && a.CustomerDivisionId == 2
                         orderby a.ShipDateTime ascending
                         select a;
             return View("MLookUp", query);
@@ -1066,7 +1268,7 @@ namespace mls.Controllers
         public ActionResult MSlotted()
         {
             var query = from a in db.ShipPlanFs
-                        where a.ShipPlanStatusId == 7 && a.CustomerId == 1 && a.CustomerDivisionId != 9 && a.CustomerDivisionId != 1
+                        where a.ShipPlanStatusId == 7 && a.CustomerDivisionId == 2
                         orderby a.ShipDateTime ascending
                         select a;
             return View("MSlotted", query);
@@ -1076,7 +1278,7 @@ namespace mls.Controllers
         public ActionResult MShipped()
         {
             var query = from a in db.ShipPlanFs
-                        where a.ShipPlanStatusId == 5 && a.CustomerId == 1 && a.CustomerDivisionId != 9 && a.CustomerDivisionId != 1
+                        where a.ShipPlanStatusId == 5 && a.CustomerDivisionId == 2
                         orderby a.ShipDateTime descending
                         select a;
             return View("MShipped", query);

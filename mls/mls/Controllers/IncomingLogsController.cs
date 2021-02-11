@@ -11,6 +11,7 @@ using mls.ViewModels;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class IncomingLogsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

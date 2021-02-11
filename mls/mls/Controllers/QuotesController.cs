@@ -12,6 +12,7 @@ using mls.ViewModels;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class QuotesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

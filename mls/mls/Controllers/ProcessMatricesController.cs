@@ -12,6 +12,7 @@ using System.Net.Mime;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class ProcessMatricesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

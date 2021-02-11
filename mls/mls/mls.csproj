@@ -3638,6 +3638,8 @@
     <Content Include="Views\QALogs\Details.cshtml" />
     <Content Include="Views\QALogs\Edit.cshtml" />
     <Content Include="Views\QALogs\Index.cshtml" />
+    <Content Include="Views\ShipPlanFs\OHNotShipped.cshtml" />
+    <Content Include="Views\ShipPlanFs\OHNotShippedEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

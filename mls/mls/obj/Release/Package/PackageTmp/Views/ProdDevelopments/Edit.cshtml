@@ -9,7 +9,8 @@
 @using (Html.BeginForm("Edit", "ProdDevelopments", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+    <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+
     <div class="form-horizontal">
         <h4>ProdDevelopment</h4>
         <hr />

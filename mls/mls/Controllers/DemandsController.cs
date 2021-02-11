@@ -12,6 +12,7 @@ using System.Linq.Expressions;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class DemandsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

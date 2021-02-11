@@ -12,6 +12,7 @@ using System.IO;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class QALogsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -19,13 +20,14 @@ namespace mls.Controllers
         // GET: QALogs
         public ActionResult Index()
         {
-            return View(db.QALogs.ToList());
+            return View(db.QALogs.ToList().OrderByDescending(a => a.QACreated));
         }
 
         public ActionResult Internal()
         {
             var query = from c in db.QALogs
                         where c.QATypeId == 1
+                        orderby c.QACreated descending
                         select c;
             return View("Index", query.ToList());
         }
@@ -34,6 +36,7 @@ namespace mls.Controllers
         {
             var query = from c in db.QALogs
                         where c.QATypeId == 2
+                        orderby c.QACreated descending
                         select c;
             return View("Index", query.ToList());
         }

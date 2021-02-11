@@ -10,6 +10,7 @@ using mls.Models;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class ProductionPlansController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

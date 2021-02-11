@@ -11,6 +11,7 @@ using mls.Models;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class ContainerPoTrackersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

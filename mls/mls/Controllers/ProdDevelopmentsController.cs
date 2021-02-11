@@ -12,6 +12,7 @@ using System.IO;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class ProdDevelopmentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

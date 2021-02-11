@@ -19,6 +19,7 @@ using Chart = System.Web.Helpers.Chart;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class NcrFsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

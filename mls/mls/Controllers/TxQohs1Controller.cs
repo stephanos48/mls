@@ -24,7 +24,7 @@ namespace mls.Controllers
             var query = from tx in db.TxQohs
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
                         join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
-                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
+                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate).Where(z => z.ContractorId == 1) on tx.Pn equals j.CustomerPn into sr
                         join c in db.CycleCountFs.Where(u=>u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
                         join n in db.NCRs.Where(u=>u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
                         orderby tx.Pn
@@ -83,7 +83,7 @@ namespace mls.Controllers
             var query = from tx in db.TxQohs.Where(q=>q.MlsDivisionId == 1)
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
                         join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
-                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
+                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate).Where(z => z.ContractorId == 1) on tx.Pn equals j.CustomerPn into sr
                         join c in db.CycleCountFs.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
                         join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
                         orderby tx.Pn
@@ -136,7 +136,7 @@ namespace mls.Controllers
             var query = from tx in db.TxQohs.Where(q => q.MlsDivisionId == 4)
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
                         join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
-                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
+                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate).Where(z => z.ContractorId == 1) on tx.Pn equals j.CustomerPn into sr
                         join c in db.CycleCountFs.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
                         join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
                         orderby tx.Pn
@@ -190,7 +190,7 @@ namespace mls.Controllers
             var query = from tx in db.TxQohs.Where(q => q.MlsDivisionId == 3)
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
                         join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
-                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
+                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate).Where(z => z.ContractorId == 1) on tx.Pn equals j.CustomerPn into sr
                         join c in db.CycleCountFs.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
                         join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
                         orderby tx.Pn
@@ -244,7 +244,7 @@ namespace mls.Controllers
             var query = from tx in db.TxQohs.Where(q => q.MlsDivisionId == 2)
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
                         join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
-                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
+                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate).Where(z => z.ContractorId == 1) on tx.Pn equals j.CustomerPn into sr
                         join c in db.CycleCountFs.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
                         join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
                         orderby tx.Pn
@@ -298,7 +298,7 @@ namespace mls.Controllers
             var query = from tx in db.TxQohs.Where(q => q.MlsDivisionId == 5)
                         join r in db.PoPlans.Where(a => a.ReceiptDateTime >= startDate).Where(y => y.PoOrderStatusId == 5) on tx.Pn equals r.CustomerPn into g
                         join s in db.ShipPlanFs.Where(u => u.ShipDateTime >= startDate).Where(z => z.ShipPlanStatusId == 5) on tx.Pn equals s.CustomerPn into gr
-                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate) on tx.Pn equals j.CustomerPn into sr
+                        join j in db.WoBuilds.Where(u => u.WoEnterDateTime >= startDate).Where(z => z.ContractorId == 1) on tx.Pn equals j.CustomerPn into sr
                         join c in db.CycleCountFs.Where(u => u.CycleCountDateTime >= startDate) on tx.Pn equals c.CustomerPn into cr
                         join n in db.NCRs.Where(u => u.StatusId != 2) on tx.Pn equals n.PartNumber into nr
                         orderby tx.Pn

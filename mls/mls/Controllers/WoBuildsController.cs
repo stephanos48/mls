@@ -11,6 +11,7 @@ using mls.ViewModels;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class WoBuildsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -125,21 +126,42 @@ namespace mls.Controllers
 
         public ActionResult ProcessBuild(DateTime builddate, int buildqty, string Pn, string WoNo, byte contractor)
         {
-
+            //Initial boms to hold all current parts in bom table
             List<BomLevel1> boms = new List<BomLevel1>();
 
+            //put all parts in current bom table into an in memory list
             boms = db.BomLevel1s.ToList();
-
-            WoBuild build = new WoBuild();
-
-            WoBuild takeout = new WoBuild();
-
-            WoBuild takeout1 = new WoBuild();
-
-            BomLevel1 dpn = new BomLevel1();
 
             List<BomLevel1> selectboms = new List<BomLevel1>();
 
+            BomLevel1 dpn = new BomLevel1();
+
+            //create a list of parts in bom
+            foreach (BomLevel1 a in boms)
+            {
+
+                if (a.UnitNo == Pn)
+                {
+                    dpn.BomNo = a.BomNo;
+                    dpn.UnitNo = a.UnitNo;
+                    dpn.DetailPn = a.DetailPn;
+                    dpn.Description = a.Description;
+                    dpn.PurchaseMake = a.PurchaseMake;
+                    dpn.PartType = a.PartType;
+                    dpn.PartTypeDetail = a.PartTypeDetail;
+                    dpn.QtyPer = a.QtyPer;
+
+                    selectboms.Add(dpn);
+                }
+            }
+
+            //Initialize build table to add built part into WoBuilds
+            WoBuild build = new WoBuild();
+
+            //Initialize build table to subtract out level 1 parts in WoBuilds
+            WoBuild takeout = new WoBuild();
+            
+            //build the part and add it to WoBuilds
             if (boms.Any(i => i.UnitNo == Pn))
             {
 
@@ -154,26 +176,6 @@ namespace mls.Controllers
 
                 db.WoBuilds.Add(build);
                 db.SaveChanges();
-
-                //create a list of parts in bom
-                foreach (BomLevel1 a in boms)
-                {
-
-                    if (a.UnitNo == Pn)
-                    {
-                        dpn.BomNo = a.BomNo;
-                        dpn.UnitNo = a.UnitNo;
-                        dpn.DetailPn = a.DetailPn;
-                        dpn.Description = a.Description;
-                        dpn.PurchaseMake = a.PurchaseMake;
-                        dpn.PartType = a.PartType;
-                        dpn.PartTypeDetail = a.PartTypeDetail;
-                        dpn.QtyPer = a.QtyPer;
-
-                        selectboms.Add(dpn);
-                    }
-
-                }
 
                 //take out parts that were used to build assembly
                 foreach (BomLevel1 b in boms)
@@ -192,7 +194,10 @@ namespace mls.Controllers
                         db.SaveChanges();
                     }
                 }
-                 
+
+                //Initialize build table to subtract out level 2 (or other sublevel) parts in WoBuilds
+                WoBuild takeout1 = new WoBuild();
+
                 //take out sub part numbers
                 foreach (BomLevel1 c in boms)
                 {
@@ -216,7 +221,7 @@ namespace mls.Controllers
 
                     }
                 }
-                return null;
+            return null;
             }
             else
             {

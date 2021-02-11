@@ -11,6 +11,7 @@ using System.IO;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class CycleCountFsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

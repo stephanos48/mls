@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class SupportController : Controller
     {
 

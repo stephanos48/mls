@@ -91,5 +91,7 @@ namespace mls.ViewModels
 
         public string InvNo { get; set; }
 
+        public string Qoh { get; set; }
+
     }
 }

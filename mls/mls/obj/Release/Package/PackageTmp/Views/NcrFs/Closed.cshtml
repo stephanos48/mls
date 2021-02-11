@@ -48,12 +48,12 @@
         {
             <tr>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.NcrId })|
-                    @Html.ActionLink("Details", "Details", new { id = item.NcrId })|
-                    @Html.ActionLink("Delete", "Delete", new { id = item.NcrId })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.NcrFId })|
+                    @Html.ActionLink("Details", "Details", new { id = item.NcrFId })|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NcrFId })
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NcrId)
+                    @Html.DisplayFor(modelItem => item.NcrFId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NcrNumber)

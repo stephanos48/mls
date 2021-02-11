@@ -12,6 +12,7 @@ using System.IO;
 
 namespace mls.Controllers
 {
+    [Authorize]
     public class BomTrackersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
