@@ -309,5 +309,10 @@ namespace mls.Models
         public DbSet<QAType> QATypes { get; set; }
 
         public DbSet<FileQALog> FileQALogs { get; set; }
+
+        public DbSet<CheckRequestF> CheckRequestFs { get; set; }
+
+        public DbSet<FileCheckRequestFDetail> FileCheckRequestFDetails { get; set; }
+
     }
 }

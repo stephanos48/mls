@@ -591,11 +591,33 @@ namespace mls.Controllers
                 db.Entry(workOrderF).State = EntityState.Modified;
                 db.SaveChanges();
                 LogEditWorkOrderActivity(workOrderF);
+                UpdateShipDateSO(workOrderF.WorkOrderFId, workOrderF.ShipDate);
                 return Redirect(returnUrl);
                 //return RedirectToAction("Index");
             }
             return View();
             //return View(workOrderF);
+        }
+
+        public ActionResult UpdateShipDateSO(int woid, DateTime? shipdate)
+        {
+
+            //find shipplan record with workorderid
+            List<ShipPlanF> shipPlanFList = new List<ShipPlanF>();
+
+            var query = db.ShipPlanFs.Where(x=>x.WoNumber == woid.ToString()).Where(b=>b.WoNumber != null).Where(y=>y.ShipPlanStatusId != 5).Where(z=>z.ShipPlanStatusId != 9).ToList();
+
+            if (query != null)
+            {
+                foreach (var datechangeinst in query)
+                {
+                    datechangeinst.ShipDateTime = shipdate;
+                    db.SaveChanges();
+                    return null;
+                }
+            }
+            return null;
+
         }
 
         public ActionResult LogEditWorkOrderActivity(WorkOrderF workOrderF)

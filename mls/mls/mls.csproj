@@ -345,6 +345,7 @@
     <Compile Include="Controllers\BomTrackersController.cs" />
     <Compile Include="Controllers\BuildHistoriesController.cs" />
     <Compile Include="Controllers\ChecklistsController.cs" />
+    <Compile Include="Controllers\CheckRequestFsController.cs" />
     <Compile Include="Controllers\CheckRequestsController.cs" />
     <Compile Include="Controllers\ChOilsController.cs" />
     <Compile Include="Controllers\ContainerPoTrackersController.cs" />
@@ -1102,6 +1103,10 @@
     <Compile Include="Migrations\202012230420155_qalog20201222.Designer.cs">
       <DependentUpon>202012230420155_qalog20201222.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104150353535_addcheckrequestf.cs" />
+    <Compile Include="Migrations\202104150353535_addcheckrequestf.Designer.cs">
+      <DependentUpon>202104150353535_addcheckrequestf.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivePart.cs" />
@@ -1114,6 +1119,7 @@
     <Compile Include="Models\Checklist.cs" />
     <Compile Include="Models\ChecklistType.cs" />
     <Compile Include="Models\CheckRequest.cs" />
+    <Compile Include="Models\CheckRequestF.cs" />
     <Compile Include="Models\CheckStatus.cs" />
     <Compile Include="Models\ChOil.cs" />
     <Compile Include="Models\Classification.cs" />
@@ -1136,6 +1142,7 @@
     <Compile Include="Models\DropTable.cs" />
     <Compile Include="Models\ExtQoh.cs" />
     <Compile Include="Models\FileBomDetail.cs" />
+    <Compile Include="Models\FileCheckRequestFDetail.cs" />
     <Compile Include="Models\FileCycleCount.cs" />
     <Compile Include="Models\FileInvDetail.cs" />
     <Compile Include="Models\FileMasterPartF.cs" />
@@ -1265,6 +1272,7 @@
     <Compile Include="ViewModels\MvcMasterDetails.cs" />
     <Compile Include="ViewModels\NcrViewModel.cs" />
     <Compile Include="ViewModels\NewChecklistViewModel.cs" />
+    <Compile Include="ViewModels\NewCheckRequestFViewModel.cs" />
     <Compile Include="ViewModels\NewDownViewModel.cs" />
     <Compile Include="ViewModels\NewOrderViewModel.cs" />
     <Compile Include="ViewModels\NewPoPlanViewModel.cs" />
@@ -1282,6 +1290,7 @@
     <Compile Include="ViewModels\ProductionStockOutFViewModel.cs" />
     <Compile Include="ViewModels\ProductionStockOutViewModel.cs" />
     <Compile Include="ViewModels\SaveBomTrackerViewModel.cs" />
+    <Compile Include="ViewModels\SaveCheckRequestFViewModel.cs" />
     <Compile Include="ViewModels\SaveMasterPartFViewModel.cs" />
     <Compile Include="ViewModels\SaveNcrFViewModel.cs" />
     <Compile Include="ViewModels\SaveProdDevelopmentViewModel.cs" />
@@ -3640,6 +3649,16 @@
     <Content Include="Views\QALogs\Index.cshtml" />
     <Content Include="Views\ShipPlanFs\OHNotShipped.cshtml" />
     <Content Include="Views\ShipPlanFs\OHNotShippedEdit.cshtml" />
+    <Content Include="Views\CheckRequests\TieredView.cshtml" />
+    <Content Include="Views\CheckRequests\_CheckRequestPartialView.cshtml" />
+    <Content Include="Views\CheckRequestFs\Create.cshtml" />
+    <Content Include="Views\CheckRequestFs\Delete.cshtml" />
+    <Content Include="Views\CheckRequestFs\Details.cshtml" />
+    <Content Include="Views\CheckRequestFs\Edit.cshtml" />
+    <Content Include="Views\CheckRequestFs\Index.cshtml" />
+    <Content Include="Views\CheckRequestFs\_CheckRequestPartialView.cshtml" />
+    <Content Include="Views\CheckRequestFs\TieredView.cshtml" />
+    <Content Include="Views\CheckRequestFs\Closed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4171,6 +4190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012230420155_qalog20201222.resx">
       <DependentUpon>202012230420155_qalog20201222.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104150353535_addcheckrequestf.resx">
+      <DependentUpon>202104150353535_addcheckrequestf.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

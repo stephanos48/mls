@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "CheckRequests";
+}
+
+<h2>Check Requests</h2>
+
+<p>
+    @Html.ActionLink("Go Back", "Index", "CheckRequests", null, null)
+</p>
+
+<h4><u>Newly Requested Check</u></h4>
+@Html.Action("_CheckRequest", "CheckRequestFs", new { status = 1 })
+<br />
+<br />
+<h4><u>Check Sent for Approval</u></h4>
+@Html.Action("_CheckRequest", "CheckRequestFs", new { status = 2 })
+<br />
+<br />
+<h4><u>Check Approved</u></h4>
+@Html.Action("_CheckRequest", "CheckRequestFs", new { status = 3 })
+<br />
+<br />
+<h4><u>Check Mailed</u></h4>
+@Html.Action("_CheckRequest", "CheckRequestFs", new { status = 4 })
+<br />
+<br />
+<h4><u>Check Cashed/Closed</u></h4>
+@Html.Action("_CheckRequest", "CheckRequestFs", new { status = 5 })
+<br />
+<br />
+<h4><u>Check Denied</u></h4>
+@Html.Action("_CheckRequest", "CheckRequestFs", new { status = 6 })
+<br />
+<br />

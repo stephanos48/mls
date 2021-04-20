@@ -1,0 +1,138 @@
+﻿@model mls.Models.CheckRequestF
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CheckRequestF</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MlsCo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MlsCo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseOrderNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseOrderNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MailDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MailDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActualMailDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActualMailDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipMethod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipMethod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackingInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackingInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CheckRequestFId })|
+    @Html.ActionLink("Back to List", "Index")
+</p>

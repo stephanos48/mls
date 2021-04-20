@@ -194,7 +194,7 @@ namespace mls.Controllers
                         db.SaveChanges();
                     }
                 }
-
+                /*
                 //Initialize build table to subtract out level 2 (or other sublevel) parts in WoBuilds
                 WoBuild takeout1 = new WoBuild();
 
@@ -220,7 +220,7 @@ namespace mls.Controllers
                         }
 
                     }
-                }
+                }*/
             return null;
             }
             else
